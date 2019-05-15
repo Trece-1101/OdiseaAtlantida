@@ -9,6 +9,7 @@ public abstract class Ship : MonoBehaviour
     private Vector2 Velocity;
     private float BulletDamage;
     private float MissileDamage;
+    private float TimeBetweenShoots;
     //private float Reward;
     #endregion
 
@@ -39,6 +40,13 @@ public abstract class Ship : MonoBehaviour
     }
     public void SetMissileDamage(float value) {
         this.MissileDamage = value;
+    }
+
+    public float GetTimeBetweenShoots() {
+        return this.TimeBetweenShoots;
+    }
+    public void SetTimeBetweenShoots(float value) {
+        this.TimeBetweenShoots = value;
     }
     #endregion
 

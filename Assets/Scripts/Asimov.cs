@@ -10,11 +10,15 @@ public class Asimov : Ship
     #endregion      
 
     #region "Componentes"
-    private Rigidbody2D Body;
-    private Transform target;
+    private Rigidbody2D body;
+    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private List<Sprite> sprites;
-    private SpriteRenderer Img;
+    [SerializeField] private Transform bulletShootPoint1;
+    [SerializeField] private Transform bulletShootPoint2;
+    private SpriteRenderer img;
     private Sprite actualSprite;
+    private ObjectPool objectPool;
+    private Shield shield;
     #endregion
 
     #region "Aux"
@@ -23,6 +27,9 @@ public class Asimov : Ship
     private float upBorder;
     private float downBorder;
     private float padding;
+    private float timeForShoot;
+    private Quaternion rotation_asimov;
+    private Quaternion rotation_bullet;
     #endregion
 
     #region "Setters/Getters"
@@ -44,10 +51,15 @@ public class Asimov : Ship
     #region "Metodos"
    
     private void Start() {
-        Body = GetComponent<Rigidbody2D>();
-        Img = GetComponent<SpriteRenderer>();
+        this.SetTimeBetweenShoots(0.2f);
+        this.timeForShoot = this.GetTimeBetweenShoots();
+        this.objectPool = ObjectPool.Instance;
+        this.shield = FindObjectOfType<Shield>();
+
+        body = GetComponent<Rigidbody2D>();
+        img = GetComponent<SpriteRenderer>();
         actualSprite = sprites[0];
-        Img.sprite = actualSprite;
+        img.sprite = actualSprite;
         SetUpBorders();
     }
 
@@ -55,8 +67,12 @@ public class Asimov : Ship
     private void Update() {
         Move();
         Rotate();
+        MoveShield();
         CheckSprite();
+        Fire();
     }
+
+
 
     private void CheckSprite() {
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -67,7 +83,7 @@ public class Asimov : Ship
                 actualSprite = sprites[0];
             }
 
-            Img.sprite = actualSprite;
+            img.sprite = actualSprite;
         }
     }
 
@@ -91,13 +107,52 @@ public class Asimov : Ship
         transform.position = new Vector2(nextPosX, nextPosY);
     }
 
-    public void Rotate() {
-        var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        var angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    private float AngleWithCompensateRotation(Vector3 direction, int compensation) {
+        var angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - compensation;
+        return angle;
     }
+
     
 
+    private void Rotate() {
+        // vector_direccion_ataque = vector_posicion_mouse - vector_centro_camara
+        var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        // angulo_rotacion = arcoseno(dy/dx) - 90 grados
+        // 90 grados para compensar que el sprite tiene su 0° hacia el Norte y la camara tiene sus 0° hacia el Este
+        // var angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90;
+        var angle_asimov = AngleWithCompensateRotation(dir, 90);
+        // el sprite del proyectil ya apunta hacia el Este asi que no tiene compensacion
+        var angle_bullet = AngleWithCompensateRotation(dir, 0);        
+        rotation_asimov = Quaternion.AngleAxis(angle_asimov, Vector3.forward);
+        rotation_bullet = Quaternion.AngleAxis(angle_bullet, Vector3.forward);
+        // rotar el componente en el angulo calculado y con z como eje de rotacion
+        transform.rotation = Quaternion.AngleAxis(angle_asimov, Vector3.forward);
+    }
+
+    private void MoveShield() {
+        if(Input.GetAxis("Mouse ScrollWheel") != 0f) {
+            shield.ShieldControl(Convert.ToInt32(Input.GetAxis("Mouse ScrollWheel") * 10));
+        }
+        
+    }
+    
+    private void Fire() {
+        if(this.timeForShoot <= 0) {
+            if (Input.GetButton("Fire1")) {
+                //Instantiate(bulletPrefab, bulletShootPoint1.position, rotation_bullet);
+                //Instantiate(bulletPrefab, bulletShootPoint2.position, rotation_bullet);
+
+                objectPool.Spawn("PlayerBullet", bulletShootPoint1.position, rotation_bullet);
+                objectPool.Spawn("PlayerBullet", bulletShootPoint2.position, rotation_bullet);
+
+
+                this.timeForShoot = this.GetTimeBetweenShoots();
+            }            
+        }
+        else {
+            timeForShoot -= Time.deltaTime;
+        }
+    }
         
     
 

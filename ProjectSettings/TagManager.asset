@@ -14,9 +14,9 @@ TagManager:
   - 
   - 
   - Player
-  - 
-  - 
-  - 
+  - Bullet
+  - Shield
+  - Enemy
   - 
   - 
   - 
@@ -41,6 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Bullet
+    uniqueID: 1327473219
+    locked: 0
+  - name: Enemy
+    uniqueID: 2381849811
+    locked: 0
   - name: Player
     uniqueID: 1327832821
+    locked: 0
+  - name: Shield
+    uniqueID: 114661499
     locked: 0
