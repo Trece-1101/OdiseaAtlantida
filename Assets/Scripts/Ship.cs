@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Ship : MonoBehaviour
+public abstract class Ship : MonoBehaviour, IAttack
 {
     #region "Atributos"
     private float HitPoints;
     private Vector2 Velocity;
     private float BulletDamage;
     private float MissileDamage;
-    private float TimeBetweenShoots;
+    public float TimeBetweenShoots { get; set; }
+    public float TimeBetweenMissileShoots { get; set; }
+    public float RemainTimeForShootBullet { get; set; }
+    public float RemainTimeForShootMissile { get; set; }
+    public bool CanShoot { get; set; }
     //private float Reward;
     #endregion
 
@@ -48,6 +52,13 @@ public abstract class Ship : MonoBehaviour
     public void SetTimeBetweenShoots(float value) {
         this.TimeBetweenShoots = value;
     }
+
+    public float GetTimeBetweenMissileShoots() {
+        return this.TimeBetweenMissileShoots;
+    }
+    public void SetTimeBetweenMissileShoots(float value) {
+        this.TimeBetweenMissileShoots = value;
+    }
     #endregion
 
     #region "Constructor"
@@ -61,5 +72,6 @@ public abstract class Ship : MonoBehaviour
 
     #region "Metodos"
     public abstract void Move();
+    public abstract void Shoot();
     #endregion
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : MonoBehaviour
+public class Shield : MonoBehaviour, IAttack
 {
     private Vector3 upPos;
     private Vector3 downPos;
@@ -12,8 +12,23 @@ public class Shield : MonoBehaviour
     private Quaternion rotated;
     private int positionCounter;
     private List<Vector3> positions = new List<Vector3>();
-    
+    [SerializeField] private Transform shootPoint;
+    public float TimeBetweenShoots { get; set; }
+    public float TimeBetweenMissileShoots { get; set; }
+    private ObjectPool objectPool;
+    public float RemainTimeForShootBullet { get; set; }
+    public float RemainTimeForShootMissile { get; set; }
+    public bool CanShoot { get; set; }
+
     private void Start() {
+        this.objectPool = ObjectPool.Instance;
+
+        TimeBetweenShoots = 0.8f;
+
+        this.CanShoot = true;
+        this.RemainTimeForShootBullet = this.TimeBetweenShoots;
+        this.RemainTimeForShootMissile = this.TimeBetweenMissileShoots;
+
         upPos = new Vector3(0f, 0.55f, 0f);        
         downPos = new Vector3(0f, -0.55f, 0f);        
         rightPos = new Vector3(0.55f, 0f, 0f);        
@@ -49,5 +64,31 @@ public class Shield : MonoBehaviour
         this.transform.localPosition = positions[positionCounter];
 
     }
-  
+
+    public void Shoot() {
+        //if (this.RemainTimeForShootBullet <= 0 && this.CanShoot) {
+        //    objectPool.Spawn("PlayerBullet", shootPoint.position, this.transform.localRotation);
+
+        //    this.RemainTimeForShootBullet = this.TimeBetweenShoots;
+        //}
+        //else {
+        //    this.RemainTimeForShootBullet -= Time.deltaTime;
+        //}
+
+       
+    }
+
+    public void Shoot(Quaternion rotation) {
+        //if (this.RemainTimeForShootBullet <= 0) {
+        //    objectPool.Spawn("PlayerBullet", shootPoint.position, rotation);
+
+        //    this.RemainTimeForShootBullet = this.TimeBetweenShoots;
+        //}
+        //else {
+        //    this.RemainTimeForShootBullet -= Time.deltaTime;
+        //}
+
+
+    }
+
 }

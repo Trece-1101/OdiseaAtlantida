@@ -14,9 +14,11 @@ public class Enemy : Ship
     #endregion
 
 
-
+    public override void Shoot() {
+        throw new System.NotImplementedException();
+    }
 
     public override void Move() {
-        
+        throw new System.NotImplementedException();
     }
 }

@@ -5,16 +5,14 @@ using UnityEngine;
 public class Bullet : Proyectile
 {
     private void Start() {
-        SetSpeed(8f);
-        SetLifeTime(2f);
-        Invoke("Die", GetLifeTime());
-    }
-       
-    public override void Die() {
-        gameObject.SetActive(false);
-    }
+        SetSpeed(10f);
+        SetLifeTime(3f);        
+    }      
 
-    private void OnDisable() {
-       CancelInvoke();
+    public override void Update() {
+        // translate mueve el sprite en la direccion y distancia dada (pos = pos + v*t)
+        // como el sprite del proyectil esta en sentido Este el vector direccion es el vector unitario (1, 0)
+        transform.Translate(Vector2.right * this.GetSpeed() * Time.deltaTime);
+        Invoke("Die", GetLifeTime());
     }
 }

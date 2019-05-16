@@ -21,12 +21,15 @@ public abstract class Proyectile : MonoBehaviour
         this.LifeTime = value;
     }
 
-    public abstract void Die();
+    public abstract void Update();
 
-    private void Update() {
-        // translate mueve el sprite en la direccion y distancia dada (pos = pos + v*t)
-        // como el sprite del proyectil esta en sentido Este el vector direccion es el vector unitario (1, 0)
-        transform.Translate(Vector2.right * this.Speed * Time.deltaTime);
+
+    private void OnDisable() {
+        CancelInvoke();
+    }
+
+    private void Die() {
+        gameObject.SetActive(false);
     }
 
 }

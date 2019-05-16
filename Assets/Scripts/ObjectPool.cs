@@ -9,7 +9,6 @@ public class ObjectPool : MonoBehaviour
         public string tag;
         public GameObject preFab;
         public int poolSize;
-        public bool needMore = false;
     }
 
     public static ObjectPool Instance;
