@@ -40,4 +40,8 @@ public class OrangeBandit : Ship
             this.RemainTimeForShootBullet -= Time.deltaTime;
         }
     }
+
+    public override void CheckRotation() {
+        throw new System.NotImplementedException();
+    }
 }

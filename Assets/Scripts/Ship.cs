@@ -73,5 +73,35 @@ public abstract class Ship : MonoBehaviour, IAttack
     #region "Metodos"
     public abstract void Move();
     public abstract void Shoot();
+    public abstract void CheckRotation();
+
+    public float AngleWithCompensateRotation(Vector3 direction, int compensation) {
+        var angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - compensation;
+        return angle;
+    }
+
+    public Dictionary<string, Quaternion> Rotate(Vector3 dir, int shipAngleCompensation, int bulletAngleCompesation) {
+        // vector_direccion_ataque = vector_posicion_mouse - vector_centro_camara // en el caso de nuestra nave
+        // vector_direccion_ataque = vector_posicion_asimov // en el caso de los enemigos
+ 
+        // angulo_rotacion = arcoseno(dy/dx) - X grados
+        // 90 grados para compensar que el sprite tiene su 0° hacia el Norte y la camara tiene sus 0° hacia el Este en el caso de la asimov
+        // var angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90;
+        var angle_ship = this.AngleWithCompensateRotation(dir, shipAngleCompensation);
+        // el sprite del proyectil ya apunta hacia el Este asi que no tiene compensacion
+        var angle_bullet = this.AngleWithCompensateRotation(dir, bulletAngleCompesation);
+        var rotation_ship = Quaternion.AngleAxis(angle_ship, Vector3.forward);
+        var rotation_bullet = Quaternion.AngleAxis(angle_bullet, Vector3.forward);
+        // rotar el componente en el angulo calculado y con z como eje de rotacion
+        transform.rotation = Quaternion.AngleAxis(angle_ship, Vector3.forward);
+        Dictionary<string, Quaternion> rotations = new Dictionary<string, Quaternion>() {
+            {"rotation_ship", rotation_ship },
+            {"rotation_bullet", rotation_bullet },
+            {"transform_rotation", transform.rotation }
+        };
+
+        return rotations;
+    }
+
     #endregion
 }

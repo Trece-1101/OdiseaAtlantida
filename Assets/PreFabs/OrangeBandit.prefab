@@ -40,7 +40,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1050599874837932562}
   - component: {fileID: 1050599874837932563}
-  - component: {fileID: 2766450092757227519}
+  - component: {fileID: 1979153525369992830}
+  - component: {fileID: 6623237322339535389}
   m_Layer: 11
   m_Name: OrangeBandit
   m_TagString: Untagged
@@ -57,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 1050599874837932572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.65, z: 0}
-  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1792358052}
   m_Father: {fileID: 0}
@@ -111,7 +112,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2766450092757227519
+--- !u!114 &1979153525369992830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,7 +121,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1050599874837932572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4716843ecd542a4da4ed3c63ace1253, type: 3}
+  m_Script: {fileID: 11500000, guid: 33a8dde19a1eb3c4a9247e33fae6883c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitpoints: 100
+  velocity: {x: 10, y: 10}
+  bulletDamage: 20
+  missileDamage: 0
+  timeBtwShoots: 1
   shootPoint: {fileID: 1792358052}
+--- !u!114 &6623237322339535389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050599874837932572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694b0fd3fbae0914fa9b8577323f9e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -58,7 +58,7 @@ public class Asimov : Ship
 
     private void Update() {
         Move();
-        Rotate();
+        CheckRotation();
         MoveShield();
         CheckSprite();
         Shoot();
@@ -96,23 +96,17 @@ public class Asimov : Ship
     private float AngleWithCompensateRotation(Vector3 direction, int compensation) {
         var angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - compensation;
         return angle;
-    }
+    }    
 
-    
-
-    private void Rotate() {
+    public override void CheckRotation() {
         // vector_direccion_ataque = vector_posicion_mouse - vector_centro_camara
-        var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        // angulo_rotacion = arcoseno(dy/dx) - 90 grados
         // 90 grados para compensar que el sprite tiene su 0° hacia el Norte y la camara tiene sus 0° hacia el Este
-        // var angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90;
-        var angle_asimov = AngleWithCompensateRotation(dir, 90);
         // el sprite del proyectil ya apunta hacia el Este asi que no tiene compensacion
-        var angle_bullet = AngleWithCompensateRotation(dir, 0);        
-        rotation_asimov = Quaternion.AngleAxis(angle_asimov, Vector3.forward);
-        rotation_bullet = Quaternion.AngleAxis(angle_bullet, Vector3.forward);
-        // rotar el componente en el angulo calculado y con z como eje de rotacion
-        transform.rotation = Quaternion.AngleAxis(angle_asimov, Vector3.forward);
+
+        var rotations = this.Rotate(Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), 90, 0);
+        rotation_asimov = rotations["rotation_ship"];
+        rotation_bullet = rotations["rotation_bullet"];
+        this.transform.rotation = rotations["transform_rotation"];
     }
 
     private void MoveShield() {

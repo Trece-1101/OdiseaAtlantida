@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3689262514176be46ad0a11b360ba67f, type: 3}
-  m_Name: New Wave
+  m_Name: EasyButterfly4
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1050599874837932572, guid: 2402f30be7fac23439f41e445f59936e,
+  enemyPrefab: {fileID: 1088062513839854488, guid: b2e3102d3b35c8448aa15c28ffe48bd0,
     type: 3}
-  pathPrefab: {fileID: 5686262596185354048, guid: d79dc3d2556444946bc7138d1cad8689,
+  pathPrefab: {fileID: 4488661321357910163, guid: 722150625f1cb1d4e8dcd8f9029fdb0d,
     type: 3}
-  timeBetweenSpawn: 1.5
-  spawnRandomize: 0.5
-  numberOfEnemies: 5
-  moveSpeed: 2
+  spawnRandomize: 0
+  numberOfEnemies: 1
