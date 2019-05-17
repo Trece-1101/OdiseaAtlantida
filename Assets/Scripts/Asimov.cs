@@ -19,6 +19,8 @@ public class Asimov : Ship
     private Sprite actualSprite;
     private ObjectPool objectPool;
     private Shield shield;
+    private PolygonCollider2D colliderAtack;
+    private PolygonCollider2D colliderDefense;
     #endregion
 
     #region "Referencias en Cache"
@@ -50,9 +52,12 @@ public class Asimov : Ship
 
         body = GetComponent<Rigidbody2D>();
         img = GetComponent<SpriteRenderer>();
+        PolygonCollider2D[] colliders = GetComponents<PolygonCollider2D>();
+        colliderAtack = colliders[0];
+        colliderDefense = colliders[1];
 
         actualSprite = sprites[0];
-        img.sprite = actualSprite;        
+        img.sprite = actualSprite;  
     }
 
 
@@ -71,12 +76,17 @@ public class Asimov : Ship
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (actualSprite == sprites[0]) {
                 actualSprite = sprites[1];
+                colliderAtack.enabled = false;
+                colliderDefense.enabled = true;
             }
             else {
                 actualSprite = sprites[0];
+                colliderAtack.enabled = true;
+                colliderDefense.enabled = false;
             }
 
             img.sprite = actualSprite;
+
         }
     }
 
@@ -116,7 +126,7 @@ public class Asimov : Ship
         
     }
     
-    public override void Shoot() {
+    public override void Shoot() {               
         if(this.RemainTimeForShootBullet <= 0) {
             if (Input.GetButton("Fire1")) {
                 //Instantiate(bulletPrefab, bulletShootPoint1.position, rotation_bullet);
@@ -153,8 +163,21 @@ public class Asimov : Ship
     private void ShieldShoot() {
         this.shield.Shoot(rotation_bullet);
     }
-        
-    
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        DamageHandler damageHandler = collision.gameObject.GetComponent<DamageHandler>();
+        if (!damageHandler) {
+            return;
+        }
+        ReceiveDamage(damageHandler.GetDamage());
+        collision.gameObject.SetActive(false);
+    }
+
+    public override void Die() {
+        Destroy(gameObject);
+    }
+
+
 
     #endregion
 }

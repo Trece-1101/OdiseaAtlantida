@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : Ship
 {
-    [SerializeField] private float hitpoints;
+    [SerializeField] private float hitpoints = 50;
     [SerializeField] private Vector2 velocity;
     [SerializeField] private float bulletDamage;
     [SerializeField] private float missileDamage;
@@ -67,4 +67,18 @@ public class Enemy : Ship
             this.RemainTimeForShootBullet -= Time.deltaTime;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        DamageHandler damageHandler = collision.gameObject.GetComponent<DamageHandler>();
+        if (!damageHandler) {
+            return;
+        }
+        ReceiveDamage(damageHandler.GetDamage());
+        collision.gameObject.SetActive(false);
+    }
+
+    public override void Die() {
+        Destroy(gameObject);
+    }
+
 }

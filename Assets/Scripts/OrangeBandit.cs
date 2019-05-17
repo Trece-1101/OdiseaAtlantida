@@ -41,6 +41,10 @@ public class OrangeBandit : Ship
         }
     }
 
+    public override void Die() {
+        throw new System.NotImplementedException();
+    }
+
     public override void CheckRotation() {
         throw new System.NotImplementedException();
     }

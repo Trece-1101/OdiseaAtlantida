@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 953834688786667275}
   - component: {fileID: 5118453122001079521}
   - component: {fileID: 3617504310130478572}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MissilePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,10 +66,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1327473219
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d69d48bb136be4746bd8bc4a85b7b7a0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a373bd93e653e6d4a88ec035afdfffb2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -65,6 +65,17 @@ public class Shield : MonoBehaviour, IAttack
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision) {
+        Debug.Log(collision.gameObject.name);
+        if(collision.gameObject.name == "EnemyBullet(Clone)") {
+            Debug.Log("shield");
+            collision.gameObject.SetActive(false);
+        }
+        if(collision.gameObject.tag == "Enemy") {
+            Destroy(collision.gameObject);
+        }
+    }
+
     public void Shoot() {
         //if (this.RemainTimeForShootBullet <= 0 && this.CanShoot) {
         //    objectPool.Spawn("PlayerBullet", shootPoint.position, this.transform.localRotation);

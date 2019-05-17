@@ -74,6 +74,7 @@ public abstract class Ship : MonoBehaviour, IAttack
     public abstract void Move();
     public abstract void Shoot();
     public abstract void CheckRotation();
+    public abstract void Die();
 
     public float AngleWithCompensateRotation(Vector3 direction, int compensation) {
         var angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - compensation;
@@ -102,6 +103,17 @@ public abstract class Ship : MonoBehaviour, IAttack
 
         return rotations;
     }
+
+    public void ReceiveDamage(float damage) {
+        this.SetHitPoints(this.GetHitPoints() - damage);
+        if(this.GetHitPoints() <= 0) {
+            Die();
+        }
+    }
+
+
+
+    
 
     #endregion
 }

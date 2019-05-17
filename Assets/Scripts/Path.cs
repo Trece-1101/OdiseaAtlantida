@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,13 +17,12 @@ public class Path : MonoBehaviour
         wayPoints = wave.GetPathPrefab();
         transform.position = wayPoints[wayPointIndex].transform.position;
         wave.SetMoveSpeed(enemy.GetVelocity().x);
-        Debug.Log(enemy.GetVelocity());
         moveSpeed = wave.GetMoveSpeed();
         
     }
 
     private void Update() {
-        MoveInPath();        
+        MoveInPath();
     }
 
     public void SetWave(Wave wave) {
@@ -30,23 +30,19 @@ public class Path : MonoBehaviour
     }
 
 
-
     private void MoveInPath() {
         if (wayPointIndex < wayPoints.Count) {
-            MoveToPoint(wayPointIndex);        
-            if(wayPointIndex == 2) {
+            MoveToPoint(wayPointIndex);
+            if (wayPointIndex == 2) {
                 enemy.CanShoot = true;
             }
         }
         else {
-            //while(wayPointIndex > 0) {
-            //    wayPointIndex--;
-            //    MoveToPoint(wayPointIndex);
-            //}
-            
+            //Destroy(gameObject);
+            wayPointIndex = 1;
+            MoveToPoint(wayPointIndex);
         }
-
-    }
+    } 
 
     private void MoveToPoint(int index) {
         var targetPosition = wayPoints[index].transform.position;
@@ -56,32 +52,7 @@ public class Path : MonoBehaviour
             wayPointIndex++;
         }
     }
-
-
-
-
-
-    //private void MoveInPath() {
-    //    if (wayPointIndex < wayPoints.Count) {
-    //        GoFoward();
-    //    }
-    //    else {
-    //        //Destroy(gameObject);
-    //        GoBackward();
-    //    }
-    //}
-
-    //private void GoFoward() {
-    //    if (wayPointIndex == 2) {
-    //        enemy.CanShoot = true;
-    //    }
-    //    var targetPosition = wayPoints[wayPointIndex].transform.position;        
-    //    this.transform.position = Vector2.MoveTowards(transform.position, targetPosition, movement);
-    //    // TODO: verificar si esto no es al pedo
-    //    if (transform.position == targetPosition) {
-    //        wayPointIndex++;
-    //    }
-    //}
- 
+          
+   
 }
 

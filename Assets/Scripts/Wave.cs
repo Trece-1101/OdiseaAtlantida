@@ -9,7 +9,7 @@ public class Wave : ScriptableObject
     [SerializeField] private GameObject pathPrefab;
     private float timeBetweenSpawn = 0f;
     [SerializeField] private float spawnRandomize = 0.5f;
-    [SerializeField] private int numberOfEnemies = 5;
+    [SerializeField] private int numberOfEnemies;
     private float moveSpeed;
 
     public GameObject GetEnemyPrefab() {
@@ -38,11 +38,11 @@ public class Wave : ScriptableObject
     }
 
     public float GetMoveSpeed() {
-        Debug.Log(this.moveSpeed);
+        //Debug.Log(this.moveSpeed);
         return this.moveSpeed;
     }
     public void SetMoveSpeed(float value) {
-        this.moveSpeed = value;
+        this.moveSpeed = 1.2f;
         //this.moveSpeed = enemyPrefab.GetComponent<Enemy>().GetVelocity().x;        
     }
    

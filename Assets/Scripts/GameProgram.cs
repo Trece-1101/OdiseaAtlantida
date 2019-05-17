@@ -53,7 +53,8 @@ public class GameProgram : MonoBehaviour
         asimov = FindObjectOfType<Asimov>();
         asimov.SetVelocity(new Vector2(4f, 4f));
         asimov.SetTimeBetweenShoots(0.2f);
-        asimov.SetTimeBetweenMissileShoots(0.5f);
+        asimov.SetTimeBetweenMissileShoots(1f);
+        asimov.SetHitPoints(100);
 
         crossHair = FindObjectOfType<CrossHair>();
         Cursor.visible = false;
@@ -62,6 +63,7 @@ public class GameProgram : MonoBehaviour
 
     private void Update() {
         crossHair.transform.position = Input.mousePosition;
+        //Debug.Log(asimov.GetHitPoints());
     }
 
 

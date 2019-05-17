@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CrossHair : MonoBehaviour
-{
-    
+{    
+
+    private void ChangeColor() {
+
+    }
 }
