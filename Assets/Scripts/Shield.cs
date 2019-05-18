@@ -66,9 +66,8 @@ public class Shield : MonoBehaviour, IAttack
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log(collision.gameObject.name);
         if(collision.gameObject.name == "EnemyBullet(Clone)") {
-            Debug.Log("shield");
+            Shoot(collision.gameObject.transform.rotation);
             collision.gameObject.SetActive(false);
         }
         if(collision.gameObject.tag == "Enemy") {
@@ -89,8 +88,10 @@ public class Shield : MonoBehaviour, IAttack
        
     }
 
-    public void Shoot(Quaternion rotation) {
-        //if (this.RemainTimeForShootBullet <= 0) {
+    public void Shoot(Quaternion rotation) {  
+        objectPool.Spawn("PlayerBullet", shootPoint.position, rotation);
+        //if (this.RemainTimeForShootBullet <= 0) {           
+
         //    objectPool.Spawn("PlayerBullet", shootPoint.position, rotation);
 
         //    this.RemainTimeForShootBullet = this.TimeBetweenShoots;

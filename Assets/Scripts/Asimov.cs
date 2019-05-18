@@ -67,7 +67,7 @@ public class Asimov : Ship
         MoveShield();
         CheckSprite();
         Shoot();
-        ShieldShoot();
+        //ShieldShoot();
     }
 
 
@@ -102,11 +102,6 @@ public class Asimov : Ship
         // pos(n) = pos(n-1) + v*t
         transform.position = new Vector2(nextPosX, nextPosY);
     }
-
-    private float AngleWithCompensateRotation(Vector3 direction, int compensation) {
-        var angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - compensation;
-        return angle;
-    }    
 
     public override void CheckRotation() {
         // vector_direccion_ataque = vector_posicion_mouse - vector_centro_camara
@@ -160,9 +155,9 @@ public class Asimov : Ship
         }
     }
 
-    private void ShieldShoot() {
-        this.shield.Shoot(rotation_bullet);
-    }
+    //private void ShieldShoot() {
+    //    this.shield.Shoot(rotation_bullet, rotation_asimov);        
+    //}
 
     private void OnTriggerEnter2D(Collider2D collision) {
         DamageHandler damageHandler = collision.gameObject.GetComponent<DamageHandler>();
