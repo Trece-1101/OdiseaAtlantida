@@ -25,7 +25,7 @@ public class Shield : MonoBehaviour, IAttack
 
         TimeBetweenShoots = 0.8f;
 
-        this.CanShoot = true;
+        //this.CanShoot = true;
         this.RemainTimeForShootBullet = this.TimeBetweenShoots;
         this.RemainTimeForShootMissile = this.TimeBetweenMissileShoots;
 
@@ -45,7 +45,8 @@ public class Shield : MonoBehaviour, IAttack
     }
 
     public void ShieldControl(int value) {
-        positionCounter += value;
+        positionCounter += value;             
+
         if(positionCounter > 3) {
             positionCounter = 0;
         }
@@ -61,8 +62,13 @@ public class Shield : MonoBehaviour, IAttack
             this.transform.localRotation = noRotation;
         }
 
+        CanShoot = positionCounter == 0 ? true : false;
         this.transform.localPosition = positions[positionCounter];
 
+    }
+
+    public void GetShieldOnFront() {
+        ShieldControl(-positionCounter);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -76,29 +82,15 @@ public class Shield : MonoBehaviour, IAttack
     }
 
     public void Shoot() {
-        //if (this.RemainTimeForShootBullet <= 0 && this.CanShoot) {
-        //    objectPool.Spawn("PlayerBullet", shootPoint.position, this.transform.localRotation);
-
-        //    this.RemainTimeForShootBullet = this.TimeBetweenShoots;
-        //}
-        //else {
-        //    this.RemainTimeForShootBullet -= Time.deltaTime;
-        //}
-
-       
+        
     }
 
-    public void Shoot(Quaternion rotation) {  
-        objectPool.Spawn("PlayerBullet", shootPoint.position, rotation);
-        //if (this.RemainTimeForShootBullet <= 0) {           
-
-        //    objectPool.Spawn("PlayerBullet", shootPoint.position, rotation);
-
-        //    this.RemainTimeForShootBullet = this.TimeBetweenShoots;
+    public void Shoot(Quaternion rotation) {
+        //if (CanShoot) {            
+        //    objectPool.Spawn("PlayerBullet", shootPoint.position, Quaternion.Inverse(rotation));
         //}
-        //else {
-        //    this.RemainTimeForShootBullet -= Time.deltaTime;
-        //}
+        
+       
 
 
     }

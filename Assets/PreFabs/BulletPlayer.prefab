@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 33803857936573063}
   - component: {fileID: 1099424031313119709}
   - component: {fileID: 8125496622744734447}
+  - component: {fileID: 7164999583485678668}
   - component: {fileID: 2698428770324900684}
-  - component: {fileID: 538505708972195492}
   m_Layer: 9
   m_Name: BulletPlayer
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 33803857936573062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.506, y: -3.966, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -116,6 +116,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b4589dbee76e14a97fd7e75bdede15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7164999583485678668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33803857936573062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462d9f3a90a5b5e44b7daac8b665119c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!60 &2698428770324900684
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -151,16 +164,3 @@ PolygonCollider2D:
       - {x: 0.114144325, y: -0.020166636}
       - {x: 0.10718322, y: 0.01994443}
       - {x: 0.06933868, y: 0.035083055}
---- !u!114 &538505708972195492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33803857936573062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 733aa880da3dc6848b799b3d56906f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 15

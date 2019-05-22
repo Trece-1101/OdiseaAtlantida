@@ -4,26 +4,35 @@ using UnityEngine;
 
 public class Enemy : Ship
 {
-    [SerializeField] private float hitpoints = 50;
+    [SerializeField] private float hitpoints;
     [SerializeField] private Vector2 velocity;
-    [SerializeField] private float bulletDamage;
-    [SerializeField] private float missileDamage;
     [SerializeField] private float timeBtwShoots;
+    [SerializeField] private AudioClip deathSFX;
+    [SerializeField] private AudioClip shootSFX;
+    [SerializeField] private AudioClip hurtSFX;
+
 
     private ObjectPool objectPool;
     [SerializeField] private Transform shootPoint;
     private Asimov player;
+    
+    
 
     #region "Aux"   
     private Quaternion rotation_enemy;
     private Quaternion rotation_bullet;
     #endregion
 
-    public Enemy(float hitpoints, Vector2 velocity, float bulletDamage, float missileDamage) : base(hitpoints, velocity, bulletDamage, missileDamage) {
+    public Enemy(float hitpoints, Vector2 velocity) : base(hitpoints, velocity) {
         this.SetHitPoints(this.hitpoints);
         this.SetVelocity(this.velocity);
-        this.SetBulletDamage(bulletDamage);
-        this.SetMissileDamage(missileDamage);
+        
+    }
+
+    private void Awake() {
+        this.TimeBetweenShoots = timeBtwShoots;
+        this.RemainTimeForShootBullet = this.TimeBetweenShoots;
+        this.SetHitPoints(this.hitpoints);
     }
 
     private void Start() {
@@ -31,8 +40,7 @@ public class Enemy : Ship
         this.player = FindObjectOfType<Asimov>();
         this.CanShoot = true;
 
-        this.TimeBetweenShoots = timeBtwShoots;
-        this.RemainTimeForShootBullet = this.TimeBetweenShoots;
+        
     }
 
     private void Update() {
@@ -49,7 +57,10 @@ public class Enemy : Ship
         // vector_direccion_ataque = vector_posicion_player - vector_posicion_enemigo
         // 90 grados para compensar que el sprite tiene su 0° hacia el Norte y la camara tiene sus 0° hacia el Este
         // el sprite del proyectil ya apunta hacia el Este asi que no tiene compensacion
-        Dictionary<string, Quaternion> rotations;        
+        Dictionary<string, Quaternion> rotations;
+        if (!player.GetIsAlive()) {
+            return;
+        }
         rotations = this.Rotate(player.transform.position - this.transform.position, 90, 0);
         
         rotation_enemy = rotations["rotation_ship"];
@@ -60,6 +71,7 @@ public class Enemy : Ship
     public override void Shoot() {
         if (this.RemainTimeForShootBullet <= 0 && this.CanShoot) {
             objectPool.Spawn("EnemyBullet", shootPoint.position, rotation_bullet);
+            AudioSource.PlayClipAtPoint(shootSFX, this.transform.position, 3f);
 
             this.RemainTimeForShootBullet = this.TimeBetweenShoots;
         }
@@ -67,18 +79,23 @@ public class Enemy : Ship
             this.RemainTimeForShootBullet -= Time.deltaTime;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        DamageHandler damageHandler = collision.gameObject.GetComponent<DamageHandler>();
-        if (!damageHandler) {
-            return;
-        }
-        ReceiveDamage(damageHandler.GetDamage());
-        collision.gameObject.SetActive(false);
-    }
-
+       
+    
     public override void Die() {
         Destroy(gameObject);
+        PlayExplosion();        
     }
+
+    private void PlayExplosion() {
+        objectPool.Spawn("EnemyExplosion", this.transform.position, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(deathSFX, Camera.main.transform.position, 0.6f);
+    }
+
+    public override void PlayImpact() {
+        objectPool.Spawn("ProyectileExplosion", this.transform.position, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(hurtSFX, this.transform.position, 3f);
+    }
+
+  
 
 }

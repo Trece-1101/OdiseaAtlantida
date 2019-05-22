@@ -6,6 +6,14 @@ using UnityEngine;
 public class Asimov : Ship
 {
     #region "Atributos"
+    private float dashCoolTime;
+    private float initialDashCoolTime;
+    private float dashSpeed;
+    private float dashDistance;
+    private float dashStep;
+    private bool canDash;
+    private bool IsAlive;
+    private bool godMode;
     #endregion      
 
     #region "Componentes"
@@ -15,12 +23,17 @@ public class Asimov : Ship
     [SerializeField] private Transform bulletShootPoint2;
     [SerializeField] private Transform missileShootPoint1;
     [SerializeField] private Transform missileShootPoint2;
+    [SerializeField] private AudioClip deathSFX;
+    [SerializeField] private AudioClip shootBulletSFX;
+    [SerializeField] private AudioClip shootMissileSFX;
+    [SerializeField] private AudioClip hurtSFX;
     private SpriteRenderer img;
     private Sprite actualSprite;
     private ObjectPool objectPool;
     private Shield shield;
     private PolygonCollider2D colliderAtack;
     private PolygonCollider2D colliderDefense;
+    private Dictionary<string, List<Vector3>> thrustPosition;
     #endregion
 
     #region "Referencias en Cache"
@@ -32,23 +45,42 @@ public class Asimov : Ship
     private Quaternion rotation_bullet;
     #endregion
 
-    #region "Setters/Getters"    
+    #region "Setters/Getters"
+    public bool GetIsAlive() {
+        return this.IsAlive;
+    }
+    public void SetIsAlive(bool value) {
+        this.IsAlive = value;
+    }
     #endregion
 
     #region "Constructor"
-    public Asimov(float hitpoints, Vector2 velocity, float bulletDamage, float missileDamage, float shield):
-                  base(hitpoints, velocity, bulletDamage, missileDamage){     
+    public Asimov(float hitpoints, Vector2 velocity):
+                  base(hitpoints, velocity){     
     }
     #endregion
 
     #region "Metodos"
-   
-    private void Start() {        
+
+    private void Awake() {
+        this.SetIsAlive(true);
+    }
+
+    private void Start() {
+        this.dashDistance = 10f;
+        this.dashStep = 0.5f;
+        this.godMode = false;
         this.RemainTimeForShootBullet = this.GetTimeBetweenShoots();
         this.RemainTimeForShootMissile = this.GetTimeBetweenMissileShoots();
         this.objectPool = ObjectPool.Instance;
         this.shield = FindObjectOfType<Shield>();
         this.gameProgram = FindObjectOfType<GameProgram>();
+        
+
+        //thrustPosition = new Dictionary<string, List<Vector3>> { { "Atack", new List<Vector3>{ new Vector3(0f, -0.328f, 0f) , new Vector3(0f, -0.25f, 0f) } },
+        //                                                   { "Defense", new List<Vector3>{new Vector3(-0.05f, -0.36f, 0f), new Vector3(0.05f, -0.36f, 0f) } } } ;
+
+      
 
         body = GetComponent<Rigidbody2D>();
         img = GetComponent<SpriteRenderer>();
@@ -57,17 +89,21 @@ public class Asimov : Ship
         colliderDefense = colliders[1];
 
         actualSprite = sprites[0];
-        img.sprite = actualSprite;  
+        img.sprite = actualSprite;
+
+        initialDashCoolTime = 2f;
+        dashSpeed = 3f;
+        dashCoolTime = initialDashCoolTime;
     }
 
 
     private void Update() {
         Move();
+        Dash();
         CheckRotation();
         MoveShield();
         CheckSprite();
         Shoot();
-        //ShieldShoot();
     }
 
 
@@ -88,9 +124,9 @@ public class Asimov : Ship
             img.sprite = actualSprite;
 
         }
-    }
+    }    
 
-    
+
 
     public override void Move() {
         var deltaX = Input.GetAxis("Horizontal") * GetVelocity().x * Time.deltaTime;
@@ -118,7 +154,39 @@ public class Asimov : Ship
         if(Input.GetAxis("Mouse ScrollWheel") != 0f) {
             shield.ShieldControl(Convert.ToInt32(Input.GetAxis("Mouse ScrollWheel") * 10));
         }
+
+        if(Input.GetMouseButtonDown(2)) {
+            shield.GetShieldOnFront();
+        }
         
+    }
+
+    private void Dash() {
+        dashCoolTime -= Time.deltaTime;
+        if(dashCoolTime <= 0) {
+            canDash = true;
+        }
+        else {
+            canDash = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash) {
+            if (Input.GetKey(KeyCode.A)) {
+                //Debug.Log("Dash IZQ");
+                this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x - dashDistance, dashStep), 
+                                                        this.transform.position.y, 
+                                                        this.transform.position.z);
+            }
+            else if (Input.GetKey(KeyCode.D)) {
+                //Debug.Log("Dash DER");
+                this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x + dashDistance, dashStep),
+                                                        this.transform.position.y,
+                                                        this.transform.position.z);
+            }
+
+            dashCoolTime = initialDashCoolTime;
+        }
+        //Debug.Log(canDash);
     }
     
     public override void Shoot() {               
@@ -129,6 +197,7 @@ public class Asimov : Ship
 
                 objectPool.Spawn("PlayerBullet", bulletShootPoint1.position, rotation_bullet);
                 objectPool.Spawn("PlayerBullet", bulletShootPoint2.position, rotation_bullet);
+                PlayShootSound(shootBulletSFX);
 
 
                 this.RemainTimeForShootBullet = this.GetTimeBetweenShoots();
@@ -145,6 +214,7 @@ public class Asimov : Ship
 
                 objectPool.Spawn("PlayerMissile", missileShootPoint1.position, rotation_bullet);
                 objectPool.Spawn("PlayerMissile", missileShootPoint2.position, rotation_bullet);
+                PlayShootSound(shootMissileSFX);
 
 
                 this.RemainTimeForShootMissile = this.GetTimeBetweenMissileShoots();
@@ -155,23 +225,30 @@ public class Asimov : Ship
         }
     }
 
-    //private void ShieldShoot() {
-    //    this.shield.Shoot(rotation_bullet, rotation_asimov);        
-    //}
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        DamageHandler damageHandler = collision.gameObject.GetComponent<DamageHandler>();
-        if (!damageHandler) {
-            return;
-        }
-        ReceiveDamage(damageHandler.GetDamage());
-        collision.gameObject.SetActive(false);
+    private void PlayShootSound(AudioClip sound) {
+        AudioSource.PlayClipAtPoint(sound, Camera.main.transform.position, 0.2f);
     }
-
+     
     public override void Die() {
+        this.SetIsAlive(false);
         Destroy(gameObject);
+        PlayExplosion();
+        FindObjectOfType<LevelManager>().LoadGameOver();
     }
 
+    private void PlayExplosion() {
+        objectPool.Spawn("EnemyExplosion", this.transform.position + new Vector3(0.3f, 0.3f, 0f), Quaternion.identity);
+        objectPool.Spawn("EnemyExplosion", this.transform.position + new Vector3(-0.3f, 0.3f, 0f), Quaternion.identity);
+        objectPool.Spawn("EnemyExplosion", this.transform.position + new Vector3(0.3f, -0.3f, 0f), Quaternion.identity);
+        objectPool.Spawn("EnemyExplosion", this.transform.position + new Vector3(-0.3f, -0.3f, 0f), Quaternion.identity);
+
+        AudioSource.PlayClipAtPoint(deathSFX, Camera.main.transform.position, 0.6f);
+    }
+
+    public override void PlayImpact() {
+        objectPool.Spawn("ProyectileExplosion", this.transform.position, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(hurtSFX, Camera.main.transform.position, 0.2f);
+    }
 
 
     #endregion

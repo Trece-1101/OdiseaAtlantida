@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameProgram : MonoBehaviour
 {
+    public static GameProgram instance = null;
 
     #region "Atributos"
     private float LeftBorder;
@@ -11,6 +12,7 @@ public class GameProgram : MonoBehaviour
     private float UpBorder;
     private float DownBorder;
     private float padding;
+    private float scrollSpeed;
     #endregion
 
     #region "Setters/Getters"
@@ -41,6 +43,13 @@ public class GameProgram : MonoBehaviour
     public void SetDownBorder(float value) {
         this.DownBorder = value;
     }
+
+    public float GetScrollSpeed() {
+        return this.scrollSpeed;
+    }
+    public void SetScrollSpeed(float value) {
+        this.scrollSpeed = value;
+    }
     #endregion
 
     #region "Referencias en Cache"
@@ -49,9 +58,24 @@ public class GameProgram : MonoBehaviour
     #endregion
 
     #region "Metodos"
+    private void Awake() {
+        SetScrollSpeed(-1.5f);
+
+
+        if (instance == null) {
+            instance = this;
+        }
+        else if(instance == this) {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start() {
+        
+
         asimov = FindObjectOfType<Asimov>();
-        asimov.SetVelocity(new Vector2(4f, 4f));
+        asimov.SetVelocity(new Vector2(5f, 5f));
         asimov.SetTimeBetweenShoots(0.2f);
         asimov.SetTimeBetweenMissileShoots(1f);
         asimov.SetHitPoints(100);
@@ -62,8 +86,13 @@ public class GameProgram : MonoBehaviour
     }
 
     private void Update() {
-        crossHair.transform.position = Input.mousePosition;
-        //Debug.Log(asimov.GetHitPoints());
+        if (asimov.GetIsAlive()) {
+            crossHair.transform.position = Input.mousePosition;
+        }
+        else {
+            Cursor.visible = true;
+        }
+        
     }
 
 

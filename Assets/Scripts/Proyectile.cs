@@ -6,6 +6,7 @@ public abstract class Proyectile : MonoBehaviour
 {
     private float Speed;
     private float LifeTime;
+    private float DamageDealer;
 
     public float GetSpeed() {
         return this.Speed;
@@ -20,6 +21,7 @@ public abstract class Proyectile : MonoBehaviour
     public void SetLifeTime(float value) {
         this.LifeTime = value;
     }
+
 
     public abstract void Update();
 

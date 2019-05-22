@@ -7,8 +7,6 @@ public abstract class Ship : MonoBehaviour, IAttack
     #region "Atributos"
     private float HitPoints;
     private Vector2 Velocity;
-    private float BulletDamage;
-    private float MissileDamage;
     public float TimeBetweenShoots { get; set; }
     public float TimeBetweenMissileShoots { get; set; }
     public float RemainTimeForShootBullet { get; set; }
@@ -30,21 +28,7 @@ public abstract class Ship : MonoBehaviour, IAttack
     }
     public void SetVelocity(Vector2 value) {
         this.Velocity = value;
-    }
-
-    public float GetBulletDamage() {
-        return this.BulletDamage;
-    }
-    public void SetBulletDamage(float value) {
-        this.BulletDamage = value;
-    }
-
-    public float GetMissileDamage() {
-        return this.MissileDamage;
-    }
-    public void SetMissileDamage(float value) {
-        this.MissileDamage = value;
-    }
+    }    
 
     public float GetTimeBetweenShoots() {
         return this.TimeBetweenShoots;
@@ -62,12 +46,15 @@ public abstract class Ship : MonoBehaviour, IAttack
     #endregion
 
     #region "Constructor"
-    public Ship(float hitpoints, Vector2 velocity, float bulletDamage, float missileDamage) {
+    public Ship(float hitpoints, Vector2 velocity) {
         this.HitPoints = hitpoints;
         this.Velocity = velocity;
-        this.BulletDamage = bulletDamage;
-        this.MissileDamage = missileDamage;
+        
     }
+    #endregion
+
+    #region "Aux"
+    private DamageControl damageControl;
     #endregion
 
     #region "Metodos"
@@ -75,6 +62,7 @@ public abstract class Ship : MonoBehaviour, IAttack
     public abstract void Shoot();
     public abstract void CheckRotation();
     public abstract void Die();
+    public abstract void PlayImpact();
 
     public float AngleWithCompensateRotation(Vector3 direction, int compensation) {
         var angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - compensation;
@@ -104,16 +92,30 @@ public abstract class Ship : MonoBehaviour, IAttack
         return rotations;
     }
 
-    public void ReceiveDamage(float damage) {
-        this.SetHitPoints(this.GetHitPoints() - damage);
+    private void OnTriggerEnter2D(Collider2D collision) {
+        damageControl = collision.gameObject.GetComponent<DamageControl>();
+        if (damageControl != null) {
+            ReceiveDamage(damageControl);
+            collision.gameObject.SetActive(false);
+            PlayImpact();
+        }
+        else {
+            Die();
+        }
+    }
+
+    public void ReceiveDamage(DamageControl damageControl) {
+        this.SetHitPoints(this.GetHitPoints() - damageControl.GetDamage());
         if(this.GetHitPoints() <= 0) {
             Die();
         }
     }
 
-
-
     
+
+
+
+
 
     #endregion
 }
