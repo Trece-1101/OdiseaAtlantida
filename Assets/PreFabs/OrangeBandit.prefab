@@ -125,13 +125,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a8dde19a1eb3c4a9247e33fae6883c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoints: 50
-  velocity: {x: 10, y: 10}
-  timeBtwShoots: 1.2
-  deathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}
-  shootSFX: {fileID: 8300000, guid: a955a358a4dec19449ea8905dffb8585, type: 3}
-  hurtSFX: {fileID: 8300000, guid: 30c472723fedf404f819d94815ed75fa, type: 3}
-  shootPoint: {fileID: 1792358052}
+  HitPoints: 50
+  Velocity: {x: 2, y: 2}
+  DeathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}
+  ShootBulletSFX: {fileID: 8300000, guid: a955a358a4dec19449ea8905dffb8585, type: 3}
+  ShootMissileSFX: {fileID: 8300000, guid: a955a358a4dec19449ea8905dffb8585, type: 3}
+  HurtSFX: {fileID: 8300000, guid: 30c472723fedf404f819d94815ed75fa, type: 3}
+  BulletShootsPositions:
+  - {fileID: 1792358052}
+  MissileShootsPositions: []
+  timeBtwBulletS: 1.2
+  timeBtwMissileS: 1.5
+  canShootMissile: 0
 --- !u!114 &6623237322339535389
 MonoBehaviour:
   m_ObjectHideFlags: 0

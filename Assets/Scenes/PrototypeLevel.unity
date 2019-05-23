@@ -14196,6 +14196,10 @@ MonoBehaviour:
     preFab: {fileID: 2453660469088560295, guid: e14ae8c470e9878489dbcee15cfb711b,
       type: 3}
     poolSize: 15
+  - tag: EnemyMissile
+    preFab: {fileID: 8256868047263212533, guid: 9af01d463494fa64883b849bf6f5931f,
+      type: 3}
+    poolSize: 20
   - tag: ProyectileExplosion
     preFab: {fileID: 7702511804297011259, guid: 9d0410b63cef9a140ada68dfc559f242,
       type: 3}
@@ -14346,17 +14350,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a686bcd2a60eb4b4bb50d9c68aa5abb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
+  HitPoints: 100
+  Velocity: {x: 5, y: 5}
+  DeathSFX: {fileID: 8300000, guid: ace56a30ec3a27a4e8a91cf217adabfa, type: 3}
+  ShootBulletSFX: {fileID: 8300000, guid: d0031e433986ffd499ada6b45106c721, type: 3}
+  ShootMissileSFX: {fileID: 8300000, guid: 432d891244f1eb543ace9710f7e700dd, type: 3}
+  HurtSFX: {fileID: 8300000, guid: 8bb74cbbb71292c41a83daf5e416f7ae, type: 3}
+  BulletShootsPositions:
+  - {fileID: 1425591646}
+  - {fileID: 1339847538}
+  MissileShootsPositions:
+  - {fileID: 671980425}
+  - {fileID: 11936808}
+  MySprites:
   - {fileID: 21300000, guid: d46ea8d92852c224d8f6a0e4cf35436d, type: 3}
   - {fileID: 21300000, guid: ffcaa38c477324349804a9e6ef5a0165, type: 3}
-  bulletShootPoint1: {fileID: 1425591646}
-  bulletShootPoint2: {fileID: 1339847538}
-  missileShootPoint1: {fileID: 671980425}
-  missileShootPoint2: {fileID: 11936808}
-  deathSFX: {fileID: 8300000, guid: ace56a30ec3a27a4e8a91cf217adabfa, type: 3}
-  shootBulletSFX: {fileID: 8300000, guid: d0031e433986ffd499ada6b45106c721, type: 3}
-  shootMissileSFX: {fileID: 8300000, guid: 432d891244f1eb543ace9710f7e700dd, type: 3}
-  hurtSFX: {fileID: 8300000, guid: 8bb74cbbb71292c41a83daf5e416f7ae, type: 3}
 --- !u!50 &2017189203
 Rigidbody2D:
   serializedVersion: 4
@@ -14569,6 +14577,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6767981665065007714, guid: b3e41124bcb16bf44a793c9c122f34c7,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 762604346}
     - target: {fileID: 6767981665065007715, guid: b3e41124bcb16bf44a793c9c122f34c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14624,11 +14637,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6767981665065007714, guid: b3e41124bcb16bf44a793c9c122f34c7,
-        type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 762604346}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e41124bcb16bf44a793c9c122f34c7, type: 3}
 --- !u!4 &7835148823522025854

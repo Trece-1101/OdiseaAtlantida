@@ -13,20 +13,21 @@ public class Shield : MonoBehaviour, IAttack
     private int positionCounter;
     private List<Vector3> positions = new List<Vector3>();
     [SerializeField] private Transform shootPoint;
-    public float TimeBetweenShoots { get; set; }
+    public float TimeBetweenBulletShoots { get; set; }
     public float TimeBetweenMissileShoots { get; set; }
     private ObjectPool objectPool;
     public float RemainTimeForShootBullet { get; set; }
     public float RemainTimeForShootMissile { get; set; }
     public bool CanShoot { get; set; }
+    public bool CanShootMissile { get; set; }
 
     private void Start() {
         this.objectPool = ObjectPool.Instance;
 
-        TimeBetweenShoots = 0.8f;
+        TimeBetweenBulletShoots = 0.8f;
 
         //this.CanShoot = true;
-        this.RemainTimeForShootBullet = this.TimeBetweenShoots;
+        this.RemainTimeForShootBullet = this.TimeBetweenBulletShoots;
         this.RemainTimeForShootMissile = this.TimeBetweenMissileShoots;
 
         upPos = new Vector3(0f, 0.55f, 0f);        
@@ -72,7 +73,7 @@ public class Shield : MonoBehaviour, IAttack
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.gameObject.name == "EnemyBullet(Clone)") {
+        if(collision.gameObject.name == "EnemyBullet(Clone)" || collision.gameObject.name == "MissileEnemy(Clone)") {
             Shoot(collision.gameObject.transform.rotation);
             collision.gameObject.SetActive(false);
         }
@@ -88,11 +89,7 @@ public class Shield : MonoBehaviour, IAttack
     public void Shoot(Quaternion rotation) {
         //if (CanShoot) {            
         //    objectPool.Spawn("PlayerBullet", shootPoint.position, Quaternion.Inverse(rotation));
-        //}
-        
-       
-
-
+        //}      
     }
 
 }

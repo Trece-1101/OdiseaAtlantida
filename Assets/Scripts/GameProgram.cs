@@ -71,14 +71,12 @@ public class GameProgram : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start() {
-        
-
+    private void Start() {      
         asimov = FindObjectOfType<Asimov>();
-        asimov.SetVelocity(new Vector2(5f, 5f));
-        asimov.SetTimeBetweenShoots(0.2f);
-        asimov.SetTimeBetweenMissileShoots(1f);
-        asimov.SetHitPoints(100);
+        //asimov.SetVelocity(new Vector2(5f, 5f));
+        //asimov.SetTimeBetweenBulletShoots(0.2f);
+        //asimov.SetTimeBetweenMissileShoots(1f);
+        //asimov.SetHitPoints(100);
 
         crossHair = FindObjectOfType<CrossHair>();
         Cursor.visible = false;

@@ -4,47 +4,42 @@ using UnityEngine;
 
 public class Enemy : Ship
 {
-    [SerializeField] private float hitpoints;
-    [SerializeField] private Vector2 velocity;
-    [SerializeField] private float timeBtwShoots;
-    [SerializeField] private AudioClip deathSFX;
-    [SerializeField] private AudioClip shootSFX;
-    [SerializeField] private AudioClip hurtSFX;
-
-
-    private ObjectPool objectPool;
-    [SerializeField] private Transform shootPoint;
-    private Asimov player;
-    
-    
-
-    #region "Aux"   
-    private Quaternion rotation_enemy;
-    private Quaternion rotation_bullet;
+    #region "Referencias en Cache"
+    private Asimov Player;
     #endregion
 
-    public Enemy(float hitpoints, Vector2 velocity) : base(hitpoints, velocity) {
-        this.SetHitPoints(this.hitpoints);
-        this.SetVelocity(this.velocity);
-        
-    }
+    #region "Auxiliares"
+    [SerializeField] private float timeBtwBulletS;
+    [SerializeField] private float timeBtwMissileS;
+    [SerializeField] private bool canShootMissile;
+    #endregion
 
-    private void Awake() {
-        this.TimeBetweenShoots = timeBtwShoots;
-        this.RemainTimeForShootBullet = this.TimeBetweenShoots;
-        this.SetHitPoints(this.hitpoints);
+    #region "Setters/Getters"
+    public Asimov GetPlayer() {
+        return this.Player;
     }
+    public void SetPlayer(Asimov value) {
+        this.Player = value;
+    }
+    #endregion
 
-    private void Start() {
-        this.objectPool = ObjectPool.Instance;
-        this.player = FindObjectOfType<Asimov>();
+    #region "Metodos"
+    public override void CoAwake() {
         this.CanShoot = true;
+        this.SetIsAlive(true);
 
-        
-    }
+        this.Player = FindObjectOfType<Asimov>();
+ 
+        this.SetTimeBetweenBulletShoots(timeBtwBulletS);
+        this.SetTimeBetweenMissileShoots(timeBtwMissileS);
+        this.RemainTimeForShootBullet = this.GetTimeBetweenBulletShoots();
+        this.RemainTimeForShootMissile = this.GetTimeBetweenMissileShoots();
+        this.CanShootMissile = canShootMissile;
+        this.SetMyBulletVFX("EnemyBullet");
+        this.SetMyMissileVFX("EnemyMissile");
+    }       
 
     private void Update() {
-        //Move();
         CheckRotation();
         Shoot();
     }
@@ -57,45 +52,60 @@ public class Enemy : Ship
         // vector_direccion_ataque = vector_posicion_player - vector_posicion_enemigo
         // 90 grados para compensar que el sprite tiene su 0° hacia el Norte y la camara tiene sus 0° hacia el Este
         // el sprite del proyectil ya apunta hacia el Este asi que no tiene compensacion
+
         Dictionary<string, Quaternion> rotations;
-        if (!player.GetIsAlive()) {
+
+        if (!this.Player.GetIsAlive()) {
             return;
         }
-        rotations = this.Rotate(player.transform.position - this.transform.position, 90, 0);
-        
-        rotation_enemy = rotations["rotation_ship"];
-        rotation_bullet = rotations["rotation_bullet"];
+
+        rotations = this.Rotate(this.Player.transform.position - this.transform.position, 90, 0);
+
+        this.SetMyRotation(rotations["rotation_ship"]);
+        this.SetMyBulletRotation(rotations["rotation_bullet"]);
         this.transform.rotation = rotations["transform_rotation"];
     }
 
     public override void Shoot() {
         if (this.RemainTimeForShootBullet <= 0 && this.CanShoot) {
-            objectPool.Spawn("EnemyBullet", shootPoint.position, rotation_bullet);
-            AudioSource.PlayClipAtPoint(shootSFX, this.transform.position, 3f);
+            ShootBullet();
+            PlayShootSFX(this.GetShootBulletSFX(), this.transform.position, 3f);
 
-            this.RemainTimeForShootBullet = this.TimeBetweenShoots;
+            this.RemainTimeForShootBullet = this.TimeBetweenBulletShoots;
         }
         else {
             this.RemainTimeForShootBullet -= Time.deltaTime;
         }
+
+        if (this.RemainTimeForShootMissile <= 0 && this.CanShootMissile) {
+            ShootMissile();
+            PlayShootSFX(this.GetShootMissileSFX(), this.transform.position, 3f);
+
+
+            this.RemainTimeForShootMissile = this.GetTimeBetweenMissileShoots();
+        }
+        else {
+            this.RemainTimeForShootMissile -= Time.deltaTime;
+        }
+
     }
-       
-    
+
+    private void PlayExplosion() {
+        this.GetPool().Spawn("EnemyExplosion", this.transform.position, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(this.GetDeathSFX(), this.GetMyMainCamera().transform.position, 0.6f);
+    }
+
+    public override void PlayImpactSFX() {
+        this.GetPool().Spawn("ProyectileExplosion", this.transform.position, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(this.GetHurtSFX(), this.transform.position, 3f);
+    }
+
     public override void Die() {
         Destroy(gameObject);
         PlayExplosion();        
     }
 
-    private void PlayExplosion() {
-        objectPool.Spawn("EnemyExplosion", this.transform.position, Quaternion.identity);
-        AudioSource.PlayClipAtPoint(deathSFX, Camera.main.transform.position, 0.6f);
-    }
+    #endregion
 
-    public override void PlayImpact() {
-        objectPool.Spawn("ProyectileExplosion", this.transform.position, Quaternion.identity);
-        AudioSource.PlayClipAtPoint(hurtSFX, this.transform.position, 3f);
-    }
-
-  
 
 }

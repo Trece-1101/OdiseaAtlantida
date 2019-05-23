@@ -1,18 +1,49 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Ship : MonoBehaviour, IAttack
 {
+    #region "Atributos Serializados"
+    [Header("General")]
+    [SerializeField] private float HitPoints;
+    [SerializeField] private Vector2 Velocity;    
+
+    [Header("SFX")]
+    [SerializeField] private AudioClip DeathSFX;
+    [SerializeField] private AudioClip ShootBulletSFX;
+    [SerializeField] private AudioClip ShootMissileSFX;
+    [SerializeField] private AudioClip HurtSFX;
+
+    [Header("Shoot")]
+    [SerializeField] private List<Transform> BulletShootsPositions;
+    [SerializeField] private List<Transform> MissileShootsPositions;   
+    #endregion
+
     #region "Atributos"
-    private float HitPoints;
-    private Vector2 Velocity;
-    public float TimeBetweenShoots { get; set; }
+    private bool IsAlive;
+
+    public float TimeBetweenBulletShoots { get; set; }
     public float TimeBetweenMissileShoots { get; set; }
     public float RemainTimeForShootBullet { get; set; }
     public float RemainTimeForShootMissile { get; set; }
     public bool CanShoot { get; set; }
-    //private float Reward;
+    public bool CanShootMissile { get; set; }
+
+    private Quaternion MyRotation;
+    private Quaternion MyBulletRotation;
+
+    private string MyBulletVFX;
+    private string MyMissileVFX;
+    #endregion
+
+    #region "Componentes en Cache"
+    private Rigidbody2D Body;
+    private ObjectPool ObjectPool;
+    private GameProgram GameProg;
+    private DamageControl DamageCtrl;
+    private Camera MainCamera;
     #endregion
 
     #region "Setters/Getters"
@@ -28,13 +59,113 @@ public abstract class Ship : MonoBehaviour, IAttack
     }
     public void SetVelocity(Vector2 value) {
         this.Velocity = value;
-    }    
-
-    public float GetTimeBetweenShoots() {
-        return this.TimeBetweenShoots;
     }
-    public void SetTimeBetweenShoots(float value) {
-        this.TimeBetweenShoots = value;
+
+    public Rigidbody2D GetBody() {
+        return this.Body;
+    }
+    public void SetBody(Rigidbody2D value) {
+        this.Body = value;
+    }
+
+    public ObjectPool GetPool() {
+        return this.ObjectPool;
+    }
+    public void SetPool(ObjectPool value) {
+        this.ObjectPool = value;
+    }
+
+    public GameProgram GetGameProg() {
+        return this.GameProg;
+    }
+    public void SetGameProg(GameProgram value) {
+        this.GameProg = value;
+    }
+
+    public AudioClip GetDeathSFX() {
+        return this.DeathSFX;
+    }
+    public void SetDeathSFX(AudioClip value) {
+        this.DeathSFX = value;
+    }
+
+    public AudioClip GetShootBulletSFX() {
+        return this.ShootBulletSFX;
+    }
+    public void SetShootBulletSFX(AudioClip value) {
+        this.ShootBulletSFX = value;
+    }
+
+    public AudioClip GetShootMissileSFX() {
+        return this.ShootMissileSFX;
+    }
+    public void SetShootMissileSFX(AudioClip value) {
+        this.ShootMissileSFX = value;
+    }
+
+    public AudioClip GetHurtSFX() {
+        return this.HurtSFX;
+    }
+    public void SetHurtSFX(AudioClip value) {
+        this.HurtSFX = value;
+    }
+
+    public List<Transform> GetBulletShootPoints() {
+        return this.BulletShootsPositions;
+    }
+    public void SetBulletShootPoints(List<Transform> value) {
+        this.BulletShootsPositions = value;
+    }
+    
+
+    public List<Transform> GetMissileShootPoints() {
+        return this.MissileShootsPositions;
+    }
+    public void SetMissileShootPoint1(List<Transform> value) {
+        this.MissileShootsPositions = value;
+    }
+   
+
+    public Quaternion GetMyRotation() {
+        return this.MyRotation;
+    }
+    public void SetMyRotation(Quaternion value) {
+        this.MyRotation = value;
+    }
+
+    public Quaternion GetMyBulletRotation() {
+        return this.MyBulletRotation;
+    }
+    public void SetMyBulletRotation(Quaternion value) {
+        this.MyBulletRotation = value;
+    }
+
+    public string GetMyBulletVFX() {
+        return this.MyBulletVFX;
+    }
+    public void SetMyBulletVFX(string value) {
+        this.MyBulletVFX = value;
+    }
+
+    public string GetMyMissileVFX() {
+        return this.MyMissileVFX;
+    }
+    public void SetMyMissileVFX(string value) {
+        this.MyMissileVFX = value;
+    }
+
+    public Camera GetMyMainCamera() {
+        return this.MainCamera;
+    }
+    public void SetMyMainCamera(Camera value) {
+        this.MainCamera = value;
+    }
+
+    public float GetTimeBetweenBulletShoots() {
+        return this.TimeBetweenBulletShoots;
+    }
+    public void SetTimeBetweenBulletShoots(float value) {
+        this.TimeBetweenBulletShoots = value;
     }
 
     public float GetTimeBetweenMissileShoots() {
@@ -43,32 +174,41 @@ public abstract class Ship : MonoBehaviour, IAttack
     public void SetTimeBetweenMissileShoots(float value) {
         this.TimeBetweenMissileShoots = value;
     }
-    #endregion
 
-    #region "Constructor"
-    public Ship(float hitpoints, Vector2 velocity) {
-        this.HitPoints = hitpoints;
-        this.Velocity = velocity;
-        
+    public bool GetIsAlive() {
+        return this.IsAlive;
+    }
+    public void SetIsAlive(bool value) {
+        this.IsAlive = value;
     }
     #endregion
 
-    #region "Aux"
-    private DamageControl damageControl;
+    #region "Constructor"
+    //public Ship(float hitpoints, Vector2 velocity) {
+    //    this.HitPoints = hitpoints;
+    //    this.Velocity = velocity;
+
+    //}
     #endregion
 
+
     #region "Metodos"
+    private void Awake() {
+        this.Body = GetComponent<Rigidbody2D>();
+        this.ObjectPool = ObjectPool.Instance;
+        this.GameProg = FindObjectOfType<GameProgram>();
+        this.MainCamera = Camera.main;
+
+        CoAwake();
+    }
+
+    public abstract void CoAwake();
     public abstract void Move();
     public abstract void Shoot();
     public abstract void CheckRotation();
     public abstract void Die();
-    public abstract void PlayImpact();
-
-    public float AngleWithCompensateRotation(Vector3 direction, int compensation) {
-        var angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - compensation;
-        return angle;
-    }
-
+    public abstract void PlayImpactSFX();
+    
     public Dictionary<string, Quaternion> Rotate(Vector3 dir, int shipAngleCompensation, int bulletAngleCompesation) {
         // vector_direccion_ataque = vector_posicion_mouse - vector_centro_camara // en el caso de nuestra nave
         // vector_direccion_ataque = vector_posicion_asimov // en el caso de los enemigos
@@ -92,12 +232,34 @@ public abstract class Ship : MonoBehaviour, IAttack
         return rotations;
     }
 
+    public float AngleWithCompensateRotation(Vector3 direction, int compensation) {
+        var angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - compensation;
+        return angle;
+    }
+    
+
+    public void ShootBullet() {
+        for (int i = 0; i < this.BulletShootsPositions.Count; i++) {
+            this.GetPool().Spawn(this.MyBulletVFX, this.BulletShootsPositions[i].position, this.GetMyBulletRotation());
+        }
+    }
+
+    public void ShootMissile() {
+        for (int i = 0; i < this.MissileShootsPositions.Count; i++) {
+            this.GetPool().Spawn(this.MyMissileVFX, this.MissileShootsPositions[i].position, this.GetMyBulletRotation());
+        }
+    }
+
+    public void PlayShootSFX(AudioClip sound, Vector3 position, float volumen) {
+        AudioSource.PlayClipAtPoint(sound, position, volumen);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
-        damageControl = collision.gameObject.GetComponent<DamageControl>();
-        if (damageControl != null) {
-            ReceiveDamage(damageControl);
+        this.DamageCtrl = collision.gameObject.GetComponent<DamageControl>();
+        if (this.DamageCtrl != null) {
+            ReceiveDamage(DamageCtrl);
             collision.gameObject.SetActive(false);
-            PlayImpact();
+            PlayImpactSFX();
         }
         else {
             Die();
@@ -112,10 +274,5 @@ public abstract class Ship : MonoBehaviour, IAttack
     }
 
     
-
-
-
-
-
     #endregion
 }
