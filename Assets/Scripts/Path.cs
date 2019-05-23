@@ -14,6 +14,7 @@ public class Path : MonoBehaviour
     private void Start() {
         enemy = gameObject.GetComponentInParent(typeof(Enemy)) as Enemy;
         enemy.CanShoot = false;
+        enemy.CanShootMissile = false;
         wayPoints = wave.GetPathPrefab();
         transform.position = wayPoints[wayPointIndex].transform.position;
         wave.SetMoveSpeed(enemy.GetVelocity().x);
@@ -35,10 +36,10 @@ public class Path : MonoBehaviour
             MoveToPoint(wayPointIndex);
             if (wayPointIndex == 2) {
                 enemy.CanShoot = true;
+                enemy.CanShootMissile = true;
             }
         }
         else {
-            //Destroy(gameObject);
             wayPointIndex = 1;
             MoveToPoint(wayPointIndex);
         }

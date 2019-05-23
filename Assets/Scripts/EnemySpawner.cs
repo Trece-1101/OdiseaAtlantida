@@ -4,9 +4,21 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] List<Wave> waves;
+    [System.Serializable]
+    public class Waves {
+        public List<Wave> list;
+    }
+
+    [System.Serializable]
+    public class Formations {
+        public List<Waves> list;
+    }
+
+    [SerializeField] private Formations FormationLists = new Formations();
+    [SerializeField] private List<Wave> waves;
     int startingWave = 0;
     private bool loop = false;
+    private bool stillAlive;
 
     private IEnumerator Start() {
         do {

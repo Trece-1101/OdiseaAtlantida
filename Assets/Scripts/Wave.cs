@@ -12,6 +12,8 @@ public class Wave : ScriptableObject
     [SerializeField] private int numberOfEnemies;
     private float moveSpeed;
 
+  
+
     public GameObject GetEnemyPrefab() {
         return this.enemyPrefab;
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Asimov : Ship
 {
     #region "Atributos"
@@ -259,7 +260,7 @@ public class Asimov : Ship
         }
 
         if (this.RemainTimeForShootMissile <= 0 && this.CanShootMissile) {
-            if (Input.GetButton("Fire2")) {
+            if (Input.GetButtonDown("Fire2")) {
                 ShootMissile();
                 PlayShootSFX(this.GetShootMissileSFX(), this.GetMyMainCamera().transform.position, 0.2f);
 
@@ -296,4 +297,5 @@ public class Asimov : Ship
 
 
     #endregion
+
 }

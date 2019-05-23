@@ -2,13 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Ship : MonoBehaviour, IAttack
 {
     #region "Atributos Serializados"
     [Header("General")]
     [SerializeField] private float HitPoints;
-    [SerializeField] private Vector2 Velocity;    
+    [SerializeField] private Vector2 Velocity;
+    [SerializeField] private Image HealthBar;
 
     [Header("SFX")]
     [SerializeField] private AudioClip DeathSFX;
@@ -23,6 +25,7 @@ public abstract class Ship : MonoBehaviour, IAttack
 
     #region "Atributos"
     private bool IsAlive;
+    private float StartHealth;
 
     public float TimeBetweenBulletShoots { get; set; }
     public float TimeBetweenMissileShoots { get; set; }
@@ -54,11 +57,25 @@ public abstract class Ship : MonoBehaviour, IAttack
         this.HitPoints = value;
     }
 
+    public float GetStartHealth() {
+        return this.StartHealth;
+    }
+    public void SetStartHealth(float value) {
+        this.StartHealth = value;
+    }
+
     public Vector2 GetVelocity() {
         return this.Velocity;
     }
     public void SetVelocity(Vector2 value) {
         this.Velocity = value;
+    }
+
+    public Image GetHealthBar() {
+        return this.HealthBar;
+    }
+    public void SetHealthBar(Image value) {
+        this.HealthBar = value;
     }
 
     public Rigidbody2D GetBody() {
@@ -199,6 +216,8 @@ public abstract class Ship : MonoBehaviour, IAttack
         this.GameProg = FindObjectOfType<GameProgram>();
         this.MainCamera = Camera.main;
 
+        this.StartHealth = this.HitPoints;
+
         CoAwake();
     }
 
@@ -268,6 +287,9 @@ public abstract class Ship : MonoBehaviour, IAttack
 
     public void ReceiveDamage(DamageControl damageControl) {
         this.SetHitPoints(this.GetHitPoints() - damageControl.GetDamage());
+
+        this.HealthBar.fillAmount = this.HitPoints / this.StartHealth;
+
         if(this.GetHitPoints() <= 0) {
             Die();
         }

@@ -13,6 +13,8 @@ public class GameProgram : MonoBehaviour
     private float DownBorder;
     private float padding;
     private float scrollSpeed;
+
+    private int Score;
     #endregion
 
     #region "Setters/Getters"
@@ -50,6 +52,13 @@ public class GameProgram : MonoBehaviour
     public void SetScrollSpeed(float value) {
         this.scrollSpeed = value;
     }
+
+    public int GetScore() {
+        return this.Score;
+    }
+    public void SetScore(int value) {
+        this.Score = value;
+    }
     #endregion
 
     #region "Referencias en Cache"
@@ -72,7 +81,7 @@ public class GameProgram : MonoBehaviour
     }
 
     private void Start() {      
-        asimov = FindObjectOfType<Asimov>();
+        asimov = FindObjectOfType<Asimov>();        
         //asimov.SetVelocity(new Vector2(5f, 5f));
         //asimov.SetTimeBetweenBulletShoots(0.2f);
         //asimov.SetTimeBetweenMissileShoots(1f);
@@ -89,11 +98,10 @@ public class GameProgram : MonoBehaviour
         }
         else {
             Cursor.visible = true;
-        }
+        }        
         
     }
-
-
+    
     private void SetUpBorders() {
         Camera mainCamera = Camera.main;
         padding = 0.8f;
@@ -101,6 +109,18 @@ public class GameProgram : MonoBehaviour
         this.RightBorder = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - padding;
         this.UpBorder = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).y + padding;
         this.DownBorder = mainCamera.ViewportToWorldPoint(new Vector3(1, 1, 0)).y - padding;
+    }
+
+    public void AddScore(int value) {
+        this.Score += value;
+    }
+
+    public void SubstractScore(int value) {
+        this.Score -= value;
+    }
+
+    public void ResetGame() {
+        Destroy(gameObject);
     }
 
 

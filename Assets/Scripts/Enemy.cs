@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Enemy : Ship
 {
+    #region "Atributos"
+    [Header("Especificos")]
+    [SerializeField] private int Reward;
+    #endregion
+
     #region "Referencias en Cache"
-    private Asimov Player;
+    private Asimov Player;    
     #endregion
 
     #region "Auxiliares"
@@ -21,11 +26,18 @@ public class Enemy : Ship
     public void SetPlayer(Asimov value) {
         this.Player = value;
     }
+
+    public int GetReward() {
+        return this.Reward;
+    }
+    public void SetReward(int value) {
+        this.Reward = value;
+    }
     #endregion
 
     #region "Metodos"
     public override void CoAwake() {
-        this.CanShoot = true;
+        //this.CanShoot = true;
         this.SetIsAlive(true);
 
         this.Player = FindObjectOfType<Asimov>();
@@ -77,7 +89,7 @@ public class Enemy : Ship
             this.RemainTimeForShootBullet -= Time.deltaTime;
         }
 
-        if (this.RemainTimeForShootMissile <= 0 && this.CanShootMissile) {
+        if (this.RemainTimeForShootMissile <= 0 && this.CanShootMissile && this.GetMissileShootPoints().Count > 0) {
             ShootMissile();
             PlayShootSFX(this.GetShootMissileSFX(), this.transform.position, 3f);
 
@@ -101,6 +113,7 @@ public class Enemy : Ship
     }
 
     public override void Die() {
+        this.GetGameProg().AddScore(this.GetReward());
         Destroy(gameObject);
         PlayExplosion();        
     }
