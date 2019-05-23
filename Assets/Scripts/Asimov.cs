@@ -74,13 +74,8 @@ public class Asimov : Ship
         this.RemainTimeForShootMissile = this.GetTimeBetweenMissileShoots();
         this.objectPool = ObjectPool.Instance;
         this.shield = FindObjectOfType<Shield>();
-        this.gameProgram = FindObjectOfType<GameProgram>();
-        
+        this.gameProgram = FindObjectOfType<GameProgram>();      
 
-        //thrustPosition = new Dictionary<string, List<Vector3>> { { "Atack", new List<Vector3>{ new Vector3(0f, -0.328f, 0f) , new Vector3(0f, -0.25f, 0f) } },
-        //                                                   { "Defense", new List<Vector3>{new Vector3(-0.05f, -0.36f, 0f), new Vector3(0.05f, -0.36f, 0f) } } } ;
-
-      
 
         body = GetComponent<Rigidbody2D>();
         img = GetComponent<SpriteRenderer>();
