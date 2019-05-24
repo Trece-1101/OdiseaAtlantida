@@ -4749,18 +4749,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FormationLists:
-    list:
-    - list:
-      - {fileID: 11400000, guid: acfe59429690f094197580ae9fca4b6d, type: 2}
-      - {fileID: 11400000, guid: dc7be081c5ec49e4b842fdd0de30485b, type: 2}
-    - list:
+    Name: PrototypeLevel
+    JoinWaves:
+    - Wave:
       - {fileID: 11400000, guid: 142ba3f9b7a25fe42b57bef25ee7e21a, type: 2}
       - {fileID: 11400000, guid: a2a763a8b65127d43a0f96d79afe6e38, type: 2}
-    - list:
+    - Wave:
+      - {fileID: 11400000, guid: acfe59429690f094197580ae9fca4b6d, type: 2}
+      - {fileID: 11400000, guid: dc7be081c5ec49e4b842fdd0de30485b, type: 2}
+    - Wave:
       - {fileID: 11400000, guid: 142ba3f9b7a25fe42b57bef25ee7e21a, type: 2}
       - {fileID: 11400000, guid: a2a763a8b65127d43a0f96d79afe6e38, type: 2}
       - {fileID: 11400000, guid: acfe59429690f094197580ae9fca4b6d, type: 2}
       - {fileID: 11400000, guid: dc7be081c5ec49e4b842fdd0de30485b, type: 2}
+    - Wave:
+      - {fileID: 11400000, guid: 302bb60b748fc644bb02c96d85507c6f, type: 2}
+      - {fileID: 11400000, guid: a2bf7527de4850748a63751e35a7c491, type: 2}
+    - Wave:
+      - {fileID: 11400000, guid: 142ba3f9b7a25fe42b57bef25ee7e21a, type: 2}
+      - {fileID: 11400000, guid: a2a763a8b65127d43a0f96d79afe6e38, type: 2}
+      - {fileID: 11400000, guid: 302bb60b748fc644bb02c96d85507c6f, type: 2}
+    - Wave:
+      - {fileID: 11400000, guid: 142ba3f9b7a25fe42b57bef25ee7e21a, type: 2}
+      - {fileID: 11400000, guid: a2a763a8b65127d43a0f96d79afe6e38, type: 2}
+      - {fileID: 11400000, guid: a2bf7527de4850748a63751e35a7c491, type: 2}
+    - Wave:
+      - {fileID: 11400000, guid: 142ba3f9b7a25fe42b57bef25ee7e21a, type: 2}
+      - {fileID: 11400000, guid: a2a763a8b65127d43a0f96d79afe6e38, type: 2}
+      - {fileID: 11400000, guid: a2bf7527de4850748a63751e35a7c491, type: 2}
+      - {fileID: 11400000, guid: 302bb60b748fc644bb02c96d85507c6f, type: 2}
+      - {fileID: 11400000, guid: acfe59429690f094197580ae9fca4b6d, type: 2}
+      - {fileID: 11400000, guid: dc7be081c5ec49e4b842fdd0de30485b, type: 2}
+    - Wave:
+      - {fileID: 11400000, guid: 142ba3f9b7a25fe42b57bef25ee7e21a, type: 2}
+      - {fileID: 11400000, guid: a2a763a8b65127d43a0f96d79afe6e38, type: 2}
+      - {fileID: 11400000, guid: a2bf7527de4850748a63751e35a7c491, type: 2}
+      - {fileID: 11400000, guid: 302bb60b748fc644bb02c96d85507c6f, type: 2}
+    NextWaveSpawnTime: 0300000006000000080000000a00000008000000060000000f0000000c000000
   waves:
   - {fileID: 11400000, guid: 142ba3f9b7a25fe42b57bef25ee7e21a, type: 2}
   - {fileID: 11400000, guid: a2a763a8b65127d43a0f96d79afe6e38, type: 2}
@@ -9549,8 +9574,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 15
-      minScalar: 10
+      scalar: 16
+      minScalar: 15
       maxCurve:
         serializedVersion: 2
         m_Curve:

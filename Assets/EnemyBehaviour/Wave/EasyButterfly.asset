@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3689262514176be46ad0a11b360ba67f, type: 3}
   m_Name: EasyButterfly
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1050599874837932572, guid: 2402f30be7fac23439f41e445f59936e,
-    type: 3}
+  enemyPrefab:
+  - {fileID: 1050599874837932572, guid: 2402f30be7fac23439f41e445f59936e, type: 3}
+  - {fileID: 1088062513839854488, guid: b2e3102d3b35c8448aa15c28ffe48bd0, type: 3}
   pathPrefab: {fileID: 5686262596185354048, guid: d79dc3d2556444946bc7138d1cad8689,
     type: 3}
   spawnRandomize: 0

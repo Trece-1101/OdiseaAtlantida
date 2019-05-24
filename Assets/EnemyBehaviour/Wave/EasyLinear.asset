@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3689262514176be46ad0a11b360ba67f, type: 3}
   m_Name: EasyLinear
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1050599874837932572, guid: 2402f30be7fac23439f41e445f59936e,
-    type: 3}
+  enemyPrefab:
+  - {fileID: 1088062513839854488, guid: b2e3102d3b35c8448aa15c28ffe48bd0, type: 3}
+  - {fileID: 1050599874837932572, guid: 2402f30be7fac23439f41e445f59936e, type: 3}
   pathPrefab: {fileID: 1190663284700659673, guid: 48a48c5ca74b92646911b39aa6807739,
     type: 3}
   spawnRandomize: 0.5

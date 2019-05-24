@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Enemy Wave")]
 public class Wave : ScriptableObject
 {
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private List<GameObject> enemyPrefab;
     [SerializeField] private GameObject pathPrefab;
     private float timeBetweenSpawn = 0f;
     [SerializeField] private float spawnRandomize = 0.5f;
@@ -15,7 +15,8 @@ public class Wave : ScriptableObject
   
 
     public GameObject GetEnemyPrefab() {
-        return this.enemyPrefab;
+        int rnd = Random.Range(0, 1);
+        return this.enemyPrefab[rnd];
     }
 
     public List<Transform> GetPathPrefab() {

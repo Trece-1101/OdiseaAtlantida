@@ -64,6 +64,7 @@ public class GameProgram : MonoBehaviour
     #region "Referencias en Cache"
     private Asimov asimov;
     private CrossHair crossHair;
+    private EnemySpawner enemySpawner;
     #endregion
 
     #region "Metodos"
@@ -81,7 +82,8 @@ public class GameProgram : MonoBehaviour
     }
 
     private void Start() {      
-        asimov = FindObjectOfType<Asimov>();        
+        asimov = FindObjectOfType<Asimov>();
+        enemySpawner = FindObjectOfType<EnemySpawner>();
         //asimov.SetVelocity(new Vector2(5f, 5f));
         //asimov.SetTimeBetweenBulletShoots(0.2f);
         //asimov.SetTimeBetweenMissileShoots(1f);
@@ -101,6 +103,7 @@ public class GameProgram : MonoBehaviour
         }        
         
     }
+    
     
     private void SetUpBorders() {
         Camera mainCamera = Camera.main;
