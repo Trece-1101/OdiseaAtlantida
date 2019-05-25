@@ -132,7 +132,7 @@ public class Asimov : Ship
         this.ActualSprite = MySprites[0];
         this.Img.sprite = this.ActualSprite;
 
-        this.DashDistance = 10f;
+        this.DashDistance = 6f;
         this.DashStep = 0.5f;
         this.GodMode = false;
         this.InitialDashCoolTime = 2f;
@@ -158,6 +158,11 @@ public class Asimov : Ship
         MoveShield();
         CheckSprite();
         Shoot();
+        //ShieldShoot();
+    }
+
+    private void ShieldShoot() {
+        MyShield.Shoot(GetMyBulletRotation());
     }
 
     public override void Move() {
@@ -180,7 +185,7 @@ public class Asimov : Ship
             this.CanDash = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && this.CanDash) {
+        if (Input.GetKeyDown(KeyCode.Space) && this.CanDash) {
             if (Input.GetKey(KeyCode.A)) {
                 //Debug.Log("Dash IZQ");
                 this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x - this.DashDistance, this.DashStep),
@@ -223,7 +228,7 @@ public class Asimov : Ship
     }
 
     private void CheckSprite() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
             if (this.ActualSprite == this.MySprites[0]) {
                 this.ActualSprite = this.MySprites[1];
                 ChangeMode(true, 1);

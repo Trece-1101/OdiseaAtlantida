@@ -43,6 +43,7 @@ public class Shield : MonoBehaviour, IAttack
         rotated = Quaternion.Euler(0f, 0f, 90f);
         positionCounter = 0;
         ShieldControl(positionCounter);
+        this.CanShoot = true;
     }
 
     public void ShieldControl(int value) {
@@ -82,14 +83,13 @@ public class Shield : MonoBehaviour, IAttack
         }
     }
 
-    public void Shoot() {
-        
-    }
+    public void Shoot() { }
 
     public void Shoot(Quaternion rotation) {
-        //if (CanShoot) {            
+        //Debug.DrawLine(transform.position, Vector3.up * 10, Color.red);
+        //if (CanShoot) {
         //    objectPool.Spawn("PlayerBullet", shootPoint.position, Quaternion.Inverse(rotation));
-        //}      
+        //}
     }
 
 }

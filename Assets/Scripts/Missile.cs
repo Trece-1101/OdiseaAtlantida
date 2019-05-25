@@ -14,9 +14,9 @@ public class Missile : Proyectile
     }
 
     private void Start() {
-        SetSpeed(3f);
+        SetSpeed(4f);
         SetInitialSpeed(this.GetSpeed());
-        this.Aceleration = 4f;
+        this.Aceleration = 5f;
     }
 
     public override void Update() {

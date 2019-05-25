@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Proyectile : MonoBehaviour
 {
     #region "Atributos Serializados"
-    private float Speed;
+    [SerializeField] private float Speed;
     private float InitialSpeed;
     private float Damage;
     #endregion

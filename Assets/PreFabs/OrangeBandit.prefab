@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a8dde19a1eb3c4a9247e33fae6883c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitPoints: 50
+  HitPoints: 40
   Velocity: {x: 2, y: 2}
   HealthBar: {fileID: 2324842410490345677}
   DeathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 694b0fd3fbae0914fa9b8577323f9e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 50
 --- !u!60 &1916074654242737982
 PolygonCollider2D:
   m_ObjectHideFlags: 0

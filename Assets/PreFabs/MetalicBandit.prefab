@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a8dde19a1eb3c4a9247e33fae6883c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitPoints: 80
+  HitPoints: 50
   Velocity: {x: 2, y: 2}
   HealthBar: {fileID: 1264813307236363887}
   DeathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}
@@ -110,7 +110,7 @@ MonoBehaviour:
   - {fileID: 8976691263019995921}
   Reward: 150
   timeBtwBulletS: 0.8
-  timeBtwMissileS: 1.5
+  timeBtwMissileS: 1.8
   canShootMissile: 1
 --- !u!114 &6286898524331491252
 MonoBehaviour:

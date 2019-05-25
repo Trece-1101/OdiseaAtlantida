@@ -45,7 +45,7 @@ public class Wave : ScriptableObject
         return this.moveSpeed;
     }
     public void SetMoveSpeed(float value) {
-        this.moveSpeed = 1.2f;
+        this.moveSpeed = 1.3f;
         //this.moveSpeed = enemyPrefab.GetComponent<Enemy>().GetVelocity().x;        
     }
    
