@@ -170,8 +170,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156526278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.55, y: 0, z: 0}
-  m_LocalScale: {x: 0.16, y: 1.3, z: 1}
+  m_LocalPosition: {x: -0.4, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1.1, z: 1}
   m_Children:
   - {fileID: 631605846}
   m_Father: {fileID: 2017189201}
@@ -214,8 +214,8 @@ SpriteRenderer:
   m_SortingLayerID: 114661499
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b6cc3830c2ebfa94da0a1d084373dfeb, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9d71afd01aae4084488e6f6cdf3c316e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -255,7 +255,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.39, y: 0.66}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -263,12 +263,25 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.5}
-      - {x: -0.43233964, y: 0.2546149}
-      - {x: -0.45225286, y: -0.24536505}
-      - {x: 0.005970828, y: -0.5062314}
-      - {x: 0.4361459, y: -0.25744155}
-      - {x: 0.4323403, y: 0.24434763}
+    - - {x: 0.17567557, y: 0.3217411}
+      - {x: 0.04560119, y: 0.31920147}
+      - {x: -0.08798438, y: 0.24290943}
+      - {x: -0.18003857, y: 0.11896658}
+      - {x: -0.19754905, y: -0.01866579}
+      - {x: -0.15554291, y: -0.17547655}
+      - {x: -0.079965234, y: -0.27139807}
+      - {x: 0.009335518, y: -0.32170868}
+      - {x: 0.08552754, y: -0.33449554}
+      - {x: 0.18555003, y: -0.32719517}
+      - {x: 0.0888955, y: -0.30073357}
+      - {x: -0.010165989, y: -0.2585616}
+      - {x: -0.07547408, y: -0.17202902}
+      - {x: -0.11223942, y: -0.07152367}
+      - {x: -0.11834484, y: -0.013469696}
+      - {x: -0.10656172, y: 0.10210514}
+      - {x: -0.031825006, y: 0.21273279}
+      - {x: 0.065858215, y: 0.2858739}
+      - {x: 0.17399389, y: 0.3089342}
 --- !u!50 &156526283
 Rigidbody2D:
   serializedVersion: 4
@@ -424,6 +437,12 @@ Transform:
   m_Father: {fileID: 156526279}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &640653971 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 936176213259916196, guid: 6567e914465d7f64ba5308e0e07a64d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 4655471133788127991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &641805693
 GameObject:
   m_ObjectHideFlags: 0
@@ -14927,6 +14946,7 @@ GameObject:
   - component: {fileID: 2017189203}
   - component: {fileID: 2017189205}
   - component: {fileID: 2017189204}
+  - component: {fileID: 2017189206}
   m_Layer: 8
   m_Name: Asimov
   m_TagString: Player
@@ -15145,6 +15165,25 @@ PolygonCollider2D:
       - {x: 0.06420803, y: -0.3476304}
       - {x: 0.15539312, y: -0.24091947}
       - {x: 0.23999977, y: -0.16644557}
+--- !u!95 &2017189206
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017189199}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a5131f331e8c0e4e98d3efe47a1e53a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2067086581
 GameObject:
   m_ObjectHideFlags: 0
@@ -15479,6 +15518,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7202649372887205128, guid: 6567e914465d7f64ba5308e0e07a64d9,
+        type: 3}
+      propertyPath: CameraAnimation
+      value: 
+      objectReference: {fileID: 640653971}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6567e914465d7f64ba5308e0e07a64d9, type: 3}
 --- !u!1001 &6767981664842899568

@@ -53,7 +53,8 @@ public class EnemySpawner : MonoBehaviour
     }
 
     private IEnumerator SpawnFormations() {
-        for (int formationIndex = 0; formationIndex < FormationLists.JoinWaves.Count; formationIndex++) {
+        // FormationLists.JoinWaves.Count
+        for (int formationIndex = 0; formationIndex < 2; formationIndex++) {
             var currentFormation = FormationLists.JoinWaves[formationIndex].Wave;            
             enemiesToKill.Add(currentFormation.Count);
             waitSeconds = FormationLists.NextWaveSpawnTime[formationIndex];
@@ -97,27 +98,7 @@ public class EnemySpawner : MonoBehaviour
 
     }  
  
-
-
-    //private IEnumerator SpawnFormation() {   
-    //    for (int waveIndex = startingWave; waveIndex < waves.Count; waveIndex++) {
-    //        var currentWave = waves[waveIndex];
-    //        yield return StartCoroutine(SpawnWave(currentWave));
-    //    }
-    //}
-
-    //private IEnumerator SpawnWave(Wave currentWave) {
-    //    for (int enemyCount = 0; enemyCount < currentWave.GetNumberOfEnemies(); enemyCount++) {
-    //        var newEnemy = Instantiate(currentWave.GetEnemyPrefab(),
-    //                    currentWave.GetPathPrefab()[0].transform.position,
-    //                    Quaternion.identity);
-
-    //        newEnemy.GetComponent<Path>().SetWave(currentWave);
-    //        //currentWave.SetMoveSpeed(newEnemy.GetComponent<Enemy>().GetVelocity().x);
-
-    //        yield return new WaitForSeconds(currentWave.GetTimeBetweenSpawns());
-    //    }
-
-    //}
+    
+    
 
 }

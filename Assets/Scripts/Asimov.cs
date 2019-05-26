@@ -22,7 +22,7 @@ public class Asimov : Ship
     private Sprite ActualSprite;    
     private Shield MyShield;
     private PolygonCollider2D AtackCollider;
-    private PolygonCollider2D DefenseCollider;
+    private PolygonCollider2D DefenseCollider;    
     #endregion
 
     #region "Setters/Getters"
@@ -115,7 +115,7 @@ public class Asimov : Ship
     }
     public void SetDefenseCollider(PolygonCollider2D value) {
         this.DefenseCollider = value;
-    }
+    }   
 
     #endregion
     
@@ -123,14 +123,16 @@ public class Asimov : Ship
 
     public override void CoAwake() {
         this.SetIsAlive(true);
+        // GodMode up, up, down, down, left, right, left, right, B, A.
 
         this.MyShield = FindObjectOfType<Shield>();
         this.Img = GetComponent<SpriteRenderer>();
-        PolygonCollider2D[] colliders = GetComponents<PolygonCollider2D>();
+        PolygonCollider2D[] colliders = GetComponents<PolygonCollider2D>();  
+
         this.AtackCollider = colliders[0];
         this.DefenseCollider = colliders[1];
-        this.ActualSprite = MySprites[0];
-        this.Img.sprite = this.ActualSprite;
+        //this.ActualSprite = MySprites[0];
+        //this.Img.sprite = this.ActualSprite;
 
         this.DashDistance = 6f;
         this.DashStep = 0.5f;
@@ -156,24 +158,33 @@ public class Asimov : Ship
         Dash();
         CheckRotation();
         MoveShield();
-        CheckSprite();
+        //CheckSprite();
         Shoot();
-        //ShieldShoot();
-    }
-
-    private void ShieldShoot() {
-        MyShield.Shoot(GetMyBulletRotation());
     }
 
     public override void Move() {
-        var deltaX = Input.GetAxis("Horizontal") * GetVelocity().x * Time.deltaTime;
-        var deltaY = Input.GetAxis("Vertical") * GetVelocity().y * Time.deltaTime;
+        var movementX = Input.GetAxis("Horizontal"); // -1 a 0 => Izquierda -- 0 => Sin Movimiento (No Input) -- 0 a 1 => Derecha
+        var movementY = Input.GetAxis("Vertical"); // -1 a 0 => Abajo -- 0 => Sin Movimiento (No Input) -- 0 a 1 => Arriba               
 
+
+        // d = v*t
+        // si el input = 0 --> deltaMov = 0
+        var deltaX = movementX * GetVelocity().x * Time.deltaTime;
+        var deltaY = movementY * GetVelocity().y * Time.deltaTime;
+
+        //Debug.Log($"MovX {movementX} -- MovY {movementY}");
+        //Debug.Log($"DeltaX {deltaX} -- DeltaY {deltaY}");
+
+        // proxima pos = posicion actual + deltaMov -- bloqueo mi proxima posicion para que no pueda avanzar mas alla de los margenes
+        // pos(n) = pos(n-1) + v*t -- v*t = deltaMov
         var nextPosX = Mathf.Clamp(transform.position.x + deltaX, this.GetGameProg().GetLeftBorder(), this.GetGameProg().GetRightBorder());
         var nextPosY = Mathf.Clamp(transform.position.y + deltaY, this.GetGameProg().GetUpBorder(), this.GetGameProg().GetDownBorder());
 
-        // pos(n) = pos(n-1) + v*t
-        this.transform.position = new Vector2(nextPosX, nextPosY);
+        Vector2 nextPosition = new Vector2(nextPosX, nextPosY);
+
+        // mi vector posicion ahora vale la posicion x e y calculadas
+        
+        this.transform.position = nextPosition;
     }
 
     private void Dash() {
@@ -295,9 +306,10 @@ public class Asimov : Ship
 
     public override void Die() {
         this.SetIsAlive(false);
-        Destroy(gameObject);
         PlayExplosion();
+        this.GetCameraShake().UltraShake();
         FindObjectOfType<LevelManager>().LoadGameOver();
+        Destroy(gameObject);
     }
 
 

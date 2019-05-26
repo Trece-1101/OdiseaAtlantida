@@ -47,6 +47,7 @@ public abstract class Ship : MonoBehaviour, IAttack
     private GameProgram GameProg;
     private DamageControl DamageCtrl;
     private Camera MainCamera;
+    private ShakeYourBooty CameraShake;
     #endregion
 
     #region "Setters/Getters"
@@ -198,6 +199,13 @@ public abstract class Ship : MonoBehaviour, IAttack
     public void SetIsAlive(bool value) {
         this.IsAlive = value;
     }
+
+    public ShakeYourBooty GetCameraShake() {
+        return this.CameraShake;
+    }
+    public void SetCameraShake(ShakeYourBooty value) {
+        this.CameraShake = value;
+    }
     #endregion
 
     #region "Constructor"
@@ -215,6 +223,7 @@ public abstract class Ship : MonoBehaviour, IAttack
         this.ObjectPool = ObjectPool.Instance;
         this.GameProg = FindObjectOfType<GameProgram>();
         this.MainCamera = Camera.main;
+        this.CameraShake = this.MainCamera.GetComponent<ShakeYourBooty>();
 
         this.StartHealth = this.HitPoints;
 
@@ -279,6 +288,7 @@ public abstract class Ship : MonoBehaviour, IAttack
             ReceiveDamage(DamageCtrl);
             collision.gameObject.SetActive(false);
             PlayImpactSFX();
+            ShakeThatCamera();
         }
         else {
             Die();
@@ -292,6 +302,12 @@ public abstract class Ship : MonoBehaviour, IAttack
 
         if(this.GetHitPoints() <= 0) {
             Die();
+        }
+    }
+
+    private void ShakeThatCamera() {
+        if(this.gameObject.name == "Asimov") {
+            CameraShake.ShakeShakeShake();
         }
     }
 

@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Shield : MonoBehaviour, IAttack
-{
-    private Vector3 upPos;
-    private Vector3 downPos;
-    private Vector3 rightPos;
-    private Vector3 leftPos;
-    private Quaternion noRotation;
-    private Quaternion rotated;
+{    
     private int positionCounter;
     private List<Vector3> positions = new List<Vector3>();
+    private List<Quaternion> rotations = new List<Quaternion>();
+
     [SerializeField] private Transform shootPoint;
     public float TimeBetweenBulletShoots { get; set; }
     public float TimeBetweenMissileShoots { get; set; }
@@ -30,17 +26,18 @@ public class Shield : MonoBehaviour, IAttack
         this.RemainTimeForShootBullet = this.TimeBetweenBulletShoots;
         this.RemainTimeForShootMissile = this.TimeBetweenMissileShoots;
 
-        upPos = new Vector3(0f, 0.55f, 0f);        
-        downPos = new Vector3(0f, -0.55f, 0f);        
-        rightPos = new Vector3(0.55f, 0f, 0f);        
-        leftPos = new Vector3(-0.55f, 0f, 0f);
-        positions.Add(upPos);
-        positions.Add(rightPos);
-        positions.Add(downPos);
-        positions.Add(leftPos);       
+        
+        positions.Add(new Vector3(0f, 0.4f, 0f)); // escudo arriba
+        positions.Add(new Vector3(0.4f, 0f, 0f)); // escudo derecha
+        positions.Add(new Vector3(0f, -0.4f, 0f)); // escudo abajo        
+        positions.Add(new Vector3(-0.4f, 0f, 0f)); // escudo izquierda
 
-        noRotation = Quaternion.Euler(0f, 0f, 0f);
-        rotated = Quaternion.Euler(0f, 0f, 90f);
+        rotations.Add(Quaternion.Euler(0f, 0f, 270f)); // escudo arriba
+        rotations.Add(Quaternion.Euler(0f, 0f, 180f)); // escudo derecha
+        rotations.Add(Quaternion.Euler(0f, 0f, 90f)); // escudo abajo        
+        rotations.Add(Quaternion.Euler(0f, 0f, 0f)); // escudo izquierda
+
+  
         positionCounter = 0;
         ShieldControl(positionCounter);
         this.CanShoot = true;
@@ -57,15 +54,9 @@ public class Shield : MonoBehaviour, IAttack
             positionCounter = 3;
         }
 
-        if(positionCounter == 0 || positionCounter == 2) {
-            this.transform.localRotation = rotated;
-        }
-        else {
-            this.transform.localRotation = noRotation;
-        }
-
-        CanShoot = positionCounter == 0 ? true : false;
+        CanShoot = positionCounter == 0 ? true : false; // solo dispara cuando el escudo esta frontal
         this.transform.localPosition = positions[positionCounter];
+        this.transform.localRotation = rotations[positionCounter];
 
     }
 
@@ -87,9 +78,16 @@ public class Shield : MonoBehaviour, IAttack
 
     public void Shoot(Quaternion rotation) {
         //Debug.DrawLine(transform.position, Vector3.up * 10, Color.red);
-        //if (CanShoot) {
-        //    objectPool.Spawn("PlayerBullet", shootPoint.position, Quaternion.Inverse(rotation));
-        //}
+        //Quaternion.Inverse(rotation)
+        //Debug.Log(rotation);
+        //Vector3 angles = rotation.eulerAngles - new Vector3(0f, 0f, 90f);
+        //rotation = Quaternion.Euler(angles);
+        ////Debug.Log(angles);
+        //Debug.Log(rotation);
+
+        if (CanShoot) {
+            objectPool.Spawn("PlayerBullet", shootPoint.position, rotation);
+        }
     }
 
 }
