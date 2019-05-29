@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     private float waitSeconds = 2f;
     [SerializeField] private Animator animator;
+    [SerializeField] private Slider slider;
+
+
 
     public void LoadStartMenu() {
         SceneManager.LoadScene(0);
@@ -14,7 +18,8 @@ public class LevelManager : MonoBehaviour
 
     public void LoadPrototype() {
         animator.SetTrigger("FadeOut");
-        StartCoroutine(WaitAndLoad("PrototypeLevel"));
+        //StartCoroutine(WaitAndLoad("PrototypeLevel"));
+        StartCoroutine(LoadLevelAsynch("PrototypeLevel"));
     }
 
     public void LoadGameOver() {
@@ -28,6 +33,24 @@ public class LevelManager : MonoBehaviour
 
     public void QuitGame() {
         Application.Quit();
+    }
+
+    public void LoadLevel(string sceneName) {
+        StartCoroutine(LoadLevelAsynch(sceneName));
+    }
+
+    IEnumerator LoadLevelAsynch (string sceneName) {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        while (!operation.isDone) {
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+
+            slider.value = progress;
+
+            //Debug.Log(progress);
+
+            // espera un frame
+            yield return null;
+        }
     }
 
 }
