@@ -21,7 +21,7 @@ TagManager:
   - EnemyBullet
   - Clouds
   - BackGround
-  - 
+  - CamBorder
   - 
   - 
   - 
@@ -42,6 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CamBorder
+    uniqueID: 1877093025
+    locked: 0
   - name: Bullet
     uniqueID: 1327473219
     locked: 0
@@ -56,4 +59,7 @@ TagManager:
     locked: 0
   - name: Shield
     uniqueID: 114661499
+    locked: 0
+  - name: UIX
+    uniqueID: 3827139945
     locked: 0

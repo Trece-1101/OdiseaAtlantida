@@ -6,11 +6,11 @@ using TMPro;
 
 public class DialogSystem : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI textDisplay;
-    [SerializeField] string[] sentences;
-    [SerializeField] GameObject continueButton;
-    [SerializeField] Animator textAnimator;
-    [SerializeField] GameObject panel;
+    [SerializeField] TextMeshProUGUI textDisplay = null;
+    [SerializeField] string[] sentences = null;
+    [SerializeField] GameObject continueButton = null;
+    [SerializeField] Animator textAnimator = null;
+    [SerializeField] GameObject panel = null;
     private RectTransform panelRect;
     private Image panelImg;
     private AudioSource continueSound;

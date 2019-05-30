@@ -9,7 +9,7 @@ public class Wave : ScriptableObject
     [SerializeField] private GameObject pathPrefab;
     private float timeBetweenSpawn = 0f;
     [SerializeField] private float spawnRandomize = 0.5f;
-    [SerializeField] private int numberOfEnemies;
+    [SerializeField] private int numberOfEnemies = 1;
     private float moveSpeed;
 
   

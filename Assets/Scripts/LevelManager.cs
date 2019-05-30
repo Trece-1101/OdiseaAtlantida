@@ -6,18 +6,45 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    private float waitSeconds = 2f;
-    [SerializeField] private Animator animator;
-    [SerializeField] private Slider slider;
+    #region "Atributos Serializados"
+    [SerializeField] private Slider Slider = null;
+    [SerializeField] private Animator Animator = null;
+    #endregion
 
+    #region "Atributos"
+    private float WaitSeconds = 2f;
+    #endregion
 
+    #region "Setters y Getters"
+    public Slider GetSlider() {
+        return this.Slider;
+    }
+    public void SetSlider(Slider value) {
+        this.Slider = value;
+    }
 
+    public Animator GetAnimator() {
+        return this.Animator;
+    }
+    public void SetAnimator(Animator value) {
+        this.Animator = value;
+    }
+
+    public float GetWaitSeconds() {
+        return this.WaitSeconds;
+    }
+    public void SetWaitSeconds(float value) {
+        this.WaitSeconds = value;
+    }
+    #endregion
+
+    #region "Metodos"
     public void LoadStartMenu() {
         SceneManager.LoadScene(0);
     }
 
     public void LoadPrototype() {
-        animator.SetTrigger("FadeOut");
+        this.Animator.SetTrigger("FadeOut");
         //StartCoroutine(WaitAndLoad("PrototypeLevel"));
         StartCoroutine(LoadLevelAsynch("PrototypeLevel"));
     }
@@ -27,13 +54,10 @@ public class LevelManager : MonoBehaviour
     }
 
     IEnumerator WaitAndLoad(string scene) {
-        yield return new WaitForSeconds(waitSeconds);
+        yield return new WaitForSeconds(this.WaitSeconds);
         SceneManager.LoadScene(scene);
     }
 
-    public void QuitGame() {
-        Application.Quit();
-    }
 
     public void LoadLevel(string sceneName) {
         StartCoroutine(LoadLevelAsynch(sceneName));
@@ -44,7 +68,7 @@ public class LevelManager : MonoBehaviour
         while (!operation.isDone) {
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
 
-            slider.value = progress;
+            this.Slider.value = progress;
 
             //Debug.Log(progress);
 
@@ -52,5 +76,11 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public void QuitGame() {
+        Application.Quit();
+    }
+    #endregion
+
 
 }

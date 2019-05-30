@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class DamageControl : MonoBehaviour
 {
-    [SerializeField] private float damage = 10;
+    #region "Atributos Serializados"
+    [SerializeField] private float Damage = 10;
+    #endregion
 
+    #region "Setters y Getters"
     public float GetDamage() {
-        return this.damage;
+        return this.Damage;
     }
-
     public void SetDamage(float value) {
-        this.damage = value;
+        this.Damage = value;
     }
-    
+    #endregion
+
+
+
 }

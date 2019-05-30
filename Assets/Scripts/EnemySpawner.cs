@@ -4,30 +4,141 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    #region "Clase Waves (lista de waves)"
     [System.Serializable]
     public class Waves {
         public List<Wave> Wave;
     }
+    #endregion
 
+    #region "Clase Formaciones (Lista de listas de Wave)"
     [System.Serializable]
     public class Formations {
         public string Name;
         public List<Waves> JoinWaves;
         public List<int> NextWaveSpawnTime;
     }
+    #endregion
 
+    #region "Atributos Serializables"
     [SerializeField] private Formations FormationLists = new Formations();
-    [SerializeField] private List<Wave> waves;
-    int startingWave = 0;
-    private bool loop = false;
-    private bool stillAlive;
-    private List<int> enemiesToKill = new List<int>();
-    private int currentWave = 0;
-    private bool firstWave = true;
-    private bool advance = false;
-    private int waitSeconds = 3;
+    #endregion
+
+    #region "Atributos"
+    private int StartingWave = 0;
+    private int LastWave;
+    private int StartingFormation = 0;
+    private int LastFormation;
+    private bool Loop = false;
+    private float WaitSeconds = 3;
+    #endregion
+
+    #region "Componentes en Cache"
+    private BordersControl BorderCtrl;
+    private AudioSource SpawnAudio;
+    #endregion
+
+    #region "Setters Y Getters"
+    public Formations GetFormatios() {
+        return this.FormationLists;
+    }
+    public void SetFormations(Formations value) {
+        this.FormationLists = value;
+    }
+
+    public int GetStartingWave() {
+        return this.StartingWave;
+    }
+    public void SetStartingWave(int value) {
+        this.StartingWave = value;
+    }
+
+    public int GetLastWave() {
+        return this.LastWave;
+    }
+    public void SetLastWave(int value) {
+        this.LastWave = value;
+    }
+
+    public int GetStartingFormation() {
+        return this.StartingFormation;
+    }
+    public void SetStartingFormation(int value) {
+        this.StartingFormation = value;
+    }
+
+    public int GetLastFormation() {
+        return this.LastFormation;
+    }
+    public void SetLastFormation(int value) {
+        this.LastFormation = value;
+    }
+
+    public bool GetLoop() {
+        return this.Loop;
+    }
+    public void SetLoop(bool value) {
+        this.Loop = value;
+    }
+
+    public float GetWaitSeconds() {
+        return this.WaitSeconds;
+    }
+    public void SetWaitSeconds(float value) {
+        this.WaitSeconds = value;
+    }
+    #endregion
+
+    #region "Metodos"
+    private void Awake() {
+        this.BorderCtrl = FindObjectOfType<BordersControl>();
+        this.BorderCtrl.DisableBorders();
+        this.SpawnAudio = GetComponent<AudioSource>();
+    }
+
+    private IEnumerator Start() {
+        do {
+            yield return StartCoroutine(SpawnFormations());
+        } while (this.Loop);
+        //var currentWave = waves[startingWave];
+        //StartCoroutine(SpawnWave(currentWave));
+    }
+
+    private IEnumerator SpawnFormations() {
+        this.LastFormation = FormationLists.JoinWaves.Count;
+        for (int formationIndex = StartingFormation; formationIndex < this.LastFormation; formationIndex++) {
+            var currentFormation = FormationLists.JoinWaves[formationIndex].Wave;
+            this.WaitSeconds = FormationLists.NextWaveSpawnTime[formationIndex];
+
+            yield return new WaitForSeconds(this.WaitSeconds);
 
 
+
+            StartCoroutine(SpawnWaves(currentFormation));
+
+        }
+        //Debug.Log("Final de formaciones");
+    }
+
+
+    private IEnumerator SpawnWaves(List<Wave> currentFormation) {
+        //Debug.Log("spawn formation");
+        SpawnAudio.Play();
+
+        this.BorderCtrl.EnableBorders();
+
+        LastWave = currentFormation.Count;
+
+        for (int waveCount = StartingWave; waveCount < LastWave; waveCount++) {
+            var newEnemy = Instantiate(currentFormation[waveCount].GetEnemyPrefab(),
+                                        currentFormation[waveCount].GetPathPrefab()[0].transform.position,
+                                        Quaternion.identity);
+
+            newEnemy.GetComponent<Path>().SetWave(currentFormation[waveCount]);
+
+            yield return new WaitForSeconds(0);
+        }
+    }
 
     //private void DebugRazonar() {
     //    Debug.Log("Numero de formaciones " + FormationLists.JoinWaves.Count);
@@ -42,63 +153,9 @@ public class EnemySpawner : MonoBehaviour
     //    }
     //    Debug.Log("########################################################");
     //}
+    #endregion
 
 
-    private IEnumerator Start() {
-        do {
-            yield return StartCoroutine(SpawnFormations());
-        } while (loop);
-        //var currentWave = waves[startingWave];
-        //StartCoroutine(SpawnWave(currentWave));
-    }
 
-    private IEnumerator SpawnFormations() {
-        // FormationLists.JoinWaves.Count
-        for (int formationIndex = 0; formationIndex < 2; formationIndex++) {
-            var currentFormation = FormationLists.JoinWaves[formationIndex].Wave;            
-            enemiesToKill.Add(currentFormation.Count);
-            waitSeconds = FormationLists.NextWaveSpawnTime[formationIndex];
-
-            yield return new WaitForSeconds(waitSeconds);
-
-            
-
-            StartCoroutine(SpawnWaves(currentFormation));
-           
-        }
-        //Debug.Log("Final de formaciones");
-    }
-
-
-    private IEnumerator SpawnWaves(List<Wave> currentFormation) {
-        //Debug.Log("spawn formation");
-        for (int waveCount = 0; waveCount < currentFormation.Count; waveCount++) {            
-            var newEnemy = Instantiate(currentFormation[waveCount].GetEnemyPrefab(),
-                                        currentFormation[waveCount].GetPathPrefab()[0].transform.position,
-                                        Quaternion.identity);
-
-            newEnemy.GetComponent<Path>().SetWave(currentFormation[waveCount]);     
-
-            yield return new WaitForSeconds(0);
-        }
-    }
-
-    public void DiscountEnemyOnWave() {
-        //Debug.Log("current" + currentWave);
-        //Debug.Log("enemies" + enemiesToKill[currentWave]);
-        enemiesToKill[currentWave] = enemiesToKill[currentWave] - 1;
-
-        if (enemiesToKill[currentWave] == 0) {
-            currentWave++;
-            advance = true;            
-        }
-        else {
-            advance = false;
-        }
-
-    }  
- 
-    
-    
 
 }

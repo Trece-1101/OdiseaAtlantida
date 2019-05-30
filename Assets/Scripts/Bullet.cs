@@ -6,7 +6,6 @@ public class Bullet : Proyectile
 {
     
     private void Start() {
-        //SetSpeed(15f);
         SetInitialSpeed(this.GetSpeed());
     }
     

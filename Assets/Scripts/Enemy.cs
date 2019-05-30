@@ -14,9 +14,9 @@ public class Enemy : Ship
     #endregion
 
     #region "Auxiliares"
-    [SerializeField] private float timeBtwBulletS;
-    [SerializeField] private float timeBtwMissileS;
-    [SerializeField] private bool canShootMissile;
+    [SerializeField] private float timeBtwBulletS = 1f;
+    [SerializeField] private float timeBtwMissileS = 1f;
+    [SerializeField] private bool canShootMissile = false;
     #endregion
 
     #region "Setters/Getters"

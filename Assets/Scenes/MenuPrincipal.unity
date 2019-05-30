@@ -683,7 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ce791bfc9aaf849a58b2734a0e894c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myImage: {fileID: 2800000, guid: ae15d86988df3344ea2d56b83e4cdbee, type: 3}
+  MyImage: {fileID: 2800000, guid: ae15d86988df3344ea2d56b83e4cdbee, type: 3}
 --- !u!4 &965990608
 Transform:
   m_ObjectHideFlags: 0
@@ -1039,6 +1039,16 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 352219717}
+    - target: {fileID: 6767981665065007714, guid: b3e41124bcb16bf44a793c9c122f34c7,
+        type: 3}
+      propertyPath: Slider
+      value: 
+      objectReference: {fileID: 352219717}
+    - target: {fileID: 6767981665065007714, guid: b3e41124bcb16bf44a793c9c122f34c7,
+        type: 3}
+      propertyPath: Animator
+      value: 
+      objectReference: {fileID: 264311111}
     - target: {fileID: 6767981665065007715, guid: b3e41124bcb16bf44a793c9c122f34c7,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -158,7 +158,6 @@ public class Asimov : Ship
         Dash();
         CheckRotation();
         MoveShield();
-        //CheckSprite();
         Shoot();
     }
 

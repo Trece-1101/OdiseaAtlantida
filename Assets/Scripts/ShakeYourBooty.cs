@@ -6,8 +6,11 @@ public class ShakeYourBooty : MonoBehaviour
 {
     // Shake shake shake ♪♪♪
 
-    [SerializeField] Animator CameraAnimation;
+    #region "Atributos Serializados"
+    [SerializeField] Animator CameraAnimation = null;
+    #endregion
 
+    #region "Metodos"
     public void ShakeShakeShake() {
         CameraAnimation.SetTrigger("shake");
     }
@@ -15,24 +18,7 @@ public class ShakeYourBooty : MonoBehaviour
     public void UltraShake() {
         CameraAnimation.SetTrigger("ultraShake");
     }
+    #endregion
 
-    //public IEnumerator ShakeShakeShake(float duration, float magnitude) {
-    //    Vector3 originalPosition = transform.localPosition;
-    //    float elapsed = 0.0f;
-
-    //    while(elapsed < duration) {
-    //        float x = Random.Range(-1f, 1f) * magnitude;
-    //        float y = Random.Range(-1f, 1f) * magnitude;
-
-    //        transform.localPosition = new Vector3(x, y, originalPosition.z);
-
-    //        elapsed += Time.deltaTime;
-
-    //        yield return null;
-    //    }
-
-    //    transform.localPosition = originalPosition;
-
-    //}
 
 }

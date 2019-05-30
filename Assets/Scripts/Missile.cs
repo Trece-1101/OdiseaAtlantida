@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Missile : Proyectile
 {
+    #region "Atributos"
     private float Aceleration;
+    #endregion
 
+    #region "Setters y Getters"
     public float GetAceleration() {
         return this.Aceleration;
     }
     public void SetAceleration(float value) {
         this.Aceleration = value;
     }
+    #endregion
 
+    #region "Metodos"
     private void Start() {
         SetSpeed(4f);
         SetInitialSpeed(this.GetSpeed());
@@ -33,4 +38,6 @@ public class Missile : Proyectile
         Invoke("Die", GetLifeTime());
         
     }
+    #endregion
+
 }

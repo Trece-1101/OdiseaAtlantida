@@ -5,9 +5,12 @@ using TMPro;
 
 public class ScoreDisplay : MonoBehaviour
 {
+    #region "Componentes en Cache"
     TextMeshProUGUI ScoreText;
     GameProgram GameProg;
+    #endregion
 
+    #region "Metodos"
     private void Start() {
         this.GameProg = FindObjectOfType<GameProgram>();
         this.ScoreText = GetComponent<TextMeshProUGUI>();
@@ -16,4 +19,5 @@ public class ScoreDisplay : MonoBehaviour
     private void Update() {
         this.ScoreText.SetText($"{GameProg.GetScore().ToString()} XP");
     }
+    #endregion
 }

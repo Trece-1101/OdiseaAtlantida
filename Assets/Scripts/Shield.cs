@@ -8,7 +8,7 @@ public class Shield : MonoBehaviour, IAttack
     private List<Vector3> positions = new List<Vector3>();
     private List<Quaternion> rotations = new List<Quaternion>();
 
-    [SerializeField] private Transform shootPoint;
+    [SerializeField] private Transform shootPoint = null;
     public float TimeBetweenBulletShoots { get; set; }
     public float TimeBetweenMissileShoots { get; set; }
     private ObjectPool objectPool;
