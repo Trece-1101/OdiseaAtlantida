@@ -102,6 +102,12 @@ public class Enemy : Ship
 
     }
 
+    public override void ControlOtherCollision(Collider2D collision) {
+        if(collision.gameObject.tag == "Player") {
+            Die();
+        }
+    }
+
     private void PlayExplosion() {
         this.GetPool().Spawn("EnemyExplosion", this.transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(this.GetDeathSFX(), this.GetMyMainCamera().transform.position, 0.6f);

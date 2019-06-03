@@ -286,7 +286,13 @@ public class Asimov : Ship
         else {
             this.RemainTimeForShootMissile -= Time.deltaTime;
         }
-    }       
+    }
+
+    public override void ControlOtherCollision(Collider2D collision) {
+        if(collision.gameObject.tag == "Enemy") {
+            Die();
+        }
+    }
 
 
     private void PlayExplosion() {

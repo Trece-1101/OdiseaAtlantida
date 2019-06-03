@@ -236,6 +236,7 @@ public abstract class Ship : MonoBehaviour, IAttack
     public abstract void CheckRotation();
     public abstract void Die();
     public abstract void PlayImpactSFX();
+    public abstract void ControlOtherCollision(Collider2D collision);
     
     public Dictionary<string, Quaternion> Rotate(Vector3 dir, int shipAngleCompensation, int bulletAngleCompesation) {
         // vector_direccion_ataque = vector_posicion_mouse - vector_centro_camara // en el caso de nuestra nave
@@ -291,7 +292,8 @@ public abstract class Ship : MonoBehaviour, IAttack
             ShakeThatCamera();
         }
         else {
-            Die();
+            //Die();
+            ControlOtherCollision(collision);
         }
     }
 
