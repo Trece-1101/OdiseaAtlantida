@@ -8,6 +8,7 @@ public interface IAttack
     float RemainTimeForShootMissile { get; set; }
     bool CanShoot { get; set; }
     bool CanShootMissile { get; set; }
+    DamageControl DamageCtrl { get; set; }
 
     void Shoot();
 }

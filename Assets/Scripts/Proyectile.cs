@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class Proyectile : MonoBehaviour
 {
     #region "Atributos Serializados"
-    [SerializeField] private float Speed;
-    private float InitialSpeed;
+    [SerializeField] private Vector2 Speed;
+    private Vector2 InitialSpeed;
     private float Damage;
     #endregion
 
@@ -20,10 +20,10 @@ public abstract class Proyectile : MonoBehaviour
     #endregion
 
     #region "Setters/Getters"
-    public float GetSpeed() {
+    public Vector2 GetSpeed() {
         return this.Speed;
     }
-    public void SetSpeed(float value) {
+    public void SetSpeed(Vector2 value) {
         this.Speed = value;
     }
 
@@ -41,10 +41,10 @@ public abstract class Proyectile : MonoBehaviour
         this.Damage = value;
     }
 
-    public float GetInitalSpeed() {
+    public Vector2 GetInitalSpeed() {
         return this.InitialSpeed;
     }
-    public void SetInitialSpeed(float value) {
+    public void SetInitialSpeed(Vector2 value) {
         this.InitialSpeed = value;
     }
 

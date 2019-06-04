@@ -302,6 +302,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1.1, z: 1}
   m_Children:
   - {fileID: 631605846}
+  - {fileID: 1529631710}
+  - {fileID: 259736910}
+  - {fileID: 858906560}
+  - {fileID: 1447130307}
   m_Father: {fileID: 2017189201}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -365,7 +369,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6659722b39828054ebbbf1ba269df36d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootPoint: {fileID: 631605846}
+  ShootsPositions:
+  - {fileID: 631605846}
+  - {fileID: 1529631710}
+  - {fileID: 259736910}
+  - {fileID: 858906560}
+  - {fileID: 1447130307}
 --- !u!60 &156526282
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -633,6 +642,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &259736909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 259736910}
+  m_Layer: 10
+  m_Name: ShieldShootPos (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &259736910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259736909}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.16, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 156526279}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &631058351
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +726,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631605845}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.044, y: 0.291, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 156526279}
@@ -5080,7 +5119,10 @@ MonoBehaviour:
       - {fileID: 11400000, guid: a2a763a8b65127d43a0f96d79afe6e38, type: 2}
       - {fileID: 11400000, guid: dc7be081c5ec49e4b842fdd0de30485b, type: 2}
       - {fileID: 11400000, guid: acfe59429690f094197580ae9fca4b6d, type: 2}
-    NextWaveSpawnTime: 0300000006000000080000000a00000008000000060000000f0000000c0000000a0000000f000000
+    - Wave:
+      - {fileID: 11400000, guid: f94b74e3d2ee4af409063d55aeb9dad6, type: 2}
+      - {fileID: 11400000, guid: 943339553a27a704b9a1719da6af4d25, type: 2}
+    NextWaveSpawnTime: 0300000006000000080000000a00000008000000060000000f0000000c0000000a0000000f0000000a000000
 --- !u!4 &681197735
 Transform:
   m_ObjectHideFlags: 0
@@ -5331,6 +5373,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &858906559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 858906560}
+  m_Layer: 10
+  m_Name: ShieldShootPos (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &858906560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858906559}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.117, y: -0.145, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 156526279}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &870324668
 GameObject:
   m_ObjectHideFlags: 0
@@ -15331,6 +15403,36 @@ Transform:
   m_Father: {fileID: 2017189201}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1447130306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1447130307}
+  m_Layer: 10
+  m_Name: ShieldShootPos (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1447130307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447130306}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.044, y: -0.291, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 156526279}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1447556151
 GameObject:
   m_ObjectHideFlags: 0
@@ -15505,6 +15607,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6153341f68418444ea449446f83a5631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1529631709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1529631710}
+  m_Layer: 10
+  m_Name: ShieldShootPos (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1529631710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529631709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.117, y: 0.145, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 156526279}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1701887160
 GameObject:
   m_ObjectHideFlags: 0
@@ -15865,7 +15997,8 @@ MonoBehaviour:
       type: 3}
     poolSize: 30
   - tag: ShieldBullet
-    preFab: {fileID: 33803857936573062, guid: f87bac13c56972e4ba8f3414905f3141, type: 3}
+    preFab: {fileID: 8144489530527584077, guid: 45e95d7765d2e404c94fc16558020623,
+      type: 3}
     poolSize: 20
   - tag: EnemyBullet
     preFab: {fileID: 1181253783709301941, guid: aeec047bc770b994884a08a461f1eb55,
@@ -15883,6 +16016,14 @@ MonoBehaviour:
     preFab: {fileID: 7702511804297011259, guid: 9d0410b63cef9a140ada68dfc559f242,
       type: 3}
     poolSize: 20
+  - tag: TankBullet
+    preFab: {fileID: 4521033258433527842, guid: e27c5894cf091f94fb1cd1f895f92599,
+      type: 3}
+    poolSize: 10
+  - tag: PlayerDash
+    preFab: {fileID: 3300969129214961028, guid: a6c825117fbb5e04e97eacb5191bbf1e,
+      type: 3}
+    poolSize: 1
 --- !u!4 &1789105253
 Transform:
   m_ObjectHideFlags: 0

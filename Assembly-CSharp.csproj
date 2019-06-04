@@ -65,10 +65,12 @@
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\CrossHair.cs" />
     <Compile Include="Assets\Scripts\DamageControl.cs" />
+    <Compile Include="Assets\Scripts\DashAnimation.cs" />
     <Compile Include="Assets\Scripts\DialogSystem.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\EnemyExplosion.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\EnemyTank.cs" />
     <Compile Include="Assets\Scripts\GameProgram.cs" />
     <Compile Include="Assets\Scripts\IAttack.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />

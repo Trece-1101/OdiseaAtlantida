@@ -45,7 +45,7 @@ public abstract class Ship : MonoBehaviour, IAttack
     private Rigidbody2D Body;
     private ObjectPool ObjectPool;
     private GameProgram GameProg;
-    private DamageControl DamageCtrl;
+    public DamageControl DamageCtrl { set; get; }
     private Camera MainCamera;
     private ShakeYourBooty CameraShake;
     #endregion
@@ -267,7 +267,7 @@ public abstract class Ship : MonoBehaviour, IAttack
     }
     
 
-    public void ShootBullet() {
+    public virtual void ShootBullet() {
         for (int i = 0; i < this.BulletShootsPositions.Count; i++) {
             this.GetPool().Spawn(this.MyBulletVFX, this.BulletShootsPositions[i].position, this.GetMyBulletRotation());
         }

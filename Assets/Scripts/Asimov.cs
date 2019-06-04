@@ -14,6 +14,8 @@ public class Asimov : Ship
     private float DashStep;
     private bool CanDash;
     private bool GodMode;
+    private float ShieldRestartCoolTime;
+    private float InitialRestartCoolTime;
     #endregion      
 
     #region "Referencias en Cache"    
@@ -134,7 +136,7 @@ public class Asimov : Ship
         //this.ActualSprite = MySprites[0];
         //this.Img.sprite = this.ActualSprite;
 
-        this.DashDistance = 6f;
+        this.DashDistance = 4f;
         this.DashStep = 0.5f;
         this.GodMode = false;
         this.InitialDashCoolTime = 2f;
@@ -158,6 +160,7 @@ public class Asimov : Ship
         Dash();
         CheckRotation();
         MoveShield();
+        RestartShield();
         Shoot();
     }
 
@@ -198,12 +201,14 @@ public class Asimov : Ship
         if (Input.GetKeyDown(KeyCode.Space) && this.CanDash) {
             if (Input.GetKey(KeyCode.A)) {
                 //Debug.Log("Dash IZQ");
+                DashVFX("Left");
                 this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x - this.DashDistance, this.DashStep),
                                                         this.transform.position.y,
                                                         this.transform.position.z);
             }
             else if (Input.GetKey(KeyCode.D)) {
                 //Debug.Log("Dash DER");
+                DashVFX("Right");
                 this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x + this.DashDistance, this.DashStep),
                                                         this.transform.position.y,
                                                         this.transform.position.z);
@@ -235,6 +240,14 @@ public class Asimov : Ship
             this.MyShield.GetShieldOnFront();
         }
 
+    }
+
+    private void RestartShield() {
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            if (!this.MyShield.GetIsEnable()) {
+                this.MyShield.RestartShield();
+            }
+        }
     }
 
     private void CheckSprite() {
@@ -302,6 +315,16 @@ public class Asimov : Ship
         this.GetPool().Spawn("EnemyExplosion", this.transform.position + new Vector3(-0.3f, -0.3f, 0f), Quaternion.identity);
 
         AudioSource.PlayClipAtPoint(this.GetDeathSFX(), this.GetMyMainCamera().transform.position, 0.6f);
+    }
+
+    private void DashVFX(string dir) {
+        Vector3 repos = new Vector3(1.5f, 0f, 0f);
+        if(dir == "Left") {
+            this.GetPool().Spawn("PlayerDash", this.transform.position - repos, Quaternion.identity * Quaternion.Euler(0f, 0f, 180f));
+        }
+        else {
+            this.GetPool().Spawn("PlayerDash", this.transform.position + repos, Quaternion.identity);
+        }
     }
 
     public override void PlayImpactSFX() {

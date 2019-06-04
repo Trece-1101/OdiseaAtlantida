@@ -106,6 +106,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnFormations() {
         this.LastFormation = FormationLists.JoinWaves.Count;
+        this.StartingFormation = this.LastFormation;
         for (int formationIndex = StartingFormation; formationIndex < this.LastFormation; formationIndex++) {
             var currentFormation = FormationLists.JoinWaves[formationIndex].Wave;
             this.WaitSeconds = FormationLists.NextWaveSpawnTime[formationIndex];

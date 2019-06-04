@@ -5,23 +5,23 @@ using UnityEngine;
 public class Missile : Proyectile
 {
     #region "Atributos"
-    private float Aceleration;
+    private Vector2 Aceleration;
     #endregion
 
     #region "Setters y Getters"
-    public float GetAceleration() {
+    public Vector2 GetAceleration() {
         return this.Aceleration;
     }
-    public void SetAceleration(float value) {
+    public void SetAceleration(Vector2 value) {
         this.Aceleration = value;
     }
     #endregion
 
     #region "Metodos"
     private void Start() {
-        SetSpeed(4f);
+        SetSpeed(new Vector2(4f, 4f));
         SetInitialSpeed(this.GetSpeed());
-        this.Aceleration = 5f;
+        this.Aceleration = new Vector2(5f, 5f);
     }
 
     public override void Update() {
