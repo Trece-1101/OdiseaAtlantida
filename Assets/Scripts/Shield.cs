@@ -110,7 +110,7 @@ public class Shield : MonoBehaviour, IAttack
         //CanShoot = this.PositionCounter == 0 ? true : false; // solo dispara cuando el escudo esta frontal
         this.transform.localPosition = this.Positions[this.PositionCounter];
         this.transform.localRotation = this.Rotations[this.PositionCounter];
-        this.Shoot();
+        //this.Shoot();
     }
 
     public void GetShieldOnFront() {
@@ -143,13 +143,14 @@ public class Shield : MonoBehaviour, IAttack
         this.transform.localRotation = this.Rotations[0];
     }
 
-    public void Shoot() {
+    public void Shoot() {    
         if (CanShoot) {
             for (int i = 0; i < this.ShootsPositions.Count; i++) {
                 //objectPool.Spawn("PlayerBullet", this.ShootsPositions[i].position, asimov.transform.rotation);
                 RedirectShoot(this.ShootsPositions[i]);
             }
         }
+
     }
 
     public void RedirectShoot(Transform shootpos) {

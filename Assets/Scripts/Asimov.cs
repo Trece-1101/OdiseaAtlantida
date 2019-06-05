@@ -16,6 +16,8 @@ public class Asimov : Ship
     private bool GodMode;
     private float ShieldRestartCoolTime;
     private float InitialRestartCoolTime;
+    private bool HasPowerUp;
+    private Vector2 OriginalVelocity;
     #endregion      
 
     #region "Referencias en Cache"    
@@ -117,14 +119,21 @@ public class Asimov : Ship
     }
     public void SetDefenseCollider(PolygonCollider2D value) {
         this.DefenseCollider = value;
-    }   
+    }
 
+    public bool GetHasPowerUp() {
+        return this.HasPowerUp;
+    }
+    public void SetHasPowerUp(bool value) {
+        this.HasPowerUp = value;
+    }
     #endregion
-    
+
     #region "Metodos"
 
     public override void CoAwake() {
         this.SetIsAlive(true);
+        this.SetIsVulnerable(true);
         // GodMode up, up, down, down, left, right, left, right, B, A.
 
         this.MyShield = FindObjectOfType<Shield>();
@@ -136,6 +145,7 @@ public class Asimov : Ship
         //this.ActualSprite = MySprites[0];
         //this.Img.sprite = this.ActualSprite;
 
+        this.OriginalVelocity = this.GetVelocity();
         this.DashDistance = 4f;
         this.DashStep = 0.5f;
         this.GodMode = false;
@@ -162,6 +172,7 @@ public class Asimov : Ship
         MoveShield();
         RestartShield();
         Shoot();
+        UsePowerUp();
     }
 
     public override void Move() {
@@ -199,14 +210,14 @@ public class Asimov : Ship
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && this.CanDash) {
-            if (Input.GetKey(KeyCode.A)) {
+            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
                 //Debug.Log("Dash IZQ");
                 DashVFX("Left");
                 this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x - this.DashDistance, this.DashStep),
                                                         this.transform.position.y,
                                                         this.transform.position.z);
             }
-            else if (Input.GetKey(KeyCode.D)) {
+            else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
                 //Debug.Log("Dash DER");
                 DashVFX("Right");
                 this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x + this.DashDistance, this.DashStep),
@@ -238,6 +249,7 @@ public class Asimov : Ship
 
         if (Input.GetMouseButtonDown(2)) {
             this.MyShield.GetShieldOnFront();
+            this.MyShield.Shoot();
         }
 
     }
@@ -246,6 +258,7 @@ public class Asimov : Ship
         if (Input.GetKeyDown(KeyCode.Q)) {
             if (!this.MyShield.GetIsEnable()) {
                 this.MyShield.RestartShield();
+                
             }
         }
     }
@@ -339,7 +352,28 @@ public class Asimov : Ship
         FindObjectOfType<LevelManager>().LoadGameOver();
         Destroy(gameObject);
     }
+    #endregion
 
+    #region "Comportamientos PowerUps"
+    private void UsePowerUp() {
+        if (this.HasPowerUp) {
+            if (Input.GetKeyDown(KeyCode.E)) {
+                // usar
+                //Debug.Log("usando powerUp");
+
+                this.HasPowerUp = false;
+            }
+            
+        }
+    }
+
+    public void BoostSpeed(float boost) {
+        this.SetVelocity(this.GetVelocity() * boost);
+    }
+    
+    private void OriginalSpeed() {
+        this.SetVelocity(this.OriginalVelocity);
+    }
 
     #endregion
 

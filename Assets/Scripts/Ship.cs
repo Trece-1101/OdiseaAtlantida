@@ -26,6 +26,7 @@ public abstract class Ship : MonoBehaviour, IAttack
     #region "Atributos"
     private bool IsAlive;
     private float StartHealth;
+    private bool IsVulnerable;
 
     public float TimeBetweenBulletShoots { get; set; }
     public float TimeBetweenMissileShoots { get; set; }
@@ -143,7 +144,6 @@ public abstract class Ship : MonoBehaviour, IAttack
         this.MissileShootsPositions = value;
     }
    
-
     public Quaternion GetMyRotation() {
         return this.MyRotation;
     }
@@ -198,6 +198,13 @@ public abstract class Ship : MonoBehaviour, IAttack
     }
     public void SetIsAlive(bool value) {
         this.IsAlive = value;
+    }
+
+    public bool GetIsVulnerable() {
+        return this.IsVulnerable;
+    }
+    public void SetIsVulnerable(bool value) {
+        this.IsVulnerable = value;
     }
 
     public ShakeYourBooty GetCameraShake() {
@@ -285,7 +292,7 @@ public abstract class Ship : MonoBehaviour, IAttack
 
     private void OnTriggerEnter2D(Collider2D collision) {
         this.DamageCtrl = collision.gameObject.GetComponent<DamageControl>();
-        if (this.DamageCtrl != null) {
+        if (this.DamageCtrl != null && this.IsVulnerable) {
             ReceiveDamage(DamageCtrl);
             collision.gameObject.SetActive(false);
             PlayImpactSFX();

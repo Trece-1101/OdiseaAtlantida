@@ -299,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 156526278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.4, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 631605846}
   - {fileID: 1529631710}
@@ -16023,7 +16023,13 @@ MonoBehaviour:
   - tag: PlayerDash
     preFab: {fileID: 3300969129214961028, guid: a6c825117fbb5e04e97eacb5191bbf1e,
       type: 3}
-    poolSize: 1
+    poolSize: 2
+  - tag: PowerUpBigShield
+    preFab: {fileID: 308711585691917192, guid: 415e174407643db4da668dbe2aaf2a9f, type: 3}
+    poolSize: 4
+  - tag: PowerUpParticles
+    preFab: {fileID: 1860339442852148, guid: 8200904966a577f4e9f9410c9374a6be, type: 3}
+    poolSize: 4
 --- !u!4 &1789105253
 Transform:
   m_ObjectHideFlags: 0
@@ -16190,7 +16196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017189199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.13, y: -4.82, z: 0}
+  m_LocalPosition: {x: -7.21, y: -3.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1425591646}
@@ -16239,7 +16245,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017189199}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

@@ -110,7 +110,7 @@ public class GameProgram : MonoBehaviour
         padding = 0.8f;
         this.LeftBorder = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + padding;
         this.RightBorder = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - padding;
-        this.UpBorder = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).y + padding;
+        this.UpBorder = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).y + (padding + 0.6f);
         this.DownBorder = mainCamera.ViewportToWorldPoint(new Vector3(1, 1, 0)).y - padding;
     }
 

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Enemy : Ship
 {
-    #region "Atributos"
+    #region "Atributos Serializados"
     [Header("Especificos")]
     [SerializeField] private int Reward;
+    [SerializeField] [Range (0f, 0.5f)] private float PowerUpChance;
     #endregion
 
     #region "Referencias en Cache"
@@ -39,6 +40,7 @@ public class Enemy : Ship
     public override void CoAwake() {
         //this.CanShoot = true;
         this.SetIsAlive(true);
+        this.SetIsVulnerable(true);
 
         this.Player = FindObjectOfType<Asimov>();
  
@@ -119,9 +121,17 @@ public class Enemy : Ship
     }
 
     public override void Die() {
-        this.GetGameProg().AddScore(this.GetReward());
+        PowerUpRoulette();
+        this.GetGameProg().AddScore(this.GetReward());        
         Destroy(gameObject);
         PlayExplosion();        
+    }
+
+    private void PowerUpRoulette() {
+        var number = Random.Range(0f, 1f);
+        if(number <= this.PowerUpChance) {
+            this.GetPool().Spawn("PowerUpBigShield", this.transform.position, Quaternion.identity);
+        }
     }
 
     #endregion
