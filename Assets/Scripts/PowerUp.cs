@@ -5,6 +5,7 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     #region "Atributos"
+    private string Name;
     private Vector2 Speed;
     private Vector2 SpeedChange;
     private bool FirstContact;
@@ -17,6 +18,13 @@ public class PowerUp : MonoBehaviour
     #endregion
 
     #region "Setters y Getters"
+    public string GetName() {
+        return this.name;
+    }
+    public void SetName(string value) {
+        this.name = value;
+    }
+
     public Vector2 GetSpeed() {
         return this.Speed;
     }
@@ -102,14 +110,11 @@ public class PowerUp : MonoBehaviour
 
         // afectar player
         this.Asimov.SetHasPowerUp(true);
-
-        // quitar efecto
-
-
-
+                
         Die();
     }
 
+    //public abstract void MakeYourMagic();
 
     private void Die() {
         this.gameObject.SetActive(false);

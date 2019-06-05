@@ -16,6 +16,7 @@ public class Shield : MonoBehaviour, IAttack
     private List<Quaternion> Rotations = new List<Quaternion>();
     private float HitPoints;
     private bool IsEnable;
+    private float OriginalHitPoints;
     #endregion
 
     #region "Componentes en Cache"
@@ -59,6 +60,13 @@ public class Shield : MonoBehaviour, IAttack
         this.HitPoints = value;
     }
 
+    public float GetOriginalsHitPoints() {
+        return this.HitPoints;
+    }
+    public void SetOriginalsHitPoints(float value) {
+        this.HitPoints = value;
+    }
+
     public bool GetIsEnable() {
         return this.IsEnable;
     }
@@ -74,6 +82,7 @@ public class Shield : MonoBehaviour, IAttack
 
         TimeBetweenBulletShoots = 0.8f;
         this.HitPoints = 60;
+        this.OriginalHitPoints = this.HitPoints;
 
         //this.CanShoot = true;
         this.RemainTimeForShootBullet = this.TimeBetweenBulletShoots;
@@ -141,6 +150,17 @@ public class Shield : MonoBehaviour, IAttack
         this.gameObject.SetActive(true);
         this.transform.localPosition = this.Positions[0];
         this.transform.localRotation = this.Rotations[0];
+        this.NormalShield();
+    }
+
+    public void NormalShield() {
+        this.transform.localScale = new Vector3(1f, 1f, 1f);
+        this.SetHitPoints(this.OriginalHitPoints);
+    }
+
+    public void BigShield() {
+        this.transform.localScale = new Vector3(2.5f, 2.5f, 1f);
+        this.SetHitPoints(this.OriginalHitPoints * 2);
     }
 
     public void Shoot() {    

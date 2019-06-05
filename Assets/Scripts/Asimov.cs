@@ -360,7 +360,7 @@ public class Asimov : Ship
             if (Input.GetKeyDown(KeyCode.E)) {
                 // usar
                 //Debug.Log("usando powerUp");
-
+                BigShield();
                 this.HasPowerUp = false;
             }
             
@@ -369,10 +369,16 @@ public class Asimov : Ship
 
     public void BoostSpeed(float boost) {
         this.SetVelocity(this.GetVelocity() * boost);
-    }
-    
+    }    
     private void OriginalSpeed() {
         this.SetVelocity(this.OriginalVelocity);
+    }
+
+    public void BigShield() {
+        this.MyShield.BigShield();
+    }
+    private void OriginalShield() {
+        this.MyShield.NormalShield();
     }
 
     #endregion
