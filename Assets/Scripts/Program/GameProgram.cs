@@ -6,6 +6,8 @@ public class GameProgram : MonoBehaviour
 {
     public static GameProgram instance = null;
 
+    [SerializeField] GameObject LevelCompleteText = null;
+
     #region "Atributos"
     private float LeftBorder;
     private float RightBorder;
@@ -15,6 +17,9 @@ public class GameProgram : MonoBehaviour
     private float scrollSpeed;
 
     private int Score;
+    private int KillCount;
+    private int TotalEnemies;
+    private int LeftEnemies;
     #endregion
 
     #region "Setters/Getters"
@@ -81,13 +86,12 @@ public class GameProgram : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start() {      
+    private void Start() {
+        LevelCompleteText.SetActive(false);
+
         asimov = FindObjectOfType<Asimov>();
         enemySpawner = FindObjectOfType<EnemySpawner>();
-        //asimov.SetVelocity(new Vector2(5f, 5f));
-        //asimov.SetTimeBetweenBulletShoots(0.2f);
-        //asimov.SetTimeBetweenMissileShoots(1f);
-        //asimov.SetHitPoints(100);
+        
 
         crossHair = FindObjectOfType<CrossHair>();
         Cursor.visible = false;
@@ -116,6 +120,21 @@ public class GameProgram : MonoBehaviour
 
     public void AddScore(int value) {
         this.Score += value;
+        this.KillCount++;
+        CheckNumberOfEnemies();
+    }
+
+    public void AddEnemyToCount() {
+        this.TotalEnemies++;
+        CheckNumberOfEnemies();
+    }
+
+    private void CheckNumberOfEnemies() {
+        this.LeftEnemies = this.TotalEnemies - this.KillCount;
+        //Debug.Log($"enemigos en pantalla {this.LeftEnemies}");
+        if(this.LeftEnemies <= 0) {
+
+        }
     }
 
     public void SubstractScore(int value) {

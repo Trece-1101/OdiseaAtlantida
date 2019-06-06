@@ -8,15 +8,16 @@ public class Wave : ScriptableObject
     [SerializeField] private List<GameObject> enemyPrefab;
     [SerializeField] private GameObject pathPrefab;
     private float timeBetweenSpawn = 0f;
-    [SerializeField] private float spawnRandomize = 0.5f;
+    [SerializeField] private float spawnRandomize = 0f;
     [SerializeField] private int numberOfEnemies = 1;
     private float moveSpeed;
 
   
 
     public GameObject GetEnemyPrefab() {
-        int rnd = Random.Range(0, 1);
-        return this.enemyPrefab[rnd];
+        int enemySelected = Random.Range(0, enemyPrefab.Count);
+        //Debug.Log(enemySelected);
+        return this.enemyPrefab[enemySelected];
     }
 
     public List<Transform> GetPathPrefab() {

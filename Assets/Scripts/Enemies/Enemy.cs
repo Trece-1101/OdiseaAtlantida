@@ -16,7 +16,7 @@ public class Enemy : Ship
                                                     "PowerUpRestoreHealth"};
     #endregion
 
-        #region "Referencias en Cache"
+    #region "Referencias en Cache"
     private Asimov Player;    
     #endregion
 
@@ -57,7 +57,7 @@ public class Enemy : Ship
         this.CanShootMissile = canShootMissile;
         this.SetMyBulletVFX("EnemyBullet");
         this.SetMyMissileVFX("EnemyMissile");
-                      
+        this.GetGameProg().AddEnemyToCount();   
     }       
 
     private void Update() {
@@ -128,9 +128,9 @@ public class Enemy : Ship
     }
 
     public override void Die() {
+        Destroy(gameObject);
         PowerUpRoulette(1);
         this.GetGameProg().AddScore(this.GetReward());        
-        Destroy(gameObject);
         PlayExplosion();        
     }
 

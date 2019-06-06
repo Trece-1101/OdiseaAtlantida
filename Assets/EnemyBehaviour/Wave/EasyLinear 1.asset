@@ -17,5 +17,5 @@ MonoBehaviour:
   - {fileID: 1050599874837932572, guid: 2402f30be7fac23439f41e445f59936e, type: 3}
   pathPrefab: {fileID: 901077983466048108, guid: a3fd92b5d3d731449927f58ec0f1a54c,
     type: 3}
-  spawnRandomize: 0.5
+  spawnRandomize: 0
   numberOfEnemies: 1

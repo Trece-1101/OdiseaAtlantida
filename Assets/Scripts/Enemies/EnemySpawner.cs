@@ -31,6 +31,7 @@ public class EnemySpawner : MonoBehaviour
     private int LastFormation;
     private bool Loop = false;
     private float WaitSeconds = 3;
+    private bool IsLastWave;
     #endregion
 
     #region "Componentes en Cache"
@@ -87,6 +88,13 @@ public class EnemySpawner : MonoBehaviour
     public void SetWaitSeconds(float value) {
         this.WaitSeconds = value;
     }
+
+    public bool GetIsLastWave() {
+        return this.IsLastWave;
+    }
+    public void SetIsLastWave(bool value) {
+        this.IsLastWave = value;
+    }
     #endregion
 
     #region "Metodos"
@@ -94,6 +102,8 @@ public class EnemySpawner : MonoBehaviour
         this.BorderCtrl = FindObjectOfType<BordersControl>();
         this.BorderCtrl.DisableBorders();
         this.SpawnAudio = GetComponent<AudioSource>();
+
+        this.IsLastWave = false;
     }
 
     private IEnumerator Start() {
@@ -138,9 +148,16 @@ public class EnemySpawner : MonoBehaviour
 
             newEnemy.GetComponent<Path>().SetWave(currentFormation[waveCount]);
 
+            if(waveCount == LastWave) {
+                this.IsLastWave = true;
+            }
+
             yield return new WaitForSeconds(0);
         }
+        
     }
+
+
 
     //private void DebugRazonar() {
     //    Debug.Log("Numero de formaciones " + FormationLists.JoinWaves.Count);
