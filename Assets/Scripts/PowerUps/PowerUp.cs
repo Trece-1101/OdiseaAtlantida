@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUp : MonoBehaviour
+public abstract class PowerUp : MonoBehaviour
 {
     #region "Atributos"
-    private string Name;
     private Vector2 Speed;
     private Vector2 SpeedChange;
     private bool FirstContact;
+    private float CoolTime;
     #endregion
 
     #region "Componentes en Cache"
@@ -59,13 +59,30 @@ public class PowerUp : MonoBehaviour
     public void SetAsimov(Asimov value) {
         this.Asimov = value;
     }
+
+    public float GetCoolTime() {
+        return this.CoolTime;
+    }
+    public void SetCoolTime(float value) {
+        this.CoolTime = value;
+    }
     #endregion
 
+   
     private void Start() {
-        this.FirstContact = false;
-        this.MyBody = GetComponent<Rigidbody2D>();
+        this.FirstContact = false;        
+        this.SetSpeedChange();
         this.Pool = FindObjectOfType<ObjectPool>();
         this.Asimov = FindObjectOfType<Asimov>();
+        this.CoolTime = 6f;
+    }
+
+    private void OnEnable() {
+        SetSpeedChange();
+    }
+
+    private void SetSpeedChange() {
+        this.MyBody = GetComponent<Rigidbody2D>();
         this.Speed = RandomSpeed();
         this.SpeedChange = this.Speed / 2;
         this.MyBody.velocity = this.Speed;
@@ -79,7 +96,7 @@ public class PowerUp : MonoBehaviour
         while (speed.y < 1 && speed.y > -1) {
             speed.y = Random.Range(-3f, 3f);
         }
-
+        
         return speed;
     }
 
@@ -106,17 +123,19 @@ public class PowerUp : MonoBehaviour
 
     private void PickUp() {
         // crear efecto de particulas
-        this.Pool.Spawn("PowerUpParticles", this.transform.position, Quaternion.identity);
+        this.Pool.Spawn("ParticleAnimation", this.transform.position, Quaternion.identity);
 
         // afectar player
         this.Asimov.SetHasPowerUp(true);
+        this.Asimov.SetPowerUpType(this);
                 
-        Die();
-    }
+        this.Die();
+    }    
 
-    //public abstract void MakeYourMagic();
+    public abstract void MakeYourMagic();
 
-    private void Die() {
+    protected void Die() {
+        this.FirstContact = false;
         this.gameObject.SetActive(false);
     }
 

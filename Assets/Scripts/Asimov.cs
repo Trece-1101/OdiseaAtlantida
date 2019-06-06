@@ -17,6 +17,7 @@ public class Asimov : Ship
     private float ShieldRestartCoolTime;
     private float InitialRestartCoolTime;
     private bool HasPowerUp;
+    private PowerUp PowerUpType;
     private Vector2 OriginalVelocity;
     #endregion      
 
@@ -127,6 +128,20 @@ public class Asimov : Ship
     public void SetHasPowerUp(bool value) {
         this.HasPowerUp = value;
     }
+
+    public Vector2 GetOriginalVelocity() {
+        return this.OriginalVelocity;
+    }
+    public void SetOriginalVelocity(Vector2 value) {
+        this.OriginalVelocity = value;
+    }
+
+    public PowerUp GetPowerUpType() {
+        return this.PowerUpType;
+    }
+    public void SetPowerUpType(PowerUp value) {
+        this.PowerUpType = value;
+    }
     #endregion
 
     #region "Metodos"
@@ -152,6 +167,7 @@ public class Asimov : Ship
         this.InitialDashCoolTime = 2f;
         this.DashSpeed = 3f;
         this.DashCoolTime = this.InitialDashCoolTime;
+        this.SetStartHealth(this.GetHitPoints());
 
         this.SetTimeBetweenBulletShoots(0.2f);
         this.SetTimeBetweenMissileShoots(1f);
@@ -357,27 +373,19 @@ public class Asimov : Ship
     #region "Comportamientos PowerUps"
     private void UsePowerUp() {
         if (this.HasPowerUp) {
-            if (Input.GetKeyDown(KeyCode.E)) {
-                // usar
-                //Debug.Log("usando powerUp");
-                BigShield();
+            if (Input.GetKeyDown(KeyCode.E)) {              
+                this.PowerUpType.MakeYourMagic();
                 this.HasPowerUp = false;
             }
             
         }
     }
-
-    public void BoostSpeed(float boost) {
-        this.SetVelocity(this.GetVelocity() * boost);
-    }    
-    private void OriginalSpeed() {
-        this.SetVelocity(this.OriginalVelocity);
-    }
+    
 
     public void BigShield() {
         this.MyShield.BigShield();
     }
-    private void OriginalShield() {
+    public void OriginalShield() {
         this.MyShield.NormalShield();
     }
 

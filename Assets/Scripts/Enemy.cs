@@ -10,7 +10,13 @@ public class Enemy : Ship
     [SerializeField] [Range (0f, 0.5f)] private float PowerUpChance;
     #endregion
 
-    #region "Referencias en Cache"
+    #region "Atributos"
+    List<string> PowerUpsNames = new List<string> {"PowerUpBigShield",
+                                                    "PowerUpSpeedBoost",
+                                                    "PowerUpRestoreHealth"};
+    #endregion
+
+        #region "Referencias en Cache"
     private Asimov Player;    
     #endregion
 
@@ -51,6 +57,7 @@ public class Enemy : Ship
         this.CanShootMissile = canShootMissile;
         this.SetMyBulletVFX("EnemyBullet");
         this.SetMyMissileVFX("EnemyMissile");
+                      
     }       
 
     private void Update() {
@@ -121,17 +128,25 @@ public class Enemy : Ship
     }
 
     public override void Die() {
-        PowerUpRoulette();
+        PowerUpRoulette(1);
         this.GetGameProg().AddScore(this.GetReward());        
         Destroy(gameObject);
         PlayExplosion();        
     }
 
-    private void PowerUpRoulette() {
-        var number = Random.Range(0f, 1f);
-        if(number <= this.PowerUpChance) {
-            this.GetPool().Spawn("PowerUpBigShield", this.transform.position, Quaternion.identity);
+    private void PowerUpRoulette(int num) {
+        var powerUp = PickRandomPowerUp();
+        for (int i = 0; i < num; i++) {
+            var number = Random.Range(0f, 1f);
+            if(number <= this.PowerUpChance) {
+                this.GetPool().Spawn(powerUp, this.transform.position, Quaternion.identity);
+            }
         }
+    }
+
+    private string PickRandomPowerUp() {
+        int powerUpIndex = Random.Range(0, this.PowerUpsNames.Count);
+        return this.PowerUpsNames[powerUpIndex];
     }
 
     #endregion

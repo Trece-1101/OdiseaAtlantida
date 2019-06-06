@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 308711585691917188}
   - component: {fileID: 308711585691917189}
   - component: {fileID: 308711585691917194}
-  - component: {fileID: 308711585691917195}
+  - component: {fileID: 2031204322971003841}
   m_Layer: 16
   m_Name: PowerUpBigShield
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 308711585691917192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.97, y: 2.96, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -119,7 +119,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.42, y: 0.36}
   m_Direction: 0
---- !u!114 &308711585691917195
+--- !u!114 &2031204322971003841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,6 +128,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 308711585691917192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdf1f0035a4d90842960168c2146dcd7, type: 3}
+  m_Script: {fileID: 11500000, guid: 778816f4a750118499f139e48b82fd5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

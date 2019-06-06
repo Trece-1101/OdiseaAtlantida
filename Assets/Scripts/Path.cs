@@ -35,8 +35,8 @@ public class Path : MonoBehaviour
         if (wayPointIndex < wayPoints.Count) {
             MoveToPoint(wayPointIndex);
             if (wayPointIndex == 2) {
-                enemy.CanShoot = true;
-                enemy.CanShootMissile = true;
+                //enemy.CanShoot = true;
+                //enemy.CanShootMissile = true;
             }
         }
         else {

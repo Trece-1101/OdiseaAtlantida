@@ -16027,8 +16027,16 @@ MonoBehaviour:
   - tag: PowerUpBigShield
     preFab: {fileID: 308711585691917192, guid: 415e174407643db4da668dbe2aaf2a9f, type: 3}
     poolSize: 4
-  - tag: PowerUpParticles
+  - tag: ParticleAnimation
     preFab: {fileID: 1860339442852148, guid: 8200904966a577f4e9f9410c9374a6be, type: 3}
+    poolSize: 4
+  - tag: PowerUpSpeedBoost
+    preFab: {fileID: 5718502625238072738, guid: b228a6717ab78f540b69df7820e3d2db,
+      type: 3}
+    poolSize: 4
+  - tag: PowerUpRestoreHealth
+    preFab: {fileID: 8892482397063816600, guid: f394430464aad214a9ed4b1c81a2a0ee,
+      type: 3}
     poolSize: 4
 --- !u!4 &1789105253
 Transform:

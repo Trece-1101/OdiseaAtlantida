@@ -159,6 +159,7 @@ public class Shield : MonoBehaviour, IAttack
     }
 
     public void BigShield() {
+        this.RestartShield();
         this.transform.localScale = new Vector3(2.5f, 2.5f, 1f);
         this.SetHitPoints(this.OriginalHitPoints * 2);
     }

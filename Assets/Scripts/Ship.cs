@@ -307,11 +307,23 @@ public abstract class Ship : MonoBehaviour, IAttack
     public void ReceiveDamage(DamageControl damageControl) {
         this.SetHitPoints(this.GetHitPoints() - damageControl.GetDamage());
 
-        this.HealthBar.fillAmount = this.HitPoints / this.StartHealth;
+        this.ControlHealthBar();
 
         if(this.GetHitPoints() <= 0) {
             Die();
         }
+    }
+
+    public void RefillHealth(float value) {
+        this.SetHitPoints(this.GetHitPoints() + value);
+        if(this.GetHitPoints() > this.StartHealth) {
+            this.SetHitPoints(this.StartHealth);
+        }
+        this.ControlHealthBar();
+    }
+
+    private void ControlHealthBar() {
+        this.HealthBar.fillAmount = this.HitPoints / this.StartHealth;
     }
 
     private void ShakeThatCamera() {
