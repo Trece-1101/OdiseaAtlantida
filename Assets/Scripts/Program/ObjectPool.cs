@@ -45,18 +45,25 @@ public class ObjectPool : MonoBehaviour
         if (!poolDict.ContainsKey(tag)) {
             return null;
         }
+        try {
+            // retiro del pool el primer elemento cargado (First In First Out)
+            // lo activo y le doy una posicion y rotacion
+            // por ultimo lo vuelvo a encolar para reutilizarlo
+            GameObject spawnObject = poolDict[tag].Dequeue();
+            spawnObject.SetActive(true);
+            spawnObject.transform.position = position;
+            spawnObject.transform.rotation = rotation;
 
-        // retiro del pool el primer elemento cargado (First In First Out)
-        // lo activo y le doy una posicion y rotacion
-        // por ultimo lo vuelvo a encolar para reutilizarlo
-        GameObject spawnObject = poolDict[tag].Dequeue();
-        spawnObject.SetActive(true);
-        spawnObject.transform.position = position;
-        spawnObject.transform.rotation = rotation;
+            poolDict[tag].Enqueue(spawnObject);
 
-        poolDict[tag].Enqueue(spawnObject);
+            return spawnObject;
 
-        return spawnObject;
+        }
+        catch (System.Exception) {
+
+            throw;
+        }
+
     }
 
 }

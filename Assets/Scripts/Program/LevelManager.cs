@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
     #endregion
 
     #region "Metodos"
-    public void LoadStartMenu() {
+    public void LoadStartMenu() {        
         SceneManager.LoadScene(0);
     }
 
@@ -53,6 +53,10 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(WaitAndLoad("GameOver"));        
     }
 
+    public void LoadOptions() {
+        StartCoroutine(WaitAndLoad("Opciones"));
+    }
+
     IEnumerator WaitAndLoad(string scene) {
         yield return new WaitForSeconds(this.WaitSeconds);
         SceneManager.LoadScene(scene);
@@ -60,6 +64,7 @@ public class LevelManager : MonoBehaviour
 
 
     public void LoadLevel(string sceneName) {
+        Time.timeScale = 1;
         StartCoroutine(LoadLevelAsynch(sceneName));
     }
 

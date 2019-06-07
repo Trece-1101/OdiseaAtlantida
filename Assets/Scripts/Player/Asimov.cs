@@ -364,8 +364,7 @@ public class Asimov : Ship
     public override void Die() {
         this.SetIsAlive(false);
         PlayExplosion();
-        this.GetCameraShake().UltraShake();
-        FindObjectOfType<LevelManager>().LoadGameOver();
+        this.GetCameraShake().UltraShake();        
         Destroy(gameObject);
     }
     #endregion

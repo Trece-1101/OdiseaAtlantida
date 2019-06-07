@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
     private int LastFormation;
     private bool Loop = false;
     private float WaitSeconds = 3;
-    private bool IsLastWave;
+    private bool IsLastFormation;
     #endregion
 
     #region "Componentes en Cache"
@@ -89,11 +89,11 @@ public class EnemySpawner : MonoBehaviour
         this.WaitSeconds = value;
     }
 
-    public bool GetIsLastWave() {
-        return this.IsLastWave;
+    public bool GetIsLastFormation() {
+        return this.IsLastFormation;
     }
-    public void SetIsLastWave(bool value) {
-        this.IsLastWave = value;
+    public void SetIsLastFormation(bool value) {
+        this.IsLastFormation = value;
     }
     #endregion
 
@@ -103,7 +103,7 @@ public class EnemySpawner : MonoBehaviour
         this.BorderCtrl.DisableBorders();
         this.SpawnAudio = GetComponent<AudioSource>();
 
-        this.IsLastWave = false;
+        this.IsLastFormation = false;
     }
 
     private IEnumerator Start() {
@@ -124,12 +124,13 @@ public class EnemySpawner : MonoBehaviour
 
             yield return new WaitForSeconds(this.WaitSeconds);
 
-
+            if(formationIndex == this.LastFormation - 1) {
+                this.IsLastFormation = true;
+            }
 
             StartCoroutine(SpawnWaves(currentFormation));
 
         }
-        //Debug.Log("Final de formaciones");
     }
 
 
@@ -146,11 +147,7 @@ public class EnemySpawner : MonoBehaviour
                                         currentFormation[waveCount].GetPathPrefab()[0].transform.position,
                                         Quaternion.identity);
 
-            newEnemy.GetComponent<Path>().SetWave(currentFormation[waveCount]);
-
-            if(waveCount == LastWave) {
-                this.IsLastWave = true;
-            }
+            newEnemy.GetComponent<Path>().SetWave(currentFormation[waveCount]);                       
 
             yield return new WaitForSeconds(0);
         }

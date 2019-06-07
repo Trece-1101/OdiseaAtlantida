@@ -129,19 +129,23 @@ public class Enemy : Ship
 
     public override void Die() {
         Destroy(gameObject);
-        PowerUpRoulette(1);
-        this.GetGameProg().AddScore(this.GetReward());        
+                      
         PlayExplosion();        
     }
 
-    private void PowerUpRoulette(int num) {
+    private void OnDestroy() {
+        PowerUpRoulette();
+        this.GetGameProg().AddScore(this.GetReward());
+    }
+
+    private void PowerUpRoulette() {
         var powerUp = PickRandomPowerUp();
-        for (int i = 0; i < num; i++) {
-            var number = Random.Range(0f, 1f);
-            if(number <= this.PowerUpChance) {
-                this.GetPool().Spawn(powerUp, this.transform.position, Quaternion.identity);
-            }
+        var number = Random.Range(0f, 1f);
+
+        if(number <= this.PowerUpChance) {
+            this.GetPool().Spawn(powerUp, this.transform.position, Quaternion.identity);
         }
+        
     }
 
     private string PickRandomPowerUp() {

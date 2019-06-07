@@ -7,6 +7,7 @@ public class GameProgram : MonoBehaviour
     public static GameProgram instance = null;
 
     [SerializeField] GameObject LevelCompleteText = null;
+    [SerializeField] GameObject LevelDestroyedText = null;
 
     #region "Atributos"
     private float LeftBorder;
@@ -20,6 +21,8 @@ public class GameProgram : MonoBehaviour
     private int KillCount;
     private int TotalEnemies;
     private int LeftEnemies;
+
+    private float TimeToWait = 2f;
     #endregion
 
     #region "Setters/Getters"
@@ -70,6 +73,7 @@ public class GameProgram : MonoBehaviour
     private Asimov asimov;
     private CrossHair crossHair;
     private EnemySpawner enemySpawner;
+    private LevelManager levelManager;
     #endregion
 
     #region "Metodos"
@@ -88,10 +92,11 @@ public class GameProgram : MonoBehaviour
 
     private void Start() {
         LevelCompleteText.SetActive(false);
+        LevelDestroyedText.SetActive(false);
 
         asimov = FindObjectOfType<Asimov>();
         enemySpawner = FindObjectOfType<EnemySpawner>();
-        
+        levelManager = FindObjectOfType<LevelManager>();
 
         crossHair = FindObjectOfType<CrossHair>();
         Cursor.visible = false;
@@ -102,10 +107,10 @@ public class GameProgram : MonoBehaviour
         if (asimov.GetIsAlive()) {
             crossHair.transform.position = Input.mousePosition;
         }
-        else {
+        else {            
             Cursor.visible = true;
-        }        
-        
+            this.Lose();
+        }                
     }
     
     
@@ -129,16 +134,37 @@ public class GameProgram : MonoBehaviour
         CheckNumberOfEnemies();
     }
 
+    public void SubstractScore(int value) {
+        this.Score -= value;
+    }
+
     private void CheckNumberOfEnemies() {
         this.LeftEnemies = this.TotalEnemies - this.KillCount;
         //Debug.Log($"enemigos en pantalla {this.LeftEnemies}");
-        if(this.LeftEnemies <= 0) {
-
+        if (this.LeftEnemies <= 0 && this.enemySpawner.GetIsLastFormation()) {
+            StartCoroutine(LevelCompleted());
         }
     }
 
-    public void SubstractScore(int value) {
-        this.Score -= value;
+    private void Lose() {
+        LevelDestroyedText.SetActive(true);
+        Invoke("StopTime", 3f);
+    }
+
+    private void StopTime() {
+        Time.timeScale = 0;
+    }
+
+    IEnumerator LevelCompleted() {
+        LevelCompleteText.SetActive(true);
+
+        // agregar audio source
+        //GetComponent<AudioSource>().Play();
+
+        yield return new WaitForSeconds(this.TimeToWait);
+
+        //cargar proxima escena
+        //levelManager.LoadLevel();
     }
 
     public void ResetGame() {
