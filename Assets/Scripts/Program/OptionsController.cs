@@ -15,6 +15,10 @@ public class OptionsController : MonoBehaviour
         MusicPly = FindObjectOfType<MusicPlayer>();
         VolSlider.value = PlayerPrefController.GetMasterVolume();
         DificultySlider.value = PlayerPrefController.GetDificulty();
+        Debug.Log($"MasterVol {PlayerPrefController.GetMasterVolume()}");
+        Debug.Log($"Dif {PlayerPrefController.GetDificulty()}");
+        Debug.Log($"DifMod {PlayerPrefController.GetDificultyModifier()}");
+        Debug.Log($"Crosshair {PlayerPrefController.GetCrosshair()}");
     }
 
     private void Update() {

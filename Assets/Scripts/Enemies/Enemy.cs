@@ -8,13 +8,7 @@ public class Enemy : Ship
     [Header("Especificos")]
     [SerializeField] private int Reward;
     [SerializeField] [Range (0f, 0.5f)] private float PowerUpChance;
-    #endregion
-
-    #region "Atributos"
-    List<string> PowerUpsNames = new List<string> {"PowerUpBigShield",
-                                                    "PowerUpSpeedBoost",
-                                                    "PowerUpRestoreHealth"};
-    #endregion
+    #endregion        
 
     #region "Referencias en Cache"
     private Asimov Player;    
@@ -142,6 +136,7 @@ public class Enemy : Ship
         var powerUp = PickRandomPowerUp();
         var number = Random.Range(0f, 1f);
 
+        if (powerUp == null) { return; }
         if(number <= this.PowerUpChance) {
             this.GetPool().Spawn(powerUp, this.transform.position, Quaternion.identity);
         }
@@ -149,8 +144,9 @@ public class Enemy : Ship
     }
 
     private string PickRandomPowerUp() {
-        int powerUpIndex = Random.Range(0, this.PowerUpsNames.Count);
-        return this.PowerUpsNames[powerUpIndex];
+        if(!(GetPowerUpsNames().Count > 0)) { return null; }
+            int powerUpIndex = Random.Range(0, this.GetPowerUpsNames().Count);
+            return this.GetPowerUpsNames()[powerUpIndex];
     }
 
     #endregion

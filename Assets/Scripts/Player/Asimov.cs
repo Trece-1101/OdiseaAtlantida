@@ -167,7 +167,7 @@ public class Asimov : Ship
         this.InitialDashCoolTime = 2f;
         this.DashSpeed = 3f;
         this.DashCoolTime = this.InitialDashCoolTime;
-        this.SetStartHealth(this.GetHitPoints());
+        this.SetStartHealth(this.GetHitPoints() / this.GetDificultyModifier());
 
         this.SetTimeBetweenBulletShoots(0.2f);
         this.SetTimeBetweenMissileShoots(1f);

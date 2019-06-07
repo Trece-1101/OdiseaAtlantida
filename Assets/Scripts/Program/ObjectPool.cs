@@ -14,9 +14,14 @@ public class ObjectPool : MonoBehaviour
     public static ObjectPool Instance;
     [SerializeField] private List<Pool> pools;
     private Dictionary<string, Queue<GameObject>> poolDict;
+    private List<string> powersInPool = new List<string>();
 
     private void Awake() {
         Instance = this;
+    }
+
+    public List<string> GetPrefabsPowerUps() {
+        return this.powersInPool;
     }
 
     private void Start() {
@@ -29,9 +34,15 @@ public class ObjectPool : MonoBehaviour
         // setActive = False hace que el objeto este invisible al momento de rellenar la cola
         foreach (var pool in pools) {
             Queue<GameObject> objectPool = new Queue<GameObject>();
+            if (pool.tag.Contains("PowerUp")) {
+                this.powersInPool.Add(pool.tag);
+                //Debug.Log(pool.tag);
+            }
+
 
             for (int i = 0; i < pool.poolSize; i++) {
                 GameObject obj = Instantiate(pool.preFab) as GameObject;
+                
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }

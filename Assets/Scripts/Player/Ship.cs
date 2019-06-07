@@ -40,6 +40,7 @@ public abstract class Ship : MonoBehaviour, IAttack
 
     private string MyBulletVFX;
     private string MyMissileVFX;
+    List<string> PowerUpsNames;
     #endregion
 
     #region "Componentes en Cache"
@@ -49,6 +50,7 @@ public abstract class Ship : MonoBehaviour, IAttack
     public DamageControl DamageCtrl { set; get; }
     private Camera MainCamera;
     private ShakeYourBooty CameraShake;
+    private float DificultyModifier;
     #endregion
 
     #region "Setters/Getters"
@@ -213,6 +215,14 @@ public abstract class Ship : MonoBehaviour, IAttack
     public void SetCameraShake(ShakeYourBooty value) {
         this.CameraShake = value;
     }
+
+    public List<String> GetPowerUpsNames() {
+        return this.PowerUpsNames;
+    }
+
+    public float GetDificultyModifier() {
+        return this.DificultyModifier;
+    }
     #endregion
 
     #region "Constructor"
@@ -232,7 +242,11 @@ public abstract class Ship : MonoBehaviour, IAttack
         this.MainCamera = Camera.main;
         this.CameraShake = this.MainCamera.GetComponent<ShakeYourBooty>();
 
+        this.DificultyModifier = PlayerPrefController.GetDificultyModifier();
+
         this.StartHealth = this.HitPoints;
+
+        this.PowerUpsNames = this.ObjectPool.GetComponentInChildren<ObjectPool>().GetPrefabsPowerUps();
 
         CoAwake();
     }
