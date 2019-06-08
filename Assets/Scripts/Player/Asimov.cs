@@ -17,9 +17,7 @@ public class Asimov : Ship
     private float InitialRestartCoolTime;
     private bool HasPowerUp;
     private PowerUp PowerUpType;
-    private Vector2 OriginalVelocity;
-    private GameObject drone1;
-    private GameObject drone2;
+    private Vector2 OriginalVelocity;   
     #endregion      
 
     #region "Referencias en Cache"    
@@ -256,8 +254,7 @@ public class Asimov : Ship
         }
 
         if (Input.GetMouseButtonDown(2)) {
-            this.MyShield.GetShieldOnFront();
-            ShootAirMines(); // TODO: quitar esto
+            this.MyShield.GetShieldOnFront();            
         }
 
     }
@@ -310,8 +307,7 @@ public class Asimov : Ship
         if (this.RemainTimeForShootMissile <= 0 && this.CanShootMissile) {
             if (Input.GetButtonDown("Fire2")) {
                 ShootMissile();
-                PlayShootSFX(this.GetShootMissileSFX(), this.GetMyMainCamera().transform.position, 0.2f);
-                GiveMeMyDrones();
+                PlayShootSFX(this.GetShootMissileSFX(), this.GetMyMainCamera().transform.position, 0.2f);                
 
                 this.RemainTimeForShootMissile = this.GetTimeBetweenMissileShoots();
             }
@@ -378,59 +374,7 @@ public class Asimov : Ship
         this.MyShield.CanShoot = true;
         this.MyShield.Shoot();
     }
-
-    public void BigShield() {
-        this.MyShield.BigShield();
-    }
-    public void OriginalShield() {
-        this.MyShield.NormalShield();
-    }
-
-    public void MoveShieldOnDemand(int value) {
-        this.MyShield.ShieldControl(value);
-    }
-
-    public void GiveMeMyDrones() {
-        drone1 = this.GetPool().Spawn("Drone", this.transform.position, this.transform.rotation);
-        drone2 = this.GetPool().Spawn("Drone", this.transform.position, this.transform.rotation);
-
-        drone1.transform.parent = gameObject.transform;
-        drone2.transform.parent = gameObject.transform;
-
-        drone1.transform.localPosition = new Vector3(1.5f, 0f, 0f);
-        drone2.transform.localPosition = new Vector3(-1.5f, 0f, 0f);
-    }
-
-    public void DestroyMyDrones() {
-        drone1.SetActive(false);
-        drone2.SetActive(false);
-    }
-
-    public void ShootAirMines() {
-        GameObject bomb1 = this.GetPool().Spawn("AirMine", this.transform.position, Quaternion.identity);
-        GameObject bomb2 = this.GetPool().Spawn("AirMine", this.transform.position, Quaternion.identity);
-        GameObject bomb3 = this.GetPool().Spawn("AirMine", this.transform.position, Quaternion.identity);
-        GameObject bomb4 = this.GetPool().Spawn("AirMine", this.transform.position, Quaternion.identity);
-        GameObject bomb5 = this.GetPool().Spawn("AirMine", this.transform.position, Quaternion.identity);
-        GameObject bomb6 = this.GetPool().Spawn("AirMine", this.transform.position, Quaternion.identity);
-
-        List<GameObject> bombs = new List<GameObject>() { bomb1, bomb2, bomb3, bomb4, bomb5, bomb6 };
-
-        foreach (var bomb in bombs) {
-            bomb.GetComponent<AirMine>().SetTarget(new Vector2(GetRandomTarget(), GetRandomTarget()));
-            bomb.GetComponent<AirMine>().SetShooted(true);
-        }
-
-    }
-
-    private float GetRandomTarget() {
-        float rnd = 0f;
-        while(rnd >= -4 && rnd <= 4f) {
-            rnd = UnityEngine.Random.Range(-5f, 5f);
-        }
-        return rnd;
-    }
-
+    
     #endregion
 
 }

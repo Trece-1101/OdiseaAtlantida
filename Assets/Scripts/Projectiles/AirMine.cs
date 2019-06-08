@@ -41,7 +41,7 @@ public class AirMine : Proyectile
     }
 
     public void Explode() {
-        this.transform.localScale = new Vector3(4f, 4f, 1f);
+        this.transform.localScale = new Vector3(5f, 5f, 1f);
         Invoke("SetInactive", 2f);
     }
 
@@ -49,9 +49,10 @@ public class AirMine : Proyectile
         this.gameObject.SetActive(false);
     }
 
-    private void OnDisable() {
+    public void OnEnable() {
         this.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
     }
+   
 
     private void OnTriggerEnter2D(Collider2D collision) {
         Explode();

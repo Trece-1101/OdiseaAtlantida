@@ -27,7 +27,7 @@ public class SpiralShieldShootPU : PowerUp
     }
 
     private void Shoot() {
-        this.GetAsimov().MoveShieldOnDemand(1);
+        this.GetAsimov().GetMyShield().ShieldControl(1);
         this.GetAsimov().MakeShieldShoot();
     }
 

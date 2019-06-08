@@ -66,9 +66,16 @@ public abstract class PowerUp : MonoBehaviour
     public void SetCoolTime(float value) {
         this.CoolTime = value;
     }
+
+    public ObjectPool GetPool() {
+        return this.Pool;
+    }
+    public void SetPool(ObjectPool value) {
+        this.Pool = value;
+    }
     #endregion
 
-   
+
     private void Start() {
         this.FirstContact = false;        
         this.SetSpeedChange();

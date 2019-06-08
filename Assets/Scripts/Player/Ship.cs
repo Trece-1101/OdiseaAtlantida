@@ -234,7 +234,6 @@ public abstract class Ship : MonoBehaviour, IAttack
     //}
     #endregion
 
-
     #region "Metodos"
     private void Awake() {
         this.GameProg = FindObjectOfType<GameProgram>();
