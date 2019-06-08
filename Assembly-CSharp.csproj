@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\Player\Ship.cs" />
     <Compile Include="Assets\Scripts\PowerUps\AirMinesPU.cs" />
     <Compile Include="Assets\Scripts\PowerUps\BigShieldPU.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\BulletTimePU.cs" />
     <Compile Include="Assets\Scripts\PowerUps\DronePU.cs" />
     <Compile Include="Assets\Scripts\PowerUps\FrontalShieldShootPU.cs" />
     <Compile Include="Assets\Scripts\PowerUps\GodModePU.cs" />

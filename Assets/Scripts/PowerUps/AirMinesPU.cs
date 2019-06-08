@@ -21,7 +21,7 @@ public class AirMinesPU : PowerUp
 
     private Vector2 GetRandomTarget(int i) {
         Vector2 target = new Vector2();
-        float rnd = Random.Range(-0.5f, 0.5f);
+        float rnd = Random.Range(-1f, 1f);
         switch (i) {
             case 0:
                 // esquina superior izq
