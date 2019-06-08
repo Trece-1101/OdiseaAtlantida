@@ -34,7 +34,7 @@ public class ObjectPool : MonoBehaviour
         // setActive = False hace que el objeto este invisible al momento de rellenar la cola
         foreach (var pool in pools) {
             Queue<GameObject> objectPool = new Queue<GameObject>();
-            if (pool.tag.Contains("PowerUp")) {
+            if (pool.tag.Contains("PowerUp") && pool.poolSize > 1) {
                 this.powersInPool.Add(pool.tag);
                 //Debug.Log(pool.tag);
             }
@@ -56,24 +56,20 @@ public class ObjectPool : MonoBehaviour
         if (!poolDict.ContainsKey(tag)) {
             return null;
         }
-        try {
-            // retiro del pool el primer elemento cargado (First In First Out)
-            // lo activo y le doy una posicion y rotacion
-            // por ultimo lo vuelvo a encolar para reutilizarlo
-            GameObject spawnObject = poolDict[tag].Dequeue();
-            spawnObject.SetActive(true);
-            spawnObject.transform.position = position;
-            spawnObject.transform.rotation = rotation;
-
-            poolDict[tag].Enqueue(spawnObject);
-
-            return spawnObject;
-
+        // retiro del pool el primer elemento cargado (First In First Out)
+        // lo activo y le doy una posicion y rotacion
+        // por ultimo lo vuelvo a encolar para reutilizarlo
+        GameObject spawnObject = poolDict[tag].Dequeue();
+        if(spawnObject == null) {
+            return null;
         }
-        catch (System.Exception) {
+        spawnObject.SetActive(true);
+        spawnObject.transform.position = position;
+        spawnObject.transform.rotation = rotation;
 
-            throw;
-        }
+        poolDict[tag].Enqueue(spawnObject);
+
+        return spawnObject;       
 
     }
 

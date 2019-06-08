@@ -137,7 +137,7 @@ MonoBehaviour:
   - {fileID: 1792358052}
   MissileShootsPositions: []
   Reward: 120
-  PowerUpChance: 0.1
+  PowerUpChance: 1
   timeBtwBulletS: 1.2
   timeBtwMissileS: 1.5
   canShootMissile: 0
@@ -193,11 +193,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1050599874837932562}
     m_Modifications:
-    - target: {fileID: 3689202461463763969, guid: 2abdd957455e10449837f27a74d678a8,
-        type: 3}
-      propertyPath: m_Name
-      value: CanvasHealthEnemy
-      objectReference: {fileID: 0}
     - target: {fileID: 5150581571277562663, guid: 2abdd957455e10449837f27a74d678a8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -302,6 +297,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3689202461463763969, guid: 2abdd957455e10449837f27a74d678a8,
+        type: 3}
+      propertyPath: m_Name
+      value: CanvasHealthEnemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2abdd957455e10449837f27a74d678a8, type: 3}

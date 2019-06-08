@@ -236,9 +236,10 @@ public abstract class Ship : MonoBehaviour, IAttack
 
     #region "Metodos"
     private void Awake() {
+        this.GameProg = FindObjectOfType<GameProgram>();
         this.Body = GetComponent<Rigidbody2D>();
         this.ObjectPool = ObjectPool.Instance;
-        this.GameProg = FindObjectOfType<GameProgram>();
+
         this.MainCamera = Camera.main;
         this.CameraShake = this.MainCamera.GetComponent<ShakeYourBooty>();
 
@@ -246,18 +247,21 @@ public abstract class Ship : MonoBehaviour, IAttack
 
         this.StartHealth = this.HitPoints;
 
-        this.PowerUpsNames = this.ObjectPool.GetComponentInChildren<ObjectPool>().GetPrefabsPowerUps();
+        if(this.ObjectPool != null) {
+            this.PowerUpsNames = this.ObjectPool.GetComponentInChildren<ObjectPool>().GetPrefabsPowerUps();
 
+        }
+        
         CoAwake();
     }
 
     public abstract void CoAwake();
-    public abstract void Move();
     public abstract void Shoot();
     public abstract void CheckRotation();
     public abstract void Die();
-    public abstract void PlayImpactSFX();
-    public abstract void ControlOtherCollision(Collider2D collision);
+    public virtual void PlayImpactSFX() { }
+    public virtual void ControlOtherCollision(Collider2D collision) { }
+    public virtual void Move() { }
     
     public Dictionary<string, Quaternion> Rotate(Vector3 dir, int shipAngleCompensation, int bulletAngleCompesation) {
         // vector_direccion_ataque = vector_posicion_mouse - vector_centro_camara // en el caso de nuestra nave
@@ -312,8 +316,10 @@ public abstract class Ship : MonoBehaviour, IAttack
             PlayImpactSFX();
             ShakeThatCamera();
         }
+        else if(!this.IsVulnerable) {
+            //Debug.Log("jaja invencible");
+        }
         else {
-            //Die();
             ControlOtherCollision(collision);
         }
     }

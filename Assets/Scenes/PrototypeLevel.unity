@@ -5063,7 +5063,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &663396954
 GameObject:
@@ -5474,8 +5474,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701509369}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9.962595}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 940102336}
@@ -5485,7 +5485,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -390.8573, y: -169.64334}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!95 &762604346 stripped
@@ -16451,7 +16451,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1776491062
 PrefabInstance:
@@ -16622,7 +16622,7 @@ MonoBehaviour:
   - tag: ShieldBullet
     preFab: {fileID: 8144489530527584077, guid: 45e95d7765d2e404c94fc16558020623,
       type: 3}
-    poolSize: 20
+    poolSize: 100
   - tag: EnemyBullet
     preFab: {fileID: 1181253783709301941, guid: aeec047bc770b994884a08a461f1eb55,
       type: 3}
@@ -16649,17 +16649,36 @@ MonoBehaviour:
     poolSize: 2
   - tag: PowerUpBigShield
     preFab: {fileID: 308711585691917192, guid: 415e174407643db4da668dbe2aaf2a9f, type: 3}
-    poolSize: 4
+    poolSize: 1
   - tag: ParticleAnimation
     preFab: {fileID: 1860339442852148, guid: 8200904966a577f4e9f9410c9374a6be, type: 3}
     poolSize: 4
   - tag: PowerUpSpeedBoost
     preFab: {fileID: 5718502625238072738, guid: b228a6717ab78f540b69df7820e3d2db,
       type: 3}
-    poolSize: 4
+    poolSize: 1
   - tag: PowerUpRestoreHealth
     preFab: {fileID: 8892482397063816600, guid: f394430464aad214a9ed4b1c81a2a0ee,
       type: 3}
+    poolSize: 1
+  - tag: PowerUpGodMode
+    preFab: {fileID: 3734262768711876987, guid: 5eb9c093550bd5c40a2ec11beaea23a3,
+      type: 3}
+    poolSize: 1
+  - tag: PowerUpSpiralShieldShoot
+    preFab: {fileID: 8694400500531249270, guid: 4d8d555dc4359ef4eb8af68d42bf2dc3,
+      type: 3}
+    poolSize: 1
+  - tag: DroneBullet
+    preFab: {fileID: 8703112367234461403, guid: 19aa4db164c73a141872b0bb615940d6,
+      type: 3}
+    poolSize: 120
+  - tag: Drone
+    preFab: {fileID: 8378848320930941627, guid: 4965a0c05c27cbc4293fd67a0230647c,
+      type: 3}
+    poolSize: 2
+  - tag: PowerUpDrone
+    preFab: {fileID: 50699389041396771, guid: 2fedf04c3a933d849a6e665c95ae45ba, type: 3}
     poolSize: 4
 --- !u!4 &1789105253
 Transform:
@@ -16673,7 +16692,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1814672386
 GameObject:
@@ -16827,7 +16846,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017189199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.21, y: -3.92, z: 0}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1425591646}
@@ -16838,7 +16857,7 @@ Transform:
   - {fileID: 631058352}
   - {fileID: 1816056929}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2017189202
 MonoBehaviour:

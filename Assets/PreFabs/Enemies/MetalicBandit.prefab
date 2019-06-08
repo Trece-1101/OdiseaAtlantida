@@ -109,7 +109,7 @@ MonoBehaviour:
   MissileShootsPositions:
   - {fileID: 8976691263019995921}
   Reward: 150
-  PowerUpChance: 0.5
+  PowerUpChance: 1
   timeBtwBulletS: 0.8
   timeBtwMissileS: 1.8
   canShootMissile: 1

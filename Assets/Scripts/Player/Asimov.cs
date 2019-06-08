@@ -13,12 +13,13 @@ public class Asimov : Ship
     private float DashDistance;
     private float DashStep;
     private bool CanDash;
-    private bool GodMode;
     private float ShieldRestartCoolTime;
     private float InitialRestartCoolTime;
     private bool HasPowerUp;
     private PowerUp PowerUpType;
     private Vector2 OriginalVelocity;
+    private GameObject drone1;
+    private GameObject drone2;
     #endregion      
 
     #region "Referencias en Cache"    
@@ -71,13 +72,6 @@ public class Asimov : Ship
     }
     public void SetCanDash(bool value) {
         this.CanDash = value;
-    }
-
-    public bool GetGodMode() {
-        return this.GodMode;
-    }
-    public void SetGodMode(bool value) {
-        this.GodMode = value;
     }
 
     public List<Sprite> GetMySprites() {
@@ -163,11 +157,10 @@ public class Asimov : Ship
         this.OriginalVelocity = this.GetVelocity();
         this.DashDistance = 4f;
         this.DashStep = 0.5f;
-        this.GodMode = false;
         this.InitialDashCoolTime = 2f;
         this.DashSpeed = 3f;
         this.DashCoolTime = this.InitialDashCoolTime;
-        this.SetStartHealth(this.GetHitPoints() / this.GetDificultyModifier());
+        this.SetStartHealth(this.GetHitPoints());
 
         this.SetTimeBetweenBulletShoots(0.2f);
         this.SetTimeBetweenMissileShoots(1f);
@@ -265,7 +258,7 @@ public class Asimov : Ship
 
         if (Input.GetMouseButtonDown(2)) {
             this.MyShield.GetShieldOnFront();
-            this.MyShield.Shoot();
+            //this.MyShield.Shoot();
         }
 
     }
@@ -273,8 +266,7 @@ public class Asimov : Ship
     private void RestartShield() {
         if (Input.GetKeyDown(KeyCode.Q)) {
             if (!this.MyShield.GetIsEnable()) {
-                this.MyShield.RestartShield();
-                
+                this.MyShield.RestartShield();                
             }
         }
     }
@@ -320,7 +312,7 @@ public class Asimov : Ship
             if (Input.GetButtonDown("Fire2")) {
                 ShootMissile();
                 PlayShootSFX(this.GetShootMissileSFX(), this.GetMyMainCamera().transform.position, 0.2f);
-
+                GiveMeMyDrones();
 
                 this.RemainTimeForShootMissile = this.GetTimeBetweenMissileShoots();
             }
@@ -380,12 +372,38 @@ public class Asimov : Ship
         }
     }
     
+    public void MakeShieldShoot() {
+        if (!this.MyShield.GetIsEnable()) {
+            this.MyShield.RestartShield();
+        }
+        this.MyShield.Shoot();
+    }
 
     public void BigShield() {
         this.MyShield.BigShield();
     }
     public void OriginalShield() {
         this.MyShield.NormalShield();
+    }
+
+    public void MoveShieldOnDemand(int value) {
+        this.MyShield.ShieldControl(value);
+    }
+
+    public void GiveMeMyDrones() {
+        drone1 = this.GetPool().Spawn("Drone", this.transform.position, this.transform.rotation);
+        drone2 = this.GetPool().Spawn("Drone", this.transform.position, this.transform.rotation);
+
+        drone1.transform.parent = gameObject.transform;
+        drone2.transform.parent = gameObject.transform;
+
+        drone1.transform.localPosition = new Vector3(1.5f, 0f, 0f);
+        drone2.transform.localPosition = new Vector3(-1.5f, 0f, 0f);
+    }
+
+    public void DestroyMyDrones() {
+        drone1.SetActive(false);
+        drone2.SetActive(false);
     }
 
     #endregion

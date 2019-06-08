@@ -17,17 +17,17 @@ public class Shield : MonoBehaviour, IAttack
     private float HitPoints;
     private bool IsEnable;
     private float OriginalHitPoints;
-    #endregion
-
-    #region "Componentes en Cache"
-    private ObjectPool objectPool;
-    public DamageControl DamageCtrl { get; set; }
     public float TimeBetweenBulletShoots { get; set; }
     public float TimeBetweenMissileShoots { get; set; }
     public float RemainTimeForShootBullet { get; set; }
     public float RemainTimeForShootMissile { get; set; }
     public bool CanShoot { get; set; }
     public bool CanShootMissile { get; set; }
+    #endregion
+
+    #region "Componentes en Cache"
+    private ObjectPool objectPool;
+    public DamageControl DamageCtrl { get; set; }    
     private Asimov asimov;
     #endregion
 

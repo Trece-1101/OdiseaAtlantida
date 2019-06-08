@@ -7,7 +7,7 @@ public class Enemy : Ship
     #region "Atributos Serializados"
     [Header("Especificos")]
     [SerializeField] private int Reward;
-    [SerializeField] [Range (0f, 0.5f)] private float PowerUpChance;
+    [SerializeField] [Range (0f, 1f)] private float PowerUpChance;
     #endregion        
 
     #region "Referencias en Cache"
@@ -59,10 +59,10 @@ public class Enemy : Ship
         Shoot();
     }
 
-    public override void Move() {
-        transform.Translate(new Vector3(0.0001f, 0.0001f, 0f));
-    }      
-    
+    //public override void Move() {
+    //    transform.Translate(new Vector3(0.0001f, 0.0001f, 0f));
+    //}
+
     public override void CheckRotation() {
         // vector_direccion_ataque = vector_posicion_player - vector_posicion_enemigo
         // 90 grados para compensar que el sprite tiene su 0° hacia el Norte y la camara tiene sus 0° hacia el Este
