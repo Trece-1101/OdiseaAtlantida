@@ -16679,7 +16679,15 @@ MonoBehaviour:
     poolSize: 2
   - tag: PowerUpDrone
     preFab: {fileID: 50699389041396771, guid: 2fedf04c3a933d849a6e665c95ae45ba, type: 3}
+    poolSize: 1
+  - tag: PowerUpFrontalShieldShoot
+    preFab: {fileID: 1425107281294023121, guid: 059ae355eebeaa44eacdf72abd7d1f0a,
+      type: 3}
     poolSize: 4
+  - tag: AirMine
+    preFab: {fileID: 2065733391340897782, guid: 24ff3edd8219b1848947e35cdc2c3639,
+      type: 3}
+    poolSize: 6
 --- !u!4 &1789105253
 Transform:
   m_ObjectHideFlags: 0

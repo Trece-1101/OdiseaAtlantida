@@ -170,7 +170,6 @@ public class Asimov : Ship
         this.CanShoot = true;
         this.SetMyBulletVFX("PlayerBullet");
         this.SetMyMissileVFX("PlayerMissile");
-
     }
 
    
@@ -258,7 +257,7 @@ public class Asimov : Ship
 
         if (Input.GetMouseButtonDown(2)) {
             this.MyShield.GetShieldOnFront();
-            //this.MyShield.Shoot();
+            ShootAirMines(); // TODO: quitar esto
         }
 
     }
@@ -376,6 +375,7 @@ public class Asimov : Ship
         if (!this.MyShield.GetIsEnable()) {
             this.MyShield.RestartShield();
         }
+        this.MyShield.CanShoot = true;
         this.MyShield.Shoot();
     }
 
@@ -404,6 +404,31 @@ public class Asimov : Ship
     public void DestroyMyDrones() {
         drone1.SetActive(false);
         drone2.SetActive(false);
+    }
+
+    public void ShootAirMines() {
+        GameObject bomb1 = this.GetPool().Spawn("AirMine", this.transform.position, Quaternion.identity);
+        GameObject bomb2 = this.GetPool().Spawn("AirMine", this.transform.position, Quaternion.identity);
+        GameObject bomb3 = this.GetPool().Spawn("AirMine", this.transform.position, Quaternion.identity);
+        GameObject bomb4 = this.GetPool().Spawn("AirMine", this.transform.position, Quaternion.identity);
+        GameObject bomb5 = this.GetPool().Spawn("AirMine", this.transform.position, Quaternion.identity);
+        GameObject bomb6 = this.GetPool().Spawn("AirMine", this.transform.position, Quaternion.identity);
+
+        List<GameObject> bombs = new List<GameObject>() { bomb1, bomb2, bomb3, bomb4, bomb5, bomb6 };
+
+        foreach (var bomb in bombs) {
+            bomb.GetComponent<AirMine>().SetTarget(new Vector2(GetRandomTarget(), GetRandomTarget()));
+            bomb.GetComponent<AirMine>().SetShooted(true);
+        }
+
+    }
+
+    private float GetRandomTarget() {
+        float rnd = 0f;
+        while(rnd >= -4 && rnd <= 4f) {
+            rnd = UnityEngine.Random.Range(-5f, 5f);
+        }
+        return rnd;
     }
 
     #endregion

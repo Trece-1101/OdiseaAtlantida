@@ -9,12 +9,15 @@ public class Drone : MonoBehaviour, IAttack
     [SerializeField] private List<Transform> ShootsPositions;
     #endregion
 
+    #region "Atributos"
     public float TimeBetweenBulletShoots { get; set; }
     public float TimeBetweenMissileShoots { get; set; }
     public float RemainTimeForShootBullet { get; set; }
     public float RemainTimeForShootMissile { get; set; }
     public bool CanShoot { get; set; }
     public bool CanShootMissile { get; set; }
+    public bool CanMove { get; set; }
+    #endregion
 
     #region "Componentes en Cache"
     private ObjectPool objectPool;

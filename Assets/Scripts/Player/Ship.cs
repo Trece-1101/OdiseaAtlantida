@@ -34,6 +34,7 @@ public abstract class Ship : MonoBehaviour, IAttack
     public float RemainTimeForShootMissile { get; set; }
     public bool CanShoot { get; set; }
     public bool CanShootMissile { get; set; }
+    public bool CanMove { get; set; }
 
     private Quaternion MyRotation;
     private Quaternion MyBulletRotation;

@@ -23,6 +23,7 @@ public class Shield : MonoBehaviour, IAttack
     public float RemainTimeForShootMissile { get; set; }
     public bool CanShoot { get; set; }
     public bool CanShootMissile { get; set; }
+    public bool CanMove { get; set; }
     #endregion
 
     #region "Componentes en Cache"
@@ -100,6 +101,7 @@ public class Shield : MonoBehaviour, IAttack
         this.Rotations.Add(Quaternion.Euler(0f, 0f, 0f)); // escudo izquierda
 
 
+        this.CanMove = true;
         this.PositionCounter = 0;
         ShieldControl(this.PositionCounter);
         this.CanShoot = true;
@@ -116,10 +118,10 @@ public class Shield : MonoBehaviour, IAttack
             this.PositionCounter = 3;
         }
 
-        //CanShoot = this.PositionCounter == 0 ? true : false; // solo dispara cuando el escudo esta frontal
-        this.transform.localPosition = this.Positions[this.PositionCounter];
-        this.transform.localRotation = this.Rotations[this.PositionCounter];
-        //this.Shoot();
+        if (this.CanMove) {
+            this.transform.localPosition = this.Positions[this.PositionCounter];
+            this.transform.localRotation = this.Rotations[this.PositionCounter];
+        }
     }
 
     public void GetShieldOnFront() {

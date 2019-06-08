@@ -1,0 +1,61 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AirMine : Proyectile
+{
+    private Vector2 Target;
+    private bool Shooted;
+    private bool OnTarget;
+
+   
+    public void SetTarget(Vector2 value) {
+        this.Target = value;
+    }
+
+    public bool GetShooted() {
+        return this.Shooted;
+    }
+    public void SetShooted(bool value) {
+        this.Shooted = value;
+    }
+
+    public bool GetOnTarget() {
+        return this.OnTarget;
+    }
+    public void SetOnTarget(bool value) {
+        this.OnTarget = value;
+    }
+
+    public override void Update() {
+        if (this.Shooted) {
+            transform.position = Vector2.MoveTowards(transform.position, Target, this.GetSpeed().x * Time.deltaTime);
+            if(this.transform.position.x == this.Target.x && this.transform.position.y == this.Target.y) {
+                this.OnTarget = true;
+                this.Explode();
+            }
+            else {
+                this.OnTarget = false;
+            }
+        }
+    }
+
+    public void Explode() {
+        this.transform.localScale = new Vector3(4f, 4f, 1f);
+        Invoke("SetInactive", 2f);
+    }
+
+    private void SetInactive() {
+        this.gameObject.SetActive(false);
+    }
+
+    private void OnDisable() {
+        this.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        Explode();
+    }
+
+
+}

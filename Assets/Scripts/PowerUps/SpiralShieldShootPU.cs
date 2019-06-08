@@ -23,6 +23,7 @@ public class SpiralShieldShootPU : PowerUp
         for (int i = 0; i < 4; i++) {
             Invoke("Shoot", this.TimeForShoot * i);
         }
+        Invoke("RevertYourMagic", TimeForRound * 4);
     }
 
     private void Shoot() {
@@ -30,7 +31,7 @@ public class SpiralShieldShootPU : PowerUp
         this.GetAsimov().MakeShieldShoot();
     }
 
-    //private void RevertYourMagic() {
-    //    this.GetAsimov().OriginalShield();
-    //}
+    private void RevertYourMagic() {
+        this.GetAsimov().GetMyShield().CanShoot = false;
+    }
 }
