@@ -16695,7 +16695,14 @@ MonoBehaviour:
   - tag: PowerUpBulletTime
     preFab: {fileID: 6024143572292091615, guid: 177d3e3d8b123614fa63d20e8c06c4a2,
       type: 3}
+    poolSize: 1
+  - tag: AsimovClone
+    preFab: {fileID: 8807959308874980800, guid: 3793b239ad7d3334b82743c64b5517dc,
+      type: 3}
     poolSize: 2
+  - tag: PowerUpClone
+    preFab: {fileID: 879475099605472074, guid: 81056b8f5a0808847a7ce86c47545077, type: 3}
+    poolSize: 4
 --- !u!4 &1789105253
 Transform:
   m_ObjectHideFlags: 0

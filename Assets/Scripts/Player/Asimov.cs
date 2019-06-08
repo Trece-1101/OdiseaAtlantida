@@ -16,6 +16,7 @@ public class Asimov : Ship
     private float ShieldRestartCoolTime;
     private float InitialRestartCoolTime;
     private bool HasPowerUp;
+    private bool IsCloned;
     private PowerUp PowerUpType;
     private Vector2 OriginalVelocity;   
     #endregion      
@@ -121,6 +122,13 @@ public class Asimov : Ship
         this.HasPowerUp = value;
     }
 
+    public bool GetIsCloned() {
+        return this.IsCloned;
+    }
+    public void SetIsCloned(bool value) {
+        this.IsCloned = value;
+    }
+
     public Vector2 GetOriginalVelocity() {
         return this.OriginalVelocity;
     }
@@ -166,6 +174,7 @@ public class Asimov : Ship
         this.RemainTimeForShootMissile = this.GetTimeBetweenMissileShoots();
         this.CanShootMissile = true;
         this.CanShoot = true;
+        this.IsCloned = false;
         this.SetMyBulletVFX("PlayerBullet");
         this.SetMyMissileVFX("PlayerMissile");
     }

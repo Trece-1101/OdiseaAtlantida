@@ -74,7 +74,12 @@ public class Enemy : Ship
             return;
         }
 
-        rotations = this.Rotate(this.Player.transform.position - this.transform.position, 90, 0);
+        if (this.Player.GetIsCloned()) {
+            rotations = this.Rotate(new Vector3(0f, -3f, 0f) - this.transform.position, 90, 0);
+        }
+        else {
+            rotations = this.Rotate(this.Player.transform.position - this.transform.position, 90, 0);
+        }
 
         this.SetMyRotation(rotations["rotation_ship"]);
         this.SetMyBulletRotation(rotations["rotation_bullet"]);
