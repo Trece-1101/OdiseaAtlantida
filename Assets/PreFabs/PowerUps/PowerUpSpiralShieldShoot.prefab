@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8694400500531249275}
   - component: {fileID: 8694400500531249268}
   - component: {fileID: 6542559400520881854}
+  - component: {fileID: 3486741367556137850}
   m_Layer: 16
   m_Name: PowerUpSpiralShieldShoot
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8694400500531249270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -71,8 +72,8 @@ SpriteRenderer:
   m_SortingLayerID: 1327832821
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5e2e1673a367044478208a07dae9f46d, type: 3}
-  m_Color: {r: 0.010364663, g: 0.4245283, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 42726dcfe7e626541a41ec565005fa52, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -131,3 +132,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec18a63a3c642b4480dae4cc6f5c08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3486741367556137850
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694400500531249270}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d9f7cc7272dd3cb4c8bca63d6ad369cf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

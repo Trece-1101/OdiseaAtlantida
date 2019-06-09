@@ -804,15 +804,14 @@ MonoBehaviour:
     - Wave:
       - {fileID: 11400000, guid: 142ba3f9b7a25fe42b57bef25ee7e21a, type: 2}
       - {fileID: 11400000, guid: a2a763a8b65127d43a0f96d79afe6e38, type: 2}
-    - Wave:
-      - {fileID: 11400000, guid: acfe59429690f094197580ae9fca4b6d, type: 2}
-      - {fileID: 11400000, guid: dc7be081c5ec49e4b842fdd0de30485b, type: 2}
+      - {fileID: 11400000, guid: f26067e84a206294fa00d51905af395f, type: 2}
+      - {fileID: 11400000, guid: 2591faef69d1b0c42887b0a8df021942, type: 2}
     - Wave:
       - {fileID: 11400000, guid: 142ba3f9b7a25fe42b57bef25ee7e21a, type: 2}
       - {fileID: 11400000, guid: a2a763a8b65127d43a0f96d79afe6e38, type: 2}
-      - {fileID: 11400000, guid: acfe59429690f094197580ae9fca4b6d, type: 2}
-      - {fileID: 11400000, guid: dc7be081c5ec49e4b842fdd0de30485b, type: 2}
-    NextWaveSpawnTime: 030000000600000004000000
+      - {fileID: 11400000, guid: f26067e84a206294fa00d51905af395f, type: 2}
+      - {fileID: 11400000, guid: 2591faef69d1b0c42887b0a8df021942, type: 2}
+    NextWaveSpawnTime: 0400000004000000
 --- !u!4 &417064150
 Transform:
   m_ObjectHideFlags: 0
@@ -16656,7 +16655,7 @@ MonoBehaviour:
   - tag: PowerUpSpeedBoost
     preFab: {fileID: 5718502625238072738, guid: b228a6717ab78f540b69df7820e3d2db,
       type: 3}
-    poolSize: 1
+    poolSize: 4
   - tag: PowerUpRestoreHealth
     preFab: {fileID: 8892482397063816600, guid: f394430464aad214a9ed4b1c81a2a0ee,
       type: 3}
@@ -16664,11 +16663,11 @@ MonoBehaviour:
   - tag: PowerUpGodMode
     preFab: {fileID: 3734262768711876987, guid: 5eb9c093550bd5c40a2ec11beaea23a3,
       type: 3}
-    poolSize: 1
+    poolSize: 4
   - tag: PowerUpSpiralShieldShoot
     preFab: {fileID: 8694400500531249270, guid: 4d8d555dc4359ef4eb8af68d42bf2dc3,
       type: 3}
-    poolSize: 1
+    poolSize: 4
   - tag: DroneBullet
     preFab: {fileID: 8703112367234461403, guid: 19aa4db164c73a141872b0bb615940d6,
       type: 3}
@@ -16683,7 +16682,7 @@ MonoBehaviour:
   - tag: PowerUpFrontalShieldShoot
     preFab: {fileID: 1425107281294023121, guid: 059ae355eebeaa44eacdf72abd7d1f0a,
       type: 3}
-    poolSize: 1
+    poolSize: 4
   - tag: AirMine
     preFab: {fileID: 2065733391340897782, guid: 24ff3edd8219b1848947e35cdc2c3639,
       type: 3}
@@ -16691,7 +16690,7 @@ MonoBehaviour:
   - tag: PowerUpAirMines
     preFab: {fileID: 8183382078870211457, guid: 95b8993ead3326240b836356b7fec8b6,
       type: 3}
-    poolSize: 1
+    poolSize: 4
   - tag: PowerUpBulletTime
     preFab: {fileID: 6024143572292091615, guid: 177d3e3d8b123614fa63d20e8c06c4a2,
       type: 3}
@@ -16894,7 +16893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a686bcd2a60eb4b4bb50d9c68aa5abb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitPoints: 100
+  HitPoints: 200
   Velocity: {x: 5, y: 5}
   HealthBar: {fileID: 184795430}
   DeathSFX: {fileID: 8300000, guid: ace56a30ec3a27a4e8a91cf217adabfa, type: 3}
