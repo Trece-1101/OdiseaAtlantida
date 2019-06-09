@@ -69,7 +69,7 @@ public abstract class Proyectile : MonoBehaviour
         this.DamageCtrl = GetComponent<DamageControl>();
         //this.DamageCtrl.SetDamage(this.Damage);
 
-        this.LifeTime = 3f;
+        this.LifeTime = 5f;
     }
 
     public abstract void Update();

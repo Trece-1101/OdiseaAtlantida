@@ -6,7 +6,7 @@ public class Drone : MonoBehaviour, IAttack
 {
     #region "Atritutos Serializados"
     [Header("Shoot")]
-    [SerializeField] private List<Transform> ShootsPositions;
+    [SerializeField] private List<Transform> ShootsPositions = null;
     #endregion
 
     #region "Atributos"

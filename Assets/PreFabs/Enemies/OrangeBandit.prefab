@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1979153525369992830}
   - component: {fileID: 6623237322339535389}
   - component: {fileID: 1916074654242737982}
+  - component: {fileID: 2254994428473039515}
   m_Layer: 11
   m_Name: OrangeBandit
   m_TagString: Enemy
@@ -58,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050599874837932572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.65, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1792358052}
@@ -136,6 +137,8 @@ MonoBehaviour:
   BulletShootsPositions:
   - {fileID: 1792358052}
   MissileShootsPositions: []
+  LeftMicroBulletsShootsPositions: []
+  RightMicroBulletsShootsPositions: []
   Reward: 120
   PowerUpChance: 1
   timeBtwBulletS: 1.2
@@ -186,6 +189,27 @@ PolygonCollider2D:
       - {x: 0.24, y: -0.099999994}
       - {x: 0.24, y: 0.02}
       - {x: 0.12, y: 0.24}
+--- !u!50 &2254994428473039515
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050599874837932572}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &5683630206708777209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -193,6 +217,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1050599874837932562}
     m_Modifications:
+    - target: {fileID: 3689202461463763969, guid: 2abdd957455e10449837f27a74d678a8,
+        type: 3}
+      propertyPath: m_Name
+      value: CanvasHealthEnemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5150581571277562663, guid: 2abdd957455e10449837f27a74d678a8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -297,11 +326,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3689202461463763969, guid: 2abdd957455e10449837f27a74d678a8,
-        type: 3}
-      propertyPath: m_Name
-      value: CanvasHealthEnemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2abdd957455e10449837f27a74d678a8, type: 3}

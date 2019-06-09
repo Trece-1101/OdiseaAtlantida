@@ -176,7 +176,7 @@ public class Asimov : Ship
         this.DashCoolTime = this.InitialDashCoolTime;
         this.SetStartHealth(this.GetHitPoints());
 
-        this.SetTimeBetweenBulletShoots(0.2f);
+        this.SetTimeBetweenBulletShoots(0.15f);
         this.SetTimeBetweenMissileShoots(1f);
         this.RemainTimeForShootBullet = this.GetTimeBetweenBulletShoots();
         this.RemainTimeForShootMissile = this.GetTimeBetweenMissileShoots();
@@ -186,6 +186,7 @@ public class Asimov : Ship
         this.CanRotate = true;
         this.SetMyBulletVFX("PlayerBullet");
         this.SetMyMissileVFX("PlayerMissile");
+        this.SetMyMicroBulletsVFX("MicroBulletPlayer");
     }
 
    
@@ -316,6 +317,7 @@ public class Asimov : Ship
         if (this.RemainTimeForShootBullet <= 0) {
             if (Input.GetButton("Fire1")) {
                 ShootBullet();
+                ShootMicroBullet();
                 PlayShootSFX(this.GetShootBulletSFX(), this.GetMyMainCamera().transform.position, 0.2f);
 
                 this.RemainTimeForShootBullet = this.GetTimeBetweenBulletShoots();

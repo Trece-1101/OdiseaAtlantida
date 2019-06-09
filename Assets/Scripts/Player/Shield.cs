@@ -7,7 +7,7 @@ public class Shield : MonoBehaviour, IAttack
 
     #region "Atritutos Serializados"
     [Header("Shoot")]
-    [SerializeField] private List<Transform> ShootsPositions;
+    [SerializeField] private List<Transform> ShootsPositions = null;
     #endregion
 
     #region "Atributos"
@@ -166,7 +166,7 @@ public class Shield : MonoBehaviour, IAttack
         this.SetHitPoints(this.OriginalHitPoints * 2);
     }
 
-    public void Shoot() {    
+    public void Shoot() {  
         if (CanShoot) {
             for (int i = 0; i < this.ShootsPositions.Count; i++) {
                 //objectPool.Spawn("PlayerBullet", this.ShootsPositions[i].position, asimov.transform.rotation);

@@ -7,7 +7,7 @@ public class Enemy : Ship
     #region "Atributos Serializados"
     [Header("Especificos")]
     [SerializeField] private int Reward;
-    [SerializeField] [Range (0f, 1f)] private float PowerUpChance;
+    [SerializeField] [Range (0f, 1f)] private float PowerUpChance = 0f;
     #endregion        
 
     #region "Referencias en Cache"

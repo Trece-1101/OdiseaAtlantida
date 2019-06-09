@@ -20,7 +20,10 @@ public abstract class Ship : MonoBehaviour, IAttack
 
     [Header("Shoot")]
     [SerializeField] private List<Transform> BulletShootsPositions;
-    [SerializeField] private List<Transform> MissileShootsPositions;   
+    [SerializeField] private List<Transform> MissileShootsPositions;
+    [SerializeField] private List<Transform> LeftMicroBulletsShootsPositions;
+    [SerializeField] private List<Transform> RightMicroBulletsShootsPositions;
+    
     #endregion
 
     #region "Atributos"
@@ -41,6 +44,7 @@ public abstract class Ship : MonoBehaviour, IAttack
 
     private string MyBulletVFX;
     private string MyMissileVFX;
+    private string MyMicroBulletsVFX;
     List<string> PowerUpsNames;
     #endregion
 
@@ -138,7 +142,21 @@ public abstract class Ship : MonoBehaviour, IAttack
     public void SetBulletShootPoints(List<Transform> value) {
         this.BulletShootsPositions = value;
     }
-    
+
+    public List<Transform> GetLeftMicroBulletShootPoints() {
+        return this.LeftMicroBulletsShootsPositions;
+    }
+    public void SetLeftMicroBulletsShootsPositions(List<Transform> value) {
+        this.LeftMicroBulletsShootsPositions = value;
+    }
+
+    public List<Transform> GetRightMicroBulletShootPoints() {
+        return this.RightMicroBulletsShootsPositions;
+    }
+    public void SetRightMicroBulletShootPoints(List<Transform> value) {
+        this.RightMicroBulletsShootsPositions = value;
+    }
+
 
     public List<Transform> GetMissileShootPoints() {
         return this.MissileShootsPositions;
@@ -166,6 +184,13 @@ public abstract class Ship : MonoBehaviour, IAttack
     }
     public void SetMyBulletVFX(string value) {
         this.MyBulletVFX = value;
+    }
+
+    public string GetMyMicroBulletVFX() {
+        return this.MyMicroBulletsVFX;
+    }
+    public void SetMyMicroBulletsVFX(string value) {
+        this.MyMicroBulletsVFX = value;
     }
 
     public string GetMyMissileVFX() {
@@ -295,6 +320,17 @@ public abstract class Ship : MonoBehaviour, IAttack
     public virtual void ShootBullet() {
         for (int i = 0; i < this.BulletShootsPositions.Count; i++) {
             this.GetPool().Spawn(this.MyBulletVFX, this.BulletShootsPositions[i].position, this.GetMyBulletRotation());
+        }
+    }
+
+    public void ShootMicroBullet() {
+        for (int i = 0; i < this.LeftMicroBulletsShootsPositions.Count; i++) {
+            this.GetPool().Spawn(this.MyMicroBulletsVFX, this.LeftMicroBulletsShootsPositions[i].position,
+                                this.GetMyBulletRotation() * this.LeftMicroBulletsShootsPositions[i].transform.localRotation);
+        }
+        for (int i = 0; i < this.RightMicroBulletsShootsPositions.Count; i++) {
+            this.GetPool().Spawn(this.MyMicroBulletsVFX, this.RightMicroBulletsShootsPositions[i].position,
+                                this.GetMyBulletRotation() * this.RightMicroBulletsShootsPositions[i].transform.localRotation);
         }
     }
 

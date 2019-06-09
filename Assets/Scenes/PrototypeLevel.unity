@@ -672,6 +672,36 @@ Transform:
   m_Father: {fileID: 156526279}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &355874006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 355874007}
+  m_Layer: 8
+  m_Name: MicroBulletShootPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &355874007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355874006}
+  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
+  m_LocalPosition: {x: 0.1147, y: 0.3653, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2017189201}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
 --- !u!1 &417064147
 GameObject:
   m_ObjectHideFlags: 0
@@ -5064,6 +5094,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &660121578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 660121579}
+  m_Layer: 8
+  m_Name: MicroBulletShootPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &660121579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660121578}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
+  m_LocalPosition: {x: -0.1155, y: 0.3653, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2017189201}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!1 &663396954
 GameObject:
   m_ObjectHideFlags: 0
@@ -5801,6 +5861,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 81154777d5417884981849c5243f6c01, type: 3}
       propertyPath: m_Name
       value: FramerateCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 81154777d5417884981849c5243f6c01, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22409990, guid: 81154777d5417884981849c5243f6c01, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16438,6 +16502,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelCompleteText: {fileID: 701509369}
   LevelDestroyedText: {fileID: 1371089888}
+  enemyPrefab: {fileID: 1597402426284869519, guid: bb46b4dba22ed1b4381570a242548b4a,
+    type: 3}
 --- !u!4 &1764410111
 Transform:
   m_ObjectHideFlags: 0
@@ -16648,7 +16714,7 @@ MonoBehaviour:
     poolSize: 2
   - tag: PowerUpBigShield
     preFab: {fileID: 308711585691917192, guid: 415e174407643db4da668dbe2aaf2a9f, type: 3}
-    poolSize: 1
+    poolSize: 4
   - tag: ParticleAnimation
     preFab: {fileID: 1860339442852148, guid: 8200904966a577f4e9f9410c9374a6be, type: 3}
     poolSize: 4
@@ -16659,7 +16725,7 @@ MonoBehaviour:
   - tag: PowerUpRestoreHealth
     preFab: {fileID: 8892482397063816600, guid: f394430464aad214a9ed4b1c81a2a0ee,
       type: 3}
-    poolSize: 1
+    poolSize: 4
   - tag: PowerUpGodMode
     preFab: {fileID: 3734262768711876987, guid: 5eb9c093550bd5c40a2ec11beaea23a3,
       type: 3}
@@ -16667,7 +16733,7 @@ MonoBehaviour:
   - tag: PowerUpSpiralShieldShoot
     preFab: {fileID: 8694400500531249270, guid: 4d8d555dc4359ef4eb8af68d42bf2dc3,
       type: 3}
-    poolSize: 4
+    poolSize: 1
   - tag: DroneBullet
     preFab: {fileID: 8703112367234461403, guid: 19aa4db164c73a141872b0bb615940d6,
       type: 3}
@@ -16678,7 +16744,7 @@ MonoBehaviour:
     poolSize: 2
   - tag: PowerUpDrone
     preFab: {fileID: 50699389041396771, guid: 2fedf04c3a933d849a6e665c95ae45ba, type: 3}
-    poolSize: 1
+    poolSize: 4
   - tag: PowerUpFrontalShieldShoot
     preFab: {fileID: 1425107281294023121, guid: 059ae355eebeaa44eacdf72abd7d1f0a,
       type: 3}
@@ -16694,7 +16760,7 @@ MonoBehaviour:
   - tag: PowerUpBulletTime
     preFab: {fileID: 6024143572292091615, guid: 177d3e3d8b123614fa63d20e8c06c4a2,
       type: 3}
-    poolSize: 1
+    poolSize: 4
   - tag: AsimovClone
     preFab: {fileID: 8807959308874980800, guid: 3793b239ad7d3334b82743c64b5517dc,
       type: 3}
@@ -16710,6 +16776,9 @@ MonoBehaviour:
     preFab: {fileID: 8032183106459860398, guid: 3f322ff24d565534481c011d99402e91,
       type: 3}
     poolSize: 2
+  - tag: MicroBulletPlayer
+    preFab: {fileID: 33803857936573062, guid: cf47733cb4c2bb04ab05146019e11c17, type: 3}
+    poolSize: 40
 --- !u!4 &1789105253
 Transform:
   m_ObjectHideFlags: 0
@@ -16886,6 +16955,8 @@ Transform:
   - {fileID: 156526279}
   - {fileID: 631058352}
   - {fileID: 1816056929}
+  - {fileID: 660121579}
+  - {fileID: 355874007}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16914,6 +16985,10 @@ MonoBehaviour:
   MissileShootsPositions:
   - {fileID: 671980425}
   - {fileID: 11936808}
+  LeftMicroBulletsShootsPositions:
+  - {fileID: 660121579}
+  RightMicroBulletsShootsPositions:
+  - {fileID: 355874007}
   MySprites:
   - {fileID: 21300000, guid: d46ea8d92852c224d8f6a0e4cf35436d, type: 3}
   - {fileID: 21300000, guid: ffcaa38c477324349804a9e6ef5a0165, type: 3}

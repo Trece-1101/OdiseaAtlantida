@@ -21,7 +21,7 @@ public class Missile : Proyectile
     private void Start() {
         SetSpeed(new Vector2(4f, 4f));
         SetInitialSpeed(this.GetSpeed());
-        this.Aceleration = new Vector2(5f, 5f);
+        this.Aceleration = new Vector2(8f, 8f);
     }
 
     public override void Update() {

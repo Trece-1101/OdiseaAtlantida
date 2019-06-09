@@ -8,6 +8,7 @@ public class GameProgram : MonoBehaviour
 
     [SerializeField] GameObject LevelCompleteText = null;
     [SerializeField] GameObject LevelDestroyedText = null;
+    [SerializeField] GameObject enemyPrefab = null;
 
     #region "Atributos"
     private float LeftBorder;
@@ -101,6 +102,12 @@ public class GameProgram : MonoBehaviour
         crossHair = FindObjectOfType<CrossHair>();
         Cursor.visible = false;
         SetUpBorders();
+        Invoke("Instanciar", 2f);
+
+    }
+
+    private void Instanciar() {
+        Instantiate(this.enemyPrefab, new Vector3(0f, 4f, 0f), Quaternion.identity);
     }
 
     private void Update() {
