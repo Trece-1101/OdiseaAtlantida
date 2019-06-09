@@ -16629,7 +16629,7 @@ MonoBehaviour:
   - tag: EnemyExplosion
     preFab: {fileID: 2453660469088560295, guid: e14ae8c470e9878489dbcee15cfb711b,
       type: 3}
-    poolSize: 15
+    poolSize: 10
   - tag: EnemyMissile
     preFab: {fileID: 8256868047263212533, guid: 9af01d463494fa64883b849bf6f5931f,
       type: 3}
@@ -16655,7 +16655,7 @@ MonoBehaviour:
   - tag: PowerUpSpeedBoost
     preFab: {fileID: 5718502625238072738, guid: b228a6717ab78f540b69df7820e3d2db,
       type: 3}
-    poolSize: 4
+    poolSize: 1
   - tag: PowerUpRestoreHealth
     preFab: {fileID: 8892482397063816600, guid: f394430464aad214a9ed4b1c81a2a0ee,
       type: 3}
@@ -16663,7 +16663,7 @@ MonoBehaviour:
   - tag: PowerUpGodMode
     preFab: {fileID: 3734262768711876987, guid: 5eb9c093550bd5c40a2ec11beaea23a3,
       type: 3}
-    poolSize: 4
+    poolSize: 1
   - tag: PowerUpSpiralShieldShoot
     preFab: {fileID: 8694400500531249270, guid: 4d8d555dc4359ef4eb8af68d42bf2dc3,
       type: 3}
@@ -16682,7 +16682,7 @@ MonoBehaviour:
   - tag: PowerUpFrontalShieldShoot
     preFab: {fileID: 1425107281294023121, guid: 059ae355eebeaa44eacdf72abd7d1f0a,
       type: 3}
-    poolSize: 4
+    poolSize: 1
   - tag: AirMine
     preFab: {fileID: 2065733391340897782, guid: 24ff3edd8219b1848947e35cdc2c3639,
       type: 3}
@@ -16690,7 +16690,7 @@ MonoBehaviour:
   - tag: PowerUpAirMines
     preFab: {fileID: 8183382078870211457, guid: 95b8993ead3326240b836356b7fec8b6,
       type: 3}
-    poolSize: 4
+    poolSize: 1
   - tag: PowerUpBulletTime
     preFab: {fileID: 6024143572292091615, guid: 177d3e3d8b123614fa63d20e8c06c4a2,
       type: 3}
@@ -16701,7 +16701,15 @@ MonoBehaviour:
     poolSize: 2
   - tag: PowerUpClone
     preFab: {fileID: 879475099605472074, guid: 81056b8f5a0808847a7ce86c47545077, type: 3}
-    poolSize: 4
+    poolSize: 1
+  - tag: EnemyImplosion
+    preFab: {fileID: 3254958462037916847, guid: 1c7e9d658fc7346439a2e91cb4752553,
+      type: 3}
+    poolSize: 10
+  - tag: ShieldedAnimation
+    preFab: {fileID: 8032183106459860398, guid: 3f322ff24d565534481c011d99402e91,
+      type: 3}
+    poolSize: 2
 --- !u!4 &1789105253
 Transform:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class Enemy : Ship
     [SerializeField] private float timeBtwBulletS = 1f;
     [SerializeField] private float timeBtwMissileS = 1f;
     [SerializeField] private bool canShootMissile = false;
+    List<string> Explodes = new List<string>() { "EnemyExplosion", "EnemyImplosion" };
     #endregion
 
     #region "Setters/Getters"
@@ -117,7 +118,9 @@ public class Enemy : Ship
     }
 
     private void PlayExplosion() {
-        this.GetPool().Spawn("EnemyExplosion", this.transform.position, Quaternion.identity);
+        int expIndex = Random.Range(0, 2);
+        string exp = Explodes[expIndex];
+        this.GetPool().Spawn(exp, this.transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(this.GetDeathSFX(), this.GetMyMainCamera().transform.position, 0.6f);
     }
 

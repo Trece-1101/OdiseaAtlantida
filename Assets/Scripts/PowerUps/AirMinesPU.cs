@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AirMinesPU : PowerUp
-{
+{ 
+
     public override void MakeYourMagic() {
         for (int i = 0; i < 6; i++) {
             //this.GetAsimov().ShootAirMines();

@@ -13,12 +13,13 @@ public class Asimov : Ship
     private float DashDistance;
     private float DashStep;
     private bool CanDash;
+    private bool CanRotate;
     private float ShieldRestartCoolTime;
     private float InitialRestartCoolTime;
     private bool HasPowerUp;
     private bool IsCloned;
     private PowerUp PowerUpType;
-    private Vector2 OriginalVelocity;   
+    private Vector2 OriginalVelocity;
     #endregion      
 
     #region "Referencias en Cache"    
@@ -71,6 +72,13 @@ public class Asimov : Ship
     }
     public void SetCanDash(bool value) {
         this.CanDash = value;
+    }
+
+    public bool GetCanRotate() {
+        return this.CanRotate;
+    }
+    public void SetGetCanRotate(bool value) {
+        this.CanRotate = value;
     }
 
     public List<Sprite> GetMySprites() {
@@ -175,6 +183,7 @@ public class Asimov : Ship
         this.CanShootMissile = true;
         this.CanShoot = true;
         this.IsCloned = false;
+        this.CanRotate = true;
         this.SetMyBulletVFX("PlayerBullet");
         this.SetMyMissileVFX("PlayerMissile");
     }
@@ -249,8 +258,11 @@ public class Asimov : Ship
         // vector_direccion_ataque = vector_posicion_mouse - vector_centro_camara
         // 90 grados para compensar que el sprite tiene su 0° hacia el Norte y la camara tiene sus 0° hacia el Este
         // el sprite del proyectil ya apunta hacia el Este asi que no tiene compensacion
-
         var rotations = this.Rotate(Input.mousePosition - this.GetMyMainCamera().WorldToScreenPoint(this.transform.position), 90, 0);
+
+        if (!CanRotate) {
+            rotations = this.Rotate(new Vector3(0f, 0f, 0f), 0, 0);
+        }
 
         this.SetMyRotation(rotations["rotation_ship"]);
         this.SetMyBulletRotation(rotations["rotation_bullet"]);

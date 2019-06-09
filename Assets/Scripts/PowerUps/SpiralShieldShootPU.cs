@@ -6,8 +6,16 @@ public class SpiralShieldShootPU : PowerUp
 {
     private float TimeForShoot = 0.05f;
     private float TimeForRound;
+    private float RotationLeft = 360;
+    private float RotationSpeed = 10;
+    private bool MakeRotate = false;
 
     public override void MakeYourMagic() {
+
+        this.GetAsimov().SetGetCanRotate(false);
+
+        this.MakeRotate = true;
+
         this.TimeForRound = this.TimeForShoot * 4;
         this.GetAsimov().GetMyShield().GetShieldOnFront();
 
@@ -17,6 +25,21 @@ public class SpiralShieldShootPU : PowerUp
 
 
         //Invoke("RevertYourMagic", this.GetCoolTime());
+    }
+
+    private void Update() {
+        if (this.MakeRotate) {
+            float rotation = RotationSpeed * Time.deltaTime;
+
+            if(RotationLeft > 0) {
+                RotationLeft -= rotation;
+            }
+            else {
+                rotation = RotationLeft;
+                RotationLeft = 0;
+            }
+            this.GetAsimov().transform.Rotate(0f, 0f, rotation);
+        }
     }
 
     private void ShootRound() {

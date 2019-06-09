@@ -71,6 +71,7 @@ public abstract class Proyectile : MonoBehaviour
 
         this.LifeTime = 3f;
     }
+
     public abstract void Update();
     
     private void OnDisable() {

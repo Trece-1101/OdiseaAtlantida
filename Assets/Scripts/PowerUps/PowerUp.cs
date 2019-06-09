@@ -81,8 +81,9 @@ public abstract class PowerUp : MonoBehaviour
         this.SetSpeedChange();
         this.Pool = FindObjectOfType<ObjectPool>();
         this.Asimov = FindObjectOfType<Asimov>();
-        this.CoolTime = 6f;
+        this.CoolTime = 6f;        
     }
+
 
     private void OnEnable() {
         SetSpeedChange();
@@ -137,7 +138,8 @@ public abstract class PowerUp : MonoBehaviour
         this.Asimov.SetPowerUpType(this);
                 
         this.Die();
-    }    
+    }
+
 
     public abstract void MakeYourMagic();
 
