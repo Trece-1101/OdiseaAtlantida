@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpeedBoostPU : PowerUp
 {
-    private float SpeedBoost = 2.25f;
+    private float SpeedBoost = 1.75f;
 
     public override void MakeYourMagic() {
         var vel = this.GetAsimov().GetVelocity();

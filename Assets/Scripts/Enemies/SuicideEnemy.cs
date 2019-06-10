@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class SuicideEnemy : Enemy
 {
-    public override void CoAwake() {
-        base.CoAwake();
-        this.SetPool(ObjectPool.Instance);
-        Debug.Log(GetPool());
-    }
-
+   
     private void Update() {
         CheckRotation();
         Move();

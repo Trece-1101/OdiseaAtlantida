@@ -7,28 +7,30 @@ using UnityEngine;
 public class Asimov : Ship
 {
     #region "Atributos"
+    private bool CanDash;
     private float DashCoolTime;
     private float InitialDashCoolTime;
     private float DashSpeed;
     private float DashDistance;
     private float DashStep;
-    private bool CanDash;
+
     private bool CanRotate;
-    private float ShieldRestartCoolTime;
-    private float InitialRestartCoolTime;
+    private string Mode = "Attack";
+    private float TransitionDelay;
+    private bool InTransition;
+    private float TransitionValueModifier = 1.5f;
+
     private bool HasPowerUp;
     private bool IsCloned;
     private PowerUp PowerUpType;
     private Vector2 OriginalVelocity;
     #endregion      
 
-    #region "Referencias en Cache"    
-    [SerializeField] private List<Sprite> MySprites;       
-    private SpriteRenderer Img;
-    private Sprite ActualSprite;    
+    #region "Referencias en Cache"     
     private Shield MyShield;
     private PolygonCollider2D AtackCollider;
-    private PolygonCollider2D DefenseCollider;    
+    private PolygonCollider2D DefenseCollider;
+    private Animator MyAnimator;
     #endregion
 
     #region "Setters/Getters"
@@ -81,26 +83,6 @@ public class Asimov : Ship
         this.CanRotate = value;
     }
 
-    public List<Sprite> GetMySprites() {
-        return this.MySprites;
-    }
-    public void SetMySprites(List<Sprite> value) {
-        this.MySprites = value;
-    }
-
-    public SpriteRenderer GetImg() {
-        return this.Img;
-    }
-    public void SetImg(SpriteRenderer value) {
-        this.Img = value;
-    }
-
-    public Sprite GetActualSprite() {
-        return this.ActualSprite;
-    }
-    public void SetActualSprite(Sprite value) {
-        this.ActualSprite = value;
-    }
 
     public Shield GetMyShield() {
         return this.MyShield;
@@ -160,13 +142,11 @@ public class Asimov : Ship
         // GodMode up, up, down, down, left, right, left, right, B, A.
 
         this.MyShield = FindObjectOfType<Shield>();
-        this.Img = GetComponent<SpriteRenderer>();
+        this.MyAnimator = GetComponent<Animator>();
         PolygonCollider2D[] colliders = GetComponents<PolygonCollider2D>();  
 
         this.AtackCollider = colliders[0];
         this.DefenseCollider = colliders[1];
-        //this.ActualSprite = MySprites[0];
-        //this.Img.sprite = this.ActualSprite;
 
         this.OriginalVelocity = this.GetVelocity();
         this.DashDistance = 4f;
@@ -174,7 +154,10 @@ public class Asimov : Ship
         this.InitialDashCoolTime = 2f;
         this.DashSpeed = 3f;
         this.DashCoolTime = this.InitialDashCoolTime;
-        this.SetStartHealth(this.GetHitPoints());
+        this.SetOriginalHitPoints(this.GetHitPoints());
+        this.TransitionDelay = 3f;
+        this.InTransition = false;
+        
 
         this.SetTimeBetweenBulletShoots(0.15f);
         this.SetTimeBetweenMissileShoots(1f);
@@ -198,6 +181,7 @@ public class Asimov : Ship
         RestartShield();
         Shoot();
         UsePowerUp();
+        CheckMode();
     }
 
     public override void Move() {
@@ -289,32 +273,61 @@ public class Asimov : Ship
         }
     }
 
-    private void CheckSprite() {
-        if (Input.GetKeyDown(KeyCode.LeftShift)) {
-            if (this.ActualSprite == this.MySprites[0]) {
-                this.ActualSprite = this.MySprites[1];
-                ChangeMode(true, 1);
+    private void CheckMode() {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !this.InTransition) {
+            GameObject transition = this.GetPool().Spawn("TransitionAnimation", this.transform.position, this.transform.rotation);
+            transition.transform.parent = this.transform;
+            if(Mode == "Attack") {
+                this.CanShoot = false;
+                this.CanShootMissile = false;
+                Invoke("ChangeToDefenseMode", this.TransitionDelay);
             }
             else {
-                this.ActualSprite = this.MySprites[0];
-                ChangeMode(false, 0);
-            }
-
-            this.Img.sprite = this.ActualSprite;
-
+                this.CanShoot = false;
+                this.CanShootMissile = false;
+                Invoke("ChangeToAttackMode", this.TransitionDelay);
+            }            
         }
     }
 
-    private void ChangeMode(bool value, int sprite) {
-        this.ActualSprite = this.MySprites[sprite];
-        this.AtackCollider.enabled = !value;
+    private void ChangeToDefenseMode() {
+        this.MyAnimator.SetTrigger("DefenseState");
+        this.Mode = "Defense";
+        ModifyValuesWithTransitions(this.Mode);
+        this.ChangeCollidersAndEndTransition(true);
+    }
+
+    private void ChangeToAttackMode() {
+        this.MyAnimator.SetTrigger("AttackState");
+        this.Mode = "Attack";
+        ModifyValuesWithTransitions(this.Mode);
+        this.ChangeCollidersAndEndTransition(false);
+    }
+
+    private void ModifyValuesWithTransitions(string mode) {
+        if(mode == "Attack") {
+            this.TimeBetweenBulletShoots /= (TransitionValueModifier * 2);
+            this.SetVelocity(this.GetVelocity() / TransitionValueModifier);
+        }
+        else {
+            this.TimeBetweenBulletShoots *= (TransitionValueModifier * 2);
+            this.RefillHealth(this.HitPoints * 2);
+            this.SetVelocity(this.GetVelocity() * TransitionValueModifier);
+        }
+    }
+
+    private void ChangeCollidersAndEndTransition(bool value) {        
         this.DefenseCollider.enabled = value;
+        this.AtackCollider.enabled = !value;
         this.CanShootMissile = !value;
-    }   
+        this.InTransition = false;
+        this.CanShoot = true;
+        //Debug.Log($"HitPoints {this.HitPoints} -- Vel {this.GetVelocity()} -- TimeBtwBullets {this.TimeBetweenBulletShoots}");
+    }
 
     
     public override void Shoot() {
-        if (this.RemainTimeForShootBullet <= 0) {
+        if (this.RemainTimeForShootBullet <= 0 && this.CanShoot) {
             if (Input.GetButton("Fire1")) {
                 ShootBullet();
                 ShootMicroBullet();
@@ -342,7 +355,8 @@ public class Asimov : Ship
 
     public override void ControlOtherCollision(Collider2D collision) {
         if(collision.gameObject.tag == "Enemy") {
-            Die();
+            this.HitPoints = 0;
+            Die();            
         }
     }
 
@@ -372,6 +386,7 @@ public class Asimov : Ship
     }
 
     public override void Die() {
+        this.ControlHealthBar();
         this.SetIsAlive(false);
         PlayExplosion();
         this.GetCameraShake().UltraShake();        

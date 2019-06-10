@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 156526281}
   - component: {fileID: 156526282}
   - component: {fileID: 156526283}
+  - component: {fileID: 156526284}
   m_Layer: 10
   m_Name: Shield
   m_TagString: Untagged
@@ -440,6 +441,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!95 &156526284
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156526278}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fb09574b6c318654aabeeee0a671db34, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &184795428
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,16 +852,9 @@ MonoBehaviour:
     Name: PrototypeLevel
     JoinWaves:
     - Wave:
-      - {fileID: 11400000, guid: 142ba3f9b7a25fe42b57bef25ee7e21a, type: 2}
-      - {fileID: 11400000, guid: a2a763a8b65127d43a0f96d79afe6e38, type: 2}
-      - {fileID: 11400000, guid: f26067e84a206294fa00d51905af395f, type: 2}
-      - {fileID: 11400000, guid: 2591faef69d1b0c42887b0a8df021942, type: 2}
-    - Wave:
-      - {fileID: 11400000, guid: 142ba3f9b7a25fe42b57bef25ee7e21a, type: 2}
-      - {fileID: 11400000, guid: a2a763a8b65127d43a0f96d79afe6e38, type: 2}
-      - {fileID: 11400000, guid: f26067e84a206294fa00d51905af395f, type: 2}
-      - {fileID: 11400000, guid: 2591faef69d1b0c42887b0a8df021942, type: 2}
-    NextWaveSpawnTime: 0400000004000000
+      - {fileID: 11400000, guid: f94b74e3d2ee4af409063d55aeb9dad6, type: 2}
+      - {fileID: 11400000, guid: 943339553a27a704b9a1719da6af4d25, type: 2}
+    NextWaveSpawnTime: 04000000
 --- !u!4 &417064150
 Transform:
   m_ObjectHideFlags: 0
@@ -16714,7 +16727,7 @@ MonoBehaviour:
     poolSize: 2
   - tag: PowerUpBigShield
     preFab: {fileID: 308711585691917192, guid: 415e174407643db4da668dbe2aaf2a9f, type: 3}
-    poolSize: 4
+    poolSize: 1
   - tag: ParticleAnimation
     preFab: {fileID: 1860339442852148, guid: 8200904966a577f4e9f9410c9374a6be, type: 3}
     poolSize: 4
@@ -16725,7 +16738,7 @@ MonoBehaviour:
   - tag: PowerUpRestoreHealth
     preFab: {fileID: 8892482397063816600, guid: f394430464aad214a9ed4b1c81a2a0ee,
       type: 3}
-    poolSize: 4
+    poolSize: 1
   - tag: PowerUpGodMode
     preFab: {fileID: 3734262768711876987, guid: 5eb9c093550bd5c40a2ec11beaea23a3,
       type: 3}
@@ -16744,7 +16757,7 @@ MonoBehaviour:
     poolSize: 2
   - tag: PowerUpDrone
     preFab: {fileID: 50699389041396771, guid: 2fedf04c3a933d849a6e665c95ae45ba, type: 3}
-    poolSize: 4
+    poolSize: 1
   - tag: PowerUpFrontalShieldShoot
     preFab: {fileID: 1425107281294023121, guid: 059ae355eebeaa44eacdf72abd7d1f0a,
       type: 3}
@@ -16779,6 +16792,10 @@ MonoBehaviour:
   - tag: MicroBulletPlayer
     preFab: {fileID: 33803857936573062, guid: cf47733cb4c2bb04ab05146019e11c17, type: 3}
     poolSize: 40
+  - tag: TransitionAnimation
+    preFab: {fileID: 6125241571670018729, guid: 5d7aec208650aaa41a7e4994063f6e69,
+      type: 3}
+    poolSize: 2
 --- !u!4 &1789105253
 Transform:
   m_ObjectHideFlags: 0
@@ -16972,7 +16989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a686bcd2a60eb4b4bb50d9c68aa5abb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitPoints: 200
+  OriginalHitPoints: 100
   Velocity: {x: 5, y: 5}
   HealthBar: {fileID: 184795430}
   DeathSFX: {fileID: 8300000, guid: ace56a30ec3a27a4e8a91cf217adabfa, type: 3}
@@ -16989,9 +17006,6 @@ MonoBehaviour:
   - {fileID: 660121579}
   RightMicroBulletsShootsPositions:
   - {fileID: 355874007}
-  MySprites:
-  - {fileID: 21300000, guid: d46ea8d92852c224d8f6a0e4cf35436d, type: 3}
-  - {fileID: 21300000, guid: ffcaa38c477324349804a9e6ef5a0165, type: 3}
 --- !u!50 &2017189203
 Rigidbody2D:
   serializedVersion: 4

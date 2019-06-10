@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0921b40dc2a2e4e8f45205c56fb1ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitPoints: 200
+  OriginalHitPoints: 200
   Velocity: {x: 2, y: 2}
   HealthBar: {fileID: 8685241765622741557}
   DeathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}

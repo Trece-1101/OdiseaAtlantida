@@ -5,7 +5,7 @@ using UnityEngine;
 public class Missile : Proyectile
 {
     #region "Atributos"
-    private Vector2 Aceleration;
+    [SerializeField] private Vector2 Aceleration;
     #endregion
 
     #region "Setters y Getters"
@@ -19,9 +19,9 @@ public class Missile : Proyectile
 
     #region "Metodos"
     private void Start() {
-        SetSpeed(new Vector2(4f, 4f));
+        //SetSpeed(new Vector2(4f, 4f));
         SetInitialSpeed(this.GetSpeed());
-        this.Aceleration = new Vector2(8f, 8f);
+        //this.Aceleration = new Vector2(8f, 8f);
     }
 
     public override void Update() {
@@ -33,9 +33,10 @@ public class Missile : Proyectile
 
         this.SetSpeed(this.GetSpeed() + this.Aceleration * Time.deltaTime);
         transform.Translate(Vector2.right * ((this.GetSpeed() * Time.deltaTime) + ((this.Aceleration * Mathf.Pow(Time.deltaTime, 2)) / 2)));
-
+        //Debug.Log(this.GetSpeed());
         //transform.Translate(Vector2.right * this.GetSpeed() * Time.deltaTime);
         Invoke("Die", GetLifeTime());
+        
         
     }
     #endregion

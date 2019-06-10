@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4305468382194964460}
   - component: {fileID: 4007432467749424440}
   - component: {fileID: 8801759456411616863}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: CanvasHealthEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 5411175405488627465}
   - component: {fileID: 8157926543030416024}
   - component: {fileID: 8092842108631555717}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: EnemyHealthBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 5061275838386163000}
   - component: {fileID: 8378876099499761736}
   - component: {fileID: 1434080657465989382}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TankBandit01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,8 +245,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1913117485
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ea8651afe3ea5404ebe900bde8ffc6d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb133968ae96194d8958b8239098823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitPoints: 100
+  OriginalHitPoints: 150
   Velocity: {x: 2, y: 2}
   HealthBar: {fileID: 5626470345222717684}
   DeathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}
@@ -347,7 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5061275838501067634}
   - component: {fileID: 5061275838501067635}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5061275839338752729}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ShootPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 7668459328021585480}
   - component: {fileID: 6438799922869905181}
   - component: {fileID: 5626470345222717684}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: EnemyHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

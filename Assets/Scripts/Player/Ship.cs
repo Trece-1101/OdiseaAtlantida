@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Ship : MonoBehaviour, IAttack
+public abstract class Ship : MonoBehaviour, IAttack, IDefense
 {
     #region "Atributos Serializados"
     [Header("General")]
-    [SerializeField] private float HitPoints;
+    [SerializeField] private float OriginalHitPoints;
     [SerializeField] private Vector2 Velocity;
     [SerializeField] private Image HealthBar;
 
@@ -28,7 +28,6 @@ public abstract class Ship : MonoBehaviour, IAttack
 
     #region "Atributos"
     private bool IsAlive;
-    private float StartHealth;
     private bool IsVulnerable;
 
     public float TimeBetweenBulletShoots { get; set; }
@@ -38,6 +37,8 @@ public abstract class Ship : MonoBehaviour, IAttack
     public bool CanShoot { get; set; }
     public bool CanShootMissile { get; set; }
     public bool CanMove { get; set; }
+    public float HitPoints { get; set; }
+    
 
     private Quaternion MyRotation;
     private Quaternion MyBulletRotation;
@@ -66,11 +67,11 @@ public abstract class Ship : MonoBehaviour, IAttack
         this.HitPoints = value;
     }
 
-    public float GetStartHealth() {
-        return this.StartHealth;
+    public float GetOriginalHitPoints() {
+        return this.OriginalHitPoints;
     }
-    public void SetStartHealth(float value) {
-        this.StartHealth = value;
+    public void SetOriginalHitPoints(float value) {
+        this.OriginalHitPoints = value;
     }
 
     public Vector2 GetVelocity() {
@@ -270,7 +271,7 @@ public abstract class Ship : MonoBehaviour, IAttack
 
         this.DificultyModifier = PlayerPrefController.GetDificultyModifier();
 
-        this.StartHealth = this.HitPoints;
+        this.HitPoints = this.OriginalHitPoints;
 
         if(this.ObjectPool != null) {
             this.PowerUpsNames = this.ObjectPool.GetComponentInChildren<ObjectPool>().GetPrefabsPowerUps();
@@ -283,7 +284,7 @@ public abstract class Ship : MonoBehaviour, IAttack
     public abstract void CoAwake();
     public abstract void Shoot();
     public abstract void CheckRotation();
-    public abstract void Die();
+    public virtual void Die() { }
     public virtual void PlayImpactSFX() { }
     public virtual void ControlOtherCollision(Collider2D collision) { }
     public virtual void Move() { }
@@ -361,25 +362,25 @@ public abstract class Ship : MonoBehaviour, IAttack
     }
 
     public void ReceiveDamage(DamageControl damageControl) {
-        this.SetHitPoints(this.GetHitPoints() - damageControl.GetDamage());
+        this.HitPoints = this.HitPoints - damageControl.GetDamage();
 
         this.ControlHealthBar();
 
-        if(this.GetHitPoints() <= 0) {
-            Die();
+        if(this.HitPoints <= 0) {
+            this.Die();
         }
     }
 
     public void RefillHealth(float value) {
-        this.SetHitPoints(this.GetHitPoints() + value);
-        if(this.GetHitPoints() > this.StartHealth) {
-            this.SetHitPoints(this.StartHealth);
+        this.HitPoints = this.HitPoints + value;
+        if (this.HitPoints > this.OriginalHitPoints) {
+            this.HitPoints = this.OriginalHitPoints;
         }
         this.ControlHealthBar();
     }
 
-    private void ControlHealthBar() {
-        this.HealthBar.fillAmount = this.HitPoints / this.StartHealth;
+    protected void ControlHealthBar() {
+        this.HealthBar.fillAmount = this.HitPoints / this.OriginalHitPoints;
     }
 
     private void ShakeThatCamera() {

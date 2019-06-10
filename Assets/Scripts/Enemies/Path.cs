@@ -36,8 +36,8 @@ public class Path : MonoBehaviour
             MoveToPoint(wayPointIndex);
             if (wayPointIndex == 2) {
                 //enemy.SetIsVulnerable(true);
-                //enemy.CanShoot = true;
-                //enemy.CanShootMissile = true;
+                enemy.CanShoot = true;
+                enemy.CanShootMissile = true;
             }
         }
         else {

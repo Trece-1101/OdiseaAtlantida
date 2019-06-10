@@ -39,7 +39,6 @@ public class Enemy : Ship
 
     #region "Metodos"
     public override void CoAwake() {
-        //this.CanShoot = true;
         this.SetIsAlive(true);
         this.SetIsVulnerable(true);
 
@@ -52,7 +51,7 @@ public class Enemy : Ship
         this.CanShootMissile = canShootMissile;
         this.SetMyBulletVFX("EnemyBullet");
         this.SetMyMissileVFX("EnemyMissile");
-        this.GetGameProg().AddEnemyToCount();   
+        this.GetGameProg().AddEnemyToCount();
     }       
 
     private void Update() {

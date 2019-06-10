@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : MonoBehaviour, IAttack
+public class Shield : MonoBehaviour, IAttack, IDefense
 {
 
     #region "Atritutos Serializados"
@@ -14,9 +14,9 @@ public class Shield : MonoBehaviour, IAttack
     private int PositionCounter;
     private List<Vector3> Positions = new List<Vector3>();
     private List<Quaternion> Rotations = new List<Quaternion>();
-    private float HitPoints;
+    public float HitPoints { get; set; }
+    public float OriginalHitPoints { get; set; }
     private bool IsEnable;
-    private float OriginalHitPoints;
     public float TimeBetweenBulletShoots { get; set; }
     public float TimeBetweenMissileShoots { get; set; }
     public float RemainTimeForShootBullet { get; set; }
@@ -30,6 +30,7 @@ public class Shield : MonoBehaviour, IAttack
     private ObjectPool objectPool;
     public DamageControl DamageCtrl { get; set; }    
     private Asimov asimov;
+    private Animator MyAnimator;
     #endregion
 
     #region "Setters y Getters"
@@ -52,21 +53,7 @@ public class Shield : MonoBehaviour, IAttack
     }
     public void SetRotations(List<Quaternion> value) {
         this.Rotations = value;
-    }
-
-    public float GetHitPoints() {
-        return this.HitPoints;
-    }
-    public void SetHitPoints(float value) {
-        this.HitPoints = value;
-    }
-
-    public float GetOriginalsHitPoints() {
-        return this.HitPoints;
-    }
-    public void SetOriginalsHitPoints(float value) {
-        this.HitPoints = value;
-    }
+    }    
 
     public bool GetIsEnable() {
         return this.IsEnable;
@@ -80,12 +67,12 @@ public class Shield : MonoBehaviour, IAttack
     private void Start() {
         this.asimov = FindObjectOfType<Asimov>();
         this.objectPool = ObjectPool.Instance;
+        this.MyAnimator = GetComponent<Animator>();
 
         TimeBetweenBulletShoots = 0.8f;
-        this.HitPoints = 60;
-        this.OriginalHitPoints = this.HitPoints;
+        this.OriginalHitPoints = 150;
+        this.HitPoints = this.OriginalHitPoints;
 
-        //this.CanShoot = true;
         this.RemainTimeForShootBullet = this.TimeBetweenBulletShoots;
         this.RemainTimeForShootMissile = this.TimeBetweenMissileShoots;
 
@@ -132,18 +119,39 @@ public class Shield : MonoBehaviour, IAttack
         this.DamageCtrl = collision.gameObject.GetComponent<DamageControl>();
         if (this.DamageCtrl != null) {
             collision.gameObject.SetActive(false);
-            this.HitPoints -= this.DamageCtrl.GetDamage();
-            ControlShieldLife();
+            ReceiveDamage(this.DamageCtrl);
         }
 
     }
 
+    public void ReceiveDamage(DamageControl damageControl) {
+        this.HitPoints -= this.DamageCtrl.GetDamage();
+        ControlShieldLife();
+    }
+
     private void ControlShieldLife() {
+        var lifePercentage = this.HitPoints / this.OriginalHitPoints;
         if (this.HitPoints <= 0) {
             this.CanShoot = false;
             this.IsEnable = false;
-            this.gameObject.SetActive(false);
+            this.Die();
         }
+
+        if (lifePercentage > 0.75) {
+            this.MyAnimator.SetTrigger("HighLife");
+        }
+        else if (lifePercentage < 0.75 && lifePercentage > 0.25) {
+            this.MyAnimator.SetTrigger("HalfLife");
+        }
+        else {
+            this.MyAnimator.SetTrigger("LowLife");
+        }
+
+        
+    }
+
+    public void Die() {
+        this.gameObject.SetActive(false);
     }
 
     public void RestartShield() {
@@ -152,24 +160,24 @@ public class Shield : MonoBehaviour, IAttack
         this.gameObject.SetActive(true);
         this.transform.localPosition = this.Positions[0];
         this.transform.localRotation = this.Rotations[0];
-        this.NormalShield();
+        this.transform.localScale = new Vector3(1f, 1f, 1f);
+        this.HitPoints = this.OriginalHitPoints;
+        this.MyAnimator.SetTrigger("HighLife");
     }
 
-    public void NormalShield() {
-        this.transform.localScale = new Vector3(1f, 1f, 1f);
-        this.SetHitPoints(this.OriginalHitPoints);
+    public void NormalShield() {                
+        this.RestartShield();
     }
 
     public void BigShield() {
         this.RestartShield();
         this.transform.localScale = new Vector3(2.5f, 2.5f, 1f);
-        this.SetHitPoints(this.OriginalHitPoints * 2);
+        this.HitPoints = this.OriginalHitPoints * 2;
     }
 
     public void Shoot() {  
         if (CanShoot) {
             for (int i = 0; i < this.ShootsPositions.Count; i++) {
-                //objectPool.Spawn("PlayerBullet", this.ShootsPositions[i].position, asimov.transform.rotation);
                 RedirectShoot(this.ShootsPositions[i]);
             }
         }
