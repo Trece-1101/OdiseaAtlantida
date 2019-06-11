@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OriginalHitPoints: 150
-  Velocity: {x: 2, y: 2}
+  Velocity: {x: 100, y: 100}
   HealthBar: {fileID: 5626470345222717684}
   DeathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}
   ShootBulletSFX: {fileID: 8300000, guid: a955a358a4dec19449ea8905dffb8585, type: 3}
@@ -295,6 +295,10 @@ MonoBehaviour:
   MissileShootsPositions: []
   LeftMicroBulletsShootsPositions: []
   RightMicroBulletsShootsPositions: []
+  ProjectileNames:
+  - TankBullet
+  - EnemyMissileEasy
+  - EnemyMicroBulletEasy
   Reward: 200
   PowerUpChance: 0.2
   timeBtwBulletS: 0.5

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8836397359085765461}
   - component: {fileID: 3752830484796226221}
   m_Layer: 12
-  m_Name: MissileEnemy
+  m_Name: MissileEnemyEasy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c654cb67e43e1c546b3645643399c4b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: {x: 2, y: 2}
-  Aceleration: {x: 5, y: 5}
+  Speed: {x: 100, y: 100}
+  Aceleration: {x: 150, y: 150}
 --- !u!114 &3107400419797012999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462d9f3a90a5b5e44b7daac8b665119c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
+  Damage: 15
 --- !u!50 &8836397359085765461
 Rigidbody2D:
   serializedVersion: 4

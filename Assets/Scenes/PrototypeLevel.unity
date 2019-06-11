@@ -136,7 +136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11936807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.19, y: 0.04, z: 0}
+  m_LocalPosition: {x: 0.39, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2017189201}
@@ -5263,7 +5263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 671980424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.19, y: 0.04, z: 0}
+  m_LocalPosition: {x: -0.39, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2017189201}
@@ -16701,7 +16701,7 @@ MonoBehaviour:
     preFab: {fileID: 8144489530527584077, guid: 45e95d7765d2e404c94fc16558020623,
       type: 3}
     poolSize: 100
-  - tag: EnemyBullet
+  - tag: EnemyBulletEasy
     preFab: {fileID: 1181253783709301941, guid: aeec047bc770b994884a08a461f1eb55,
       type: 3}
     poolSize: 50
@@ -16709,7 +16709,7 @@ MonoBehaviour:
     preFab: {fileID: 2453660469088560295, guid: e14ae8c470e9878489dbcee15cfb711b,
       type: 3}
     poolSize: 10
-  - tag: EnemyMissile
+  - tag: EnemyMissileEasy
     preFab: {fileID: 8256868047263212533, guid: 9af01d463494fa64883b849bf6f5931f,
       type: 3}
     poolSize: 20
@@ -16796,6 +16796,14 @@ MonoBehaviour:
     preFab: {fileID: 6125241571670018729, guid: 5d7aec208650aaa41a7e4994063f6e69,
       type: 3}
     poolSize: 2
+  - tag: EnemyMicroBulletEasy
+    preFab: {fileID: 1181253783709301941, guid: 79aa3412b3765634494b6f9c924784d6,
+      type: 3}
+    poolSize: 50
+  - tag: EnemyBombEasy
+    preFab: {fileID: 1181253783709301941, guid: 3a19b56c018353c4b8cc82820eab04f6,
+      type: 3}
+    poolSize: 10
 --- !u!4 &1789105253
 Transform:
   m_ObjectHideFlags: 0
@@ -16990,7 +16998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OriginalHitPoints: 100
-  Velocity: {x: 5, y: 5}
+  Velocity: {x: 200, y: 200}
   HealthBar: {fileID: 184795430}
   DeathSFX: {fileID: 8300000, guid: ace56a30ec3a27a4e8a91cf217adabfa, type: 3}
   ShootBulletSFX: {fileID: 8300000, guid: d0031e433986ffd499ada6b45106c721, type: 3}
@@ -17006,6 +17014,10 @@ MonoBehaviour:
   - {fileID: 660121579}
   RightMicroBulletsShootsPositions:
   - {fileID: 355874007}
+  ProjectileNames:
+  - PlayerBullet
+  - PlayerMissile
+  - MicroBulletPlayer
 --- !u!50 &2017189203
 Rigidbody2D:
   serializedVersion: 4

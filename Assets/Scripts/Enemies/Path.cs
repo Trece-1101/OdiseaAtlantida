@@ -10,6 +10,13 @@ public class Path : MonoBehaviour
     private float moveSpeed;
     private int wayPointIndex = 0;
     private Enemy enemy;
+    private GameProgram GameProg;
+    private float Scale;
+
+    private void Awake() {
+        this.GameProg = FindObjectOfType<GameProgram>();
+        this.Scale = this.GameProg.GetScale().x;
+    }
 
     private void Start() {
         enemy = gameObject.GetComponentInParent(typeof(Enemy)) as Enemy;
@@ -17,9 +24,9 @@ public class Path : MonoBehaviour
         enemy.CanShootMissile = false;
         wayPoints = wave.GetPathPrefab();
         transform.position = wayPoints[wayPointIndex].transform.position;
-        wave.SetMoveSpeed(enemy.GetVelocity().x);
+        wave.SetMoveSpeed(enemy.GetVelocity());
         moveSpeed = wave.GetMoveSpeed();
-        
+        //Debug.Log(moveSpeed);
     }
 
     private void Update() {
@@ -36,8 +43,8 @@ public class Path : MonoBehaviour
             MoveToPoint(wayPointIndex);
             if (wayPointIndex == 2) {
                 //enemy.SetIsVulnerable(true);
-                //enemy.CanShoot = true;
-                //enemy.CanShootMissile = true;
+                enemy.CanShoot = true;
+                enemy.CanShootMissile = true;
             }
         }
         else {
@@ -47,9 +54,10 @@ public class Path : MonoBehaviour
     } 
 
     private void MoveToPoint(int index) {
-        var targetPosition = wayPoints[index].transform.position;
-        var speed = moveSpeed * Time.deltaTime;
-        this.transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed);
+        var targetPosition = wayPoints[index].transform.position;     
+        this.transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime * this.Scale);
+        
+
         if (this.transform.position == targetPosition) {
             wayPointIndex++;
         }

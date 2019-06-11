@@ -18,6 +18,10 @@ public class GameProgram : MonoBehaviour
     private float padding;
     private float scrollSpeed;
 
+    private Vector2 PhysicSize = new Vector2(600f, 500f); // 500 metros ancho x 600 metros alto
+    private Vector2 ScreenSize = new Vector2(12f, 10f); // viewport ancho x viewport alto
+    private Vector2 Scale;
+
     private int Score;
     private int KillCount;
     private int TotalEnemies;
@@ -68,6 +72,13 @@ public class GameProgram : MonoBehaviour
     public void SetScore(int value) {
         this.Score = value;
     }
+
+    public Vector2 GetScale() {
+        return this.Scale;
+    }
+    public void SetScale(Vector2 value) {
+        this.Scale = value;
+    }
     #endregion
 
     #region "Referencias en Cache"
@@ -80,7 +91,7 @@ public class GameProgram : MonoBehaviour
     #region "Metodos"
     private void Awake() {
         SetScrollSpeed(-2.5f);
-
+        Scale = this.ScreenSize / this.PhysicSize; // 0,02 worldunits del viewport equivalen a 1 metro => 600 m = 12 WU // 500 m = 10WU
 
         if (instance == null) {
             instance = this;

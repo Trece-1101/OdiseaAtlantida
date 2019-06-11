@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1792358051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.245, z: 0}
+  m_LocalPosition: {x: 0, y: 0.215, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1050599874837932562}
@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a8dde19a1eb3c4a9247e33fae6883c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalHitPoints: 60
-  Velocity: {x: 1.4, y: 1.4}
+  OriginalHitPoints: 50
+  Velocity: {x: 70, y: 70}
   HealthBar: {fileID: 2324842410490345677}
   DeathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}
   ShootBulletSFX: {fileID: 8300000, guid: a955a358a4dec19449ea8905dffb8585, type: 3}
@@ -139,8 +139,12 @@ MonoBehaviour:
   MissileShootsPositions: []
   LeftMicroBulletsShootsPositions: []
   RightMicroBulletsShootsPositions: []
+  ProjectileNames:
+  - EnemyBulletEasy
+  - EnemyMissileEasy
+  - EnemyMicroBulletEasy
   Reward: 120
-  PowerUpChance: 1
+  PowerUpChance: 0.1
   timeBtwBulletS: 1.2
   timeBtwMissileS: 1.5
   canShootMissile: 0

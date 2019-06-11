@@ -160,16 +160,19 @@ public class Asimov : Ship
         
 
         this.SetTimeBetweenBulletShoots(0.15f);
-        this.SetTimeBetweenMissileShoots(1f);
+        this.SetTimeBetweenMissileShoots(1.5f);
         this.RemainTimeForShootBullet = this.GetTimeBetweenBulletShoots();
         this.RemainTimeForShootMissile = this.GetTimeBetweenMissileShoots();
         this.CanShootMissile = true;
         this.CanShoot = true;
         this.IsCloned = false;
         this.CanRotate = true;
-        this.SetMyBulletVFX("PlayerBullet");
-        this.SetMyMissileVFX("PlayerMissile");
-        this.SetMyMicroBulletsVFX("MicroBulletPlayer");
+        //this.SetMyBulletVFX("PlayerBullet");
+        //this.SetMyMissileVFX("PlayerMissile");
+        //this.SetMyMicroBulletsVFX("MicroBulletPlayer");
+        this.SetMyBulletVFX(this.GetProjectileNames()[0]);
+        this.SetMyMissileVFX(this.GetProjectileNames()[1]);
+        this.SetMyMicroBulletsVFX(this.GetProjectileNames()[2]);
     }
 
    
@@ -188,19 +191,18 @@ public class Asimov : Ship
         var movementX = Input.GetAxis("Horizontal"); // -1 a 0 => Izquierda -- 0 => Sin Movimiento (No Input) -- 0 a 1 => Derecha
         var movementY = Input.GetAxis("Vertical"); // -1 a 0 => Abajo -- 0 => Sin Movimiento (No Input) -- 0 a 1 => Arriba               
 
-
         // d = v*t
         // si el input = 0 --> deltaMov = 0
         var deltaX = movementX * GetVelocity().x * Time.deltaTime;
         var deltaY = movementY * GetVelocity().y * Time.deltaTime;
 
-        //Debug.Log($"MovX {movementX} -- MovY {movementY}");
-        //Debug.Log($"DeltaX {deltaX} -- DeltaY {deltaY}");
+        //Debug.Log($"MovX {movementX} m/s -- MovY {movementY} m/s");
+        //Debug.Log($"DeltaX {deltaX} m -- DeltaY {deltaY} m");
 
         // proxima pos = posicion actual + deltaMov -- bloqueo mi proxima posicion para que no pueda avanzar mas alla de los margenes
         // pos(n) = pos(n-1) + v*t -- v*t = deltaMov
-        var nextPosX = Mathf.Clamp(transform.position.x + deltaX, this.GetGameProg().GetLeftBorder(), this.GetGameProg().GetRightBorder());
-        var nextPosY = Mathf.Clamp(transform.position.y + deltaY, this.GetGameProg().GetUpBorder(), this.GetGameProg().GetDownBorder());
+        var nextPosX = Mathf.Clamp(transform.position.x + deltaX * this.GetGameProg().GetScale().x, this.GetGameProg().GetLeftBorder(), this.GetGameProg().GetRightBorder());
+        var nextPosY = Mathf.Clamp(transform.position.y + deltaY * this.GetGameProg().GetScale().y, this.GetGameProg().GetUpBorder(), this.GetGameProg().GetDownBorder());
 
         Vector2 nextPosition = new Vector2(nextPosX, nextPosY);
 

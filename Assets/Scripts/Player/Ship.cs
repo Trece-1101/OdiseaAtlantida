@@ -23,7 +23,7 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
     [SerializeField] private List<Transform> MissileShootsPositions;
     [SerializeField] private List<Transform> LeftMicroBulletsShootsPositions;
     [SerializeField] private List<Transform> RightMicroBulletsShootsPositions;
-    
+    [SerializeField] private List<String> ProjectileNames;
     #endregion
 
     #region "Atributos"
@@ -249,6 +249,13 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
 
     public float GetDificultyModifier() {
         return this.DificultyModifier;
+    }
+
+    public List<String> GetProjectileNames() {
+        return this.ProjectileNames;
+    }
+    public void SetProjectileNames(List<string> value) {
+        this.ProjectileNames = value;
     }
     #endregion
 

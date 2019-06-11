@@ -49,8 +49,13 @@ public class Enemy : Ship
         this.RemainTimeForShootBullet = this.GetTimeBetweenBulletShoots();
         this.RemainTimeForShootMissile = this.GetTimeBetweenMissileShoots();
         this.CanShootMissile = canShootMissile;
-        this.SetMyBulletVFX("EnemyBullet");
-        this.SetMyMissileVFX("EnemyMissile");
+        //this.SetMyBulletVFX("EnemyBullet");
+        //this.SetMyMissileVFX("EnemyMissile");
+
+        this.SetMyBulletVFX(this.GetProjectileNames()[0]);
+        this.SetMyMissileVFX(this.GetProjectileNames()[1]);
+        this.SetMyMicroBulletsVFX(this.GetProjectileNames()[2]);
+
         this.GetGameProg().AddEnemyToCount();
     }       
 

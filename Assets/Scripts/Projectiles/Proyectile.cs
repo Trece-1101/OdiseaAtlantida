@@ -17,6 +17,7 @@ public abstract class Proyectile : MonoBehaviour
     #region "Referencias en Cache"
     private DamageControl DamageCtrl;
     private Enemy Shooter;
+    private GameProgram GamePrg;
     #endregion
 
     #region "Setters/Getters"
@@ -62,11 +63,18 @@ public abstract class Proyectile : MonoBehaviour
         this.Shooter = value;
     }
 
+    public GameProgram GetGameProg() {
+        return this.GamePrg;
+    }
+    public void SetGameProg(GameProgram value) {
+        this.GamePrg = value;
+    }
     #endregion
 
     #region "Metodos"
     private void Awake() {
         this.DamageCtrl = GetComponent<DamageControl>();
+        this.GamePrg = FindObjectOfType<GameProgram>();
         //this.DamageCtrl.SetDamage(this.Damage);
 
         this.LifeTime = 5f;
@@ -78,8 +86,10 @@ public abstract class Proyectile : MonoBehaviour
         CancelInvoke();
     }
 
-    public virtual void Die() {        
-        gameObject.SetActive(false);
+    public virtual void Die() {
+        if (gameObject.activeSelf) {
+            gameObject.SetActive(false);
+        }
         this.Speed = this.InitialSpeed;        
     }
     #endregion
