@@ -5203,6 +5203,9 @@ MonoBehaviour:
       - {fileID: 11400000, guid: f94b74e3d2ee4af409063d55aeb9dad6, type: 2}
       - {fileID: 11400000, guid: 943339553a27a704b9a1719da6af4d25, type: 2}
     NextWaveSpawnTime: 0200000003000000040000000400000006000000060000000a0000000a0000000a0000000a0000000a000000
+  SuicideEnemyPrefab:
+  - {fileID: 1597402426284869519, guid: bb46b4dba22ed1b4381570a242548b4a, type: 3}
+  - {fileID: 1597402426284869519, guid: 268cf74541f582846821e90024f74a66, type: 3}
 --- !u!4 &681197735
 Transform:
   m_ObjectHideFlags: 0
@@ -5847,9 +5850,18 @@ MonoBehaviour:
     Name: PrototypeLevel
     JoinWaves:
     - Wave:
-      - {fileID: 11400000, guid: f94b74e3d2ee4af409063d55aeb9dad6, type: 2}
-      - {fileID: 11400000, guid: 769a9850679fe864bb4f97d885595312, type: 2}
+      - {fileID: 11400000, guid: c06b16b508a43944caabb25251233348, type: 2}
+      - {fileID: 11400000, guid: 0d05724de1f8c6b4fb0f261f9c8b4bc1, type: 2}
+      - {fileID: 11400000, guid: 40d5bd81fdcaa0b4888678f240180dc8, type: 2}
+      - {fileID: 11400000, guid: 3fb3b94e2ca42b5419cd026ad038bb4d, type: 2}
+      - {fileID: 11400000, guid: 547d495284efe2c4e9b204b8f5789ca6, type: 2}
+      - {fileID: 11400000, guid: 4c558338626ccf044bf5d522f27ad008, type: 2}
+      - {fileID: 11400000, guid: 9df7433824891604a8b3a7f62039449b, type: 2}
+      - {fileID: 11400000, guid: 48e4b62a19ff4b94c990759db3fb1354, type: 2}
     NextWaveSpawnTime: 01000000
+  SuicideEnemyPrefab:
+  - {fileID: 1597402426284869519, guid: 268cf74541f582846821e90024f74a66, type: 3}
+  - {fileID: 1597402426284869519, guid: bb46b4dba22ed1b4381570a242548b4a, type: 3}
 --- !u!4 &872358778
 Transform:
   m_ObjectHideFlags: 0
@@ -16515,8 +16527,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelCompleteText: {fileID: 701509369}
   LevelDestroyedText: {fileID: 1371089888}
-  enemyPrefab: {fileID: 1597402426284869519, guid: bb46b4dba22ed1b4381570a242548b4a,
-    type: 3}
 --- !u!4 &1764410111
 Transform:
   m_ObjectHideFlags: 0
@@ -16727,26 +16737,26 @@ MonoBehaviour:
     poolSize: 2
   - tag: PowerUpBigShield
     preFab: {fileID: 308711585691917192, guid: 415e174407643db4da668dbe2aaf2a9f, type: 3}
-    poolSize: 1
+    poolSize: 100
   - tag: ParticleAnimation
     preFab: {fileID: 1860339442852148, guid: 8200904966a577f4e9f9410c9374a6be, type: 3}
     poolSize: 4
   - tag: PowerUpSpeedBoost
     preFab: {fileID: 5718502625238072738, guid: b228a6717ab78f540b69df7820e3d2db,
       type: 3}
-    poolSize: 5
+    poolSize: 100
   - tag: PowerUpRestoreHealth
     preFab: {fileID: 8892482397063816600, guid: f394430464aad214a9ed4b1c81a2a0ee,
       type: 3}
-    poolSize: 5
+    poolSize: 100
   - tag: PowerUpGodMode
     preFab: {fileID: 3734262768711876987, guid: 5eb9c093550bd5c40a2ec11beaea23a3,
       type: 3}
-    poolSize: 5
+    poolSize: 100
   - tag: PowerUpSpiralShieldShoot
     preFab: {fileID: 8694400500531249270, guid: 4d8d555dc4359ef4eb8af68d42bf2dc3,
       type: 3}
-    poolSize: 5
+    poolSize: 100
   - tag: DroneBullet
     preFab: {fileID: 8703112367234461403, guid: 19aa4db164c73a141872b0bb615940d6,
       type: 3}
@@ -16757,11 +16767,11 @@ MonoBehaviour:
     poolSize: 2
   - tag: PowerUpDrone
     preFab: {fileID: 50699389041396771, guid: 2fedf04c3a933d849a6e665c95ae45ba, type: 3}
-    poolSize: 5
+    poolSize: 100
   - tag: PowerUpFrontalShieldShoot
     preFab: {fileID: 1425107281294023121, guid: 059ae355eebeaa44eacdf72abd7d1f0a,
       type: 3}
-    poolSize: 5
+    poolSize: 100
   - tag: AirMine
     preFab: {fileID: 2065733391340897782, guid: 24ff3edd8219b1848947e35cdc2c3639,
       type: 3}
@@ -16769,18 +16779,18 @@ MonoBehaviour:
   - tag: PowerUpAirMines
     preFab: {fileID: 8183382078870211457, guid: 95b8993ead3326240b836356b7fec8b6,
       type: 3}
-    poolSize: 5
+    poolSize: 100
   - tag: PowerUpBulletTime
     preFab: {fileID: 6024143572292091615, guid: 177d3e3d8b123614fa63d20e8c06c4a2,
       type: 3}
-    poolSize: 5
+    poolSize: 1
   - tag: AsimovClone
     preFab: {fileID: 8807959308874980800, guid: 3793b239ad7d3334b82743c64b5517dc,
       type: 3}
     poolSize: 2
   - tag: PowerUpClone
     preFab: {fileID: 879475099605472074, guid: 81056b8f5a0808847a7ce86c47545077, type: 3}
-    poolSize: 5
+    poolSize: 100
   - tag: EnemyImplosion
     preFab: {fileID: 3254958462037916847, guid: 1c7e9d658fc7346439a2e91cb4752553,
       type: 3}
@@ -16970,7 +16980,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017189199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1425591646}

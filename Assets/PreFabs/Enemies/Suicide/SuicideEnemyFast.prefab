@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1597402426284869506}
   - component: {fileID: 1597402426284869508}
   m_Layer: 11
-  m_Name: SuicideEnemy
+  m_Name: SuicideEnemyFast
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: -1913117485
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7ae990c6125a1904aaae63ac1b293c67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6b5c7d0dad57f4b4f99bf3ca3e3be26a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,8 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0921b40dc2a2e4e8f45205c56fb1ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalHitPoints: 200
-  Velocity: {x: 180, y: 180}
+  OriginalHitPoints: 180
+  Velocity: {x: 130, y: 130}
   HealthBar: {fileID: 8685241765622741557}
   DeathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}
   ShootBulletSFX: {fileID: 8300000, guid: a955a358a4dec19449ea8905dffb8585, type: 3}
@@ -143,8 +143,11 @@ MonoBehaviour:
   MissileShootsPositions: []
   LeftMicroBulletsShootsPositions: []
   RightMicroBulletsShootsPositions: []
-  ProjectileNames: []
-  Reward: 200
+  ProjectileNames:
+  - TankBullet
+  - EnemyMissileEasy
+  - EnemyMicroBulletEasy
+  Reward: 220
   PowerUpChance: 1
   timeBtwBulletS: 1
   timeBtwMissileS: 1

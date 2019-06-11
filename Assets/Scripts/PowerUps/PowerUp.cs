@@ -86,7 +86,7 @@ public abstract class PowerUp : MonoBehaviour
 
 
     private void OnEnable() {
-        SetSpeedChange();
+        SetSpeedChange();        
     }
 
     private void SetSpeedChange() {
@@ -139,13 +139,14 @@ public abstract class PowerUp : MonoBehaviour
                 
         this.Die();
     }
-
-
+ 
     public abstract void MakeYourMagic();
 
     protected void Die() {
         this.FirstContact = false;
-        this.gameObject.SetActive(false);
+        if (this.gameObject.activeSelf) {
+            this.gameObject.SetActive(false);
+        }
     }
 
 

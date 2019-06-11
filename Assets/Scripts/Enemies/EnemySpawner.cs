@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
 
     #region "Atributos Serializables"
     [SerializeField] private Formations FormationLists = new Formations();
+    [SerializeField] private List<GameObject> SuicideEnemyPrefab = null;
     #endregion
 
     #region "Atributos"
@@ -32,6 +33,10 @@ public class EnemySpawner : MonoBehaviour
     private bool Loop = false;
     private float WaitSeconds = 3;
     private bool IsLastFormation;
+    private float Timer;
+    private List<Vector3> InstantiatePoints = new List<Vector3>() { new Vector3(-12f, 8f, 0f), new Vector3(0f, 8f, 0f), new Vector3(-12f, 8f, 0f),
+                                                                    new Vector3(-12f, -8f, 0f), new Vector3(0f, -8f, 0f), new Vector3(-12f, -8f, 0f),
+                                                                    new Vector3(12f, 0f, 0f), new Vector3(-12f, 0f, 0f)};
     #endregion
 
     #region "Componentes en Cache"
@@ -102,11 +107,12 @@ public class EnemySpawner : MonoBehaviour
         this.BorderCtrl = FindObjectOfType<BordersControl>();
         this.BorderCtrl.DisableBorders();
         this.SpawnAudio = GetComponent<AudioSource>();
-
+        this.Timer = 0f;
         this.IsLastFormation = false;
     }
 
-    private IEnumerator Start() {
+    private IEnumerator Start() {        
+
         do {
             yield return StartCoroutine(SpawnFormations());
         } while (this.Loop);
@@ -154,7 +160,19 @@ public class EnemySpawner : MonoBehaviour
         
     }
 
+    private void Update() {
+        this.Timer += Time.deltaTime;
+        if(this.Timer >= 15f) {
+            InstantiateSuicide();
+            this.Timer = 0f;
+        }
+    }
 
+    private void InstantiateSuicide() {
+        int enemySelected = Random.Range(0, SuicideEnemyPrefab.Count);
+        int spawnPointSelected = Random.Range(0, InstantiatePoints.Count);
+        Instantiate(SuicideEnemyPrefab[enemySelected], InstantiatePoints[spawnPointSelected], Quaternion.identity);
+    }
 
     //private void DebugRazonar() {
     //    Debug.Log("Numero de formaciones " + FormationLists.JoinWaves.Count);
