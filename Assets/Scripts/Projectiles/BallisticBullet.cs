@@ -11,7 +11,7 @@ public class BallisticBullet : Proyectile {
 
     private void Start() {
         this.Player = FindObjectOfType<Asimov>();
-        SetInitialSpeed(this.GetSpeed());
+        SetInitialSpeed(this.GetSpeed() * this.GetGameProg().GetScale());
         Body = this.GetComponent<Rigidbody2D>();
         Initial = true;
 

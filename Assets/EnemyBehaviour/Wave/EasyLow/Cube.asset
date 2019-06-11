@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3689262514176be46ad0a11b360ba67f, type: 3}
+  m_Name: Cube
+  m_EditorClassIdentifier: 
+  enemyPrefab:
+  - {fileID: 1088062513839854488, guid: b2e3102d3b35c8448aa15c28ffe48bd0, type: 3}
+  - {fileID: 1088062513839854488, guid: 3e81559ea2188504ba968e37a9980f6a, type: 3}
+  - {fileID: 1088062513839854488, guid: 0980504a21f47864892ce37049acbd2a, type: 3}
+  - {fileID: 1050599874837932572, guid: ac474ca39c4de6f4fa9e9c0b3d233585, type: 3}
+  - {fileID: 1050599874837932572, guid: ce581f56cf76bba40b3c88c2a50314fa, type: 3}
+  - {fileID: 1050599874837932572, guid: 489a114ec6b689b4dbd952b8338aee6d, type: 3}
+  pathPrefab: {fileID: 722461080480794811, guid: dd1646d4182c1e546beefff9faab8522,
+    type: 3}
+  spawnRandomize: 0
+  numberOfEnemies: 1

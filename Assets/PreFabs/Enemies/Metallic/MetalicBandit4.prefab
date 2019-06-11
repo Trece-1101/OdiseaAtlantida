@@ -146,7 +146,7 @@ MonoBehaviour:
   - EnemyMissileEasy
   - EnemyMicroBulletEasy
   Reward: 200
-  PowerUpChance: 0.15
+  PowerUpChance: 0.18
   timeBtwBulletS: 1.2
   timeBtwMissileS: 2
   canShootMissile: 0

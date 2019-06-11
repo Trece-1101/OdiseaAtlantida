@@ -70,7 +70,7 @@ public class Shield : MonoBehaviour, IAttack, IDefense
         this.MyAnimator = GetComponent<Animator>();
 
         TimeBetweenBulletShoots = 0.8f;
-        this.OriginalHitPoints = 150;
+        this.OriginalHitPoints = 60;
         this.HitPoints = this.OriginalHitPoints;
 
         this.RemainTimeForShootBullet = this.TimeBetweenBulletShoots;
