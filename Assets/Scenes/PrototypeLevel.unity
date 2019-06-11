@@ -854,7 +854,9 @@ MonoBehaviour:
     - Wave:
       - {fileID: 11400000, guid: f94b74e3d2ee4af409063d55aeb9dad6, type: 2}
       - {fileID: 11400000, guid: 943339553a27a704b9a1719da6af4d25, type: 2}
-    NextWaveSpawnTime: 04000000
+      - {fileID: 11400000, guid: 769a9850679fe864bb4f97d885595312, type: 2}
+      - {fileID: 11400000, guid: ceed814fe5f147a408eae6f4fe54f443, type: 2}
+    NextWaveSpawnTime: 02000000
 --- !u!4 &417064150
 Transform:
   m_ObjectHideFlags: 0
@@ -16720,7 +16722,7 @@ MonoBehaviour:
   - tag: TankBullet
     preFab: {fileID: 4521033258433527842, guid: e27c5894cf091f94fb1cd1f895f92599,
       type: 3}
-    poolSize: 10
+    poolSize: 60
   - tag: PlayerDash
     preFab: {fileID: 3300969129214961028, guid: a6c825117fbb5e04e97eacb5191bbf1e,
       type: 3}

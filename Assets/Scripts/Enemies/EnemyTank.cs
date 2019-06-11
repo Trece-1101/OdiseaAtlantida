@@ -10,6 +10,15 @@ public class EnemyTank : Enemy
         this.SetMyBulletVFX("TankBullet");
     }
 
+    public override void CheckRotation() {
+        if (this.GetPlayer().transform.position.x > this.transform.position.x) {
+            this.transform.rotation = Quaternion.Euler(0f, 0f, -45f);
+        }
+        else {
+            this.transform.rotation = Quaternion.Euler(0f, 0f, 45f);
+        }
+    }
+
     public override void Shoot() {
         if (this.RemainTimeForShootBullet <= 0 && this.CanShoot) {
             ShootBullet();

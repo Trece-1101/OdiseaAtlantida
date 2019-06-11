@@ -78,7 +78,7 @@ public abstract class Proyectile : MonoBehaviour
         CancelInvoke();
     }
 
-    private void Die() {        
+    public virtual void Die() {        
         gameObject.SetActive(false);
         this.Speed = this.InitialSpeed;        
     }

@@ -15,7 +15,7 @@ public class Bullet : Proyectile
         // como el sprite del proyectil esta en sentido Este el vector direccion es el vector unitario (1, 0)
         this.transform.Translate(Vector2.right * this.GetSpeed() * Time.deltaTime);
         Invoke("Die", GetLifeTime());
-        Debug.Log(this.GetSpeed());
+        //Debug.Log(this.GetSpeed());
     }    
 
 

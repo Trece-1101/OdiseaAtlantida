@@ -101,6 +101,7 @@
     <Compile Include="Assets\Scripts\Program\SetFirstRun.cs" />
     <Compile Include="Assets\Scripts\Program\ShakeYourBooty.cs" />
     <Compile Include="Assets\Scripts\Projectiles\AirMine.cs" />
+    <Compile Include="Assets\Scripts\Projectiles\BallisticBullet.cs" />
     <Compile Include="Assets\Scripts\Projectiles\Bullet.cs" />
     <Compile Include="Assets\Scripts\Projectiles\DamageControl.cs" />
     <Compile Include="Assets\Scripts\Projectiles\Missile.cs" />
