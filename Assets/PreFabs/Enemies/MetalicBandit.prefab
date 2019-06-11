@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OriginalHitPoints: 55
-  Velocity: {x: 2, y: 2}
+  Velocity: {x: 1.3, y: 1.3}
   HealthBar: {fileID: 1264813307236363887}
   DeathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}
   ShootBulletSFX: {fileID: 8300000, guid: a955a358a4dec19449ea8905dffb8585, type: 3}

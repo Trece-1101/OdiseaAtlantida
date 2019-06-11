@@ -73,13 +73,13 @@ public class GameProgram : MonoBehaviour
     #region "Referencias en Cache"
     private Asimov asimov;
     private CrossHair crossHair;
-    private EnemySpawner enemySpawner;
+    private EnemySpawner EnemySpawner;
     private LevelManager levelManager;
     #endregion
 
     #region "Metodos"
     private void Awake() {
-        SetScrollSpeed(-1.5f);
+        SetScrollSpeed(-2.5f);
 
 
         if (instance == null) {
@@ -96,13 +96,13 @@ public class GameProgram : MonoBehaviour
         LevelDestroyedText.SetActive(false);
 
         asimov = FindObjectOfType<Asimov>();
-        enemySpawner = FindObjectOfType<EnemySpawner>();
+        EnemySpawner = FindObjectOfType<EnemySpawner>();
         levelManager = FindObjectOfType<LevelManager>();
 
         crossHair = FindObjectOfType<CrossHair>();
         Cursor.visible = false;
         SetUpBorders();
-        Invoke("Instanciar", 2f);
+        //Invoke("Instanciar", 2f);
 
     }
 
@@ -148,7 +148,7 @@ public class GameProgram : MonoBehaviour
     private void CheckNumberOfEnemies() {
         this.LeftEnemies = this.TotalEnemies - this.KillCount;
         //Debug.Log($"enemigos en pantalla {this.LeftEnemies}");
-        if (this.LeftEnemies <= 0 && this.enemySpawner.GetIsLastFormation()) {
+        if (this.LeftEnemies <= 0 && this.EnemySpawner.GetIsLastFormation()) {
             StartCoroutine(LevelCompleted());
         }
     }
