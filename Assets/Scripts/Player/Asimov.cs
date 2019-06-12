@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+// GodMode up, up, down, down, left, right, left, right, B, A.
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -136,14 +139,13 @@ public class Asimov : Ship
 
     #region "Metodos"
 
-    public override void CoAwake() {
-        this.SetIsAlive(true);
-        this.SetIsVulnerable(true);
-        // GodMode up, up, down, down, left, right, left, right, B, A.
+    public override void Awake() {
+        base.Awake();
+        
 
         this.MyShield = FindObjectOfType<Shield>();
         this.MyAnimator = GetComponent<Animator>();
-        PolygonCollider2D[] colliders = GetComponents<PolygonCollider2D>();  
+        PolygonCollider2D[] colliders = GetComponents<PolygonCollider2D>();
 
         this.AtackCollider = colliders[0];
         this.DefenseCollider = colliders[1];
@@ -157,7 +159,7 @@ public class Asimov : Ship
         this.SetOriginalHitPoints(this.GetHitPoints());
         this.TransitionDelay = 3f;
         this.InTransition = false;
-        
+
 
         this.SetTimeBetweenBulletShoots(0.15f);
         this.SetTimeBetweenMissileShoots(1.5f);
@@ -167,13 +169,10 @@ public class Asimov : Ship
         this.CanShoot = true;
         this.IsCloned = false;
         this.CanRotate = true;
-        //this.SetMyBulletVFX("PlayerBullet");
-        //this.SetMyMissileVFX("PlayerMissile");
-        //this.SetMyMicroBulletsVFX("MicroBulletPlayer");
-        this.SetMyBulletVFX(this.GetProjectileNames()[0]);
-        this.SetMyMissileVFX(this.GetProjectileNames()[1]);
-        this.SetMyMicroBulletsVFX(this.GetProjectileNames()[2]);
+
+        
     }
+
 
    
     private void Update() {

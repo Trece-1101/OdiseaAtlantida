@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class EnemyTank : Enemy
 {
-
-    public override void CoAwake() {
-        base.CoAwake();
+    public override void Awake() {
+        base.Awake();
         this.SetMyBulletVFX("TankBullet");
     }
 

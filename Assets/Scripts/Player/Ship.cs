@@ -1,4 +1,6 @@
-﻿using System;
+﻿//// Clase Padre que describe a todos los elementos del tipo Naves del juego.
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,55 +10,55 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
 {
     #region "Atributos Serializados"
     [Header("General")]
-    [SerializeField] private float OriginalHitPoints;
-    [SerializeField] private Vector2 Velocity;
-    [SerializeField] private Image HealthBar;
+    [SerializeField] private float OriginalHitPoints; // Los hitpoints o "vida" al iniciar el juego/escena
+    [SerializeField] private Vector2 Velocity; // La velocidad (vectorial) de la nave
+    [SerializeField] private Image HealthBar; // La imagen de la barra de vida
 
     [Header("SFX")]
-    [SerializeField] private AudioClip DeathSFX;
-    [SerializeField] private AudioClip ShootBulletSFX;
-    [SerializeField] private AudioClip ShootMissileSFX;
-    [SerializeField] private AudioClip HurtSFX;
+    [SerializeField] private AudioClip DeathSFX; // Efecto de sondio al destruirse
+    [SerializeField] private AudioClip ShootBulletSFX; // Efecto de sondio al disparar una bala
+    [SerializeField] private AudioClip ShootMissileSFX; // Efecto de sondio al disparar un misil
+    [SerializeField] private AudioClip HurtSFX; // Efecto de sondio al se alcanzado por un proyectil
 
     [Header("Shoot")]
-    [SerializeField] private List<Transform> BulletShootsPositions;
-    [SerializeField] private List<Transform> MissileShootsPositions;
-    [SerializeField] private List<Transform> LeftMicroBulletsShootsPositions;
-    [SerializeField] private List<Transform> RightMicroBulletsShootsPositions;
-    [SerializeField] private List<String> ProjectileNames;
+    [SerializeField] private List<Transform> BulletShootsPositions; // Lista que contiene los puntos por donde dispara balas
+    [SerializeField] private List<Transform> MissileShootsPositions; // Lista que contiene los puntos por donde dispara misiles
+    [SerializeField] List<Transform> MicroBulletShootPosition; // Lista que contiene los puntos por donde dispara balas secundarias rotadas desde la derecha
+    [SerializeField] private List<String> ProjectileNames; // Lista de strings que son los tags correspondientes a los proyectiles (balas, misiles, microbalas) que dispara la nave
     #endregion
 
     #region "Atributos"
-    private bool IsAlive;
-    private bool IsVulnerable;
+    private bool IsAlive; // Atributo que controla si el objeto sigue activo (vivo)
+    private bool IsVulnerable; // Atributo que determina si el objeto puede ser dañado o no
 
-    public float TimeBetweenBulletShoots { get; set; }
-    public float TimeBetweenMissileShoots { get; set; }
-    public float RemainTimeForShootBullet { get; set; }
-    public float RemainTimeForShootMissile { get; set; }
-    public bool CanShoot { get; set; }
-    public bool CanShootMissile { get; set; }
-    public bool CanMove { get; set; }
-    public float HitPoints { get; set; }
-    
+    public float TimeBetweenBulletShoots { get; set; } // Implementacion de la interfaz IAttack, tiempo que debe pasar para poder ejecutar disparos de balas consecutivos
+    public float TimeBetweenMissileShoots { get; set; } // Implementacion de la interfaz IAttack, tiempo que debe pasar para poder ejecutar disparos de misiles consecutivos
+    public float RemainTimeForShootBullet { get; set; } // Implementacion de la interfaz IAttack, tiempo restante para disparar balas
+    public float RemainTimeForShootMissile { get; set; } // Implementacion de la interfaz IAttack, tiempo restante para disparar misiles
+    public bool CanShoot { get; set; }  // Implementacion de la interfaz IAttack, determina la posibilidad de disparar balas
+    public bool CanShootMissile { get; set; } // Implementacion de la interfaz IAttack, determina la posibilidad de disparar misiles
+    public bool CanMove { get; set; } // Implementacion de la interfaz IAttack, determina la posibilidad de moverse
 
-    private Quaternion MyRotation;
-    private Quaternion MyBulletRotation;
+    public float HitPoints { get; set; } // Implementacion de la interfaz IDefense, cantidad de puntos de vida restante de la nave    
 
-    private string MyBulletVFX;
-    private string MyMissileVFX;
-    private string MyMicroBulletsVFX;
-    List<string> PowerUpsNames;
+    private Quaternion MyRotation; // Rotacion actual de la nave (global)
+    private Quaternion MyBulletRotation; // Rotacion actual del disparo que efectua la nave     
+    #endregion
+
+    #region "Auxiliares"
+    private string MyBulletVFX; // Tag de la bala que dispara la nave, se usa en conjunto con ProjectileNames
+    private string MyMissileVFX; // Tag del misil que dispara la nave, se usa en conjunto con ProjectileNames
+    private string MyMicroBulletsVFX; // Tag de la bala secundaria que dispara la nave, se usa en conjunto con ProjectileNames
+    List<string> PowerUpsNames; // Lista que contiene tags de los powerups que se pueden utilizar
     #endregion
 
     #region "Componentes en Cache"
-    private Rigidbody2D Body;
-    private ObjectPool ObjectPool;
-    private GameProgram GameProg;
-    public DamageControl DamageCtrl { set; get; }
-    private Camera MainCamera;
-    private ShakeYourBooty CameraShake;
-    private float DificultyModifier;
+    private ObjectPool ObjectPool; // "Pool" de objetos ya instanciados en la pre-carga, se llaman (activan) mediante tags (strings) que describen su nombre
+    private GameProgram GameProg; // Atributo que enlaza al Game Program que es el encargado de las funciones generales del juego (es un singleton)
+    public DamageControl DamageCtrl { set; get; } // Implementacion de la interfaz IDefense, clase auxiliar para el control de daño de los proyectiles y clases que generan daño o no  
+    private ShakeYourBooty CameraShake; // Atributo que referencia a la clase encargada de efectos de camara
+    private Camera MainCamera; // Atributo que referencia a la camara general del juego
+    private float DificultyModifier; // Atributo que modifica a otros atributos dependiendo la dificultad elegida por el usuario
     #endregion
 
     #region "Setters/Getters"
@@ -86,13 +88,6 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
     }
     public void SetHealthBar(Image value) {
         this.HealthBar = value;
-    }
-
-    public Rigidbody2D GetBody() {
-        return this.Body;
-    }
-    public void SetBody(Rigidbody2D value) {
-        this.Body = value;
     }
 
     public ObjectPool GetPool() {
@@ -144,18 +139,11 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
         this.BulletShootsPositions = value;
     }
 
-    public List<Transform> GetLeftMicroBulletShootPoints() {
-        return this.LeftMicroBulletsShootsPositions;
+    public List<Transform> GettMicroBulletShootPoints() {
+        return this.MicroBulletShootPosition;
     }
-    public void SetLeftMicroBulletsShootsPositions(List<Transform> value) {
-        this.LeftMicroBulletsShootsPositions = value;
-    }
-
-    public List<Transform> GetRightMicroBulletShootPoints() {
-        return this.RightMicroBulletsShootsPositions;
-    }
-    public void SetRightMicroBulletShootPoints(List<Transform> value) {
-        this.RightMicroBulletsShootsPositions = value;
+    public void SetMicroBulletShootPoints(List<Transform> value) {
+        this.MicroBulletShootPosition = value;
     }
 
 
@@ -268,27 +256,33 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
     #endregion
 
     #region "Metodos"
-    private void Awake() {
+    public virtual void Awake() {
+        // Primer metodo que se ejecuta cuando el objeto es "visto" en la jerarquia
+        // Enlazamos los componentes en cache con sus respectivas referencias
         this.GameProg = FindObjectOfType<GameProgram>();
-        this.Body = GetComponent<Rigidbody2D>();
         this.ObjectPool = ObjectPool.Instance;
-
         this.MainCamera = Camera.main;
         this.CameraShake = this.MainCamera.GetComponent<ShakeYourBooty>();
-
         this.DificultyModifier = PlayerPrefController.GetDificultyModifier();
-
-        this.HitPoints = this.OriginalHitPoints;
-
         if(this.ObjectPool != null) {
+            // Si existe el Pool de objetos (puede ser opcional en algunos escnarios)
+            // Se carga en la lista de powerups los tags de cada uno existente en el pool
             this.PowerUpsNames = this.ObjectPool.GetComponentInChildren<ObjectPool>().GetPrefabsPowerUps();
-
         }
-        
-        CoAwake();
+
+        // Asigno a cada atributo de visualizacion de disparo sus valores serializados
+        this.SetMyBulletVFX(this.GetProjectileNames()[0]);
+        this.SetMyMissileVFX(this.GetProjectileNames()[1]);
+        this.SetMyMicroBulletsVFX(this.GetProjectileNames()[2]);
+
+        // Atributos base
+        this.HitPoints = this.OriginalHitPoints;
+        this.SetIsAlive(true);
+        this.SetIsVulnerable(true);       
+
     }
 
-    public abstract void CoAwake();
+    // Metodos abstractos y virtuales
     public abstract void Shoot();
     public abstract void CheckRotation();
     public virtual void Die() { }
@@ -296,7 +290,11 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
     public virtual void ControlOtherCollision(Collider2D collision) { }
     public virtual void Move() { }
     
+
     public Dictionary<string, Quaternion> Rotate(Vector3 dir, int shipAngleCompensation, int bulletAngleCompesation) {
+        // Metodo auxilar que toma el vector direccion de la nave OBJETIVO y los angulos de compensacion de la nave y su disparo (la que dispara)
+        // Para orientarlos adecuadamente
+
         // vector_direccion_ataque = vector_posicion_mouse - vector_centro_camara // en el caso de nuestra nave
         // vector_direccion_ataque = vector_posicion_asimov // en el caso de los enemigos
  
@@ -320,82 +318,102 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
     }
 
     public float AngleWithCompensateRotation(Vector3 direction, int compensation) {
+        // Metodo auxiliar utilizado por "Rotate"
         var angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - compensation;
         return angle;
     }
     
 
     public virtual void ShootBullet() {
+        // Metodo que toma todas las posiciones desde donde se pueden disparar balas y activa los objetos (Visualmente DISPARA) en el pool que correspondan
+        // Y con la rotacion necesaria (GetMyBulletRotation se asigna en cada objeto gracias al metodo Rotate)
         for (int i = 0; i < this.BulletShootsPositions.Count; i++) {
             this.GetPool().Spawn(this.MyBulletVFX, this.BulletShootsPositions[i].position, this.GetMyBulletRotation());
         }
     }
 
     public void ShootMicroBullet() {
-        for (int i = 0; i < this.LeftMicroBulletsShootsPositions.Count; i++) {
-            this.GetPool().Spawn(this.MyMicroBulletsVFX, this.LeftMicroBulletsShootsPositions[i].position,
-                                this.GetMyBulletRotation() * this.LeftMicroBulletsShootsPositions[i].transform.localRotation);
-        }
-        for (int i = 0; i < this.RightMicroBulletsShootsPositions.Count; i++) {
-            this.GetPool().Spawn(this.MyMicroBulletsVFX, this.RightMicroBulletsShootsPositions[i].position,
-                                this.GetMyBulletRotation() * this.RightMicroBulletsShootsPositions[i].transform.localRotation);
+        // Metodo que toma todas las posiciones desde donde se pueden disparar balas secundarias y activa los objetos (Visualmente DISPARA)
+        // En este caso la rotacion esta modificada por la rotacion local de cada bala secundaria (si la tuviera)
+        for (int i = 0; i < this.MicroBulletShootPosition.Count; i++) {
+            this.GetPool().Spawn(this.MyMicroBulletsVFX, this.MicroBulletShootPosition[i].position,
+                                this.GetMyBulletRotation() * this.MicroBulletShootPosition[i].transform.localRotation);
         }
     }
 
     public void ShootMissile() {
+        // Metodo que toma todas las posiciones desde donde se pueden disparar misiles y activa los objetos (Visualmente DISPARA)
         for (int i = 0; i < this.MissileShootsPositions.Count; i++) {
             this.GetPool().Spawn(this.MyMissileVFX, this.MissileShootsPositions[i].position, this.GetMyBulletRotation());
         }
     }
 
     public void PlayShootSFX(AudioClip sound, Vector3 position, float volumen) {
+        // Metodo que efectua el sonido del disparo
         AudioSource.PlayClipAtPoint(sound, position, volumen);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        // Metodo que controla la collision de triggers con el objeto. Para esto nos valemos de la clase DamageControl
         this.DamageCtrl = collision.gameObject.GetComponent<DamageControl>();
         if (this.DamageCtrl != null && this.IsVulnerable) {
-            ReceiveDamage(DamageCtrl);
-            collision.gameObject.SetActive(false);
-            PlayImpactSFX();
-            ShakeThatCamera();
+            // Si el objeto con el que chocamos posee en sus componentes una clase DamageControl implica que es un objeto "que hace daño"
+            // Esto se ejecuta en el caso de que el objeto este vulnerable en el momento dado
+            this.ReceiveDamage(DamageCtrl); // Controlamos el daño recibido 
+            collision.gameObject.SetActive(false); // Desactivamos el objeto que colisiono contra la nave
+            PlayImpactSFX(); // Ejecutamos el sonido correspondiente al impacto
+            ShakeThatCamera(); // Llamamos al metodo para comprobar si hay que ejecutar esta animacion
         }
         else if(!this.IsVulnerable) {
+            // Si el objeto esta en modo invulnerable podemos hacer algo aca, como ser una animacion
             //Debug.Log("jaja invencible");
         }
         else {
-            ControlOtherCollision(collision);
+            // Si el objeto con el que colisionamos esta en una capa de colision pero no tiene un componente de DamageControl
+            // Implica que el objeto es una nave enemiga. Condicion en la cual tenemos instant-death
+            ControlOtherCollision(collision); // Metodo auxiliar que controla este tipo de colisiones "particulares"
         }
     }
 
     public void ReceiveDamage(DamageControl damageControl) {
+        // Metodo que controla el daño recibido por un objeto que realiza daño (parcial)
+        // A los puntos actuales le restamos el daño recibido
         this.HitPoints = this.HitPoints - damageControl.GetDamage();
 
-        this.ControlHealthBar();
+        this.ControlHealthBar(); // Metodo que controla la visualizacion de la barra de vida
 
+        // Si los puntos de vida son 0 (o menor) Ejecutamos el metodo de morir
         if(this.HitPoints <= 0) {
             this.Die();
         }
     }
 
+
     public void RefillHealth(float value) {
+        // Metodo que permite rellenar (parcial o totalmente) los puntos de vida
+        // A los puntos de vida actuales le sumamos el valor de relleno
         this.HitPoints = this.HitPoints + value;
+        // Si tras la suma los puntos de vida superan a los puntos originales los capeamos en dichos puntos
         if (this.HitPoints > this.OriginalHitPoints) {
             this.HitPoints = this.OriginalHitPoints;
         }
-        this.ControlHealthBar();
+        
+        this.ControlHealthBar(); // Metodo que controla la visualizacion de la barra de vida
     }
 
     protected void ControlHealthBar() {
+        // Metodo que controla la visualizacion de la barra de vida
+        // El fill (relleno visual) de la barra es igual a los puntos actuales divido los originales (100%)
         this.HealthBar.fillAmount = this.HitPoints / this.OriginalHitPoints;
     }
 
     private void ShakeThatCamera() {
+        // Metodo que controla si se debe sacudir la camara
+        // Si esta instancia es la nave Asimov, ejecutar una animacion en particular
         if(this.gameObject.name == "Asimov") {
             CameraShake.ShakeShakeShake();
         }
     }
-
     
     #endregion
 }
