@@ -170,8 +170,8 @@ public class Enemy : Ship
 
         if(number <= this.PowerUpChance) {
             // Si el numero random es menor o igual a la chance del powerUp entonces spawneamos ese powerUp elegido al azar
-            // Esto es probabilidad porque si nuestra chances de spawnear son "0.1" quiere decir que hay 10% de posibilidades de sacar un numero
-            // random por debajo de ese valor. Si fuera "0.8" la posibilidad seria del 80%
+            // Esto es probabilidad porque si nuestra chances de spawnear son "0.1" quiere decir que hay 10% de posibilidades
+            // de sacar un numero random por debajo de ese valor. Si fuera "0.8" la posibilidad seria del 80%
             this.GetPool().Spawn(powerUp, this.transform.position, Quaternion.identity); // Spawn del powerUp
         }
         

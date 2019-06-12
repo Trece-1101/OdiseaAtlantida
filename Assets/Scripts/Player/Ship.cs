@@ -292,14 +292,15 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
     
 
     public Dictionary<string, Quaternion> Rotate(Vector3 dir, int shipAngleCompensation, int bulletAngleCompesation) {
-        // Metodo auxilar que toma el vector direccion de la nave OBJETIVO y los angulos de compensacion de la nave y su disparo (la que dispara)
-        // Para orientarlos adecuadamente
+        // Metodo auxilar que toma el vector direccion de la nave OBJETIVO y los angulos de compensacion de la nave
+        // y su disparo (la que dispara) para orientarlos adecuadamente
 
         // vector_direccion_ataque = vector_posicion_mouse - vector_centro_camara // en el caso de nuestra nave
         // vector_direccion_ataque = vector_posicion_asimov // en el caso de los enemigos
- 
+
         // angulo_rotacion = arcoseno(dy/dx) - X grados
-        // 90 grados para compensar que el sprite tiene su 0° hacia el Norte y la camara tiene sus 0° hacia el Este en el caso de la asimov
+        // 90 grados para compensar que el sprite tiene su 0° hacia el Norte y la camara tiene sus 0° hacia el Este 
+        // en el caso de la asimov
         // var angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90;
         var angle_ship = this.AngleWithCompensateRotation(dir, shipAngleCompensation);
         // el sprite del proyectil ya apunta hacia el Este asi que no tiene compensacion
@@ -325,15 +326,17 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
     
 
     public virtual void ShootBullet() {
-        // Metodo que toma todas las posiciones desde donde se pueden disparar balas y activa los objetos (Visualmente DISPARA) en el pool que correspondan
-        // Y con la rotacion necesaria (GetMyBulletRotation se asigna en cada objeto gracias al metodo Rotate)
+        // Metodo que toma todas las posiciones desde donde se pueden disparar balas y activa los objetos (Visualmente DISPARA) 
+        // en el pool que correspondan y con la rotacion necesaria (GetMyBulletRotation se asigna en cada objeto 
+        // gracias al metodo Rotate)
         for (int i = 0; i < this.BulletShootsPositions.Count; i++) {
             this.GetPool().Spawn(this.MyBulletVFX, this.BulletShootsPositions[i].position, this.GetMyBulletRotation());
         }
     }
 
     public void ShootMicroBullet() {
-        // Metodo que toma todas las posiciones desde donde se pueden disparar balas secundarias y activa los objetos (Visualmente DISPARA)
+        // Metodo que toma todas las posiciones desde donde se pueden disparar balas secundarias y activa 
+        // los objetos (Visualmente DISPARA)
         // En este caso la rotacion esta modificada por la rotacion local de cada bala secundaria (si la tuviera)
         for (int i = 0; i < this.MicroBulletShootPosition.Count; i++) {
             this.GetPool().Spawn(this.MyMicroBulletsVFX, this.MicroBulletShootPosition[i].position,
@@ -357,7 +360,8 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
         // Metodo que controla la collision de triggers con el objeto. Para esto nos valemos de la clase DamageControl
         this.DamageCtrl = collision.gameObject.GetComponent<DamageControl>();
         if (this.DamageCtrl != null && this.IsVulnerable) {
-            // Si el objeto con el que chocamos posee en sus componentes una clase DamageControl implica que es un objeto "que hace daño"
+            // Si el objeto con el que chocamos posee en sus componentes una clase DamageControl implica que 
+            // es un objeto "que hace daño"
             // Esto se ejecuta en el caso de que el objeto este vulnerable en el momento dado
             this.ReceiveDamage(DamageCtrl); // Controlamos el daño recibido 
             collision.gameObject.SetActive(false); // Desactivamos el objeto que colisiono contra la nave

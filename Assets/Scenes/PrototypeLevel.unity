@@ -5139,7 +5139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &681197734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5737,7 +5737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &872358776
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5850,14 +5850,8 @@ MonoBehaviour:
     Name: PrototypeLevel
     JoinWaves:
     - Wave:
-      - {fileID: 11400000, guid: c06b16b508a43944caabb25251233348, type: 2}
-      - {fileID: 11400000, guid: 0d05724de1f8c6b4fb0f261f9c8b4bc1, type: 2}
-      - {fileID: 11400000, guid: 40d5bd81fdcaa0b4888678f240180dc8, type: 2}
-      - {fileID: 11400000, guid: 3fb3b94e2ca42b5419cd026ad038bb4d, type: 2}
-      - {fileID: 11400000, guid: 547d495284efe2c4e9b204b8f5789ca6, type: 2}
-      - {fileID: 11400000, guid: 4c558338626ccf044bf5d522f27ad008, type: 2}
-      - {fileID: 11400000, guid: 9df7433824891604a8b3a7f62039449b, type: 2}
-      - {fileID: 11400000, guid: 48e4b62a19ff4b94c990759db3fb1354, type: 2}
+      - {fileID: 11400000, guid: f94b74e3d2ee4af409063d55aeb9dad6, type: 2}
+      - {fileID: 11400000, guid: 769a9850679fe864bb4f97d885595312, type: 2}
     NextWaveSpawnTime: 01000000
   SuicideEnemyPrefab:
   - {fileID: 1597402426284869519, guid: 268cf74541f582846821e90024f74a66, type: 3}

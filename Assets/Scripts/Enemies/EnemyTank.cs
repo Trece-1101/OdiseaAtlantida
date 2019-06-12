@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//// Clase Derivada/Hija de "Enemy" que describe a a enemigos que no disparan balas comunes
+//// sino balas afectadas por la gravedad que producen un tiro oblicuo
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,33 +9,19 @@ public class EnemyTank : Enemy
 {
     public override void Awake() {
         base.Awake();
-        this.SetMyBulletVFX("TankBullet");
+        this.SetMyBulletVFX("TankBullet"); // El tipo de bala del enemigo
     }
 
     public override void CheckRotation() {
+        // En este caso el enemigo no persigue al jugador sino que tiene una orientacion definida de 45°
         if (this.GetPlayer().transform.position.x > this.transform.position.x) {
+            // si el jugador esta a la derecha el angulo es -45°
             this.transform.rotation = Quaternion.Euler(0f, 0f, -45f);
         }
         else {
+            // si el jugador esta a la izquierda el angulo es 45°
             this.transform.rotation = Quaternion.Euler(0f, 0f, 45f);
         }
     }
-
-    public override void Shoot() {
-        if (this.RemainTimeForShootBullet <= 0 && this.CanShoot) {
-            ShootBullet();
-            PlayShootSFX(this.GetShootBulletSFX(), this.transform.position, 3f);
-
-            this.RemainTimeForShootBullet = this.TimeBetweenBulletShoots;
-        }
-        else {
-            this.RemainTimeForShootBullet -= Time.deltaTime;
-        }
-    }
-
-    public override void ShootBullet() {
-        for (int i = 0; i < this.GetBulletShootPoints().Count; i++) {
-            this.GetPool().Spawn(this.GetMyBulletVFX(), this.GetBulletShootPoints()[i].position, this.GetMyBulletRotation());
-        }
-    }
+    
 }
