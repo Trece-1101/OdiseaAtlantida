@@ -14,13 +14,11 @@ public class Wave : ScriptableObject
     #endregion
 
     #region "Atributos"
-    //private float timeBetweenSpawn = 0f; // TODO: quitar esto
-    //private float spawnRandomize = 0f;
     private int NumberOfEnemies = 1;
     private float MoveSpeed;
     #endregion
 
-
+    #region "Setters y Getters"
     public GameObject GetEnemyPrefab() {
         int enemySelected = Random.Range(0, enemyPrefab.Count);
         //Debug.Log(enemySelected);
@@ -36,14 +34,6 @@ public class Wave : ScriptableObject
         return waveWayPoints;
     }
 
-    //public float GetTimeBetweenSpawns() {
-    //    return this.timeBetweenSpawn;
-    //}
-
-    //public float GetSpawnRandomize() {
-    //    return this.spawnRandomize;
-    //}
-
     public int GetNumberOfEnemies() {
         return this.NumberOfEnemies;
     }
@@ -56,5 +46,9 @@ public class Wave : ScriptableObject
         //this.moveSpeed = this.GetEnemyPrefab().GetComponent<Enemy>().GetVelocity().x;        
         this.MoveSpeed = value.x;
     }
+    #endregion
+
+    
+
    
 }

@@ -23,6 +23,13 @@ public class Path : MonoBehaviour
     private float Scale; // Escala del programa
     #endregion
 
+    #region "Setters y Getters"
+    public void SetWave(Wave wave) {
+        this.Wave = wave;
+    }
+    #endregion
+
+    #region "Metodos"
     private void Awake() {
         this.GameProg = FindObjectOfType<GameProgram>();
         this.Scale = this.GameProg.GetScale().x;
@@ -39,47 +46,51 @@ public class Path : MonoBehaviour
         this.Enemy.CanShoot = false; // Le quitamos la clase de disparar balas y misiles (para que no disparen desde afuera de camara
         this.Enemy.CanShootMissile = false;
 
-        this.WayPoints = this.Wave.GetPathPrefab();
-        this.transform.position = this.WayPoints[this.WayPointIndex].transform.position;
-        this.Wave.SetMoveSpeed(this.Enemy.GetVelocity());
-        this.MoveSpeed = this.Wave.GetMoveSpeed();
+        this.WayPoints = this.Wave.GetPathPrefab(); // Tomamos la lista de puntos a utilizar desde la oleada
+        this.transform.position = this.WayPoints[this.WayPointIndex].transform.position; // ubicamos al enemigo en el punto de partida (indice 0)
+        this.Wave.SetMoveSpeed(this.Enemy.GetVelocity()); // le pasamos la velocidad del enemigo elegido
+        this.MoveSpeed = this.Wave.GetMoveSpeed(); // tomamos esa velocidad para usarla con el metodo MoveFoward
         //Debug.Log(this.MoveSpeed);
     }
 
     private void Update() {
-        this.MoveInPath();
+        this.MoveInPath(); // En cada cuadro llamamos al metodo que nos mueve en el camino
     }
-
-    public void SetWave(Wave wave) {
-        this.Wave = wave;
-    }
-
-
+    
     private void MoveInPath() {
+        // Metodo que hace que el enemigo se mueva en el camino
         if (this.WayPointIndex < this.WayPoints.Count) {
-            MoveToPoint(this.WayPointIndex);
+            // Mientras el punto  que busquemos no sea el ultimo
+            this.MoveToPoint(this.WayPointIndex); // llamamos al metodo que nos traslada
+
             if (this.WayPointIndex == 2) {
+                //Debug.Log("pos2");
+                // recien en el segundo punto los enemigos empiezan a disparar
                 //enemy.SetIsVulnerable(true);
                 this.Enemy.CanShoot = true;
                 this.Enemy.CanShootMissile = true;
             }
         }
         else {
+            // si el punto es el ultimo, el enmigo regresa al indice 1 (segundo punto)
             this.WayPointIndex = 1;
-            MoveToPoint(this.WayPointIndex);
+            this.MoveToPoint(this.WayPointIndex); // trasladamos al enemigo
         }
     } 
 
     private void MoveToPoint(int index) {
+        // este es el metodo que traslada al enemigo
+        // creamos una posicion target
         var targetPosition = this.WayPoints[index].transform.position;     
+        // nos movemos al punto siguiente (desde - hasta - d = v*t)
         this.transform.position = Vector2.MoveTowards(transform.position, targetPosition, this.MoveSpeed * this.Scale * Time.deltaTime );
         
-
+        // Si nuestra posicion es igual a la del punto objetivo, pasamos a la siguiente posicion
         if (this.transform.position == targetPosition) {
             this.WayPointIndex++;
         }
     }
-          
-   
+    #endregion
+
 }
 
