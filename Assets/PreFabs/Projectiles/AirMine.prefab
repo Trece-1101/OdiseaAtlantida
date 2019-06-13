@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ce0300a6bdbf749984f6ed7d06c9cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: {x: 5, y: 5}
+  Speed: {x: 250, y: 250}
 --- !u!114 &950596320102925314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,4 +245,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462d9f3a90a5b5e44b7daac8b665119c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 40
+  Damage: 80

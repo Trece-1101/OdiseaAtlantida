@@ -7,12 +7,15 @@ using UnityEngine;
 
 public class EnemyTank : Enemy
 {
+    [SerializeField] bool ShouldRotate; // Una variable poder generar una clase de tanque que no rota y suelta balas en caida libre
+
     public override void Awake() {
         base.Awake();
-        this.SetMyBulletVFX("TankBullet"); // El tipo de bala del enemigo
+       // this.SetMyBulletVFX("TankBullet"); // El tipo de bala del enemigo
     }
 
     public override void CheckRotation() {
+        if (!ShouldRotate) { return; }
         // En este caso el enemigo no persigue al jugador sino que tiene una orientacion definida de 45°
         if (!this.GetPlayer().GetIsAlive()) { return; }
         if (this.GetPlayer().transform.position.x > this.transform.position.x) {

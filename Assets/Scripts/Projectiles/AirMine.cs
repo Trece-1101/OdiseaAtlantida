@@ -1,15 +1,27 @@
-﻿using System.Collections;
+﻿//// Clase derivada/Hija de Proyectile, un tipo de proyectil que es una mina aerea, vuela hacia un punto/area y al llegar explota con radio dado
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AirMine : Proyectile
 {
-    private Vector2 Target;
-    private bool Shooted;
-    private bool OnTarget;
-    private Animator MyAnimator;
+    #region "Atributos"
+    private Vector2 Target; // Vector posicion objetivo (area, no enemigo)
+    private bool Shooted; // Atributo que controla si ya fue disparado, usado para los triggers
+    private bool OnTarget; // Atributo que controla si ya llego a su destino, usado para los triggers
+    #endregion
 
-   
+    #region "Componentes en cache"
+    private Animator MyAnimator; // Referencia al componente animator del objeto
+    #endregion
+
+    #region "Auxiliares"
+    private float speed;
+    private float scale;
+    #endregion
+
+    #region "Setters y Getters"
     public void SetTarget(Vector2 value) {
         this.Target = value;
     }
@@ -27,15 +39,22 @@ public class AirMine : Proyectile
     public void SetOnTarget(bool value) {
         this.OnTarget = value;
     }
+    #endregion
 
-    private void Start() {        
+    private void Start() {
+        // Primer metodo que se ejecuta si no esta declarado "Awake"
+        // Enlazamos los componentes en cache con sus respectivas referencias
         this.MyAnimator = GetComponentInChildren<Animator>();
+
+        this.speed = this.GetSpeed().x;
+        this.scale = this.GetGameProg().GetScale().x;
     }
 
 
     public override void Update() {
+        // Controlamos la fisica cuadro a cuadro
         if (this.Shooted) {
-            transform.position = Vector2.MoveTowards(transform.position, Target, this.GetSpeed().x * Time.deltaTime);
+            this.transform.position = Vector2.MoveTowards(transform.position, Target, this.speed * this.scale * Time.deltaTime);
             if(this.transform.position.x == this.Target.x && this.transform.position.y == this.Target.y) {
                 this.OnTarget = true;
                 this.Explode();
@@ -48,7 +67,7 @@ public class AirMine : Proyectile
 
     public void Explode() {
         this.MyAnimator.SetTrigger("explode");
-        this.transform.localScale = new Vector3(5f, 5f, 1f);
+        this.transform.localScale = new Vector3(6f, 6f, 6f);
         Invoke("SetInactive", 2f);
     }
 

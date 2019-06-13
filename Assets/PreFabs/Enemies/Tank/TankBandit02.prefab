@@ -293,17 +293,17 @@ MonoBehaviour:
   BulletShootsPositions:
   - {fileID: 5061275839338752729}
   MissileShootsPositions: []
-  LeftMicroBulletsShootsPositions: []
-  RightMicroBulletsShootsPositions: []
+  MicroBulletShootPosition: []
   ProjectileNames:
   - TankBullet
   - EnemyMissileEasy
   - EnemyMicroBulletEasy
   Reward: 200
   PowerUpChance: 0.2
-  timeBtwBulletS: 0.4
+  timeBtwBulletS: 0.5
   timeBtwMissileS: 0
   canShootMissile: 0
+  ShouldRotate: 1
 --- !u!70 &8378876099499761736
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

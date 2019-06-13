@@ -1,23 +1,23 @@
-﻿using System.Collections;
+﻿//// Clase Padre que describe a todos los objetos del tipo proyectil (balas, misiles, bombas), es abstracta, no se instancia
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Proyectile : MonoBehaviour
 {
     #region "Atributos Serializados"
-    [SerializeField] private Vector2 Speed;
-    private Vector2 InitialSpeed;
-    private float Damage;
+    [SerializeField] private Vector2 Speed; // Velocidad vectorial del proyectil
+    private Vector2 InitialSpeed; // Velocidad inicial para almacenar, muy util en proyectiles quo no tienen MRU
     #endregion
 
     #region "Atributos"
-    private float LifeTime;
+    private float LifeTime = 5f; // Tiempo que pasa hasta que se desactiva el proyectil
     #endregion
 
     #region "Referencias en Cache"
-    private DamageControl DamageCtrl;
-    private Enemy Shooter;
-    private GameProgram GamePrg;
+    private DamageControl DamageCtrl; // Referencia al componente DamageControl que va a almacenar el daño que genera el proyectil
+    private GameProgram GamePrg; // Atributo que enlaza al Game Program que es el encargado de las funciones generales del juego (es un singleton)
     #endregion
 
     #region "Setters/Getters"
@@ -34,14 +34,7 @@ public abstract class Proyectile : MonoBehaviour
     public void SetLifeTime(float value) {
         this.LifeTime = value;
     }
-
-    public float GetDamage() {
-        return this.Damage;
-    }
-    public void SetDamage(float value) {
-        this.Damage = value;
-    }
-
+    
     public Vector2 GetInitalSpeed() {
         return this.InitialSpeed;
     }
@@ -56,41 +49,45 @@ public abstract class Proyectile : MonoBehaviour
         this.DamageCtrl = value;
     }
 
-    public Enemy GetShooter() {
-        return this.Shooter;
-    }
-    public void SetShooter(Enemy value) {
-        this.Shooter = value;
-    }
-
     public GameProgram GetGameProg() {
         return this.GamePrg;
     }
     public void SetGameProg(GameProgram value) {
         this.GamePrg = value;
     }
+
     #endregion
 
     #region "Metodos"
-    private void Awake() {
+    public virtual void Awake() {
+        // Primer metodo que se ejecuta cuando el objeto es "visto" en la jerarquia
+        // Enlazamos los componentes en cache con sus respectivas referencias
         this.DamageCtrl = GetComponent<DamageControl>();
         this.GamePrg = FindObjectOfType<GameProgram>();
-        //this.DamageCtrl.SetDamage(this.Damage);
 
-        this.LifeTime = 5f;
     }
 
-    public abstract void Update();
+    public abstract void Update(); // Hacemos que el update sea abstracto, ya que cada proyectil implementa distintas fisicas
     
     private void OnDisable() {
+        // Si se desactiva el objeto cancelamos las invocaciones posibles que puedan haber
+        // esto es porque hay muchas maneras distintas que el proyectil puede desactivarse
         CancelInvoke();
     }
 
+    public virtual void OnEnable() {
+        // Cuando se activa el objeto invocamos su metodo morir
+        Invoke("Die", GetLifeTime());
+    }
+
     public virtual void Die() {
+        // Metodo que controla la muerte (desactivacion) del objeto
         if (gameObject.activeSelf) {
+            // Al haber muchas formas que se puede desactivar hacemos un doble chequeo, solo desactivarlo si esta activado
             gameObject.SetActive(false);
         }
-        this.Speed = this.InitialSpeed;        
+        // Retornamos la velocidad a su vel inicial, fundamental para proyectiles con mov distinto al MRU     
+        this.Speed = this.InitialSpeed;    
     }
     #endregion
 
