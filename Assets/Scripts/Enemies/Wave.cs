@@ -1,18 +1,25 @@
-﻿using System.Collections;
+﻿//// Clase que contiene la Oleada del enemigo => une una lista de enemigos con un camino a seguir
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Enemy Wave")]
 public class Wave : ScriptableObject
 {
-    [SerializeField] private List<GameObject> enemyPrefab;
-    [SerializeField] private GameObject pathPrefab;
-    private float timeBetweenSpawn = 0f;
-    [SerializeField] private float spawnRandomize = 0f;
-    [SerializeField] private int numberOfEnemies = 1;
-    private float moveSpeed;
 
-  
+    #region "Atributos Serializables"
+    [SerializeField] private List<GameObject> enemyPrefab; // Listas de enemigos que pueden aparecer
+    [SerializeField] private GameObject pathPrefab; // Camino a seguir
+    #endregion
+
+    #region "Atributos"
+    //private float timeBetweenSpawn = 0f; // TODO: quitar esto
+    //private float spawnRandomize = 0f;
+    private int NumberOfEnemies = 1;
+    private float MoveSpeed;
+    #endregion
+
 
     public GameObject GetEnemyPrefab() {
         int enemySelected = Random.Range(0, enemyPrefab.Count);
@@ -29,25 +36,25 @@ public class Wave : ScriptableObject
         return waveWayPoints;
     }
 
-    public float GetTimeBetweenSpawns() {
-        return this.timeBetweenSpawn;
-    }
+    //public float GetTimeBetweenSpawns() {
+    //    return this.timeBetweenSpawn;
+    //}
 
-    public float GetSpawnRandomize() {
-        return this.spawnRandomize;
-    }
+    //public float GetSpawnRandomize() {
+    //    return this.spawnRandomize;
+    //}
 
     public int GetNumberOfEnemies() {
-        return numberOfEnemies;
+        return this.NumberOfEnemies;
     }
 
     public float GetMoveSpeed() {
-        return this.moveSpeed;
+        return this.MoveSpeed;
     }
     public void SetMoveSpeed(Vector2 value) {
         //this.moveSpeed = 1.3f;
         //this.moveSpeed = this.GetEnemyPrefab().GetComponent<Enemy>().GetVelocity().x;        
-        this.moveSpeed = value.x;
+        this.MoveSpeed = value.x;
     }
    
 }

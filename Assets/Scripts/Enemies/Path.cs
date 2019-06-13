@@ -43,7 +43,7 @@ public class Path : MonoBehaviour
         this.transform.position = this.WayPoints[this.WayPointIndex].transform.position;
         this.Wave.SetMoveSpeed(this.Enemy.GetVelocity());
         this.MoveSpeed = this.Wave.GetMoveSpeed();
-        //Debug.Log(moveSpeed);
+        //Debug.Log(this.MoveSpeed);
     }
 
     private void Update() {
