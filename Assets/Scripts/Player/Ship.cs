@@ -1,4 +1,4 @@
-﻿//// Clase Padre que describe a todos los elementos del tipo Naves del juego.
+﻿//// Clase Padre que describe a todos los elementos del tipo Naves del juego, es abstracta, no se instancia
 
 using System;
 using System.Collections;

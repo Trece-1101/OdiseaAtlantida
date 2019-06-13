@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//// Clase muy sencilla que solo controla que cuando se activa el efecto de particulas se vuelva a desactivar (desaparecer) a los 2 segundos
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -323,7 +323,7 @@ public class Asimov : Ship
         if (Input.GetKeyDown(KeyCode.Q)) {
             // si apretamos la tecla Q y el escudo no esta activo (enable)
             if (!this.MyShield.GetIsEnable()) {
-                this.MyShield.RestartShield(); // llamamos al metodo en shield de reinicio de escudo                
+                this.MyShield.RestartShield(0, new Vector3(1f, 1f, 1f), 1); // llamamos al metodo en shield de reinicio de escudo                
             }
         }
     }
@@ -374,6 +374,7 @@ public class Asimov : Ship
             // si el modo al que queremos pasar es ofensivo
             this.TimeBetweenBulletShoots /= (TransitionValueModifier * 2); // volvemos a valores iniciales
             this.SetVelocity(this.GetVelocity() / TransitionValueModifier);
+            
         }
         else {
             // si el modo es defensivo
@@ -381,6 +382,9 @@ public class Asimov : Ship
             this.RefillHealth(this.HitPoints * 2); // se recarga la vida al doble de la actual
             this.SetVelocity(this.GetVelocity() * TransitionValueModifier); // se aumenta la velocidad
         }
+
+        // Esto evita el bug de cambiar la velocidad con un powerUp y que retorne en una velocidad distinta a la del modo dado
+        this.SetOriginalVelocity(this.GetVelocity());
     }
 
     private void ChangeCollidersAndEndTransition(bool value) {     
@@ -442,14 +446,6 @@ public class Asimov : Ship
             }
             
         }
-    }
-    
-    public void MakeShieldShoot() {
-        if (!this.MyShield.GetIsEnable()) {
-            this.MyShield.RestartShield();
-        }
-        this.MyShield.CanShoot = true;
-        this.MyShield.Shoot();
     }
     
     #endregion
