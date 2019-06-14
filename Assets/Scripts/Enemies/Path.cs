@@ -82,7 +82,7 @@ public class Path : MonoBehaviour
         // este es el metodo que traslada al enemigo
         // creamos una posicion target
         var targetPosition = this.WayPoints[index].transform.position;     
-        // nos movemos al punto siguiente (desde - hasta - d = v*t)
+        // nos movemos al punto siguiente (desde - hasta -> d = v*t)
         this.transform.position = Vector2.MoveTowards(transform.position, targetPosition, this.MoveSpeed * this.Scale * Time.deltaTime );
         
         // Si nuestra posicion es igual a la del punto objetivo, pasamos a la siguiente posicion

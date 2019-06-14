@@ -90,7 +90,7 @@
     <Compile Include="Assets\Scripts\Program\CrossHair.cs" />
     <Compile Include="Assets\Scripts\Program\DialogSystem.cs" />
     <Compile Include="Assets\Scripts\Program\GameProgram.cs" />
-    <Compile Include="Assets\Scripts\Program\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\Program\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\Program\MouseCursor.cs" />
     <Compile Include="Assets\Scripts\Program\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\Program\ObjectPool.cs" />

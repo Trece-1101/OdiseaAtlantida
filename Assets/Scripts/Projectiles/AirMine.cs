@@ -54,8 +54,11 @@ public class AirMine : Proyectile
     public override void Update() {
         // Controlamos la fisica cuadro a cuadro
         if (this.Shooted) {
+            // Si la mina esta disparada en cada cuadro vamos a trasladarla
             this.transform.position = Vector2.MoveTowards(transform.position, Target, this.speed * this.scale * Time.deltaTime);
+            // Si la posicion del centro de la mina coincide con la del vector posicion objetivo
             if(this.transform.position.x == this.Target.x && this.transform.position.y == this.Target.y) {
+                // Estamos en el objetivo y debemos explotar
                 this.OnTarget = true;
                 this.Explode();
             }
@@ -66,23 +69,26 @@ public class AirMine : Proyectile
     }
 
     public void Explode() {
+        // Activa la animacion de explotar y crea un rango de explosion de 6x6
         this.MyAnimator.SetTrigger("explode");
         this.transform.localScale = new Vector3(6f, 6f, 6f);
         Invoke("SetInactive", 2f);
     }
 
     private void SetInactive() {
-        this.gameObject.SetActive(false);
+        if (gameObject.activeSelf) {
+            this.gameObject.SetActive(false);
+        }
     }
 
-    public void OnEnable() {
+    public override void OnEnable() {
         //this.MyAnimator.Play();
         this.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
     }
    
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        Explode();
+        this.Explode();
     }
 
 

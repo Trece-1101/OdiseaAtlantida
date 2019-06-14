@@ -38,7 +38,7 @@ public class BallisticBullet : DestroyableProjectile {
             this.Initial = false; // marcamos el atributo como falso
             //this.Body.velocity = this.GetInitalSpeed(); // 
             this.SpeedWithSideControl = this.GetInitalSpeed(); // Asignamos al vector con control del lado la velocidad inicial
-            if (!this.Player.GetIsAlive()) { return; }
+            if (this.Player == null) { return; }
 
             if (this.Player.transform.position.x < this.transform.position.x) {
                 // Si el Player esta a la izquierda, invertimos el valor de la componente X del vector velocidad

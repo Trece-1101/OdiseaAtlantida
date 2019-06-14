@@ -87,7 +87,7 @@ public class GameProgram : MonoBehaviour
     private Asimov Player; // Referencia al objeto de tipo player
     private CrossHair CrossHair; // Referencia a la mira del player (es una Imagen de un canvas)
     private EnemySpawner EnemySpawner; // Referencia a la clase que spawnea enemigos
-    private LevelManager LevelManager; // Referencia al objeto que controla la carga del nivel
+    private LevelLoader LevelManager; // Referencia al objeto que controla la carga del nivel
     #endregion
 
     #region "Metodos"
@@ -117,7 +117,7 @@ public class GameProgram : MonoBehaviour
         // Enlazamos los componentes en cache con sus respectivas referencias
         this.Player = FindObjectOfType<Asimov>();
         this.EnemySpawner = FindObjectOfType<EnemySpawner>();
-        this.LevelManager = FindObjectOfType<LevelManager>();
+        this.LevelManager = FindObjectOfType<LevelLoader>();
         this.CrossHair = FindObjectOfType<CrossHair>();
 
         // Hacemos que el cursor (la flechita) desaparezca

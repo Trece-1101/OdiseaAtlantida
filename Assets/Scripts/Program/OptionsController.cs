@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//// Clase que controla el Menu de Opciones del juego
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,7 +35,7 @@ public class OptionsController : MonoBehaviour
     public void SaveAndExit() {
         PlayerPrefController.SetMasterVolume(VolSlider.value);
         PlayerPrefController.SetDificulty(DificultySlider.value);
-        FindObjectOfType<LevelManager>().LoadStartMenu();
+        FindObjectOfType<LevelLoader>().LoadStartMenu();
     }
 
     public void SetDefaults() {

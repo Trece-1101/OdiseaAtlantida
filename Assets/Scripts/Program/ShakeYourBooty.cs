@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//// Clase que controla animaciones de la camara (sacudones)
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

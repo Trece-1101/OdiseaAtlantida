@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//// Clase que controla el cursor personalizado en los Menues
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,12 +18,12 @@ public class MouseCursor : MonoBehaviour
 
     private void Start() {
         //Cursor.visible = false;
-        MyCamera = Camera.main;
+        this.MyCamera = Camera.main;
         Cursor.SetCursor(MyImage, CursorPos, CursorMode);
     }
 
     private void Update() {
-        CursorPos = MyCamera.ScreenToWorldPoint(Input.mousePosition);
+        this.CursorPos = MyCamera.ScreenToWorldPoint(Input.mousePosition);
         //transform.position = cursorPos;
         
     }

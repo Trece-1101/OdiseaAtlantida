@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//// Clase que controla las preferencias de usuario almacenadas en PlayerPrefs
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

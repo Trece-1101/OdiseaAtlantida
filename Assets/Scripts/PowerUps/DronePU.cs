@@ -8,6 +8,7 @@ public class DronePU : PowerUp
 {
     private GameObject drone1; // Referencia a los drones
     private GameObject drone2;
+    private float DistanceToPlayer = 1.0f;
 
     public override void MakeYourMagic() {
         // Metodo que controla la "magia" del PowerUp
@@ -23,8 +24,8 @@ public class DronePU : PowerUp
         drone2.transform.parent = this.GetAsimov().transform;
 
         // Muevo los drones a los costados de la nave de manera local (0f, 0f, 0f es el centro de la nave)
-        drone1.transform.localPosition = new Vector3(1.5f, 0f, 0f);
-        drone2.transform.localPosition = new Vector3(-1.5f, 0f, 0f);
+        drone1.transform.localPosition = new Vector3(this.DistanceToPlayer, 0f, 0f);
+        drone2.transform.localPosition = new Vector3(-this.DistanceToPlayer, 0f, 0f);
 
         Invoke("RevertYourMagic", this.GetCoolTime()); // Revierto el powerUp en CoolTime segundos
     }

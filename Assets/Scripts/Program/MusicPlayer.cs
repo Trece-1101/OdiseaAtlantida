@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//// Clase que controla la Musica a traves del juego
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

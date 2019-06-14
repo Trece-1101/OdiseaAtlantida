@@ -40,7 +40,7 @@ public class ScrollingBackground : MonoBehaviour
         // Que querramos dibujar cada segmento del mapa, todos deben ser del mismo tamaño
         // Y la cantidad de segmentos
         this.OffSet = 13f;
-        this.NumberOfAlternatives = 2;
+        this.NumberOfAlternatives = 1;
         // Le damos al rigidbody la velocidad almacenada en el GameProgram
         this.Body.velocity = new Vector2(0f, GameProgram.Instance.GetScrollSpeed());
     }

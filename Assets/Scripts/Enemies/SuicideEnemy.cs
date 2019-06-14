@@ -10,6 +10,7 @@ public class SuicideEnemy : Enemy
 
     private float Speed;
 
+    #region "Metodos"
     public override void Awake() {
         base.Awake();
         this.Speed = this.GetVelocity().x * this.GetGameProg().GetScale().x;
@@ -38,5 +39,5 @@ public class SuicideEnemy : Enemy
         var distance = this.Speed * Time.deltaTime;
         this.transform.position = Vector2.MoveTowards(transform.position, targetPosition, distance);
     }
-
+    #endregion
 }

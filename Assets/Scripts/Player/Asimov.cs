@@ -25,9 +25,13 @@ public class Asimov : Ship
     private float TransitionDelay = 3f; // Tiempo de espera para lograr la transicion de un modo a otro
     private bool InTransition = false; // Atributo que chequea si se esta en proceso de transicion
     private float TransitionValueModifier = 1.5f; // Valor que modifica otros atributos dependiendo el modo de la nave
+    private int ChangeModePenalty = 500;
 
     private bool HasPowerUp; // Atributo que controla si la nave tiene un PowerUp asignado (consumido) sin usar
     private PowerUp PowerUpType; // Atributo de tipo PowerUp
+
+    private int RestartShieldPenalty = 800;
+    private int CanSubstract = 0;
     #endregion      
 
     #region "Referencias en Cache"     
@@ -142,7 +146,6 @@ public class Asimov : Ship
 
     public override void Awake() {
         base.Awake();
-        this.SetIsVulnerable(false);
 
         // Enlazamos los componentes en cache con sus respectivas referencias
         this.MyShield = FindObjectOfType<Shield>();
@@ -321,17 +324,20 @@ public class Asimov : Ship
 
     private void RestartShield() {
         // Metodo que controla el reinicio del shield cuando es destruido
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            // si apretamos la tecla Q y el escudo no esta activo (enable)
+        this.CanSubstract = this.GetGameProg().GetScore() - this.RestartShieldPenalty;
+        if (Input.GetKeyDown(KeyCode.Q) && CanSubstract > 0) {
+            // si apretamos la tecla Q y el escudo no esta activo (enable) y tenemos XP para gastar
             if (!this.MyShield.GetIsEnable()) {
-                this.MyShield.RestartShield(0, new Vector3(1f, 1f, 1f), 1); // llamamos al metodo en shield de reinicio de escudo                
+                this.MyShield.RestartShield(0, new Vector3(1f, 1f, 1f), 1); // llamamos al metodo en shield de reinicio de escudo      
+                this.GetGameProg().SubstractScore(this.RestartShieldPenalty);
             }
         }
     }
 
     private void CheckMode() {
         // Metodo que controla el modo de la nave
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !this.InTransition) {
+        this.CanSubstract = this.GetGameProg().GetScore() - this.ChangeModePenalty;
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !this.InTransition && this.CanSubstract > 0) {
             // Si presionamos la tecla shift y no estamos en transicion
             // almacenamos la animacion de la transicion en una variable para poder asignarla como hija de la nave
             // en la jerarquia, de manera tal que si la nave se mueve la animacion lo hace con ella
