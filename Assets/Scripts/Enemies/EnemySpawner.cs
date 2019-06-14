@@ -37,8 +37,8 @@ public class EnemySpawner : MonoBehaviour
     private bool IsLastFormation = false; // variable de control si se llego a la ultima formacion
     private float Timer = 0f; // Timer para control de salida de suicidas
     private float TimeToSpawnSuicide;
-    private float OriginalTimeToSpawnSuicide = 10f;
-    private float LimitTimeForSpawnSuicide = 5f;
+    private float OriginalTimeToSpawnSuicide = 15f;
+    private float LimitTimeForSpawnSuicide = 8f;
     // Puntos donde pueden instanciarse los enemigos suicidas
     private List<Vector3> InstantiatePoints = new List<Vector3>() { new Vector3(-12f, 8f, 0f), new Vector3(0f, 8f, 0f), new Vector3(-12f, 8f, 0f),
                                                                     new Vector3(-12f, -8f, 0f), new Vector3(0f, -8f, 0f), new Vector3(-12f, -8f, 0f),
@@ -183,8 +183,8 @@ public class EnemySpawner : MonoBehaviour
         // Acrecentamos el timer y cada cierta cantidad de tiempo spawneamos un enemigo suicida       
         this.Timer += Time.deltaTime;
 
-        if(this.Timer >= this.TimeToSpawnSuicide) {
-            this.TimeToSpawnSuicide /= 1.2f; // Reducimos el tiempo de salida del proximo suicida
+        if(this.Timer >= this.TimeToSpawnSuicide && !this.IsLastFormation) {
+            this.TimeToSpawnSuicide /= 1.1f; // Reducimos el tiempo de salida del proximo suicida
             InstantiateSuicide(); // Llamamos al metodo que instancia al enemigo suicida
             this.Timer = 0f; // volvemos el timer a 0
         }

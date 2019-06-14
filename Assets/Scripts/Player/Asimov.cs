@@ -142,6 +142,7 @@ public class Asimov : Ship
 
     public override void Awake() {
         base.Awake();
+        this.SetIsVulnerable(false);
 
         // Enlazamos los componentes en cache con sus respectivas referencias
         this.MyShield = FindObjectOfType<Shield>();

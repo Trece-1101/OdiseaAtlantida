@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//// Clase que controla a todos los bordes exteriores (sobre el nivel de la camara que sirven tanto
+/// De ayuda visual al spawnear una formacion enemiga como para el rebote de los PowerUps
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,17 +9,20 @@ public class BordersControl : MonoBehaviour
 {
 
     #region "Atributos"
-    private List<Transform> Childs = new List<Transform>();
-    private SpriteRenderer ChildSprite;
-    private Color OnColor = new Color(255f, 0f, 0f, 110f);
-    private Color OffColor = new Color(255f, 0f, 0f, 0f);
-    private float WaitTime = 0.3f;
-    private float EnableIterations = 0.2f;
+    private List<Transform> Borders = new List<Transform>(); // Lista de bordes
+    
+    private Color OnColor = new Color(255f, 0f, 0f, 110f); // Color "prendido"
+    private Color OffColor = new Color(255f, 0f, 0f, 0f); // Color "apagado"
+    private float WaitTime = 0.3f; // Tiempo de borde prendido
+    #endregion
+
+    #region "Referencias en Cache"
+    private SpriteRenderer ChildSprite; // Referencia al componente SpriteRenderer de cada borde
     #endregion
 
     #region "Setters y Getters"
     public List<Transform> GetChilds() {
-        return this.Childs;
+        return this.Borders;
     }
     
     public SpriteRenderer GetChildSprite() {
@@ -47,43 +53,45 @@ public class BordersControl : MonoBehaviour
         this.WaitTime = value;
     }
 
-    public float GetEnableIterations() {
-        return this.EnableIterations;
-    }
-    public void SetEnableIterations(float value) {
-        this.EnableIterations = value;
-    }
     #endregion
 
+    #region "Metodos"
+    private void Start() {
+        // Llamo al metodo que agrupa a los hijos del game object en una lista
+        this.Borders = this.GetChildrens();
+        TurnONorOFF(this.Borders, false); // Desactivo los bordes al inicio
+    }
 
     private List<Transform> GetChildrens() {
+        // Este metodo busca en un gameobject todos sus hijos (en jerarquia)
         // de 1 a 8 porque el 0 es el parent
         for (int i = 1; i <= this.transform.childCount; i++) {
-            this.Childs.Add(this.GetComponentsInChildren<Transform>()[i]);
+            // Por cada hijo que hay lo agrega a la lita
+            this.Borders.Add(this.GetComponentsInChildren<Transform>()[i]);
         }
 
-        return this.Childs;
+        // Devuelve la lista
+        return this.Borders;
     }
 
     public void EnableBorders() {
-        var childs = GetChildrens();
-        TurnONorOFF(childs, true);
+        // Cuando este metodo es llamado pasa la lista de bordes al metodo de prendido/apagado
+        // Diciendole que lo prenda y en una cantidad de tiempo WaitTime lo apague
+        this.TurnONorOFF(this.Borders, true);
         Invoke("DisableBorders", this.WaitTime);
     }
 
     public void DisableBorders() {
-        var childs = GetChildrens();
-        TurnONorOFF(childs, false);
+        // Llama al metodo de prendido/apagado con la señal de apagar los bordes
+        TurnONorOFF(this.Borders, false);
     }
+                   
 
-    private void Start() {
-        GetChilds();
-    }
-        
-
-    private void TurnONorOFF(List<Transform> childs, bool ON) {
-        foreach (var child in childs) {
-            var sprite = child.GetComponent<SpriteRenderer>();
+    private void TurnONorOFF(List<Transform> borders, bool ON) {
+        foreach (var border in borders) {
+            // Por cada borde en la lista asigno a la referencia spriterenderer su sprite
+            // Y dependiendo la señal lo "prendo" (oncolor) o lo apago (offcolor)
+            var sprite = border.GetComponent<SpriteRenderer>();
             if (ON) {
                 sprite.color = this.OnColor;
             }
@@ -92,4 +100,5 @@ public class BordersControl : MonoBehaviour
             }
         }
     }
+    #endregion
 }

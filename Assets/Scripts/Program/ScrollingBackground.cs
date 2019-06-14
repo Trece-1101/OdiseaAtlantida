@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//// Clase que controla el scrolling de los Backgrounds
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +9,7 @@ public class ScrollingBackground : MonoBehaviour
     #region "Atributos"    
     private Vector2 Velocity;
     private float OffSet;
+    private float NumberOfAlternatives;
     #endregion
 
     #region "Componentes en Cache"
@@ -33,15 +36,22 @@ public class ScrollingBackground : MonoBehaviour
     #region "Metodos"
     private void Start() {
         this.Body = GetComponent<Rigidbody2D>();
-        //Debug.Log(GameProgram.instance.GetScrollSpeed());
+        // Esto valores estan hardcodeados y deben ser modificados dependiendo del tamaño
+        // Que querramos dibujar cada segmento del mapa, todos deben ser del mismo tamaño
+        // Y la cantidad de segmentos
         this.OffSet = 13f;
-        this.Body.velocity = new Vector2(0f, GameProgram.instance.GetScrollSpeed());
+        this.NumberOfAlternatives = 2;
+        // Le damos al rigidbody la velocidad almacenada en el GameProgram
+        this.Body.velocity = new Vector2(0f, GameProgram.Instance.GetScrollSpeed());
     }
 
     private void Update() {
-        if(this.transform.position.y < -this.OffSet){
+        // En cada frame vamos a calcular la posicion en 'y' de la porcion del mapa
+        if(this.transform.position.y < -(this.OffSet)){
+            // Si la posicion 'y' es menor al offset significa que ya esta por fuera de la camara
+            // Subimos la porcion de mapa sobre la anterior
             this.transform.position = new Vector3(this.transform.position.x, 
-                                                this.OffSet, 
+                                                this.OffSet * this.NumberOfAlternatives, 
                                                 this.transform.position.z);
         }
        
