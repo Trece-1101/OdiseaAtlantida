@@ -67,8 +67,8 @@ public class Path : MonoBehaviour
                 //Debug.Log("pos2");
                 // recien en el segundo punto los enemigos empiezan a disparar
                 //enemy.SetIsVulnerable(true);
-                //this.Enemy.CanShoot = true;
-                //this.Enemy.CanShootMissile = true;
+                this.Enemy.CanShoot = true;
+                this.Enemy.CanShootMissile = true;
             }
         }
         else {

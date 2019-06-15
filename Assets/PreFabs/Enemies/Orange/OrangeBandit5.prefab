@@ -137,8 +137,7 @@ MonoBehaviour:
   BulletShootsPositions:
   - {fileID: 1792358052}
   MissileShootsPositions: []
-  LeftMicroBulletsShootsPositions: []
-  RightMicroBulletsShootsPositions: []
+  MicroBulletShootPosition: []
   ProjectileNames:
   - EnemyBulletEasy
   - EnemyMissileEasy
@@ -177,7 +176,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.48}
+    oldSize: {x: 0.8, y: 0.8}
     newSize: {x: 0.48, y: 0.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -185,14 +184,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.099999994, y: 0.24}
+    - - {x: -0.11757067, y: 0.36299467}
       - {x: -0.24, y: 0}
-      - {x: -0.24, y: -0.099999994}
-      - {x: -0.11, y: -0.22999999}
-      - {x: 0.12, y: -0.22999999}
-      - {x: 0.24, y: -0.099999994}
-      - {x: 0.24, y: 0.02}
-      - {x: 0.12, y: 0.24}
+      - {x: -0.39462203, y: -0.054316215}
+      - {x: -0.37049544, y: -0.16321893}
+      - {x: -0.12757067, y: -0.34596643}
+      - {x: 0.15514135, y: -0.33542404}
+      - {x: 0.38407958, y: -0.13162723}
+      - {x: 0.38407958, y: -0.046768513}
+      - {x: 0.206167, y: 0.053745545}
+      - {x: 0.13405672, y: 0.370023}
 --- !u!50 &2254994428473039515
 Rigidbody2D:
   serializedVersion: 4
@@ -221,11 +222,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1050599874837932562}
     m_Modifications:
-    - target: {fileID: 3689202461463763969, guid: 2abdd957455e10449837f27a74d678a8,
-        type: 3}
-      propertyPath: m_Name
-      value: CanvasHealthEnemy
-      objectReference: {fileID: 0}
     - target: {fileID: 5150581571277562663, guid: 2abdd957455e10449837f27a74d678a8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -289,7 +285,7 @@ PrefabInstance:
     - target: {fileID: 5150581571277562663, guid: 2abdd957455e10449837f27a74d678a8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.3
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5150581571277562663, guid: 2abdd957455e10449837f27a74d678a8,
         type: 3}
@@ -330,6 +326,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3689202461463763969, guid: 2abdd957455e10449837f27a74d678a8,
+        type: 3}
+      propertyPath: m_Name
+      value: CanvasHealthEnemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2abdd957455e10449837f27a74d678a8, type: 3}

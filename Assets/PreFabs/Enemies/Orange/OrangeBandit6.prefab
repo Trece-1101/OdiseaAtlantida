@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1792358051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.215, z: 0}
+  m_LocalPosition: {x: -0.274, y: 0.099, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1050599874837932562}
@@ -64,6 +64,7 @@ Transform:
   m_Children:
   - {fileID: 1792358052}
   - {fileID: 692082273698358238}
+  - {fileID: 3821470340596520674}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -136,9 +137,9 @@ MonoBehaviour:
   HurtSFX: {fileID: 8300000, guid: 30c472723fedf404f819d94815ed75fa, type: 3}
   BulletShootsPositions:
   - {fileID: 1792358052}
+  - {fileID: 3821470340596520674}
   MissileShootsPositions: []
-  LeftMicroBulletsShootsPositions: []
-  RightMicroBulletsShootsPositions: []
+  MicroBulletShootPosition: []
   ProjectileNames:
   - EnemyBulletEasy
   - EnemyBombEasy
@@ -177,7 +178,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.48}
+    oldSize: {x: 0.8, y: 0.8}
     newSize: {x: 0.48, y: 0.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -185,14 +186,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.099999994, y: 0.24}
-      - {x: -0.24, y: 0}
-      - {x: -0.24, y: -0.099999994}
-      - {x: -0.11, y: -0.22999999}
-      - {x: 0.12, y: -0.22999999}
-      - {x: 0.24, y: -0.099999994}
-      - {x: 0.24, y: 0.02}
-      - {x: 0.12, y: 0.24}
+    - - {x: -0.050802145, y: 0.3875937}
+      - {x: -0.41570675, y: -0.101909906}
+      - {x: -0.28568378, y: -0.23705123}
+      - {x: -0.15568379, y: -0.3459665}
+      - {x: 0.20785338, y: -0.35650888}
+      - {x: 0.41862524, y: -0.101092815}
+      - {x: 0.3805654, y: -0.008632436}
+      - {x: 0.28216946, y: 0.1254241}
+      - {x: 0.046203338, y: 0.38407958}
 --- !u!50 &2254994428473039515
 Rigidbody2D:
   serializedVersion: 4
@@ -214,6 +216,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &6341002665435050497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3821470340596520674}
+  m_Layer: 11
+  m_Name: ShootPosition (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3821470340596520674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6341002665435050497}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.264, y: 0.099, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1050599874837932562}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5683630206708777209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -221,11 +253,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1050599874837932562}
     m_Modifications:
-    - target: {fileID: 3689202461463763969, guid: 2abdd957455e10449837f27a74d678a8,
-        type: 3}
-      propertyPath: m_Name
-      value: CanvasHealthEnemy
-      objectReference: {fileID: 0}
     - target: {fileID: 5150581571277562663, guid: 2abdd957455e10449837f27a74d678a8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -289,7 +316,7 @@ PrefabInstance:
     - target: {fileID: 5150581571277562663, guid: 2abdd957455e10449837f27a74d678a8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.3
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5150581571277562663, guid: 2abdd957455e10449837f27a74d678a8,
         type: 3}
@@ -330,6 +357,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3689202461463763969, guid: 2abdd957455e10449837f27a74d678a8,
+        type: 3}
+      propertyPath: m_Name
+      value: CanvasHealthEnemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2abdd957455e10449837f27a74d678a8, type: 3}

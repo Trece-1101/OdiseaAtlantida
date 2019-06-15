@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 583615005339618861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.13, y: 0.024, z: 0}
+  m_LocalPosition: {x: 0.186, y: 0.024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088062513839854490}
@@ -139,8 +139,7 @@ MonoBehaviour:
   - {fileID: 4706876011516256731}
   - {fileID: 5219475955107292616}
   MissileShootsPositions: []
-  LeftMicroBulletsShootsPositions: []
-  RightMicroBulletsShootsPositions: []
+  MicroBulletShootPosition: []
   ProjectileNames:
   - EnemyBulletEasy
   - EnemyMissileEasy
@@ -179,7 +178,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.48}
+    oldSize: {x: 0.8, y: 0.8}
     newSize: {x: 0.48, y: 0.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -187,21 +186,19 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.19, y: -0.02}
-      - {x: 0.22827375, y: 0.06665774}
-      - {x: 0.11, y: 0.24}
-      - {x: 0.03, y: 0.24}
-      - {x: 0.03, y: 0.22999999}
-      - {x: 0.02, y: 0.24}
-      - {x: -0.11, y: 0.24}
-      - {x: -0.22558603, y: 0.066103265}
-      - {x: -0.19, y: -0.03}
-      - {x: -0.19999999, y: -0.06}
-      - {x: -0.19999999, y: -0.17}
-      - {x: -0.11, y: -0.24}
-      - {x: 0.089999996, y: -0.24}
-      - {x: 0.19999999, y: -0.17999999}
-      - {x: 0.19999999, y: -0.06}
+    - - {x: 0.39733392, y: 0.12759368}
+      - {x: 0.13108486, y: 0.060779095}
+      - {x: 0.02297164, y: 0.39165023}
+      - {x: -0.01160419, y: 0.3875937}
+      - {x: -0.12016197, y: 0.045018487}
+      - {x: -0.39030567, y: 0.13165024}
+      - {x: -0.38273507, y: 0.070023}
+      - {x: -0.09809, y: -0.20162724}
+      - {x: -0.18057401, y: -0.27273613}
+      - {x: -0.16271204, y: -0.4051643}
+      - {x: 0.16379687, y: -0.39813614}
+      - {x: 0.16134447, y: -0.23622616}
+      - {x: 0.38976324, y: 0.09813611}
 --- !u!50 &3912074716251998659
 Rigidbody2D:
   serializedVersion: 4
@@ -334,7 +331,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.3}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: 3, y: 0.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1062982318087740689
@@ -421,7 +418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5777965245242364877}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.13, y: 0.024, z: 0}
+  m_LocalPosition: {x: -0.207, y: 0.024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088062513839854490}

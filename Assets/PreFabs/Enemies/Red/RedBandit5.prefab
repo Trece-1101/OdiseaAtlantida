@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 1088062513839854491}
   - component: {fileID: 8736041684242954449}
   - component: {fileID: 6286898524331491252}
-  - component: {fileID: 387198946191761912}
   - component: {fileID: 3912074716251998659}
+  - component: {fileID: 7108033048797362635}
   m_Layer: 11
   m_Name: RedBandit5
   m_TagString: Enemy
@@ -161,46 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 694b0fd3fbae0914fa9b8577323f9e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!60 &387198946191761912
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1088062513839854488}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.48}
-    newSize: {x: 0.48, y: 0.48}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.13261072, y: -0.04983448}
-      - {x: 0.1235066, y: -0.0053174384}
-      - {x: 0.05032061, y: 0.03638819}
-      - {x: 0.03, y: 0.24}
-      - {x: 0.03, y: 0.22999999}
-      - {x: 0.02, y: 0.24}
-      - {x: -0.03627857, y: 0.19787349}
-      - {x: -0.08303455, y: 0.010689408}
-      - {x: -0.13383906, y: -0.051054165}
-      - {x: -0.15787697, y: -0.045959067}
-      - {x: -0.18456611, y: -0.21387666}
-      - {x: -0.04329954, y: -0.1838312}
-      - {x: 0.06191571, y: -0.17681016}
-      - {x: 0.15999211, y: -0.2092061}
-      - {x: 0.18787923, y: -0.20746903}
 --- !u!50 &3912074716251998659
 Rigidbody2D:
   serializedVersion: 4
@@ -222,6 +182,39 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!60 &7108033048797362635
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088062513839854488}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8, y: 0.8}
+    newSize: {x: 0.48, y: 0.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.015622832, y: 0.35551202}
+      - {x: -0.02322242, y: 0.34944546}
+      - {x: -0.082778685, y: 0.20146759}
+      - {x: -0.26757964, y: -0.1150683}
+      - {x: -0.33228958, y: -0.35551196}
+      - {x: 0.32217857, y: -0.36157852}
+      - {x: 0.30397895, y: -0.2378669}
+      - {x: 0.11806883, y: 0.09393349}
 --- !u!1 &1434867861298729988
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +326,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.3}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: 3, y: 0.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1062982318087740689

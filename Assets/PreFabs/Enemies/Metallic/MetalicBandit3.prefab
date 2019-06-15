@@ -107,8 +107,7 @@ MonoBehaviour:
   BulletShootsPositions: []
   MissileShootsPositions:
   - {fileID: 8976691263019995921}
-  LeftMicroBulletsShootsPositions: []
-  RightMicroBulletsShootsPositions: []
+  MicroBulletShootPosition: []
   ProjectileNames:
   - EnemyBulletEasy
   - EnemyMissileEasy
@@ -147,7 +146,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.48}
+    oldSize: {x: 0.8, y: 0.8}
     newSize: {x: 0.48, y: 0.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -156,17 +155,14 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0.19, y: -0.02}
-      - {x: 0.11, y: 0.24}
-      - {x: 0.03, y: 0.24}
-      - {x: 0.03, y: 0.22999999}
-      - {x: 0.02, y: 0.24}
-      - {x: -0.11, y: 0.24}
+      - {x: 0.018632442, y: 0.35948056}
+      - {x: -0.008090012, y: 0.3665089}
       - {x: -0.19, y: -0.03}
       - {x: -0.19999999, y: -0.06}
-      - {x: -0.19999999, y: -0.17}
-      - {x: -0.11, y: -0.24}
-      - {x: 0.089999996, y: -0.24}
-      - {x: 0.19999999, y: -0.17999999}
+      - {x: -0.3089382, y: -0.36327744}
+      - {x: -0.12757067, y: -0.3559665}
+      - {x: 0.044316106, y: -0.35948062}
+      - {x: 0.30190986, y: -0.35219264}
       - {x: 0.19999999, y: -0.06}
 --- !u!50 &3912074716251998659
 Rigidbody2D:
@@ -300,7 +296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.3}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: 3, y: 0.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1062982318087740689
