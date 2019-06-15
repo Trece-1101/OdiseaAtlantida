@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class OrbitalEnemy : Enemy
 {
-    private float OrbitDistance = 2f;
-    private float OrbitDegreesPerSecond = 90f;
-    private Vector3 Zaxis = new Vector3(0f, 0f, 1f);
-    private bool FirstDisable = true;
+    private float OrbitDistance = 2f; // Distancia de orbita (radio de la circunferencia)
+    private float OrbitDegreesPerSecond = 90f; // Cantidad de grados por segundo de orbita
+    private Vector3 Zaxis = new Vector3(0f, 0f, 1f); // Eje de rotacion
+    private bool FirstDisable = true; // Auxiliar
 
 
     private void OnEnable() {
+        // Cada vez que se activa un minion recupera sus puntos de vida originales
         this.HitPoints = this.GetOriginalHitPoints();
     }
 
@@ -19,9 +20,10 @@ public class OrbitalEnemy : Enemy
 
         Transform target = transform.parent; // el eje de rotacion es el padre (jerarquico)
 
+        // una vez que esta creado el minion lo posicionamos a una distancia orbitDistance
         // pos = posEje + (pos - posEje).normal * d
-        transform.position = target.position + (transform.position - target.position).normalized * this.OrbitDistance;
-        transform.RotateAround(target.position, this.Zaxis, this.OrbitDegreesPerSecond * Time.deltaTime);
+        this.transform.position = target.position + (this.transform.position - target.position).normalized * this.OrbitDistance;
+        this.transform.RotateAround(target.position, this.Zaxis, this.OrbitDegreesPerSecond * Time.deltaTime);
     }
 
     public override void Die() {

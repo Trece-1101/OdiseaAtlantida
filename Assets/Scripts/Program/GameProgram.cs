@@ -24,7 +24,7 @@ public class GameProgram : MonoBehaviour
     private Vector2 ScreenSize = new Vector2(12f, 10f); // Tamaño pantalla/camara viewport ancho x viewport alto
     private Vector2 Scale;
 
-    private int Score; // Puntaje
+    private int Score = 10000; // Puntaje
     private int KillCount; // Cantidad de enemigos destruidos
     private int TotalEnemies; // Total de enemigos Spawneados
     private int LeftEnemies; // Enemigos restantes en juego

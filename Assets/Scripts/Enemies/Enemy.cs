@@ -70,7 +70,7 @@ public class Enemy : Ship
         Dictionary<string, Quaternion> rotations; // Diccionario que contiene rotaciones (aca se almacena los valores devueltos por el metodo Rotate)
 
         // Si el jugador es destruido no tiene sentido rotar "hacia", genera error, se hace un return
-        if (!this.Player.GetIsAlive()) {
+        if (!this.Player.GetIsAlive() && this.Player != null) {
             return;
         }
 
@@ -125,7 +125,7 @@ public class Enemy : Ship
     public override void ControlOtherCollision(Collider2D collision) {
         // Metodo que controla collisiones con objetos que no poseen un componenete DamageControl
         // Si el objeto con el que se colisiono es el Player => se destruye el enemigo
-        if(collision.gameObject.tag == "Player") {
+        if(collision.gameObject.tag == "Player" && this.tag != "FinalEnemy") {
             Die();
         }
     }
