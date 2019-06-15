@@ -5418,8 +5418,43 @@ MonoBehaviour:
     Name: PrototypeLevel
     JoinWaves:
     - Wave:
+      - {fileID: 11400000, guid: 9c46bc7811fa4e84da97a7f8ae3b4ae5, type: 2}
+      - {fileID: 11400000, guid: 29e218774450f9d439d72133f7213175, type: 2}
+      - {fileID: 11400000, guid: 8dabaafd670f2e949936fcbd937bf2fc, type: 2}
+    - Wave:
+      - {fileID: 11400000, guid: 2591faef69d1b0c42887b0a8df021942, type: 2}
+      - {fileID: 11400000, guid: 2a1b04ba5b904694cb2024401ef3d801, type: 2}
+    - Wave:
+      - {fileID: 11400000, guid: 92b7bb2ace0d0fb429ca8cc6caac5a45, type: 2}
+      - {fileID: 11400000, guid: 355cf740ac443fd4193c95817cb51c68, type: 2}
+      - {fileID: 11400000, guid: 6517abf7004befe40bc4fc389bbeabe0, type: 2}
+      - {fileID: 11400000, guid: 84958354310b59044bd3a8d35712728e, type: 2}
+    - Wave:
+      - {fileID: 11400000, guid: acfe59429690f094197580ae9fca4b6d, type: 2}
+      - {fileID: 11400000, guid: dc7be081c5ec49e4b842fdd0de30485b, type: 2}
+      - {fileID: 11400000, guid: 302bb60b748fc644bb02c96d85507c6f, type: 2}
+      - {fileID: 11400000, guid: a2bf7527de4850748a63751e35a7c491, type: 2}
+    - Wave:
+      - {fileID: 11400000, guid: 142ba3f9b7a25fe42b57bef25ee7e21a, type: 2}
+      - {fileID: 11400000, guid: a2a763a8b65127d43a0f96d79afe6e38, type: 2}
+      - {fileID: 11400000, guid: abd2fe854f1c21843b52ded91672816e, type: 2}
+    - Wave:
+      - {fileID: 11400000, guid: 9c684b933fad20040957da002892393e, type: 2}
+      - {fileID: 11400000, guid: 3fc6b2611e69f2c43930437630bd690b, type: 2}
+    - Wave:
+      - {fileID: 11400000, guid: 14ce750f067635b4aa003aa3c5242bcb, type: 2}
+      - {fileID: 11400000, guid: ce861bd44a4fed8428ae8aaa05d89eb0, type: 2}
+    - Wave:
+      - {fileID: 11400000, guid: 12c49d7cb9f38774888122e5c7ab4575, type: 2}
+      - {fileID: 11400000, guid: 8835388cc88fd7e45ab602116978d074, type: 2}
+    - Wave:
+      - {fileID: 11400000, guid: 3fc6b2611e69f2c43930437630bd690b, type: 2}
+      - {fileID: 11400000, guid: 8835388cc88fd7e45ab602116978d074, type: 2}
+      - {fileID: 11400000, guid: 6517abf7004befe40bc4fc389bbeabe0, type: 2}
+      - {fileID: 11400000, guid: 84958354310b59044bd3a8d35712728e, type: 2}
+    - Wave:
       - {fileID: 11400000, guid: f18214cdda60fff4e81917ad2b229756, type: 2}
-    NextWaveSpawnTime: 02000000
+    NextWaveSpawnTime: 03000000040000000800000008000000050000000400000004000000050000000a00000014000000
   SuicideEnemyPrefab:
   - {fileID: 1597402426284869519, guid: 268cf74541f582846821e90024f74a66, type: 3}
   - {fileID: 1597402426284869519, guid: bb46b4dba22ed1b4381570a242548b4a, type: 3}
@@ -26565,6 +26600,18 @@ MonoBehaviour:
     preFab: {fileID: 1088062513839854488, guid: cf0f16569855f944db79d4880642ed45,
       type: 3}
     poolSize: 8
+  - tag: EnemyBulletMedium
+    preFab: {fileID: 1181253783709301941, guid: 5c6a8f7713ec34a49a42c53b1847a30d,
+      type: 3}
+    poolSize: 100
+  - tag: EnemyMissileMedium
+    preFab: {fileID: 8256868047263212533, guid: 4fd3aadebabb293489a2498055b3b4a1,
+      type: 3}
+    poolSize: 100
+  - tag: EnemyMicroBulletMedium
+    preFab: {fileID: 1181253783709301941, guid: e5bd37d794b68c24b9da677a5473b697,
+      type: 3}
+    poolSize: 100
 --- !u!4 &1789105253
 Transform:
   m_ObjectHideFlags: 0
