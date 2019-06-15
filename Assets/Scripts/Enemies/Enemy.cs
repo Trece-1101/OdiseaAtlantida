@@ -70,7 +70,7 @@ public class Enemy : Ship
         Dictionary<string, Quaternion> rotations; // Diccionario que contiene rotaciones (aca se almacena los valores devueltos por el metodo Rotate)
 
         // Si el jugador es destruido no tiene sentido rotar "hacia", genera error, se hace un return
-        if (!this.Player.GetIsAlive() && this.Player != null) {
+        if (this.Player == null || !this.Player.GetIsAlive()) {
             return;
         }
 

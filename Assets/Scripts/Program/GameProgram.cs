@@ -11,6 +11,7 @@ public class GameProgram : MonoBehaviour
 
     [SerializeField] GameObject LevelCompleteText = null; // Banner de nivel completado
     [SerializeField] GameObject LevelDestroyedText = null; // Banner de derrota
+    [SerializeField] List<GameObject> Spawners = null;
 
     #region "Atributos"
     private float LeftBorder; // Borde izquierdo maximo donde puede moverse el jugador
@@ -87,7 +88,7 @@ public class GameProgram : MonoBehaviour
     private Asimov Player; // Referencia al objeto de tipo player
     private CrossHair CrossHair; // Referencia a la mira del player (es una Imagen de un canvas)
     private EnemySpawner EnemySpawner; // Referencia a la clase que spawnea enemigos
-    private LevelLoader LevelManager; // Referencia al objeto que controla la carga del nivel
+    private LevelLoader LevelLoader; // Referencia al objeto que controla la carga del nivel
     #endregion
 
     #region "Metodos"
@@ -116,8 +117,17 @@ public class GameProgram : MonoBehaviour
 
         // Enlazamos los componentes en cache con sus respectivas referencias
         this.Player = FindObjectOfType<Asimov>();
-        this.EnemySpawner = FindObjectOfType<EnemySpawner>();
-        this.LevelManager = FindObjectOfType<LevelLoader>();
+
+        
+
+        if(this.Spawners.Count > 0) {
+            var spawnThis = Random.Range(0, this.Spawners.Count);            
+            this.Spawners[spawnThis].SetActive(true);
+            this.EnemySpawner = FindObjectOfType<EnemySpawner>();
+            Debug.Log(this.EnemySpawner.name);
+        }     
+
+        this.LevelLoader = FindObjectOfType<LevelLoader>();
         this.CrossHair = FindObjectOfType<CrossHair>();
 
         // Hacemos que el cursor (la flechita) desaparezca
@@ -154,7 +164,8 @@ public class GameProgram : MonoBehaviour
     
     private void Lose() {
         LevelDestroyedText.SetActive(true); // Activa el banner de derrota
-        Invoke("StopTime", this.TimeToWait); // Llama al metodo que detiene el tiempo
+        //Invoke("StopTime", this.TimeToWait); // Llama al metodo que detiene el tiempo
+        this.LevelLoader.RestartScene();
     }
 
     private void StopTime() {

@@ -120,7 +120,8 @@ public class EnemySpawner : MonoBehaviour
         this.TimeToSpawnSuicide = this.OriginalTimeToSpawnSuicide;
     }
 
-    private IEnumerator Start() {        
+
+    private IEnumerator Start() {  
         // Hacemos que el metodo Start emita corutinas
         do {
             // Llamamos a la corutina que spawnea formaciones

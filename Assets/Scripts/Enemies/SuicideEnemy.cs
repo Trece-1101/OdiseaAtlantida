@@ -16,9 +16,9 @@ public class SuicideEnemy : Enemy
         this.Speed = this.GetVelocity().x * this.GetGameProg().GetScale().x;
     }
 
-    private void Update() {
+    public override void Update() {
         // solo si el jugador esta activo/vivo
-        if (this.GetPlayer().GetIsAlive()) {
+        if (this.GetPlayer() != null && this.GetPlayer().GetIsAlive()) {
             this.CheckRotation(); // El chequeo de rotacion es la de la clase Enemy
             this.Move(); // Metodo que controla el movimiento
         }

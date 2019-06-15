@@ -17,7 +17,7 @@ public class EnemyTank : Enemy
     public override void CheckRotation() {
         if (!ShouldRotate) { return; }
         // En este caso el enemigo no persigue al jugador sino que tiene una orientacion definida de 45°
-        if (!this.GetPlayer().GetIsAlive()) { return; }
+        if (this.GetPlayer() == null || !this.GetPlayer().GetIsAlive()) { return; }
         if (this.GetPlayer().transform.position.x > this.transform.position.x) {
             // si el jugador esta a la derecha el angulo es -45°
             this.transform.rotation = Quaternion.Euler(0f, 0f, -45f);

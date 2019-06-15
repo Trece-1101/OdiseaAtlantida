@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/PrototypeLevel.unity
     guid: 31f2ee2ca67cd7e4bbdbdef485fb68e6
   - enabled: 1
+    path: Assets/Scenes/PrototypeLevel 1.unity
+    guid: 8e72df9415d20b54ab20da727bfc0fb7
+  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 34c0afbbadfcc7f48a0d3f7b006cf4c9
   m_configObjects: {}
