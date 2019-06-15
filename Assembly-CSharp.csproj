@@ -64,6 +64,8 @@
     <Compile Include="Assets\Scripts\Enemies\EnemyExplosion.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyTank.cs" />
+    <Compile Include="Assets\Scripts\Enemies\FinalEnemy.cs" />
+    <Compile Include="Assets\Scripts\Enemies\OrbitalEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\Path.cs" />
     <Compile Include="Assets\Scripts\Enemies\SuicideEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\Wave.cs" />

@@ -183,7 +183,7 @@ public class GameProgram : MonoBehaviour
         // Metodo que chequea la cantidad de enemigos vivos que quedan
         this.LeftEnemies = this.TotalEnemies - this.KillCount; // Enemigos_restantes = Enemigos_totales_spawneados - Enemigos_totales_destruidos
         //Debug.Log($"enemigos en pantalla {this.LeftEnemies}");
-        if (this.LeftEnemies <= 0 && this.EnemySpawner.GetIsLastFormation()) {
+        if (this.LeftEnemies <= 0 && this.EnemySpawner.GetIsLastFormation() && this.Player != null) {
             // Si ya se espawneo la ultima formacion y no quedan mas enemigos en pantalla
             // Ejecutamos lo siguiente
             StartCoroutine(LevelCompleted());

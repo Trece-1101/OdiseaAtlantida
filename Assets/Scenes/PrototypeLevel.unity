@@ -5418,13 +5418,8 @@ MonoBehaviour:
     Name: PrototypeLevel
     JoinWaves:
     - Wave:
-      - {fileID: 11400000, guid: 95d200b0857b9cf438954a5aa4e6ef7b, type: 2}
-      - {fileID: 11400000, guid: 5356d82f672644348b82096eb9df1405, type: 2}
-      - {fileID: 11400000, guid: 696902947adade141aa62c113004c3f1, type: 2}
-    - Wave:
-      - {fileID: 11400000, guid: f94b74e3d2ee4af409063d55aeb9dad6, type: 2}
-      - {fileID: 11400000, guid: 943339553a27a704b9a1719da6af4d25, type: 2}
-    NextWaveSpawnTime: 0100000008000000
+      - {fileID: 11400000, guid: f18214cdda60fff4e81917ad2b229756, type: 2}
+    NextWaveSpawnTime: 02000000
   SuicideEnemyPrefab:
   - {fileID: 1597402426284869519, guid: 268cf74541f582846821e90024f74a66, type: 3}
   - {fileID: 1597402426284869519, guid: bb46b4dba22ed1b4381570a242548b4a, type: 3}
@@ -26519,14 +26514,14 @@ MonoBehaviour:
   - tag: PowerUpBulletTime
     preFab: {fileID: 6024143572292091615, guid: 177d3e3d8b123614fa63d20e8c06c4a2,
       type: 3}
-    poolSize: 1
+    poolSize: 4
   - tag: AsimovClone
     preFab: {fileID: 8807959308874980800, guid: 3793b239ad7d3334b82743c64b5517dc,
       type: 3}
     poolSize: 2
   - tag: PowerUpClone
     preFab: {fileID: 879475099605472074, guid: 81056b8f5a0808847a7ce86c47545077, type: 3}
-    poolSize: 1
+    poolSize: 4
   - tag: EnemyImplosion
     preFab: {fileID: 3254958462037916847, guid: 1c7e9d658fc7346439a2e91cb4752553,
       type: 3}
@@ -26554,6 +26549,22 @@ MonoBehaviour:
     preFab: {fileID: 4521033258433527842, guid: 430cdab43b72115488fdf72f3bd2846f,
       type: 3}
     poolSize: 25
+  - tag: AtlasBullet
+    preFab: {fileID: 1181253783709301941, guid: e9a923073bc5542458290fcf00eb613d,
+      type: 3}
+    poolSize: 100
+  - tag: AtlasMissile
+    preFab: {fileID: 8256868047263212533, guid: a39a7d93e911a6a4fbfb1b212869ac14,
+      type: 3}
+    poolSize: 25
+  - tag: AtlasMicroBullet
+    preFab: {fileID: 1181253783709301941, guid: 6696e93dd6b846a4bbc3da35b792c275,
+      type: 3}
+    poolSize: 100
+  - tag: AtlasMinion
+    preFab: {fileID: 1088062513839854488, guid: cf0f16569855f944db79d4880642ed45,
+      type: 3}
+    poolSize: 8
 --- !u!4 &1789105253
 Transform:
   m_ObjectHideFlags: 0

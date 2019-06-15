@@ -58,7 +58,7 @@ public class Enemy : Ship
         this.GetGameProg().AddEnemyToCount(); // Metodo del GameProgram que añade un enemigo al conteo de enemigos
     }      
 
-    private void Update() {
+    public virtual void Update() {
         // Metodo que se ejecuta frame a frame
         CheckRotation(); // Metodo para controlar la rotacion
         Shoot(); // Metodo para disparar
@@ -99,6 +99,7 @@ public class Enemy : Ship
         // Porque iteraria en un for de 0 a 0. Pero se controla aca para evitar tener que entrar al IF y ser mas eficiente
         if (this.RemainTimeForShootBullet <= 0 && this.CanShoot && this.GetBulletShootPoints().Count > 0) {
             this.ShootBullet(); // Metodo en la clase padre
+            this.ShootMicroBullet();
             this.PlayShootSFX(this.GetShootBulletSFX(), this.transform.position, 3f); // Metodo en la clase padre
 
             this.RemainTimeForShootBullet = this.TimeBetweenBulletShoots; // Regresamos el contador a su valor original
@@ -132,12 +133,12 @@ public class Enemy : Ship
     public override void Die() {
         // Metodo de muerte del enemigo
 
-        Destroy(this.gameObject); // Destruye el objete
+        Destroy(this.gameObject); // Destruye el objeto
                       
         this.PlayExplosion(); // Metodo que muestra la explosion al destruirse        
     }
 
-    private void PlayExplosion() {
+    protected void PlayExplosion() {
         // Metodo que muestra la explosion        
         int expIndex = Random.Range(0, this.Explodes.Count); // se elige random entre los tipos de explosion de la lista
         string exp = Explodes[expIndex]; // se asigna a una variable string (el tag) el nombre con ese index
@@ -160,7 +161,7 @@ public class Enemy : Ship
         this.PowerUpRoulette(); // Metodo para controlar spawn de PowerUps
     }
 
-    private void PowerUpRoulette() {
+    protected void PowerUpRoulette() {
         // Metodo para controlar spawn de PowerUps
 
         var powerUp = this.PickRandomPowerUp(); // Llamamos a un metodo que devuelve un string con el tag de un powerUp
