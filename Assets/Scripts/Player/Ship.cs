@@ -50,6 +50,7 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
     private string MyMissileVFX; // Tag del misil que dispara la nave, se usa en conjunto con ProjectileNames
     private string MyMicroBulletsVFX; // Tag de la bala secundaria que dispara la nave, se usa en conjunto con ProjectileNames
     List<string> PowerUpsNames; // Lista que contiene tags de los powerups que se pueden utilizar
+    private bool DestroyByDamage = false; // variable de control para que no de puntos ni sume muertes al hacer reload scene (destruye objetos)
     #endregion
 
     #region "Componentes en Cache"
@@ -245,6 +246,13 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
     public void SetProjectileNames(List<string> value) {
         this.ProjectileNames = value;
     }
+
+    public bool GetDestroyByDamage() {
+        return this.DestroyByDamage;
+    }
+    public void SetDestroyByDamage(bool value) {
+        this.DestroyByDamage = value;
+    }
     #endregion
 
     #region "Constructor"
@@ -388,6 +396,7 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
 
         // Si los puntos de vida son 0 (o menor) Ejecutamos el metodo de morir
         if(this.HitPoints <= 0) {
+            this.DestroyByDamage = true;
             this.Die();
         }
     }

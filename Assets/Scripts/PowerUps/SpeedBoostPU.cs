@@ -12,7 +12,7 @@ public class SpeedBoostPU : PowerUp
         // Metodo que controla la "magia" del PowerUp
         var vel = this.GetAsimov().GetVelocity(); // Tomo la velocidad actual del Player
         this.GetAsimov().SetVelocity(vel * SpeedBoost); // La multiplico por el SpeedBoost
-        Invoke("RevertYourMagic", this.GetCoolTime());  // Revierto el powerUp en CoolTime segundos
+        Invoke(this.GetRevertPowerUpMethod(), this.GetCoolTime());  // Revierto el powerUp en CoolTime segundos
     }
 
     private void RevertYourMagic() {

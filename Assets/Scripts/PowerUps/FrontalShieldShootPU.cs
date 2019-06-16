@@ -8,14 +8,15 @@ public class FrontalShieldShootPU : PowerUp
 {
 
     private float TimeForShoot = 0.15f; // Tiempo entre disparos
+    private int NumberOfShoots = 25;
 
     public override void MakeYourMagic() {
         // Metodo que controla la "magia" del PowerUp
-        for (int i = 0; i < 25; i++) {            
+        for (int i = 0; i < this.NumberOfShoots; i++) {            
             Invoke("Shoot", this.TimeForShoot * i); // Disparo 24 veces, incremento el tiempo del Invoke proporcionalmente de manera tal que el deltaTiempo es el mismo
         }
         
-        Invoke("RevertYourMagic", this.GetCoolTime()); // Revierto el powerUp en CoolTime segundos
+        Invoke(this.GetRevertPowerUpMethod(), this.GetCoolTime()); // Revierto el powerUp en CoolTime segundos
     }
 
     private void Shoot() {

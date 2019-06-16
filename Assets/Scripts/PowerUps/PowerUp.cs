@@ -11,8 +11,10 @@ public abstract class PowerUp : MonoBehaviour
     private Vector2 SpeedChange; // Cambio de velocidad ante cada rebote
     private bool FirstContact = false; // Variable que controla si el objeto ya colisiono contra algun objeto
     private float TimeToDie = 5f; // Variable que controla el tiempo para que se desactive el objeto (su representacion grafica) tras primera colision
+    private float SpeedModifier = 1.15f;
 
     private float CoolTime = 6f; // Tiempo en el que el powerUp se enfria (se desactiva) al ser activado
+    private string RevertPowerUp = "RevertYourMagic";
     #endregion
 
     #region "Componentes en Cache"
@@ -77,6 +79,10 @@ public abstract class PowerUp : MonoBehaviour
     public void SetPool(ObjectPool value) {
         this.Pool = value;
     }
+
+    public string GetRevertPowerUpMethod() {
+        return this.RevertPowerUp;
+    }
     #endregion
 
 
@@ -104,14 +110,18 @@ public abstract class PowerUp : MonoBehaviour
 
     private Vector2 RandomSpeed() {
         var speed = Vector2.zero; // variable local de velocidad en 0 para forzar entrada al while
+        float minSpeedX = 1f;
+        float minSpeedY = 0.8f;
+        float randomX = 4f;
+        float randomY = 3f;
 
-        while (speed.x < 1 && speed.x > -1) {
+        while (speed.x < minSpeedX && speed.x > -minSpeedX) {
             // con esto nos aseguramos que la velocidad en X sea mayor a 4 o menor a -4
-            speed.x = Random.Range(-4f, 4f);
+            speed.x = Random.Range(-randomX, randomX);
         }
-        while (speed.y < 1 && speed.y > -1) {
+        while (speed.y < minSpeedY && speed.y > -minSpeedY) {
             // con esto nos aseguramos que la velocidad en y sea mayor a 3 o menor a -3
-            speed.y = Random.Range(-3f, 3f);
+            speed.y = Random.Range(-randomY, randomY);
         }
         
         return speed; // devolvemos el vector velocidad calculado
@@ -133,7 +143,7 @@ public abstract class PowerUp : MonoBehaviour
         this.SpeedChange = Vector2.Reflect(this.SpeedChange, collision.contacts[0].normal);
         // Aumentamos el valor del vector de cambio de velocidad (que al iniciar es la mitad de la velocidad) por un 20%
         // Es decir que por cada contacto aumenta un 20%
-        this.SpeedChange *= 1.2f;
+        this.SpeedChange *= this.SpeedModifier;
 
         // le asignamos al rigidBody una velocidad igual al vector velocidad + vector cambio de velocidad
         // Vt = V + VC

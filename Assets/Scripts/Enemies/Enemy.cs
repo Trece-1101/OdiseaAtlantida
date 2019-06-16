@@ -126,7 +126,8 @@ public class Enemy : Ship
         // Metodo que controla collisiones con objetos que no poseen un componenete DamageControl
         // Si el objeto con el que se colisiono es el Player => se destruye el enemigo
         if(collision.gameObject.tag == "Player" && this.tag != "FinalEnemy") {
-            Die();
+            this.SetDestroyByDamage(true);
+            this.Die();
         }
     }
 
@@ -153,12 +154,15 @@ public class Enemy : Ship
     }
     #endregion
 
-    #region "Comportamientos PowerUp"
+    #region "Comportamientos Spawn PowerUp"
 
     private void OnDestroy() {
         // OnDestroy es un metodo de unity que se llama cuando un objeto es destruido
-        this.GetGameProg().AddScore(this.GetReward()); // Le agregamos al Score el Reward del enemigo
-        this.PowerUpRoulette(); // Metodo para controlar spawn de PowerUps
+        if (this.GetDestroyByDamage()) {
+            this.GetGameProg().AddScore(this.GetReward()); // Le agregamos al Score el Reward del enemigo
+            this.PowerUpRoulette(); // Metodo para controlar spawn de PowerUps
+            this.SetDestroyByDamage(false);
+        }
     }
 
     protected void PowerUpRoulette() {

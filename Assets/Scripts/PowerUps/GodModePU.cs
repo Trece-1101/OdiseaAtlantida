@@ -22,7 +22,7 @@ public class GodModePU : PowerUp
     public override void MakeYourMagic() {
         // Metodo que controla la "magia" del PowerUp
         this.SetInVulnerable(); // Llama al metodo para hacerse invulerable
-        Invoke("RevertYourMagic", this.GetCoolTime());  // Revierto el powerUp en CoolTime segundos
+        Invoke(this.GetRevertPowerUpMethod(), this.GetCoolTime());  // Revierto el powerUp en CoolTime segundos
     }
 
 

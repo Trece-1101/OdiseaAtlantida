@@ -10,7 +10,7 @@ public class BigShieldPU : PowerUp
         // Metodo que controla la "magia" del PowerUp
         // Le pide al escudo de la nave del player que ejecute su metodo de BigShield
         this.GetAsimov().GetMyShield().BigShield();
-        Invoke("RevertYourMagic", this.GetCoolTime()); // Revierte este proceso en CoolTime segundos
+        Invoke(this.GetRevertPowerUpMethod(), this.GetCoolTime()); // Revierte este proceso en CoolTime segundos
     }
 
     private void RevertYourMagic() {

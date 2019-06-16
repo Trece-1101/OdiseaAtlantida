@@ -23,7 +23,7 @@ public class BulletTimePU : PowerUp
         this.GetAsimov().TimeBetweenBulletShoots /= BulletTimeShootFactor; // Disminuyo el tiempo en que se pueden disparar balas y misiles
         this.GetAsimov().TimeBetweenMissileShoots /= BulletTimeShootFactor;
 
-        Invoke("RevertYourMagic", this.GetCoolTime() / PlayerFactor); // Revierto el PowerUp en CoolTime segundos y modificado por el factor del player para que no cambie el tiempo
+        Invoke(this.GetRevertPowerUpMethod(), this.GetCoolTime() / PlayerFactor); // Revierto el PowerUp en CoolTime segundos y modificado por el factor del player para que no cambie el tiempo
     }
 
     private void RevertYourMagic() {

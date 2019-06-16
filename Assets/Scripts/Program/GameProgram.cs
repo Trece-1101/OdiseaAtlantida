@@ -116,15 +116,14 @@ public class GameProgram : MonoBehaviour
         this.LevelDestroyedText.SetActive(false);
 
         // Enlazamos los componentes en cache con sus respectivas referencias
-        this.Player = FindObjectOfType<Asimov>();
-
-        
+        this.Player = FindObjectOfType<Asimov>();        
 
         if(this.Spawners.Count > 0) {
+            // elegimos un enemyspawner random de la lista (asi los niveles nunca seran iguales)
             var spawnThis = Random.Range(0, this.Spawners.Count);            
             this.Spawners[spawnThis].SetActive(true);
             this.EnemySpawner = FindObjectOfType<EnemySpawner>();
-            Debug.Log(this.EnemySpawner.name);
+            //Debug.Log(this.EnemySpawner.name);
         }     
 
         this.LevelLoader = FindObjectOfType<LevelLoader>();
@@ -153,7 +152,7 @@ public class GameProgram : MonoBehaviour
 
     private void Update() {
         // Si el player sigue vivo
-        if (this.Player.GetIsAlive()) {
+        if (this.Player != null || this.Player.GetIsAlive()) {
             this.CrossHair.transform.position = Input.mousePosition; // Mueve la mira a la posicion del mouse
         }
         else {            

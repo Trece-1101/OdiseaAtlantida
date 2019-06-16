@@ -27,7 +27,7 @@ public class DronePU : PowerUp
         drone1.transform.localPosition = new Vector3(this.DistanceToPlayer, 0f, 0f);
         drone2.transform.localPosition = new Vector3(-this.DistanceToPlayer, 0f, 0f);
 
-        Invoke("RevertYourMagic", this.GetCoolTime()); // Revierto el powerUp en CoolTime segundos
+        Invoke(this.GetRevertPowerUpMethod(), this.GetCoolTime()); // Revierto el powerUp en CoolTime segundos
     }
 
     private void RevertYourMagic() {
