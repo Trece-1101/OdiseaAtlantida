@@ -39,6 +39,7 @@ public class Asimov : Ship
     private PolygonCollider2D AtackCollider; // Referencia al colisionador en modo ataque
     private PolygonCollider2D DefenseCollider; // Referencia al colisionador en modo defensa
     private Animator MyAnimator; // Referencia al animator de la nave
+    private CrossHair CrossHair; // Referencia a la mira del player (es una Imagen de un canvas)
     #endregion
 
     #region "Setters/Getters"
@@ -155,6 +156,8 @@ public class Asimov : Ship
         this.AtackCollider = colliders[0];
         this.DefenseCollider = colliders[1];
 
+        this.CrossHair = FindObjectOfType<CrossHair>();
+
         this.OriginalVelocity = this.GetVelocity();
         this.DashCoolTime = this.InitialDashCoolTime;
         this.SetOriginalHitPoints(this.GetHitPoints());
@@ -182,6 +185,8 @@ public class Asimov : Ship
     }
 
     public override void CheckRotation() {
+        this.CrossHair.transform.position = Input.mousePosition; // Mueve la mira a la posicion del mouse
+
         // vector_direccion_ataque = vector_posicion_mouse - vector_centro_camara
         // 90 grados para compensar que el sprite tiene su 0° hacia el Norte y la camara tiene sus 0° hacia el Este
         // el sprite del proyectil ya apunta hacia el Este asi que no tiene compensacion

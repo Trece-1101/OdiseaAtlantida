@@ -4,6 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameProgram : MonoBehaviour
 {
@@ -86,15 +87,14 @@ public class GameProgram : MonoBehaviour
 
     #region "Referencias en Cache"
     private Asimov Player; // Referencia al objeto de tipo player
-    private CrossHair CrossHair; // Referencia a la mira del player (es una Imagen de un canvas)
+    //private CrossHair CrossHair; // Referencia a la mira del player (es una Imagen de un canvas)
     private EnemySpawner EnemySpawner; // Referencia a la clase que spawnea enemigos
-    private LevelLoader LevelLoader; // Referencia al objeto que controla la carga del nivel
+    //private LevelLoader LevelLoader; // Referencia al objeto que controla la carga del nivel
     #endregion
 
     #region "Metodos"
     private void Awake() {
         // Primer metodo que se ejecuta
-
         this.SetScrollSpeed(-3.5f); // Velocidad de desplazamiento de la camara
         this.Scale = this.ScreenSize / this.PhysicSize; // 0,02 worldunits del viewport equivalen a 1 metro => 600 m = 12 WU // 500 m = 10WU
 
@@ -108,15 +108,26 @@ public class GameProgram : MonoBehaviour
         }
         // Forzamos a que no destruya la instancia anteriormente creada (sacar esto puede generar un bug)
         DontDestroyOnLoad(gameObject);
+
+        //int gameSessionNumber = FindObjectsOfType<GameProgram>().Length;
+        //if (gameSessionNumber > 1) {
+        //    Destroy(gameObject);
+        //}
+        //else {
+        //    Instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
+
     }
 
     private void Start() {
+        
         // Desactivamos los banners de victoria/derrota
         this.LevelCompleteText.SetActive(false);
         this.LevelDestroyedText.SetActive(false);
 
         // Enlazamos los componentes en cache con sus respectivas referencias
-        this.Player = FindObjectOfType<Asimov>();        
+        this.Player = FindObjectOfType<Asimov>();     
 
         if(this.Spawners.Count > 0) {
             // elegimos un enemyspawner random de la lista (asi los niveles nunca seran iguales)
@@ -126,8 +137,8 @@ public class GameProgram : MonoBehaviour
             //Debug.Log(this.EnemySpawner.name);
         }     
 
-        this.LevelLoader = FindObjectOfType<LevelLoader>();
-        this.CrossHair = FindObjectOfType<CrossHair>();
+        //this.LevelLoader = FindObjectOfType<LevelLoader>();
+        //this.CrossHair = FindObjectOfType<CrossHair>();
 
         // Hacemos que el cursor (la flechita) desaparezca
         Cursor.visible = false;
@@ -153,7 +164,7 @@ public class GameProgram : MonoBehaviour
     private void Update() {
         // Si el player sigue vivo
         if (this.Player != null || this.Player.GetIsAlive()) {
-            this.CrossHair.transform.position = Input.mousePosition; // Mueve la mira a la posicion del mouse
+            //this.CrossHair.transform.position = Input.mousePosition; // Mueve la mira a la posicion del mouse
         }
         else {            
             Cursor.visible = true;
@@ -164,7 +175,14 @@ public class GameProgram : MonoBehaviour
     private void Lose() {
         LevelDestroyedText.SetActive(true); // Activa el banner de derrota
         //Invoke("StopTime", this.TimeToWait); // Llama al metodo que detiene el tiempo
-        this.LevelLoader.RestartScene();
+        //this.LevelLoader.RestartScene();
+        this.ResetLevel();
+    }
+
+    private void ResetLevel() {
+        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentScene);
+        //Destroy(this.gameObject);
     }
 
     private void StopTime() {
