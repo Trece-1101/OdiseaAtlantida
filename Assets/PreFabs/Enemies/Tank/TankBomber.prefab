@@ -299,10 +299,11 @@ MonoBehaviour:
   - EnemyMissileEasy
   - EnemyMicroBulletEasy
   Reward: 220
-  PowerUpChance: 0.2
+  PowerUpChance: 0.3
   timeBtwBulletS: 1
   timeBtwMissileS: 0
   canShootMissile: 0
+  ShouldRotate: 0
 --- !u!70 &8378876099499761736
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

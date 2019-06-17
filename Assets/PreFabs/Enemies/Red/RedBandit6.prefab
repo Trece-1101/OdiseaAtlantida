@@ -161,8 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a8dde19a1eb3c4a9247e33fae6883c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalHitPoints: 90
-  Velocity: {x: 85, y: 85}
+  OriginalHitPoints: 110
+  Velocity: {x: 120, y: 120}
   HealthBar: {fileID: 1264813307236363887}
   DeathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}
   ShootBulletSFX: {fileID: 8300000, guid: a955a358a4dec19449ea8905dffb8585, type: 3}
@@ -180,8 +180,8 @@ MonoBehaviour:
   - EnemyBulletMedium
   - EnemyMissileMedium
   - EnemyMicroBulletMedium
-  Reward: 400
-  PowerUpChance: 0.25
+  Reward: 550
+  PowerUpChance: 0.35
   timeBtwBulletS: 2.5
   timeBtwMissileS: 4
   canShootMissile: 1
@@ -222,21 +222,21 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.2245602, y: -0.12799154}
-      - {x: 0.1235066, y: -0.0053174384}
-      - {x: 0.12081523, y: 0.18810487}
-      - {x: 0.03, y: 0.24}
-      - {x: 0.03, y: 0.22999999}
-      - {x: -0.025974743, y: 0.22774006}
-      - {x: -0.03627857, y: 0.19787349}
-      - {x: -0.11981433, y: 0.18999091}
-      - {x: -0.13383906, y: -0.051054165}
-      - {x: -0.22837153, y: -0.12258364}
-      - {x: -0.18456611, y: -0.21387666}
-      - {x: -0.04329954, y: -0.1838312}
-      - {x: 0.06191571, y: -0.17681016}
-      - {x: 0.15999211, y: -0.2092061}
-      - {x: 0.18787923, y: -0.20746903}
+    - - {x: 0.40238428, y: -0.28695548}
+      - {x: 0.24205592, y: 0.016236987}
+      - {x: 0.22050452, y: 0.29857144}
+      - {x: 0.1350778, y: 0.31813478}
+      - {x: 0.04347152, y: 0.28658035}
+      - {x: -0.025974743, y: 0.28701472}
+      - {x: -0.0874704, y: 0.24367668}
+      - {x: -0.18717194, y: 0.3408719}
+      - {x: -0.24969412, y: -0.056442827}
+      - {x: -0.37925255, y: -0.22496718}
+      - {x: -0.17917743, y: -0.34320325}
+      - {x: -0.04599379, y: -0.24580018}
+      - {x: 0.056527033, y: -0.2630279}
+      - {x: 0.12766059, y: -0.28464657}
+      - {x: 0.19865641, y: -0.33410135}
 --- !u!50 &3912074716251998659
 Rigidbody2D:
   serializedVersion: 4

@@ -230,7 +230,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -3
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.0052631497, y: 0.0052631497, z: 0}
   m_MaxChunkCount: 16
@@ -3903,7 +3903,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -3
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.0052631497, y: 0.0052631497, z: 0}
   m_MaxChunkCount: 16
@@ -7615,7 +7615,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.016129017, y: 0.016129017, z: 0}
   m_MaxChunkCount: 16
@@ -9268,13 +9268,13 @@ MonoBehaviour:
     Name: EnemyShowdown
     JoinWaves:
     - Wave:
-      - {fileID: 11400000, guid: 417cc4cdd11f43f419bef2b423587570, type: 2}
-      - {fileID: 11400000, guid: 6467226051b53c14b9231042d0056e6f, type: 2}
-      - {fileID: 11400000, guid: 75c1025cee8096044ad3a4c9ca5a8c3c, type: 2}
-      - {fileID: 11400000, guid: 10cfe66f3a903ee42b6dff361529d4db, type: 2}
-      - {fileID: 11400000, guid: 5fbe22b2fc433c8429d3999a2e357aaf, type: 2}
-      - {fileID: 11400000, guid: dfac5494e84f29146ad17a77a882eac3, type: 2}
-    NextWaveSpawnTime: 03000000
+      - {fileID: 11400000, guid: d47a4d809bc613e419ce461aac24305b, type: 2}
+      - {fileID: 11400000, guid: 35a2245f25bf5a04fb6aef661e8b11f9, type: 2}
+      - {fileID: 11400000, guid: a9b7ac23899fc7749a258ed838fb19ae, type: 2}
+      - {fileID: 11400000, guid: 3bbf7031ee9de2042b78ab9009c8f277, type: 2}
+      - {fileID: 11400000, guid: d9b050be90d56c24285b5a7933fbbd4c, type: 2}
+      - {fileID: 11400000, guid: 7781e0afc57544242aadf093bcc67e6f, type: 2}
+    NextWaveSpawnTime: 01000000
   SuicideEnemyPrefab: []
 --- !u!4 &872358778
 Transform:
@@ -10387,7 +10387,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.016129017, y: 0.016129017, z: 0}
   m_MaxChunkCount: 16
@@ -11924,7 +11924,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.016129017, y: 0.016129017, z: 0}
   m_MaxChunkCount: 16
@@ -13505,7 +13505,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.016129017, y: 0.016129017, z: 0}
   m_MaxChunkCount: 16
@@ -14881,14 +14881,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.7647059, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5b8e815103f83ba4887ebdd5d70724aa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c68f6fdee434aa0489f42a135986d41f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

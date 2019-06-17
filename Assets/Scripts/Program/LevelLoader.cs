@@ -42,12 +42,6 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    //public void RestartScene() {
-    //    string currentScene = SceneManager.GetActiveScene().name;
-    //    StartCoroutine(WaitAndLoad(currentScene));
-    //    //SceneManager.LoadScene(currentScene);
-    //}
-
     public void LoadPrototype() {
         this.Animator.SetTrigger("FadeOut");
         //StartCoroutine(WaitAndLoad("PrototypeLevel"));

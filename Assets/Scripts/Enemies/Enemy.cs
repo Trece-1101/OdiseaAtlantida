@@ -97,7 +97,7 @@ public class Enemy : Ship
         // Si el enemigo puede disparar y el contador de tiempo llego a 0 => dispara
         // Tambien se controla si el enemigo tiene puntos de disparo. Si no los tuviera en el metodo "ShootBullet" no pasaria nada
         // Porque iteraria en un for de 0 a 0. Pero se controla aca para evitar tener que entrar al IF y ser mas eficiente
-        if (this.RemainTimeForShootBullet <= 0 && this.CanShoot && this.GetBulletShootPoints().Count > 0) {
+        if (this.RemainTimeForShootBullet <= 0 && this.CanShoot && (this.GetBulletShootPoints().Count > 0 || this.GettMicroBulletShootPoints().Count > 0)) {
             this.ShootBullet(); // Metodo en la clase padre
             this.ShootMicroBullet();
             this.PlayShootSFX(this.GetShootBulletSFX(), this.transform.position, 3f); // Metodo en la clase padre

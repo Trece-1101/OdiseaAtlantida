@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a8dde19a1eb3c4a9247e33fae6883c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalHitPoints: 90
-  Velocity: {x: 80, y: 80}
+  OriginalHitPoints: 100
+  Velocity: {x: 100, y: 100}
   HealthBar: {fileID: 1264813307236363887}
   DeathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}
   ShootBulletSFX: {fileID: 8300000, guid: a955a358a4dec19449ea8905dffb8585, type: 3}
@@ -114,8 +114,8 @@ MonoBehaviour:
   - EnemyBulletMedium
   - EnemyMissileMedium
   - EnemyMicroBulletEasy
-  Reward: 360
-  PowerUpChance: 0.2
+  Reward: 450
+  PowerUpChance: 0.3
   timeBtwBulletS: 1.5
   timeBtwMissileS: 3
   canShootMissile: 1

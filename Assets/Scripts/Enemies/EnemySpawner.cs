@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
     private bool IsLastFormation = false; // variable de control si se llego a la ultima formacion
     private float Timer = 0f; // Timer para control de salida de suicidas
     private float TimeToSpawnSuicide;
-    private float OriginalTimeToSpawnSuicide = 15f;
+    [SerializeField] private float OriginalTimeToSpawnSuicide = 15f;
     private float LimitTimeForSpawnSuicide = 8f;
     // Puntos donde pueden instanciarse los enemigos suicidas
     private List<Vector3> InstantiatePoints = new List<Vector3>() { new Vector3(-12f, 8f, 0f), new Vector3(0f, 8f, 0f), new Vector3(-12f, 8f, 0f),
