@@ -10,11 +10,11 @@ public class Shield : MonoBehaviour, IAttack, IDefense
     #region "Atritutos Serializados"
     [Header("Shoot")]
     [SerializeField] private List<Transform> ShootsPositions = null; // Listado de puntos desde donde puede disparar el escudo
+    [SerializeField] public float OriginalHitPoints = 100f; // Los hitpoints o "vida" al iniciar el juego/escena
     #endregion
 
     #region "Atributos"
-    private bool IsEnable = true; // Atributo que controla si el escudo esta activo
-    public float OriginalHitPoints; // Los hitpoints o "vida" al iniciar el juego/escena
+    private bool IsEnable = true; // Atributo que controla si el escudo esta activo    
 
     public float TimeBetweenBulletShoots { get; set; } // Implementacion de la interfaz IAttack, tiempo que debe pasar para poder ejecutar disparos de balas consecutivos
     public float TimeBetweenMissileShoots { get; set; } // Implementacion de la interfaz IAttack, tiempo que debe pasar para poder ejecutar disparos de misiles consecutivos

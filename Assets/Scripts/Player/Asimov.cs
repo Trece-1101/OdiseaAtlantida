@@ -30,8 +30,9 @@ public class Asimov : Ship
     private bool HasPowerUp; // Atributo que controla si la nave tiene un PowerUp asignado (consumido) sin usar
     private PowerUp PowerUpType; // Atributo de tipo PowerUp
 
-    private int RestartShieldPenalty = 800;
+    private int RestartShieldPenalty = 300;
     private int CanSubstract = 0;
+    private int DiePenalty = 1000;
     #endregion      
 
     #region "Referencias en Cache"     
@@ -40,6 +41,7 @@ public class Asimov : Ship
     private PolygonCollider2D DefenseCollider; // Referencia al colisionador en modo defensa
     private Animator MyAnimator; // Referencia al animator de la nave
     private CrossHair CrossHair; // Referencia a la mira del player (es una Imagen de un canvas)
+    private LevelManager LevelMng;
     #endregion
 
     #region "Setters/Getters"
@@ -152,6 +154,8 @@ public class Asimov : Ship
         this.MyShield = FindObjectOfType<Shield>();
         this.MyAnimator = GetComponent<Animator>();
 
+        this.LevelMng = FindObjectOfType<LevelManager>();
+
         PolygonCollider2D[] colliders = GetComponents<PolygonCollider2D>();
         this.AtackCollider = colliders[0];
         this.DefenseCollider = colliders[1];
@@ -181,7 +185,7 @@ public class Asimov : Ship
         this.UsePowerUp(); // Metodo para ejecutar el powerUp consumido
         this.MoveShield(); // Metodo para manejar el escudo
         this.RestartShield(); // Metodo que reinicia el escudo
-        this.CheckMode(); // Metodo que controla el modo actual o el cambio de modo de la nave (ofensivo o defensivo)
+        this.CheckMode(); // Metodo que controla el modo actual o el cambio de modo de la nave (ofensivo o defensivo) 
     }
 
     public override void CheckRotation() {
@@ -220,8 +224,9 @@ public class Asimov : Ship
 
         // proxima pos = posicion actual + deltaMov -- bloqueo mi proxima posicion para que no pueda avanzar mas alla de los margenes
         // pos(n) = pos(n-1) + v*t -- v*t = deltaMov
-        var nextPosX = Mathf.Clamp(transform.position.x + deltaX * this.GetGameProg().GetScale().x, this.GetGameProg().GetLeftBorder(), this.GetGameProg().GetRightBorder());
-        var nextPosY = Mathf.Clamp(transform.position.y + deltaY * this.GetGameProg().GetScale().y, this.GetGameProg().GetUpBorder(), this.GetGameProg().GetDownBorder());
+
+        var nextPosX = Mathf.Clamp(transform.position.x + deltaX * this.GetGameSessionControl().GetScale().x, this.LevelMng.GetLeftBorder(), this.LevelMng.GetRightBorder());
+        var nextPosY = Mathf.Clamp(transform.position.y + deltaY * this.GetGameSessionControl().GetScale().y, this.LevelMng.GetUpBorder(), this.LevelMng.GetDownBorder());
 
         Vector2 nextPosition = new Vector2(nextPosX, nextPosY);
 
@@ -329,19 +334,19 @@ public class Asimov : Ship
 
     private void RestartShield() {
         // Metodo que controla el reinicio del shield cuando es destruido
-        this.CanSubstract = this.GetGameProg().GetScore() - this.RestartShieldPenalty;
+        this.CanSubstract = this.GetGameSessionControl().GetScore() - this.RestartShieldPenalty;
         if (Input.GetKeyDown(KeyCode.Q) && CanSubstract > 0) {
             // si apretamos la tecla Q y el escudo no esta activo (enable) y tenemos XP para gastar
             if (!this.MyShield.GetIsEnable()) {
                 this.MyShield.RestartShield(0, new Vector3(1f, 1f, 1f), 1); // llamamos al metodo en shield de reinicio de escudo      
-                this.GetGameProg().SubstractScore(this.RestartShieldPenalty);
+                this.GetGameSessionControl().SubstractScore(this.RestartShieldPenalty);
             }
         }
     }
 
     private void CheckMode() {
         // Metodo que controla el modo de la nave
-        this.CanSubstract = this.GetGameProg().GetScore() - this.ChangeModePenalty;
+        this.CanSubstract = this.GetGameSessionControl().GetScore() - this.ChangeModePenalty;
         if (Input.GetKeyDown(KeyCode.LeftShift) && !this.InTransition && this.CanSubstract > 0) {
             // Si presionamos la tecla shift y no estamos en transicion
             // almacenamos la animacion de la transicion en una variable para poder asignarla como hija de la nave
@@ -390,8 +395,9 @@ public class Asimov : Ship
         }
         else {
             // si el modo es defensivo
+            float lifeRecharge = 2f;
             this.TimeBetweenBulletShoots *= (TransitionValueModifier * 2); // se dispara mas lento
-            this.RefillHealth(this.HitPoints * 2); // se recarga la vida al doble de la actual
+            this.RefillHealth(this.HitPoints * lifeRecharge); // se recarga la vida al doble
             this.SetVelocity(this.GetVelocity() * TransitionValueModifier); // se aumenta la velocidad
         }
 
@@ -431,8 +437,14 @@ public class Asimov : Ship
         this.ControlHealthBar(); // la barra de vida debe descargarse
         this.SetIsAlive(false); // el jugador se establece como "no vivo"
         this.PlayExplosion(); // Se muestra la explosion
-        this.GetCameraShake().UltraShake(); // Llamamos a la clase SHake y hacemos un sacudon de camara         
-        Destroy(gameObject); // Destruimos el objeto
+        this.GetCameraShake().UltraShake(); // Llamamos a la clase SHake y hacemos un sacudon de camara
+        this.gameObject.SetActive(false);
+        float timeToReset = 2f;
+        Invoke("DeactivateAndReset", timeToReset);
+    }
+
+    private void DeactivateAndReset() {        
+        FindObjectOfType<GameSession>().PlayerDead();
     }
 
     private void PlayExplosion() {

@@ -47,7 +47,7 @@ public class AirMine : Proyectile
         this.MyAnimator = GetComponentInChildren<Animator>();
 
         this.speed = this.GetSpeed().x;
-        this.scale = this.GetGameProg().GetScale().x;
+        this.scale = this.GetGameSessionControl().GetScale().x;
     }
 
 

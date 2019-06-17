@@ -15,7 +15,7 @@ public class Path : MonoBehaviour
     #region "Componentes en Cache"
     private Wave Wave; // Referencia a la Oleada de enemigos
     private Enemy Enemy; // Referencia al objeto enemigo
-    private GameProgram GameProg; // Referencia al GameProgram
+    private GameSession GameProg; // Referencia al GameProgram
     #endregion
 
     #region "Auxiliares"
@@ -31,7 +31,7 @@ public class Path : MonoBehaviour
 
     #region "Metodos"
     private void Awake() {
-        this.GameProg = FindObjectOfType<GameProgram>();
+        this.GameProg = FindObjectOfType<GameSession>();
         this.Scale = this.GameProg.GetScale().x;
     }
 

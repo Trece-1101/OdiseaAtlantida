@@ -34,12 +34,12 @@ public class DestroyableProjectile : Proyectile
         this.Pool = ObjectPool.Instance;
 
         // Pasamos al valor de velocidad inicial el de su velocidad al instanciar el objeto
-        this.SetInitialSpeed(this.GetSpeed() * this.GetGameProg().GetScale());
+        this.SetInitialSpeed(this.GetSpeed() * this.GetGameSessionControl().GetScale());
     }    
 
     public override void Update() {
         // pos = pos + v * t
-        this.transform.Translate(Vector2.right * this.GetSpeed() * Time.deltaTime * this.GetGameProg().GetScale());        
+        this.transform.Translate(Vector2.right * this.GetSpeed() * Time.deltaTime * this.GetGameSessionControl().GetScale());        
     }
 
     public override void OnEnable() {

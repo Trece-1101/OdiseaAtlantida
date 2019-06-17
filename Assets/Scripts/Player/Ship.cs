@@ -54,8 +54,8 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
     #endregion
 
     #region "Componentes en Cache"
-    private ObjectPool ObjectPool; // "Pool" de objetos ya instanciados en la pre-carga, se llaman (activan) mediante tags (strings) que describen su nombre
-    private GameProgram GameProg; // Atributo que enlaza al Game Program que es el encargado de las funciones generales del juego (es un singleton)
+    private ObjectPool ObjectPool; // "Pool" de objetos ya instanciados en la pre-carga, se llaman (activan) mediante tags (strings) que describen su nombre    
+    private GameSession GameSessionControl; // Atributo que enlaza al Game Program que es el encargado de las funciones generales del juego (es un singleton)
     public DamageControl DamageCtrl { set; get; } // Implementacion de la interfaz IDefense, clase auxiliar para el control de daño de los proyectiles y clases que generan daño o no  
     private ShakeYourBooty CameraShake; // Atributo que referencia a la clase encargada de efectos de camara
     private Camera MainCamera; // Atributo que referencia a la camara general del juego
@@ -98,11 +98,11 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
         this.ObjectPool = value;
     }
 
-    public GameProgram GetGameProg() {
-        return this.GameProg;
+    public GameSession GetGameSessionControl() {
+        return this.GameSessionControl;
     }
-    public void SetGameProg(GameProgram value) {
-        this.GameProg = value;
+    public void SetGameSessionControl(GameSession value) {
+        this.GameSessionControl = value;
     }
 
     public AudioClip GetDeathSFX() {
@@ -267,7 +267,7 @@ public abstract class Ship : MonoBehaviour, IAttack, IDefense
     public virtual void Awake() {
         // Primer metodo que se ejecuta cuando el objeto es "visto" en la jerarquia
         // Enlazamos los componentes en cache con sus respectivas referencias
-        this.GameProg = FindObjectOfType<GameProgram>();
+        this.GameSessionControl = FindObjectOfType<GameSession>();
         this.ObjectPool = ObjectPool.Instance;
         this.MainCamera = Camera.main;
         this.CameraShake = this.MainCamera.GetComponent<ShakeYourBooty>();

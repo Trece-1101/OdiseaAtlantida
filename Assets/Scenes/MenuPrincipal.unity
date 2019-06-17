@@ -1191,23 +1191,8 @@ PrefabInstance:
     - target: {fileID: 6767981665065007713, guid: b3e41124bcb16bf44a793c9c122f34c7,
         type: 3}
       propertyPath: m_Name
-      value: LevelManager
+      value: LevelLoader
       objectReference: {fileID: 0}
-    - target: {fileID: 6767981665065007714, guid: b3e41124bcb16bf44a793c9c122f34c7,
-        type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 264311111}
-    - target: {fileID: 6767981665065007714, guid: b3e41124bcb16bf44a793c9c122f34c7,
-        type: 3}
-      propertyPath: slider
-      value: 
-      objectReference: {fileID: 352219717}
-    - target: {fileID: 6767981665065007714, guid: b3e41124bcb16bf44a793c9c122f34c7,
-        type: 3}
-      propertyPath: Slider
-      value: 
-      objectReference: {fileID: 352219717}
     - target: {fileID: 6767981665065007714, guid: b3e41124bcb16bf44a793c9c122f34c7,
         type: 3}
       propertyPath: Animator

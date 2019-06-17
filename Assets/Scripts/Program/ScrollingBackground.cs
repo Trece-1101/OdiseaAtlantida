@@ -14,6 +14,8 @@ public class ScrollingBackground : MonoBehaviour
 
     #region "Componentes en Cache"
     private Rigidbody2D Body;
+    //private GameProgram GamePrg;
+    private LevelManager LevelMng;
     #endregion
 
     #region "Setters y Getters"
@@ -36,13 +38,17 @@ public class ScrollingBackground : MonoBehaviour
     #region "Metodos"
     private void Start() {
         this.Body = GetComponent<Rigidbody2D>();
+        //this.GamePrg = FindObjectOfType<GameProgram>();
+        this.LevelMng = FindObjectOfType<LevelManager>();
         // Esto valores estan hardcodeados y deben ser modificados dependiendo del tamaño
         // Que querramos dibujar cada segmento del mapa, todos deben ser del mismo tamaño
         // Y la cantidad de segmentos
         this.OffSet = 13f;
         this.NumberOfAlternatives = 1;
         // Le damos al rigidbody la velocidad almacenada en el GameProgram
-        this.Body.velocity = new Vector2(0f, GameProgram.Instance.GetScrollSpeed());
+        //this.Body.velocity = new Vector2(0f, GameProgram.Instance.GetScrollSpeed());
+        //this.Body.velocity = new Vector2(0f, this.GamePrg.GetScrollSpeed());
+        this.Body.velocity = new Vector2(0f, this.LevelMng.GetScrollSpeed());
     }
 
     private void Update() {

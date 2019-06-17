@@ -13,7 +13,7 @@ public class SuicideEnemy : Enemy
     #region "Metodos"
     public override void Awake() {
         base.Awake();
-        this.Speed = this.GetVelocity().x * this.GetGameProg().GetScale().x;
+        this.Speed = this.GetVelocity().x * this.GetGameSessionControl().GetScale().x;
     }
 
     public override void Update() {

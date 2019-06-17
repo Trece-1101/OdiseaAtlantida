@@ -17,7 +17,7 @@ public abstract class Proyectile : MonoBehaviour
 
     #region "Referencias en Cache"
     private DamageControl DamageCtrl; // Referencia al componente DamageControl que va a almacenar el daño que genera el proyectil
-    private GameProgram GamePrg; // Atributo que enlaza al Game Program que es el encargado de las funciones generales del juego (es un singleton)
+    private GameSession GameSessionControl; // Atributo que enlaza al Game Program que es el encargado de las funciones generales del juego (es un singleton)
     #endregion
 
     #region "Setters/Getters"
@@ -49,11 +49,11 @@ public abstract class Proyectile : MonoBehaviour
         this.DamageCtrl = value;
     }
 
-    public GameProgram GetGameProg() {
-        return this.GamePrg;
+    public GameSession GetGameSessionControl() {
+        return this.GameSessionControl;
     }
-    public void SetGameProg(GameProgram value) {
-        this.GamePrg = value;
+    public void SetGameSessionControl(GameSession value) {
+        this.GameSessionControl = value;
     }
 
     #endregion
@@ -63,7 +63,7 @@ public abstract class Proyectile : MonoBehaviour
         // Primer metodo que se ejecuta cuando el objeto es "visto" en la jerarquia
         // Enlazamos los componentes en cache con sus respectivas referencias
         this.DamageCtrl = GetComponent<DamageControl>();
-        this.GamePrg = FindObjectOfType<GameProgram>();
+        this.GameSessionControl = FindObjectOfType<GameSession>();
 
     }
 

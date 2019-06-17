@@ -34,7 +34,7 @@ public class Missile : Proyectile
         this.SetSpeed(this.GetSpeed() + this.Aceleration * Time.deltaTime);
 
         // pos = pos + v*t + 1/2 a*t2
-        transform.Translate(Vector2.right * ((this.GetSpeed() * Time.deltaTime) + ((this.Aceleration  * Mathf.Pow(Time.deltaTime, 2)) / 2)) * this.GetGameProg().GetScale());
+        transform.Translate(Vector2.right * ((this.GetSpeed() * Time.deltaTime) + ((this.Aceleration  * Mathf.Pow(Time.deltaTime, 2)) / 2)) * this.GetGameSessionControl().GetScale());
 
         //Debug.Log(this.GetSpeed());
 

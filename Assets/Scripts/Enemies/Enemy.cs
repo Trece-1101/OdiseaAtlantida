@@ -55,7 +55,7 @@ public class Enemy : Ship
         this.RemainTimeForShootBullet = this.GetTimeBetweenBulletShoots();
         this.RemainTimeForShootMissile = this.GetTimeBetweenMissileShoots();
 
-        this.GetGameProg().AddEnemyToCount(); // Metodo del GameProgram que añade un enemigo al conteo de enemigos
+        //this.GetGameProg().AddEnemyToCount(); // Metodo del GameProgram que añade un enemigo al conteo de enemigos
     }      
 
     public virtual void Update() {
@@ -159,7 +159,7 @@ public class Enemy : Ship
     private void OnDestroy() {
         // OnDestroy es un metodo de unity que se llama cuando un objeto es destruido
         if (this.GetDestroyByDamage()) {
-            this.GetGameProg().AddScore(this.GetReward()); // Le agregamos al Score el Reward del enemigo
+            this.GetGameSessionControl().AddScore(this.GetReward()); // Le agregamos al Score el Reward del enemigo
             this.PowerUpRoulette(); // Metodo para controlar spawn de PowerUps
             this.SetDestroyByDamage(false);
         }
