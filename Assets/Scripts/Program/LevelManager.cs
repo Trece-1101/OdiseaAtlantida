@@ -73,7 +73,7 @@ public class LevelManager : MonoBehaviour
     private void Start() {
         //this.SetScrollSpeed(-3.5f); // Velocidad de desplazamiento de la camara
         this.SetUpBorders();
-        Cursor.visible = false;
+        
 
         if (this.Spawners.Count > 0) {
             // elegimos un enemyspawner random de la lista (asi los niveles nunca seran iguales)

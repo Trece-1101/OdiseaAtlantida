@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\PowerUps\GodModePU.cs" />
     <Compile Include="Assets\Scripts\PowerUps\ParticleCollected.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUp.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\PowerUpImageControl.cs" />
     <Compile Include="Assets\Scripts\PowerUps\RestoreHealthPU.cs" />
     <Compile Include="Assets\Scripts\PowerUps\SpeedBoostPU.cs" />
     <Compile Include="Assets\Scripts\PowerUps\SpiralShieldShootPU.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Assets\Scripts\Program\DialogSystem.cs" />
     <Compile Include="Assets\Scripts\Program\GameProgram.cs" />
     <Compile Include="Assets\Scripts\Program\GameSession.cs" />
+    <Compile Include="Assets\Scripts\Program\KillCountDisplay.cs" />
     <Compile Include="Assets\Scripts\Program\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\Program\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Program\MouseCursor.cs" />

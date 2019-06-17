@@ -9,7 +9,6 @@ public class ScoreDisplay : MonoBehaviour
 {
     #region "Componentes en Cache"
     TextMeshProUGUI ScoreText;
-    GameProgram GameProg;
     GameSession GameS;
     #endregion
 

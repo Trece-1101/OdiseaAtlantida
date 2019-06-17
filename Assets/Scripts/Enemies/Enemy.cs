@@ -77,7 +77,7 @@ public class Enemy : Ship
         // Si el jugador esta clonado (es un tipo de powerUp que genera un clon en un punto dado de la pantalla) el enemigo va a apuntar
         // a un sector delimitado random (no al player real)
         if (this.Player.GetIsCloned()) {
-            var targetClone = new Vector3(Random.Range(-1f, 1f), Random.Range(-3.5f, -2.5f), 0f); // vector random
+            var targetClone = new Vector3(0f, -3f, 0f);
             rotations = this.Rotate(targetClone - this.transform.position, 90, 0); // pedimos al metodo rotate nuestra rotacion para apuntar
         }
         else {

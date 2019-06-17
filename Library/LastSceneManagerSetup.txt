@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/EnemyShowDown/EnemyShowDownSuicide.unity
+- path: Assets/Scenes/PrototypeLevel.unity
   isLoaded: 1
   isActive: 1

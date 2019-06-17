@@ -35,4 +35,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EnemyShowDown/EnemyShowDownSuicide.unity
     guid: 2fb3b4ba014257948bad88a012e99ea8
+  - enabled: 1
+    path: Assets/Scenes/PowerUpsShowDown/PowerUpShowDownSpeedUp.unity
+    guid: 70611e9f7d7953c4bb3923036a697652
+  - enabled: 1
+    path: Assets/Scenes/PowerUpsShowDown/PowerUpShowDownBigShield.unity
+    guid: e775ef2120804d34c80c5d7ed89c0b6d
+  - enabled: 1
+    path: Assets/Scenes/PowerUpsShowDown/PowerUpShowDownRestoreHealth.unity
+    guid: cc28d021c40d0a44bb07b79a7c3a2a80
+  - enabled: 1
+    path: Assets/Scenes/PowerUpsShowDown/PowerUpShowDownGodMode.unity
+    guid: 3127893c3203de140963d76e31191ec5
+  - enabled: 1
+    path: Assets/Scenes/PowerUpsShowDown/PowerUpShowDownSpiralShieldShoot.unity
+    guid: 60564d4de55db97458512856163159fd
+  - enabled: 1
+    path: Assets/Scenes/PowerUpsShowDown/PowerUpShowDownDrones.unity
+    guid: 2c4007bffd3853849810a4cfca33722e
+  - enabled: 1
+    path: Assets/Scenes/PowerUpsShowDown/PowerUpShowDownFrontalShieldShoot.unity
+    guid: 95db57d31770c8949817b440bd0fc0a3
+  - enabled: 1
+    path: Assets/Scenes/PowerUpsShowDown/PowerUpShowDownAirMines.unity
+    guid: 674b9090050118440bef2ae6a4a972ae
+  - enabled: 1
+    path: Assets/Scenes/PowerUpsShowDown/PowerUpShowDownBulletTime.unity
+    guid: 11564a6bb5f49fd47bced8a8b43dd519
+  - enabled: 1
+    path: Assets/Scenes/PowerUpsShowDown/PowerUpShowDownClone.unity
+    guid: 97997ecbbf4a853408445e64681caf80
   m_configObjects: {}

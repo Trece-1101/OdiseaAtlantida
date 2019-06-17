@@ -21,6 +21,7 @@ public abstract class PowerUp : MonoBehaviour
     private Rigidbody2D MyBody; // Referencia al componente RigidBody
     private ObjectPool Pool; // Referencia al Pool que contiene los objetos instanciados
     private Asimov Player; // Referencia al Player
+    private PowerUpImageControl PowerUpImg;
     #endregion
 
     #region "Setters y Getters"
@@ -91,7 +92,8 @@ public abstract class PowerUp : MonoBehaviour
         // Primer metodo que se ejecuta cuando el objeto es "visto" en la jerarquia si no esta declarado "Awake"
         // Enlazamos los componentes en cache con sus respectivas referencias
         this.Pool = ObjectPool.Instance;
-        this.Player = FindObjectOfType<Asimov>();        
+        this.Player = FindObjectOfType<Asimov>();
+        this.PowerUpImg = FindObjectOfType<PowerUpImageControl>();
 
         // Llamamos al metodo que genera una velocidad random cuando se instancia el objeto, queda guardado en el pool con velocidad
         // Incluso antes de su primera activacion
@@ -167,6 +169,8 @@ public abstract class PowerUp : MonoBehaviour
 
         this.Player.SetHasPowerUp(true); // Le dice al player que tiene un powerUp para activar
         this.Player.SetPowerUpType(this); // Le pasa al atributo PowerUp su tipo
+        this.PowerUpImg.SetImage(this);
+
                 
         this.Die(); // Llama al metodo morir instantaneamente
     }

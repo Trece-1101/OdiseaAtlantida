@@ -42,6 +42,7 @@ public class Asimov : Ship
     private Animator MyAnimator; // Referencia al animator de la nave
     private CrossHair CrossHair; // Referencia a la mira del player (es una Imagen de un canvas)
     private LevelManager LevelMng;
+    private PowerUpImageControl PowerUpImg;
     #endregion
 
     #region "Setters/Getters"
@@ -155,6 +156,7 @@ public class Asimov : Ship
         this.MyAnimator = GetComponent<Animator>();
 
         this.LevelMng = FindObjectOfType<LevelManager>();
+        this.PowerUpImg = FindObjectOfType<PowerUpImageControl>();
 
         PolygonCollider2D[] colliders = GetComponents<PolygonCollider2D>();
         this.AtackCollider = colliders[0];
@@ -178,6 +180,8 @@ public class Asimov : Ship
     }
    
     private void Update() {
+        if (LevelLoader.IsPaused) { return; }
+        Cursor.visible = false;
         this.CheckRotation(); // Metodo que chequea la rotacion y rota al player
         this.Move(); // Metodo que para mover al player en sentido horizontal y vertical
         this.Shoot(); // Metodo que controla los disparos del Player
@@ -355,7 +359,7 @@ public class Asimov : Ship
             transition.transform.parent = this.transform;
             this.CanShoot = false; // quitamos la posibilidad de disparar mientras dure la transicion
             this.CanShootMissile = false; // quitamos la posibilidad de disparar misiles mientras dure la transicion
-            // TODO: agregar costo de la transicion
+            this.GetGameSessionControl().SubstractScore(this.ChangeModePenalty);
 
             if (this.Mode == "Attack") {
                 // si el modo actual al momento de apretar la tecla de cambio era de Ataque invocamos al metodo
@@ -443,7 +447,8 @@ public class Asimov : Ship
         Invoke("DeactivateAndReset", timeToReset);
     }
 
-    private void DeactivateAndReset() {        
+    private void DeactivateAndReset() {
+        this.GetGameSessionControl().SubstractScore(this.DiePenalty);
         FindObjectOfType<GameSession>().PlayerDead();
     }
 
@@ -467,6 +472,7 @@ public class Asimov : Ship
                 // Llamamos al tipo de powerUp consumido y usamos su metodo para que "haga su magia"
                 this.PowerUpType.MakeYourMagic();
                 this.HasPowerUp = false; // dejamos de tener un powerUp
+                this.PowerUpImg.NoImage();
             }
             
         }
