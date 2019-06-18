@@ -44,7 +44,7 @@ public class DestroyableProjectile : Proyectile
 
     public override void OnEnable() {
         // Aumentamos un poco el tiempo de muerte
-        Invoke("Die", GetLifeTime() * 2f);
+        Invoke("Die", GetLifeTime() * 1.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
