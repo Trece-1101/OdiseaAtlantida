@@ -20,6 +20,8 @@ public class LevelLoader : MonoBehaviour
 
     #region "Componentes en Cache"
     private MouseCursor PersonalCursor;
+    private GameSession GameS;
+    private MusicPlayer MusicP;
     #endregion
 
     #region "Scenes Names"
@@ -67,6 +69,8 @@ public class LevelLoader : MonoBehaviour
     #region "Metodos"   
     private void Start() {
         this.PersonalCursor = FindObjectOfType<MouseCursor>();
+        this.GameS = FindObjectOfType<GameSession>();
+        this.MusicP = FindObjectOfType<MusicPlayer>();
 
         this.Resume();
     }
@@ -113,8 +117,14 @@ public class LevelLoader : MonoBehaviour
     }
 
 
-    public void LoadStartMenu() {
-        FindObjectOfType<GameSession>().ResetGame();
+    public void LoadStartMenu() {        
+        if(GameS != null) {
+            GameS.ResetGame();
+        }
+        if(MusicP != null) {
+            MusicP.Reset();
+        }
+
         SceneManager.LoadScene(this.MainMenu);
         Cursor.visible = true;
     }

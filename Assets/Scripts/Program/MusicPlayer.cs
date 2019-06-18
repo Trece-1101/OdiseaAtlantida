@@ -7,16 +7,20 @@ using UnityEngine;
 public class MusicPlayer : MonoBehaviour
 {
     AudioSource AudioSrc;
+    [SerializeField] private float Volumen = 0.05f;
 
     private void Start() {
         DontDestroyOnLoad(this);
         this.AudioSrc = GetComponent<AudioSource>();
-        //this.AudioSrc.volume = PlayerPrefController.GetMasterVolume();
-        this.AudioSrc.volume = 0.8f;
+        this.AudioSrc.volume = this.Volumen;
     }
 
     public void SetVolume(float value) {
         this.AudioSrc.volume = value;
+    }
+
+    public void Reset() {
+        Destroy(gameObject);
     }
 
 }

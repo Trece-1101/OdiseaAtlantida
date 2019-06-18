@@ -74,4 +74,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IntroScene.unity
     guid: 64861251121138449a9cb38e34e6390a
+  - enabled: 1
+    path: Assets/Scenes/Mecanicas/ShowDownMecanicas.unity
+    guid: 0d616eab37c4c114cb1f27f680fd1308
   m_configObjects: {}
