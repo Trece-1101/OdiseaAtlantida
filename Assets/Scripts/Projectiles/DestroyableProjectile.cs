@@ -10,7 +10,7 @@ public class DestroyableProjectile : Proyectile
 {
 
     #region "Atributos"
-    private float HitPoints = 40f; // Puntos de vida del proyectil
+    private float HitPoints = 25f; // Puntos de vida del proyectil
     #endregion
 
     #region "Componentes en Cache"
@@ -44,7 +44,7 @@ public class DestroyableProjectile : Proyectile
 
     public override void OnEnable() {
         // Aumentamos un poco el tiempo de muerte
-        Invoke("Die", GetLifeTime() * 1.5f);
+        Invoke("Die", GetLifeTime() * 2f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

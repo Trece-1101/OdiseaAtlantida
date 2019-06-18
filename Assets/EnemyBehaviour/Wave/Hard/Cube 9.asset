@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3689262514176be46ad0a11b360ba67f, type: 3}
+  m_Name: Cube 9
+  m_EditorClassIdentifier: 
+  enemyPrefab:
+  - {fileID: 1088062513839854488, guid: 7d47a399caa0d984b8f4aaf2579b4984, type: 3}
+  - {fileID: 1088062513839854488, guid: 0773ef04e24354a4799e8ccba487ab76, type: 3}
+  - {fileID: 1088062513839854488, guid: 2eec1beaca793354f9a96d00924d9ace, type: 3}
+  - {fileID: 1088062513839854488, guid: 82b5c797e1414df4da1968e11f2801d4, type: 3}
+  pathPrefab: {fileID: 1056435038679204063, guid: 1cca8763f2b8af5428e9ceeca25ac7a6,
+    type: 3}

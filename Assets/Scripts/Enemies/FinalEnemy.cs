@@ -38,7 +38,7 @@ public class FinalEnemy : Enemy
         int remainingMinions = 0;
         foreach (var minion in this.Minions) {
             if (!minion.activeSelf) {
-                remainingMinions++;
+                remainingMinions++;                
             }
         }
 

@@ -248,7 +248,7 @@ public class Asimov : Ship
             if (Input.GetButton("Fire1")) {
                 this.ShootBullet(); // Metodo en la clase padre que dispara la bala
                 this.ShootMicroBullet(); // Metodo en la clase padre que dispara la bala secundaria
-                this.PlayShootSFX(this.GetShootBulletSFX(), this.GetMyMainCamera().transform.position, 0.2f); // Metodo para realizar el sonido del disparo
+                this.PlayShootSFX(this.GetShootBulletSFX(), this.GetMyMainCamera().transform.position, 0.05f); // Metodo para realizar el sonido del disparo
 
                 this.RemainTimeForShootBullet = this.GetTimeBetweenBulletShoots(); // Regresamos el contador a su valor original
             }
@@ -261,7 +261,7 @@ public class Asimov : Ship
             // este metodo funciona identicamente que el de disparar balas pero con el boton de "Fire2"
             if (Input.GetButtonDown("Fire2")) {
                 ShootMissile();
-                PlayShootSFX(this.GetShootMissileSFX(), this.GetMyMainCamera().transform.position, 0.2f);
+                PlayShootSFX(this.GetShootMissileSFX(), this.GetMyMainCamera().transform.position, 0.05f);
 
                 this.RemainTimeForShootMissile = this.GetTimeBetweenMissileShoots();
             }
@@ -401,7 +401,7 @@ public class Asimov : Ship
             // si el modo es defensivo
             float lifeRecharge = 2f;
             this.TimeBetweenBulletShoots *= (TransitionValueModifier * 2); // se dispara mas lento
-            this.RefillHealth(this.HitPoints * lifeRecharge); // se recarga la vida al doble
+            this.RefillHealth(this.GetOriginalHitPoints() / 2); // se recarga la vida al doble
             this.SetVelocity(this.GetVelocity() * TransitionValueModifier); // se aumenta la velocidad
         }
 
@@ -433,7 +433,7 @@ public class Asimov : Ship
     public override void PlayImpactSFX() {
         // Metodo que controla el audio de los proyectiles
         this.GetPool().Spawn("ProyectileExplosion", this.transform.position, Quaternion.identity);
-        AudioSource.PlayClipAtPoint(this.GetHurtSFX(), this.GetMyMainCamera().transform.position, 0.2f);
+        AudioSource.PlayClipAtPoint(this.GetHurtSFX(), this.GetMyMainCamera().transform.position, 0.15f);
     }
 
     public override void Die() {

@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e94fd544cdc25a4f86fff46e9ff5273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalHitPoints: 5000
+  OriginalHitPoints: 3000
   Velocity: {x: 140, y: 140}
   HealthBar: {fileID: 2324842410490345677}
   DeathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}
@@ -340,8 +340,6 @@ MonoBehaviour:
   - {fileID: 1791982344515519984}
   - {fileID: 5469453674886646442}
   - {fileID: 786078197031008665}
-  - {fileID: 994414826440629304}
-  - {fileID: 2787393800622658750}
   ProjectileNames:
   - AtlasBullet
   - AtlasMissile

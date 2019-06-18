@@ -1303,7 +1303,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804321248}
-        m_MethodName: LoadOptions
+        m_MethodName: LoadMechanicsShowDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

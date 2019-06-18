@@ -32,7 +32,9 @@ public class LevelLoader : MonoBehaviour
 
     private string PowerUpsShowDown = "PowerUpShowDown";
     private string FirstPowerUpShowDown = "PowerUpShowDownSpeedUp";
-    private string LastPowerUpShowDOwn = "PowerUpShowDownClone";
+    private string LastPowerUpShowDown = "PowerUpShowDownClone";
+
+    private string MechanicsShowDown = "ShowDownMecanicas";
     #endregion
 
     #region "Setters y Getters"
@@ -127,7 +129,7 @@ public class LevelLoader : MonoBehaviour
                 }
             }
             else if (CheckCurrentSceneName().Contains(this.PowerUpsShowDown)) {
-                if (CheckCurrentSceneName() != this.LastPowerUpShowDOwn) {
+                if (CheckCurrentSceneName() != this.LastPowerUpShowDown) {
                     this.LoadNextLevel();
                 }
                 else {
@@ -155,6 +157,11 @@ public class LevelLoader : MonoBehaviour
     public void LoadPowerUpsShowDown() {
         this.PersonalCursor = null;
         SceneManager.LoadScene(this.FirstPowerUpShowDown);
+    }
+
+    public void LoadMechanicsShowDown() {
+        this.PersonalCursor = null;
+        SceneManager.LoadScene(this.MechanicsShowDown);
     }
 
 

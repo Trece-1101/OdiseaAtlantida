@@ -199,9 +199,12 @@ public class EnemySpawner : MonoBehaviour
     private void InstantiateSuicide() {
         // Instanciamos un suicida random de la listas de enemigos suicidas
         // y lo hacemos en una posicion random utilizando los puntos creados
-        int enemySelected = Random.Range(0, SuicideEnemyPrefab.Count);
-        int spawnPointSelected = Random.Range(0, InstantiatePoints.Count);
-        Instantiate(SuicideEnemyPrefab[enemySelected], InstantiatePoints[spawnPointSelected], Quaternion.identity);
+        if(SuicideEnemyPrefab.Count > 0) {
+            int enemySelected = Random.Range(0, SuicideEnemyPrefab.Count);
+            int spawnPointSelected = Random.Range(0, InstantiatePoints.Count);
+            Instantiate(SuicideEnemyPrefab[enemySelected], InstantiatePoints[spawnPointSelected], Quaternion.identity);
+
+        }
     }
 
     //private void DebugRazonar() {

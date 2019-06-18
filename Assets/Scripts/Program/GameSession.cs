@@ -9,12 +9,13 @@ using UnityEngine.SceneManagement;
 public class GameSession : MonoBehaviour
 {
     #region "Atributos"
-    private int Score = 0; // Puntaje
+    [SerializeField]private int Score = 0; // Puntaje
     private int KillCount = 0; // Cantidad de enemigos destruidos
     private Vector2 PhysicSize = new Vector2(600f, 500f); // Tamaño fisico 500 metros ancho x 600 metros alto
     private Vector2 ScreenSize = new Vector2(12f, 10f); // Tamaño pantalla/camara viewport ancho x viewport alto
     private Vector2 Scale;
     private LevelLoader LevelLd;
+    private float PlayTime;
     #endregion
 
     #region "Setters y Getters"
@@ -52,9 +53,16 @@ public class GameSession : MonoBehaviour
         this.Scale = this.ScreenSize / this.PhysicSize; // 0,02 worldunits del viewport equivalen a 1 metro => 600 m = 12 WU // 500 m = 10WU
     }
 
+    private void Update() {
+        this.PlayTime += Time.deltaTime;
+        Debug.Log(this.PlayTime);
+    }
+
     public void PlayerDead() {
         this.LevelLd.ResetLevel();
     }
+
+
 
     public void AddScore(int value) {
         // Metodo que aumenta el score del jugador

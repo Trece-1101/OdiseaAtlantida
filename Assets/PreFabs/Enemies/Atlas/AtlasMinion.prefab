@@ -100,7 +100,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.48}
+    oldSize: {x: 0.73846155, y: 0.73846155}
     newSize: {x: 0.48, y: 0.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c94d52fddcaafb4796995a5db58aabf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalHitPoints: 60
+  OriginalHitPoints: 40
   Velocity: {x: 60, y: 60}
   HealthBar: {fileID: 1264813307236363887}
   DeathSFX: {fileID: 8300000, guid: 116c8f8a3805bf4489a1f67dd4878bc2, type: 3}
@@ -169,7 +169,7 @@ MonoBehaviour:
   - EnemyBulletEasy
   - EnemyBulletEasy
   Reward: 100
-  PowerUpChance: 0.4
+  PowerUpChance: 0.5
   timeBtwBulletS: 5
   timeBtwMissileS: 5
   canShootMissile: 1
