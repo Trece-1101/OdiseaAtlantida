@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Program\BordersControl.cs" />
     <Compile Include="Assets\Scripts\Program\CrossHair.cs" />
     <Compile Include="Assets\Scripts\Program\DialogSystem.cs" />
+    <Compile Include="Assets\Scripts\Program\GameMetrics.cs" />
     <Compile Include="Assets\Scripts\Program\GameProgram.cs" />
     <Compile Include="Assets\Scripts\Program\GameSession.cs" />
     <Compile Include="Assets\Scripts\Program\KillCountDisplay.cs" />
@@ -102,6 +103,8 @@
     <Compile Include="Assets\Scripts\Program\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\Program\OptionsController.cs" />
     <Compile Include="Assets\Scripts\Program\PlayerPrefController.cs" />
+    <Compile Include="Assets\Scripts\Program\RecoverMetrics.cs" />
+    <Compile Include="Assets\Scripts\Program\SaveMetrics.cs" />
     <Compile Include="Assets\Scripts\Program\ScoreDisplay.cs" />
     <Compile Include="Assets\Scripts\Program\ScrollingBackground.cs" />
     <Compile Include="Assets\Scripts\Program\SetFirstRun.cs" />

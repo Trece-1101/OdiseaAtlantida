@@ -38,6 +38,10 @@ public class Enemy : Ship
     public void SetReward(int value) {
         this.Reward = value;
     }
+
+    public List<string> GetExplodes() {
+        return this.Explodes;
+    }
     #endregion
 
     #region "Metodos"

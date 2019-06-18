@@ -37,6 +37,10 @@ public class GameSession : MonoBehaviour
         return this.KillCount;
     }
 
+    public float GetPlayTime() {
+        return this.PlayTime;
+    }
+
     #endregion
 
     #region "Metodos"
@@ -55,7 +59,6 @@ public class GameSession : MonoBehaviour
 
     private void Update() {
         this.PlayTime += Time.deltaTime;
-        Debug.Log(this.PlayTime);
     }
 
     public void PlayerDead() {

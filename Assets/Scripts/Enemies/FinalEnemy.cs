@@ -13,6 +13,7 @@ public class FinalEnemy : Enemy
     private float TimeToRespawnMinions = 6f;
     private bool Below50 = false;
     private bool Below10 = false;
+    private int NumberOfExplosions = 0;
 
     public override void Awake() {
         base.Awake();
@@ -90,4 +91,39 @@ public class FinalEnemy : Enemy
 
         this.MinionsRequested = false;
     }
+
+    public override void Die() {
+        // Metodo de muerte del enemigo
+
+        //Destroy(this.gameObject); // Destruye el objeto
+        this.gameObject.SetActive(false);
+
+        this.PlayFinalExplosion();        
+    }
+
+
+
+    private void PlayFinalExplosion() {
+        InvokeRepeating("Explosions", 0.1f, 0.4f);
+        
+    }
+
+    private void Explosions() {
+        this.NumberOfExplosions++;
+        Vector3 explosionPosition = Vector3.zero;
+
+        explosionPosition += new Vector3(Random.Range(-6f, 6f), Random.Range(-5f, 5f), 0f);
+        int expIndex = Random.Range(0, this.GetExplodes().Count); // se elige random entre los tipos de explosion de la lista
+        string exp = this.GetExplodes()[expIndex]; // se asigna a una variable string (el tag) el nombre con ese index
+        GameObject explosion = this.GetPool().Spawn(exp, explosionPosition, Quaternion.identity); // se le pide al pool que muestre la explosion
+        explosion.transform.localScale = new Vector3(4f, 4f, 2f);
+        AudioSource.PlayClipAtPoint(this.GetDeathSFX(), this.GetMyMainCamera().transform.position, 0.4f); // Se utiliza el sonido de muerte del enemigo    
+        this.GetCameraShake().ShakeShakeShake();
+        if (NumberOfExplosions >= 15) {
+            CancelInvoke("Explosions");
+            SaveMetrics.SavePlayMetrics(this.GetGameSessionControl());
+        }
+
+    }
+
 }
