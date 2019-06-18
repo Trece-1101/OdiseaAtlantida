@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\Program\GameMetrics.cs" />
     <Compile Include="Assets\Scripts\Program\GameProgram.cs" />
     <Compile Include="Assets\Scripts\Program\GameSession.cs" />
+    <Compile Include="Assets\Scripts\Program\IntroSceneTextManager.cs" />
     <Compile Include="Assets\Scripts\Program\KillCountDisplay.cs" />
     <Compile Include="Assets\Scripts\Program\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\Program\LevelManager.cs" />

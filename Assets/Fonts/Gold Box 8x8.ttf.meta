@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1d32b570f1f66c540bc8bdc5687e93c6
+guid: e2c0f3b47e7501d44a6134970db22a8c
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Bandwidth 8x16
+  fontName: Gold Box 8x8
   fontNames:
-  - Bandwidth 8x16
+  - Gold Box 8x8
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

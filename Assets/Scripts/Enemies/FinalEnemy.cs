@@ -56,15 +56,22 @@ public class FinalEnemy : Enemy
             Below50 = true;
             this.ModifyAtributes(1.5f);
             this.RefillHealth(this.HitPoints * 0.2f);
-            this.GetPool().Spawn("ParticleAnimation", this.transform.position, Quaternion.identity);
+            this.AnimateRelife();
         }
 
         if(lifePerc <= 0.15f && !Below10) {
             Below10 = true;
             this.ModifyAtributes(0.5f);
             this.RefillHealth(this.HitPoints * 1.5f);
-            this.GetPool().Spawn("ParticleAnimation", this.transform.position, Quaternion.identity);
+            this.AnimateRelife();
         }
+    }
+
+    private void AnimateRelife() {
+        var pos1 = new Vector3(1f, 1f, 0f);
+        this.GetPool().Spawn("ParticleAnimation", this.transform.position, Quaternion.identity);
+        this.GetPool().Spawn("ParticleAnimation", this.transform.position + pos1, Quaternion.identity);
+        this.GetPool().Spawn("ParticleAnimation", this.transform.position - pos1, Quaternion.identity);
     }
 
     private void ModifyAtributes(float modifier) {
@@ -118,12 +125,18 @@ public class FinalEnemy : Enemy
         GameObject explosion = this.GetPool().Spawn(exp, explosionPosition, Quaternion.identity); // se le pide al pool que muestre la explosion
         explosion.transform.localScale = new Vector3(4f, 4f, 2f);
         AudioSource.PlayClipAtPoint(this.GetDeathSFX(), this.GetMyMainCamera().transform.position, 0.4f); // Se utiliza el sonido de muerte del enemigo    
-        this.GetCameraShake().ShakeShakeShake();
-        if (NumberOfExplosions >= 15) {
+        this.GetCameraShake().UltraShake();
+        if (NumberOfExplosions >= 13) {
             CancelInvoke("Explosions");
             SaveMetrics.SavePlayMetrics(this.GetGameSessionControl());
+            this.SetIsAlive(false);
+            Invoke("CallEnd", 3f);
         }
 
+    }
+
+    private void CallEnd() {
+        FindObjectOfType<LevelLoader>().LoadCredits();
     }
 
 }

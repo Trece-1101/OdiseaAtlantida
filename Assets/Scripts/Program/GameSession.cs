@@ -81,16 +81,7 @@ public class GameSession : MonoBehaviour
             this.Score = 0;
         }
     }
-
-    //public void AddToKillCount() {
-    //    this.KillCount++;
-    //}
-
-    //private void ResetLevel() {
-    //    string currentScene = SceneManager.GetActiveScene().name;
-    //    SceneManager.LoadScene(currentScene);
-    //    //Destroy(this.gameObject);
-    //}
+ 
 
     public void ResetGame() {
         Destroy(gameObject);
