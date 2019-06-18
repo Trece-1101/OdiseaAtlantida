@@ -23,8 +23,11 @@ public class LevelLoader : MonoBehaviour
     #endregion
 
     #region "Scenes Names"
+    private string DemoLevel = "PrototypeLevel";
     private string MainMenu = "MenuPrincipal";
     private string OptionsMenu = "Opciones";
+    private string Controls = "Controles";
+    private string Credits = "Creditos";
 
     private string EnemiesShowDown = "EnemyShowDown";
     private string FirstEnemyShowDown = "EnemyShowDownOrange";
@@ -109,12 +112,22 @@ public class LevelLoader : MonoBehaviour
     }
 
 
-    public void LoadStartMenu() {        
+    public void LoadStartMenu() {
+        FindObjectOfType<GameSession>().ResetGame();
         SceneManager.LoadScene(this.MainMenu);
+        Cursor.visible = true;
     }
 
     public void LoadOptions() {
         SceneManager.LoadScene(this.OptionsMenu);
+    }
+
+    public void LoadControls() {
+        SceneManager.LoadScene(this.Controls);
+    }
+
+    public void LoadCredits() {
+        SceneManager.LoadScene(this.Credits);
     }
 
 
@@ -166,10 +179,17 @@ public class LevelLoader : MonoBehaviour
 
 
     public void LoadPrototype() {
+
         this.Animator.SetTrigger("FadeOut");
-        //StartCoroutine(WaitAndLoad("PrototypeLevel"));
-        StartCoroutine(LoadLevelAsynch("PrototypeLevel"));
+        SceneManager.LoadScene(this.DemoLevel);
     }
+
+
+
+
+
+
+
 
     public void LoadGameOver() {
         StartCoroutine(WaitAndLoad("GameOver"));        

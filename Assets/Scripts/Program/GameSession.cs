@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class GameSession : MonoBehaviour
 {
     #region "Atributos"
-    [SerializeField]private int Score = 0; // Puntaje
+    [SerializeField] private int Score = 0; // Puntaje
     private int KillCount = 0; // Cantidad de enemigos destruidos
     private Vector2 PhysicSize = new Vector2(600f, 500f); // Tamaño fisico 500 metros ancho x 600 metros alto
     private Vector2 ScreenSize = new Vector2(12f, 10f); // Tamaño pantalla/camara viewport ancho x viewport alto
@@ -95,6 +95,7 @@ public class GameSession : MonoBehaviour
     public void ResetGame() {
         Destroy(gameObject);
     }
+
     #endregion
 
 }

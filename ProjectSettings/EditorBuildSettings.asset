@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuPrincipal.unity
     guid: 40062e7c1c94e0043a0f9e62194935c9
   - enabled: 1
-    path: Assets/Scenes/Opciones.unity
-    guid: 7dcfd3c9cad57d340a7f5b597102edc9
-  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 34c0afbbadfcc7f48a0d3f7b006cf4c9
   - enabled: 1
@@ -65,4 +62,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PowerUpsShowDown/PowerUpShowDownClone.unity
     guid: 97997ecbbf4a853408445e64681caf80
+  - enabled: 1
+    path: Assets/Scenes/PrototypeLevel.unity
+    guid: cba1effa7bd34b7459cdfdc38cd4c037
+  - enabled: 1
+    path: Assets/Scenes/Controles.unity
+    guid: 7dcfd3c9cad57d340a7f5b597102edc9
   m_configObjects: {}
