@@ -8,7 +8,7 @@ public class IntroSceneTextManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI textDisplay = null;
     [SerializeField] string[] sentences = null;
     private int indexSentences;
-    private float typeSpeed = 0.01f;
+    private float typeSpeed = 0.2f;
 
     private void Start() {
         StartCoroutine(TypeLetters());
@@ -23,12 +23,16 @@ public class IntroSceneTextManager : MonoBehaviour
     }
 
     public void NextSentence() {
+        this.typeSpeed = 0.05f;
         textDisplay.text += "\n";
         if (indexSentences < sentences.Length - 1) {
             indexSentences++;
             StartCoroutine(TypeLetters());
         }
-
+        else {
+            FindObjectOfType<LevelLoader>().LoadPrototype();
+        }
+        
     }
 
 }

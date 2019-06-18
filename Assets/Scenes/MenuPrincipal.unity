@@ -1689,16 +1689,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
-    - target: {fileID: 6767981665065007714, guid: b3e41124bcb16bf44a793c9c122f34c7,
-        type: 3}
-      propertyPath: Animator
-      value: 
-      objectReference: {fileID: 264311111}
-    - target: {fileID: 6767981665065007714, guid: b3e41124bcb16bf44a793c9c122f34c7,
-        type: 3}
-      propertyPath: PauseUI
-      value: 
-      objectReference: {fileID: 2127706450}
     - target: {fileID: 6767981665065007715, guid: b3e41124bcb16bf44a793c9c122f34c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1754,6 +1744,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6767981665065007714, guid: b3e41124bcb16bf44a793c9c122f34c7,
+        type: 3}
+      propertyPath: Animator
+      value: 
+      objectReference: {fileID: 264311111}
+    - target: {fileID: 6767981665065007714, guid: b3e41124bcb16bf44a793c9c122f34c7,
+        type: 3}
+      propertyPath: PauseUI
+      value: 
+      objectReference: {fileID: 2127706450}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e41124bcb16bf44a793c9c122f34c7, type: 3}
 --- !u!1 &1414886751
@@ -1915,7 +1915,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804321248}
-        m_MethodName: LoadPrototype
+        m_MethodName: LoadIntro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

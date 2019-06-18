@@ -28,6 +28,7 @@ public class LevelLoader : MonoBehaviour
     private string OptionsMenu = "Opciones";
     private string Controls = "Controles";
     private string Credits = "Creditos";
+    private string Intro = "IntroScene";
 
     private string EnemiesShowDown = "EnemyShowDown";
     private string FirstEnemyShowDown = "EnemyShowDownOrange";
@@ -128,6 +129,10 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadCredits() {
         SceneManager.LoadScene(this.Credits);
+    }
+
+    public void LoadIntro() {
+        SceneManager.LoadScene(this.Intro);
     }
 
 
