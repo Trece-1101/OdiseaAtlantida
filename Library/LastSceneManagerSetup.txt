@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/PrototypeLevel.unity
+- path: Assets/Scenes/EnemyShowDown/EnemyShowDownGreen.unity
   isLoaded: 1
   isActive: 1

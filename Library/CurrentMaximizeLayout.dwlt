@@ -21,10 +21,10 @@ MonoBehaviour:
     y: 30
     width: 1366
     height: 676
-  m_MinSize: {x: 683, y: 348}
-  m_MaxSize: {x: 12008, y: 8048}
+  m_MinSize: {x: 683, y: 498}
+  m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 326
+  controlID: 114
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -126,10 +126,10 @@ MonoBehaviour:
     y: 0
     width: 899
     height: 676
-  m_MinSize: {x: 406, y: 348}
-  m_MaxSize: {x: 8006, y: 8048}
+  m_MinSize: {x: 406, y: 498}
+  m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 327
+  controlID: 115
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 328
+  controlID: 116
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -174,8 +174,8 @@ MonoBehaviour:
     y: 0
     width: 341
     height: 365
-  m_MinSize: {x: 202, y: 224}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -209,10 +209,10 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 88}
+      scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4c3bffff603bffffc03dffff643effffdc3effff943fffff9e3fffff9e40ffff9e41ffffe642ffffe643ffffee44ffffee45fffff646fffffe47fffffe48ffff0e4affff164bffff1e4cffff264dffff2e4effff3e4fffff4650ffff4e51ffffd051ffff4655ffffd8fbffff367a00004a7a0000
+      m_ExpandedIDs: 46faffffbefbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -255,8 +255,8 @@ MonoBehaviour:
     y: 0
     width: 558
     height: 365
-  m_MinSize: {x: 204, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 8}
@@ -802,16 +802,16 @@ MonoBehaviour:
     y: 365
     width: 899
     height: 311
-  m_MinSize: {x: 102, y: 124}
-  m_MaxSize: {x: 4002, y: 4024}
-  m_ActualView: {fileID: 14}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
+  m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
   - {fileID: 14}
   - {fileID: 15}
   - {fileID: 16}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -850,20 +850,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Projectiles
+    - Assets/Scenes/EnemyShowDown
   m_ViewMode: 1
   m_StartGridSize: 52
   m_LastFolders:
-  - Assets/Scripts/Projectiles
+  - Assets/Scenes/EnemyShowDown
   m_LastFoldersGridSize: 52
   m_LastProjectPath: C:\Users\Omar\Documents\GitHub\OdiseaAtlantida
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 274}
-    m_SelectedIDs: 980d0000
-    m_LastClickedID: 3480
-    m_ExpandedIDs: 00000000100b0000501a0000d61b0000b621000000ca9a3b
+    m_SelectedIDs: 94110000
+    m_LastClickedID: 4500
+    m_ExpandedIDs: 00000000260b0000320e0000641a0000ea1b0000ca21000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -891,7 +891,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000100b0000d61b0000b621000000ca9a3b
+    m_ExpandedIDs: 00000000260b0000641a0000ea1b0000ca210000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -916,8 +916,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 167c0000
-    m_LastClickedInstanceID: 31766
+    m_SelectedInstanceIDs: 30faffff
+    m_LastClickedInstanceID: -1488
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300006430000008320000982b0000d8340000340a00000e0d00003e4200009a460000ba1500007a0c000058410000
     m_RenameOverlay:
@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 31908
+  m_LastSelectedObjectID: 31766
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
