@@ -8,8 +8,13 @@ Hay 10 powerups diferentes para asistirte en esta mision, asi como un escudo que
 ***Engine:*** Unity 2018.3.12f1
 
 ***Lenguaje:*** C#
+
+***Plataforma:*** PC
+
+***Genero:*** Bullet Hell - Shoot ‘em up - Roguelike
+***
+### ***Preview***
+[![Gameplay Odisea](https://img.youtube.com/vi/Jv4VSX8hn2c/0.jpg)](https://www.youtube.com/watch?v=Jv4VSX8hn2c)
 ***
 ### ***Imagenes***
-***
-### ***Gameplay***
-[![Gameplay Odisea](https://img.youtube.com/vi/Jv4VSX8hn2c/0.jpg)](https://www.youtube.com/watch?v=Jv4VSX8hn2c)
+
