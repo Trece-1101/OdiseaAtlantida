@@ -10,6 +10,6 @@ Hay 10 powerups diferentes para asistirte en esta mision, asi como un escudo que
 ***Lenguaje:*** C#
 ***
 ### ***Imagenes***
-
+***
 ### ***Gameplay***
 [![Gameplay Odisea](https://img.youtube.com/vi/Jv4VSX8hn2c/0.jpg)](https://www.youtube.com/watch?v=Jv4VSX8hn2c)
