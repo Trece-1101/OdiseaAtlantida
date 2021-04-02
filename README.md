@@ -36,3 +36,7 @@ Hay 10 powerups diferentes para asistirte en esta mision, asi como un escudo que
 <img src="https://user-images.githubusercontent.com/22348284/113450196-cbb6bd00-93d5-11eb-81fa-363f2e8e3b4f.gif" width=50% height=50%/>
 
 <img src="https://user-images.githubusercontent.com/22348284/113450504-6fa06880-93d6-11eb-9e50-e885e49192ca.gif" width=50% height=50%/>
+
+<img src="https://user-images.githubusercontent.com/22348284/113450901-39171d80-93d7-11eb-82fd-ee39dde3f9b4.gif" width=50% height=50%/>
+
+<img src="https://user-images.githubusercontent.com/22348284/113451194-deca8c80-93d7-11eb-818d-726da724e925.gif" width=50% height=50%/>
