@@ -20,6 +20,11 @@ Hay 10 powerups diferentes para asistirte en esta mision, asi como un escudo que
 [![Gameplay Odisea](https://img.youtube.com/vi/Jv4VSX8hn2c/0.jpg)](https://www.youtube.com/watch?v=Jv4VSX8hn2c)
 ***
 ### ***Imagenes***
-![Odisea_1](https://user-images.githubusercontent.com/22348284/113448213-c6f00a00-93d1-11eb-9914-1559842cf712.gif)
-![Odisea_2](https://user-images.githubusercontent.com/22348284/113448216-ca839100-93d1-11eb-91a9-b11a03ad1d5f.gif)
-![Odisea_3](https://user-images.githubusercontent.com/22348284/113448219-cbb4be00-93d1-11eb-8067-af465b37a9e8.gif)
+
+<img src="https://user-images.githubusercontent.com/22348284/113448213-c6f00a00-93d1-11eb-9914-1559842cf712.gif" width=50% height=50%/>
+
+<img src="https://user-images.githubusercontent.com/22348284/113448216-ca839100-93d1-11eb-91a9-b11a03ad1d5f.gif" width=50% height=50%/>
+
+<img src="https://user-images.githubusercontent.com/22348284/113448219-cbb4be00-93d1-11eb-8067-af465b37a9e8.gif" width=50% height=50%/>
+
+<img src="https://user-images.githubusercontent.com/22348284/113448937-2c90c600-93d3-11eb-8f22-c87020883476.gif" width=50% height=50%/>
