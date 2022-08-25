@@ -5,10 +5,13 @@
 Odisea Atlántida es un shmup de scroll vertical donde piloteamos la nave Asimov comandada por el capitán D.G. Stolen. Embarcado en una misión de intercambio de productos en la capital del mundo “Atlántida” la cual se encuentra gobernada por la IA “Atlas” quien es la regente del planeta tierra. Esta misión de manera muy rápida se tornara en algo mucho más peligroso.
 Un juego donde hay que disparar para sobrevivir valiéndose de todos los atributos que posea la Asimov y utilizando los reflejos para no ser destruido por la hordas de enemigos que disparan sin cesar.
 Hay 10 powerups diferentes para asistirte en esta mision, asi como un escudo que se puede regenerar a cambio de puntos obtenidos por destruir enemigos.
+
+Este juego fue presentado como proyecto cuatrimestral en el 1er año 2do cuatrimestre de la carrera de Diseño y Programación de videojuegos.
+
 ***
 ***Engine:*** Unity 2018.3.12f1
 
-***Lenguaje:*** C#
+***Lenguaje:*** C# (Algunas particularidades del codigo, como comentarios linea por linea o el uso de constructores en clases derivadas de MonoBehaviour se deben a requerimientos de una de las catedras).
 
 ***Plataforma:*** PC
 
