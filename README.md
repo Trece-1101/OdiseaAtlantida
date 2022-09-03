@@ -8,6 +8,8 @@ Hay 10 powerups diferentes para asistirte en esta mision, asi como un escudo que
 
 Este juego fue presentado como proyecto cuatrimestral en el 1er año 2do cuatrimestre de la carrera de Diseño y Programación de videojuegos.
 
+**Tambien podes jugar su version (no optimizada) de navegador aca** --> https://nicebuggames.itch.io/odisea-atlantida
+
 ***
 ***Engine:*** Unity 2018.3.12f1
 
